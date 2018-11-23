@@ -166,7 +166,9 @@ jobs:
 
       - run:
           name: Tests
-          command: yarn test:end2end:android:debug
+          command: |
+            alias emulator="cd \"$ANDROID_HOME/tools\" && ./emulator \"$@\""
+            yarn test:end2end:android:debug
           environment:
             RCT_NO_LAUNCH_PACKAGER: 1
             ANDROID_HOME: /usr/local/share/android-sdk
