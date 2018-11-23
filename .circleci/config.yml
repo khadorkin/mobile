@@ -167,7 +167,7 @@ jobs:
       - run:
           name: Tests
           command: |
-            alias emulator="cd \"$ANDROID_HOME/tools\" && ./emulator \"$@\""
+            alias emulator="cd \"$ANDROID_HOME/tools\" && echo \"Running from $(pwd)\" && ./emulator $@"
             yarn test:end2end:android:debug
           environment:
             RCT_NO_LAUNCH_PACKAGER: 1
