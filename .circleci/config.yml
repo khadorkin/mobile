@@ -174,15 +174,15 @@ workflows:
   tests-build-deploy:
     jobs:
       - dependencies
-      - linting:
-         requires:
-           - dependencies
-      - unit_tests:
-         requires:
-           - dependencies
-      - end2end_tests_ios:
-         requires:
-           - dependencies
+      # - linting:
+      #    requires:
+      #      - dependencies
+      # - unit_tests:
+      #    requires:
+      #      - dependencies
+      # - end2end_tests_ios:
+      #    requires:
+      #      - dependencies
       - end2end_tests_android:
          requires:
            - dependencies
