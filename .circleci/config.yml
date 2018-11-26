@@ -148,7 +148,6 @@ jobs:
           name: Emulator
           command: |
             echo no | avdmanager create avd --force --name "Nexus_5X_API_${API_VERSION}" --abi "google_apis/${ARCH}" --package "system-images;android-${API_VERSION};google_apis;${ARCH}" --device "Nexus 5X"
-            cd "${ANDROID_HOME}/tools" && nohup ./emulator -verbose -gpu host -no-window -no-audio @"Nexus_5X_API_${API_VERSION}" &
           environment:
             ANDROID_HOME: /usr/local/share/android-sdk
             API_VERSION: 19
@@ -171,7 +170,7 @@ jobs:
       - run:
           name: Tests
           command: |
-            "${ANDROID_HOME}/platform-tools/adb" devices
+            ln -s ${ANDROID_HOME}/emulator ../emulator
             yarn test:end2end:android:debug
           environment:
             RCT_NO_LAUNCH_PACKAGER: 1
