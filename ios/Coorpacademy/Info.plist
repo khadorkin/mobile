@@ -51,5 +51,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!-- For react-native-qrcode-scanner -->
+	<key>NSCameraUsageDescription</key>
+	<string>We need to access to your camera to authenticate yourself using QR code..</string>
 </dict>
 </plist>
