@@ -9054,6 +9054,13 @@ react-modal@^3.6.1:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
+react-native-camera@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.npmjs.org/react-native-camera/-/react-native-camera-1.4.3.tgz#71359ae8efdf372fb1b8b5ec72ecae1c6708da4b"
+  dependencies:
+    lodash "^4.17.10"
+    prop-types "^15.6.2"
+
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
   version "1.0.10"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.0.10.tgz#160e55e4886471931b7f7d52e22d94007540ab83"
@@ -9061,6 +9068,17 @@ react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-permissions@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
+
+react-native-qrcode-scanner@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-native-qrcode-scanner/-/react-native-qrcode-scanner-1.1.0.tgz#6a2e88110e0c1def94690a4d52fc383634ed6e4c"
+  dependencies:
+    prop-types "^15.5.10"
+    react-native-permissions "^1.1.1"
 
 react-native-safe-area-view@^0.11.0:
   version "0.11.0"
