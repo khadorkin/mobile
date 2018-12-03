@@ -35,6 +35,8 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* CoorpacademyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CoorpacademyTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
+		401A641F21B1A37B00391E1B /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A640E21B1A30700391E1B /* libRNCamera.a */; };
+		401A644C21B1A64C00391E1B /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A644B21B1A64000391E1B /* libReactNativePermissions.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A225604F04AFEFC2FE4BB482 /* Pods_Coorpacademy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2762D829AC64F75568411 /* Pods_Coorpacademy.framework */; };
@@ -281,6 +283,20 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		401A640D21B1A30700391E1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 401A63E421B1A30600391E1B /* RNCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RNCamera;
+		};
+		401A644A21B1A64000391E1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 401A644621B1A64000391E1B /* ReactNativePermissions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
+			remoteInfo = ReactNativePermissions;
+		};
 		40EBC5AD21AD7C3D0090875F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F60445FE6DBE4916937E2B80 /* RNGestureHandler.xcodeproj */;
@@ -349,6 +365,8 @@
 		2D02E47B1E0B4A5D006451C7 /* Coorpacademy-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coorpacademy-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Coorpacademy-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coorpacademy-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		401A63E421B1A30600391E1B /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
+		401A644621B1A64000391E1B /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		4272B3F696A7D44A1109E685 /* Pods-Coorpacademy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coorpacademy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coorpacademy/Pods-Coorpacademy.release.xcconfig"; sourceTree = "<group>"; };
 		54C2762D829AC64F75568411 /* Pods_Coorpacademy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coorpacademy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -385,6 +403,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				401A641F21B1A37B00391E1B /* libRNCamera.a in Frameworks */,
+				401A644C21B1A64C00391E1B /* libReactNativePermissions.a in Frameworks */,
 				A225604F04AFEFC2FE4BB482 /* Pods_Coorpacademy.framework in Frameworks */,
 				FC8C5FA4224F427B82A9AA92 /* libRNGestureHandler.a in Frameworks */,
 			);
@@ -541,6 +561,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		401A63E521B1A30600391E1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				401A640E21B1A30700391E1B /* libRNCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		401A644721B1A64000391E1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				401A644B21B1A64000391E1B /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		40EBC58421AD7C3C0090875F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +614,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				401A644621B1A64000391E1B /* ReactNativePermissions.xcodeproj */,
+				401A63E421B1A30600391E1B /* RNCamera.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -812,6 +850,14 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 401A644721B1A64000391E1B /* Products */;
+					ProjectRef = 401A644621B1A64000391E1B /* ReactNativePermissions.xcodeproj */;
+				},
+				{
+					ProductGroup = 401A63E521B1A30600391E1B /* Products */;
+					ProjectRef = 401A63E421B1A30600391E1B /* RNCamera.xcodeproj */;
 				},
 				{
 					ProductGroup = 40EBC5AA21AD7C3D0090875F /* Products */;
@@ -1051,6 +1097,20 @@
 			fileType = archive.ar;
 			path = libjschelpers.a;
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		401A640E21B1A30700391E1B /* libRNCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCamera.a;
+			remoteRef = 401A640D21B1A30700391E1B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		401A644B21B1A64000391E1B /* libReactNativePermissions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativePermissions.a;
+			remoteRef = 401A644A21B1A64000391E1B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		40EBC5AE21AD7C3D0090875F /* libRNGestureHandler.a */ = {
