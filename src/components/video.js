@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
-import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
 
 type Props = {|
   testID?: string,
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const VideoPlayer = ({testID, source, preview}: Props) => (
-  <Video
+const Video = ({testID, source, preview}: Props) => (
+  <VideoPlayer
     source={{
       uri: source
     }} // Can be a URL or a local file.
@@ -30,11 +30,11 @@ const VideoPlayer = ({testID, source, preview}: Props) => (
       this.player = ref;
     }} // Store reference
     style={styles.backgroundVideo}
-    controls
     fullscreenOrientation="landscape"
     poster={preview}
     resizeMode="contain"
+    disableBack
   />
 );
 
-export default VideoPlayer;
+export default Video;
