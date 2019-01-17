@@ -19,3 +19,4 @@ require('./components/question.stories.js');
 require('./components/screen.stories.js');
 require('./components/space.stories.js');
 require('./components/text.stories.js');
+require('./components/video.stories.js');
