@@ -3,12 +3,11 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: '',
-  base: '',
+  advanced: 'Avanzato',
+  base: 'Base',
   clue: '',
-  coach: '',
+  coach: 'Allenatore',
   congratulations: '',
-  correction: '',
   didYouKnowThat: '',
   gameOver: '',
   goodAnswer: '',
@@ -17,7 +16,6 @@ const translations: Translations = {
   lesson: '',
   next: '',
   nextLevel: '',
-  nextLevelUnlocked: '',
   nextQuestion: '',
   ouch: '',
   outOfLives: '',
