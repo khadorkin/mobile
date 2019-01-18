@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
 
 const LevelEnd = ({isCorrect, onButtonPress}: Props) => {
   const title = (isCorrect && translations.congratulations) || translations.gameOver;
-  const subtitle = (isCorrect && translations.nextLevelUnlocked) || translations.outOfLives;
 
   return (
     <View
@@ -62,9 +61,11 @@ const LevelEnd = ({isCorrect, onButtonPress}: Props) => {
         <Text style={styles.mainTitle} testID="level-end-title">
           {title}
         </Text>
-        <Text style={styles.subTitle} testID="level-end-subtitle">
-          {subtitle}
-        </Text>
+        {!isCorrect && (
+          <Text style={styles.subTitle} testID="level-end-subtitle">
+            {translations.outOfLives}
+          </Text>
+        )}
       </View>
       <Space type="base" />
       <View style={styles.footer}>

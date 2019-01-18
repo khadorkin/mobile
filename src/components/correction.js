@@ -126,7 +126,10 @@ class Correction extends React.PureComponent<Props> {
   render() {
     const {title, subtitle, isCorrect, onButtonPress, layout, isFinished, lives} = this.props;
 
-    const correctionCard: Card = {type: CARD_TYPE.CORRECTION, title: translations.correction};
+    const correctionCard: Card = {
+      type: CARD_TYPE.CORRECTION,
+      title: isCorrect ? translations.goodAnswer : translations.wrongAnswer
+    };
     const tipCard = {type: CARD_TYPE.TIP, title: translations.didYouKnowThat};
     const keyPointCard = {type: CARD_TYPE.KEY_POINT, title: translations.keyPoint};
 
