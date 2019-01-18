@@ -21,17 +21,23 @@ const styles = StyleSheet.create({
   }
 });
 
+let isVideoReady: boolean = false;
+
 class Video extends React.PureComponent<Props> {
   props: Props;
 
   componentDidMount = () => {
-    if (Platform.OS === 'android') {
-      this.videoPlayer.seekTo(0);
-    }
+    console.log("VIDEO MOUNTED")
+    isVideoReady = false;
   };
 
   handleVideoReady = () => {
-    // can't access to the ref before componentDidMount
+    console.log('ON VIDEO READY BUT');
+    if (Platform.OS === 'android' && !isVideoReady) {
+      isVideoReady = true;
+      this.videoPlayer.seekTo(0);
+      console.log('ON VIDEO READY');
+    }
   };
 
   handleEnterFullscreen = () => {
@@ -57,9 +63,9 @@ class Video extends React.PureComponent<Props> {
         style={styles.backgroundVideo}
         poster={preview}
         resizeMode="contain"
-        onEnterFullscreen={this.handleEnterFullscreen()}
-        onExitFullscreen={this.handleExitFullscreen()}
-        onReadyForDisplay={this.handleVideoReady()}
+        onEnterFullscreen={this.handleEnterFullscreen}
+        onExitFullscreen={this.handleExitFullscreen}
+        onReadyForDisplay={this.handleVideoReady}
         disableVolume
         disableBack
       />
