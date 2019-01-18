@@ -4,6 +4,7 @@ import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import theme from '../modules/theme';
+import translations from '../translations';
 import Button from './button';
 import Text from './text';
 import Space from './space';
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
 });
 
 const LevelEnd = ({isCorrect, onButtonPress}: Props) => {
-  const title = (isCorrect && 'Congratulations!') || 'Game over...';
-  const subtitle = (isCorrect && 'You have unlocked the next level') || 'You are out of lives';
+  const title = (isCorrect && translations.congratulations) || translations.gameOver;
+  const subtitle = (isCorrect && translations.nextLevelUnlocked) || translations.outOfLives;
 
   return (
     <View
@@ -72,7 +73,7 @@ const LevelEnd = ({isCorrect, onButtonPress}: Props) => {
           onPress={onButtonPress}
           testID={`button-${isCorrect ? 'next' : 'retry'}-level`}
         >
-          {(isCorrect && 'Next level') || 'Retry level'}
+          {(isCorrect && translations.nextLevel) || translations.retryLevel}
         </Button>
       </View>
     </View>
