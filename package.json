@@ -42,7 +42,8 @@
     "pull:certificate:ios": "cd ios && fastlane match development --readonly && fastlane match adhoc --readonly",
     "pull:certificate:android": "babel-node scripts/pull-certificate-android.js",
     "generate:bundle:android": "mkdir -p ./android/app/src/main/assets && react-native bundle --platform android --entry-file ./index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/assets",
-    "generate:bundle:ios": "react-native bundle --entry-file ./index.js --platform ios --bundle-output ./ios/main.jsbundle"
+    "generate:bundle:ios": "react-native bundle --entry-file ./index.js --platform ios --bundle-output ./ios/main.jsbundle",
+    "pull:translations": "babel-node scripts/pull-translations.js"
   },
   "dependencies": {
     "@coorpacademy/nova-icons": "^2.2.1",
