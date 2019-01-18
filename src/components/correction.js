@@ -10,6 +10,7 @@ import CardComponent from '../containers/card-scalable';
 import withLayout from '../containers/with-layout';
 import type {WithLayoutProps} from '../containers/with-layout';
 import Cards from '../containers/cards-scalable';
+import LivesAnimated from '../containers/lives-animated';
 import {STYLE as BOX_STYLE} from './box';
 import Button, {HEIGHT as BUTTON_HEIGHT} from './button';
 import Text from './text';
@@ -28,7 +29,8 @@ type Props = {|
   isCorrect: boolean,
   keyPoint: string,
   onButtonPress: () => void,
-  isFinished: boolean
+  isFinished: boolean,
+  lives?: number
 |};
 
 const CARDS_HEIGHT = 300;
@@ -71,6 +73,9 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   header: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'absolute',
     paddingHorizontal: PADDING_WIDTH,
     paddingTop: PADDING_WIDTH
@@ -118,7 +123,7 @@ class Correction extends React.PureComponent<Props> {
   };
 
   render() {
-    const {title, subtitle, isCorrect, onButtonPress, layout, isFinished} = this.props;
+    const {title, subtitle, isCorrect, onButtonPress, layout, isFinished, lives} = this.props;
 
     const correctionCard: Card = {type: CARD_TYPE.CORRECTION, title: 'Correction'};
     const tipCard = {type: CARD_TYPE.TIP, title: 'Did you know that?'};
@@ -134,12 +139,22 @@ class Correction extends React.PureComponent<Props> {
         testID={`correction-${isCorrect ? 'success' : 'error'}`}
       >
         <View style={styles.header}>
-          <Text style={styles.mainTitle} testID="correction-title">
-            {title}
-          </Text>
-          <Text style={styles.subTitle} testID="correction-subtitle">
-            {subtitle}
-          </Text>
+          <View>
+            <Text style={styles.mainTitle} testID="correction-title">
+              {title}
+            </Text>
+            <Text style={styles.subTitle} testID="correction-subtitle">
+              {subtitle}
+            </Text>
+          </View>
+          {lives !== undefined && (
+            <LivesAnimated
+              count={lives}
+              isBroken={!isCorrect}
+              height={67}
+              testID="correction-lives"
+            />
+          )}
         </View>
         <Space type="base" />
         {layout && (
