@@ -1,3 +1,27 @@
 // @flow strict
 
-export type Translations = {||};
+export type Translations = {|
+  advanced: string,
+  base: string,
+  clue: string,
+  coach: string,
+  congratulations: string,
+  correction: string,
+  didYouKnowThat: string,
+  gameOver: string,
+  goodAnswer: string,
+  goodJob: string,
+  keyPoint: string,
+  lesson: string,
+  next: string,
+  nextLevel: string,
+  nextLevelUnlocked: string,
+  nextQuestion: string,
+  ouch: string,
+  outOfLives: string,
+  question: string,
+  retryLevel: string,
+  wrongAnswer: string,
+  yourAnswer: string,
+  yourAnswers: string
+|};
