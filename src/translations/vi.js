@@ -3,27 +3,27 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: '',
-  base: '',
-  clue: '',
-  coach: '',
-  congratulations: '',
-  didYouKnowThat: '',
-  gameOver: '',
-  goodAnswer: '',
-  goodJob: '',
-  keyPoint: '',
-  lesson: '',
-  next: '',
-  nextLevel: '',
-  nextQuestion: '',
-  ouch: '',
-  outOfLives: '',
-  question: '',
-  retryLevel: '',
-  wrongAnswer: '',
-  yourAnswer: '',
-  yourAnswers: ''
+  advanced: 'Nâng cao',
+  base: 'Cơ bản',
+  clue: 'Gợi ý',
+  coach: 'Huấn luyện viên',
+  congratulations: 'Chúc mừng bạn!',
+  didYouKnowThat: 'Bạn đã biết điều đó?',
+  gameOver: 'Thua cuộc',
+  goodAnswer: 'Câu trả lời đúng',
+  goodJob: 'Bạn làm tốt lắm!',
+  keyPoint: 'Điểm quan trọng',
+  lesson: 'Bài học',
+  next: 'Tiếp',
+  nextLevel: 'Cấp tiếp theo ',
+  nextQuestion: undefined,
+  ouch: 'Ối...',
+  outOfLives: 'Bạn đã hết mạng!',
+  question: 'Câu hỏi',
+  retryLevel: 'Thử lại cấp độ',
+  wrongAnswer: 'Câu trả lời sai',
+  yourAnswer: undefined,
+  yourAnswers: undefined
 };
 
 export default translations;

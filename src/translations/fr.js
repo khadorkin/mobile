@@ -4,10 +4,10 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   advanced: 'Avancé',
-  base: 'Basique',
+  base: 'Base',
   clue: 'Indice',
   coach: 'Coach',
-  congratulations: 'Félicitations !',
+  congratulations: 'Félicitations !',
   didYouKnowThat: 'Le saviez-vous ?',
   gameOver: 'Game over',
   goodAnswer: 'Bonne réponse',
@@ -16,14 +16,14 @@ const translations: Translations = {
   lesson: 'Leçon',
   next: 'Continuer',
   nextLevel: 'Niveau suivant',
-  nextQuestion: 'Question suivante',
+  nextQuestion: undefined,
   ouch: 'Aïe...',
   outOfLives: "Vous n'avez plus de vies !",
   question: 'Question',
   retryLevel: 'Réessayez ce niveau',
   wrongAnswer: 'Mauvaise réponse',
-  yourAnswer: 'Votre réponse :',
-  yourAnswers: 'Vos réponses :'
+  yourAnswer: undefined,
+  yourAnswers: undefined
 };
 
 export default translations;

@@ -1,10 +1,12 @@
-// @flow strict
+// @flow
 
 import fs from 'fs';
 import path from 'path';
 
 import 'isomorphic-fetch';
 import globby from 'globby';
+
+import type {Translations} from '../src/translations/_types';
 
 const GITHUB_API = 'https://api.github.com';
 
@@ -15,12 +17,13 @@ const headers = {
 const fetchTranslations = (
   locale: string,
   repository: string,
-  path: string,
+  contentPath: string,
   file: string
+  // $FlowFixMe translations file is an untyped object
 ): Promise<Object> => {
   const apiLocale = locale.replace(/-(.*)/, found => '_' + found.replace('-', '').toUpperCase());
   return fetch(
-    `${GITHUB_API}/repos/coorpacademy/${repository}/contents/${path}/${apiLocale}/${file}`,
+    `${GITHUB_API}/repos/coorpacademy/${repository}/contents/${contentPath}/${apiLocale}/${file}`,
     {
       headers
     }

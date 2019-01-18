@@ -3,27 +3,27 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: '',
-  base: '',
-  clue: '',
-  coach: '',
-  congratulations: '',
-  didYouKnowThat: '',
-  gameOver: '',
-  goodAnswer: '',
-  goodJob: '',
-  keyPoint: '',
-  lesson: '',
-  next: '',
-  nextLevel: '',
-  nextQuestion: '',
-  ouch: '',
-  outOfLives: '',
-  question: '',
-  retryLevel: '',
-  wrongAnswer: '',
-  yourAnswer: '',
-  yourAnswers: ''
+  advanced: 'Продвинутый',
+  base: 'Основной',
+  clue: 'Подсказка',
+  coach: 'Эксперт',
+  congratulations: 'Поздравляем!',
+  didYouKnowThat: 'Вы знали это?',
+  gameOver: 'Конец игры',
+  goodAnswer: 'Правильный ответ',
+  goodJob: 'Отличная работа!',
+  keyPoint: 'Ключевой момент',
+  lesson: 'Урок',
+  next: 'Далее',
+  nextLevel: 'Следующий уровень',
+  nextQuestion: undefined,
+  ouch: 'Ох...',
+  outOfLives: 'У вас закончились жизни!',
+  question: 'Вопрос',
+  retryLevel: 'Повторить уровень',
+  wrongAnswer: 'Неверный ответ',
+  yourAnswer: undefined,
+  yourAnswers: undefined
 };
 
 export default translations;

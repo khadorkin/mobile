@@ -9,21 +9,21 @@ const translations: Translations = {
   coach: 'Coach',
   congratulations: 'Congratulations!',
   didYouKnowThat: 'Did you know that?',
-  gameOver: 'Game over...',
+  gameOver: 'Game over',
   goodAnswer: 'Good answer',
   goodJob: 'Good job!',
-  keyPoint: 'Key Point',
+  keyPoint: 'Key point',
   lesson: 'Lesson',
-  next: 'Continue',
+  next: 'Next',
   nextLevel: 'Next level',
-  nextQuestion: 'Next Question',
-  ouch: 'Ouch',
-  outOfLives: 'You are out of lives',
+  nextQuestion: undefined,
+  ouch: 'Ouch...',
+  outOfLives: 'You are out of lives!',
   question: 'Question',
   retryLevel: 'Retry level',
   wrongAnswer: 'Wrong answer',
-  yourAnswer: 'Your answer:',
-  yourAnswers: 'Your answers:'
+  yourAnswer: undefined,
+  yourAnswers: undefined
 };
 
 export default translations;
