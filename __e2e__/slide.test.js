@@ -217,7 +217,6 @@ describe('Slide', () => {
 
     it('should see elements', async () => {
       await weExpect(element(by.id('level-end-title'))).toBeVisible();
-      await weExpect(element(by.id('level-end-subtitle'))).toBeVisible();
       await weExpect(element(by.id('button-next-level'))).toBeVisible();
     });
 
