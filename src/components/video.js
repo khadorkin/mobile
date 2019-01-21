@@ -38,6 +38,8 @@ let isFullScreen: boolean = false;
 class Video extends React.PureComponent<Props> {
   props: Props;
 
+  videoPlayer: ?VideoPlayer;
+
   componentDidMount = () => {
     isVideoReady = false;
   };
@@ -53,13 +55,13 @@ class Video extends React.PureComponent<Props> {
     if (!isFullScreen) {
       isFullScreen = true;
       this.videoPlayer.player.ref.presentFullscreenPlayer();
-      if (Platform.OS === 'android' && !isVideoReady) {
+      if (Platform.OS === 'android') {
         Orientation.lockToLandscape();
       }
     } else {
       isFullScreen = false;
       this.videoPlayer.player.ref.dismissFullscreenPlayer();
-      if (Platform.OS === 'android' && !isVideoReady) {
+      if (Platform.OS === 'android') {
         Orientation.lockToPortrait();
       }
     }
@@ -74,7 +76,7 @@ class Video extends React.PureComponent<Props> {
           testID={testID}
           source={{
             uri: source
-          }} // Can be a URL or a local file.
+          }}
           ref={ref => {
             this.videoPlayer = ref;
           }}

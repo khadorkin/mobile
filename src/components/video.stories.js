@@ -8,7 +8,7 @@ import Video from './video';
 storiesOf('Video', module).add('Default', () => (
   <Video
     testID="basic-video"
-    source="https://alanlanglois.net/yob/yob_hurricane.mp4"
-    preview="https://alanlanglois.net/yob/preview.png"
+    source="https://content.jwplatform.com/videos/Piqz1Sdy.mp4"
+    preview="https://assets-jpcust.jwpsrv.com/thumbnails/2ad64hgq-720.jpg"
   />
 ));
