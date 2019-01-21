@@ -93,6 +93,7 @@
     "jest": "^23.5.0",
     "metro-react-native-babel-preset": "^0.49.0",
     "mkdirp": "^0.5.1",
+    "node-fetch": "^2.3.0",
     "opn-cli": "^4.0.0",
     "react-dom": "16.4.1",
     "react-test-renderer": "16.4.1",
