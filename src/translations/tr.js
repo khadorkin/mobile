@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: 'Ders',
   next: 'Sonraki',
   nextLevel: 'Sonraki seviye',
-  nextQuestion: undefined,
   ouch: 'Üzgünüz.',
   outOfLives: 'Canınız bitti!',
   question: 'Soru',

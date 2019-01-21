@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: 'Lecke',
   next: 'Következő',
   nextLevel: 'Következő szint',
-  nextQuestion: undefined,
   ouch: 'Jajj...',
   outOfLives: 'Önnek nincs több élete!',
   question: 'Kérdés',

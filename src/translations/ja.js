@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: 'レッスン',
   next: 'Next',
   nextLevel: '次のレベル',
-  nextQuestion: undefined,
   ouch: '残念 !',
   outOfLives: 'ライフがなくなりました。',
   question: '質問',

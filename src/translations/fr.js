@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: 'Leçon',
   next: 'Continuer',
   nextLevel: 'Niveau suivant',
-  nextQuestion: 'Question suivante',
   ouch: 'Aïe...',
   outOfLives: "Vous n'avez plus de vies !",
   question: 'Question',

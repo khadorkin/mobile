@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: 'Bài học',
   next: 'Tiếp',
   nextLevel: 'Cấp tiếp theo ',
-  nextQuestion: undefined,
   ouch: 'Ối...',
   outOfLives: 'Bạn đã hết mạng!',
   question: 'Câu hỏi',

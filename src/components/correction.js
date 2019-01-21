@@ -175,7 +175,7 @@ class Correction extends React.PureComponent<Props> {
             onPress={onButtonPress}
             testID={`button-${isFinished ? 'next' : 'next-question'}`}
           >
-            {(isFinished && translations.next) || translations.nextQuestion}
+            {translations.next}
           </Button>
         </View>
       </View>

@@ -15,7 +15,6 @@ export type Translations = {|
   lesson: string,
   next: string,
   nextLevel: string,
-  nextQuestion: string,
   ouch: string,
   outOfLives: string,
   question: string,

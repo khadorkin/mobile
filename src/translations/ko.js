@@ -17,7 +17,6 @@ const translations: Translations = {
   lesson: '강의',
   next: '다음',
   nextLevel: '다음 레벨',
-  nextQuestion: undefined,
   ouch: '에구...',
   outOfLives: '귀하의 생명이 다했습니다!',
   question: '질문',
