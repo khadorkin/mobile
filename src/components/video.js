@@ -3,6 +3,7 @@
 import * as React from 'react';
 import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
+import Orientation from 'react-native-orientation-locker';
 
 type Props = {|
   testID?: string,
@@ -52,9 +53,15 @@ class Video extends React.PureComponent<Props> {
     if (!isFullScreen) {
       isFullScreen = true;
       this.videoPlayer.player.ref.presentFullscreenPlayer();
+      if (Platform.OS === 'android' && !isVideoReady) {
+        Orientation.lockToLandscape();
+      }
     } else {
       isFullScreen = false;
       this.videoPlayer.player.ref.dismissFullscreenPlayer();
+      if (Platform.OS === 'android' && !isVideoReady) {
+        Orientation.lockToPortrait();
+      }
     }
   };
 
