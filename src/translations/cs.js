@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Záchytný bod',
   coach: 'Trenér',
   congratulations: 'Blahopřejeme!',
+  correction: undefined,
   didYouKnowThat: 'Věděli jste to?',
   gameOver: 'Hra skončila',
   goodAnswer: 'Dobrá odpověď',

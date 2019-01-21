@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Подсказка',
   coach: 'Эксперт',
   congratulations: 'Поздравляем!',
+  correction: undefined,
   didYouKnowThat: 'Вы знали это?',
   gameOver: 'Конец игры',
   goodAnswer: 'Правильный ответ',

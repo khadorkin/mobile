@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Tipp',
   coach: 'Edző',
   congratulations: 'Gratulálunk!',
+  correction: undefined,
   didYouKnowThat: 'Tudta?',
   gameOver: 'A játéknak vége',
   goodAnswer: 'Jó válasz',

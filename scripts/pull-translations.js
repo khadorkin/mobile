@@ -54,6 +54,7 @@ const generate = async (locale: string) => {
     clue: playerTranslations.Clue,
     coach: globalTranslations.module_level.coach,
     congratulations: playerTranslations['Congratulations!'],
+    correction: undefined,
     didYouKnowThat: playerTranslations['Did you know that?'],
     gameOver: playerTranslations['Game over'],
     goodAnswer: playerTranslations['Good answer'],

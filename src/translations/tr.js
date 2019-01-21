@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'İpucu',
   coach: 'Koç',
   congratulations: 'Tebrikler!',
+  correction: undefined,
   didYouKnowThat: 'Biliyor muydunuz?',
   gameOver: 'Oyun bitti',
   goodAnswer: 'Doğru cevap',

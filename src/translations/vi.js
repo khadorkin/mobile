@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Gợi ý',
   coach: 'Huấn luyện viên',
   congratulations: 'Chúc mừng bạn!',
+  correction: undefined,
   didYouKnowThat: 'Bạn đã biết điều đó?',
   gameOver: 'Thua cuộc',
   goodAnswer: 'Câu trả lời đúng',

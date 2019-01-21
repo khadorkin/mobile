@@ -6,6 +6,7 @@ export type Translations = {|
   clue: string,
   coach: string,
   congratulations: string,
+  correction: string,
   didYouKnowThat: string,
   gameOver: string,
   goodAnswer: string,

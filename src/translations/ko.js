@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: '단서',
   coach: '코치',
   congratulations: '축하합니다!',
+  correction: undefined,
   didYouKnowThat: '귀하는 그것을 알았습니까?',
   gameOver: '게임 종료',
   goodAnswer: '훌륭한 답변',

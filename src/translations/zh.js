@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: '线索',
   coach: '教练',
   congratulations: '恭喜！',
+  correction: undefined,
   didYouKnowThat: '你知道吗？',
   gameOver: '游戏结束',
   goodAnswer: '回答的好',

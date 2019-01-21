@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Clue',
   coach: 'Coach',
   congratulations: 'Congratulations!',
+  correction: 'Correction',
   didYouKnowThat: 'Did you know that?',
   gameOver: 'Game over',
   goodAnswer: 'Good answer',
@@ -16,14 +17,14 @@ const translations: Translations = {
   lesson: 'Lesson',
   next: 'Next',
   nextLevel: 'Next level',
-  nextQuestion: undefined,
+  nextQuestion: 'Next question',
   ouch: 'Ouch...',
   outOfLives: 'You are out of lives!',
   question: 'Question',
   retryLevel: 'Retry level',
   wrongAnswer: 'Wrong answer',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: 'Your answer:',
+  yourAnswers: 'Your answers:'
 };
 
 export default translations;

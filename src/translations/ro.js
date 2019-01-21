@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Indiciu',
   coach: 'Antrenor',
   congratulations: 'Felicitări!',
+  correction: undefined,
   didYouKnowThat: 'Știați asta?',
   gameOver: 'Jocul s-a terminat',
   goodAnswer: 'Răspuns corect',

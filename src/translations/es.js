@@ -8,6 +8,7 @@ const translations: Translations = {
   clue: 'Pista',
   coach: 'Entrenador',
   congratulations: '¡Felicidades!',
+  correction: undefined,
   didYouKnowThat: '¿Lo sabías?',
   gameOver: 'Fin del juego',
   goodAnswer: 'Buena respuesta',
