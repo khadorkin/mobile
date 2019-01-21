@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import 'isomorphic-fetch';
+import fetch from 'node-fetch';
 import globby from 'globby';
 
 import type {Translations} from '../src/translations/_types';
@@ -19,20 +19,24 @@ const fetchTranslations = (
   repository: string,
   contentPath: string,
   file: string
-  // $FlowFixMe translations file is an untyped object
+  // We don't have any interface for translations
+  // eslint-disable-next-line flowtype/no-weak-types
 ): Promise<Object> => {
   const apiLocale = locale.replace(/-(.*)/, found => '_' + found.replace('-', '').toUpperCase());
-  return fetch(
-    `${GITHUB_API}/repos/coorpacademy/${repository}/contents/${contentPath}/${apiLocale}/${file}`,
-    {
-      headers
-    }
-  )
-    .then(response => response.text())
-    .then(text => JSON.parse(text))
-    .then(response => Buffer.from(response.content, 'base64').toString('utf8'))
-    .then(content => JSON.parse(content))
-    .catch(e => console.error(`Unavailable content for ${apiLocale}.`));
+  return (
+    fetch(
+      `${GITHUB_API}/repos/coorpacademy/${repository}/contents/${contentPath}/${apiLocale}/${file}`,
+      {
+        headers
+      }
+    )
+      .then(response => response.text())
+      .then(text => JSON.parse(text))
+      .then(response => Buffer.from(response.content, 'base64').toString('utf8'))
+      .then(content => JSON.parse(content))
+      // eslint-disable-next-line no-console
+      .catch(e => console.error(`Unavailable content for ${apiLocale}.`))
+  );
 };
 
 const generate = async (locale: string) => {
@@ -54,6 +58,7 @@ const generate = async (locale: string) => {
     clue: playerTranslations.Clue,
     coach: globalTranslations.module_level.coach,
     congratulations: playerTranslations['Congratulations!'],
+    // $FlowFixMe @todo until we have the wording translated by transiflex
     correction: undefined,
     didYouKnowThat: playerTranslations['Did you know that?'],
     gameOver: playerTranslations['Game over'],
@@ -63,13 +68,14 @@ const generate = async (locale: string) => {
     lesson: playerTranslations.Media,
     next: playerTranslations.Next,
     nextLevel: playerTranslations['Next level'],
-    nextQuestion: undefined,
     ouch: playerTranslations.Ouch,
     outOfLives: playerTranslations['You are out of lives!'],
     question: playerTranslations.Question,
     retryLevel: playerTranslations['Retry level'],
     wrongAnswer: playerTranslations['Wrong answer'],
+    // $FlowFixMe @todo until we have the wording translated by transiflex
     yourAnswer: undefined,
+    // $FlowFixMe @todo until we have the wording translated by transiflex
     yourAnswers: undefined
   };
 

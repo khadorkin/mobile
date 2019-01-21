@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'Indiciu',
   coach: 'Antrenor',
   congratulations: 'Felicitări!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Știați asta?',
   gameOver: 'Jocul s-a terminat',
   goodAnswer: 'Răspuns corect',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Întrebare',
   retryLevel: 'Încercați din nou acest nivel',
   wrongAnswer: 'Răspuns incorect',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;

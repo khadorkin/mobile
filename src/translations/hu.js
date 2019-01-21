@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'Tipp',
   coach: 'Edző',
   congratulations: 'Gratulálunk!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Tudta?',
   gameOver: 'A játéknak vége',
   goodAnswer: 'Jó válasz',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Kérdés',
   retryLevel: 'Szint  újrajátszása',
   wrongAnswer: 'Rossz válasz',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;

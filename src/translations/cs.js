@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'Záchytný bod',
   coach: 'Trenér',
   congratulations: 'Blahopřejeme!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Věděli jste to?',
   gameOver: 'Hra skončila',
   goodAnswer: 'Dobrá odpověď',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Otázka',
   retryLevel: 'Zkuste úroveň znovu',
   wrongAnswer: 'Chybná odpověď',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;

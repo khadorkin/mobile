@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'İpucu',
   coach: 'Koç',
   congratulations: 'Tebrikler!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Biliyor muydunuz?',
   gameOver: 'Oyun bitti',
   goodAnswer: 'Doğru cevap',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Soru',
   retryLevel: 'Seviyeyi  yeniden dene',
   wrongAnswer: 'Yanlış cevap',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;

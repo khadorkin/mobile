@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'Gợi ý',
   coach: 'Huấn luyện viên',
   congratulations: 'Chúc mừng bạn!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Bạn đã biết điều đó?',
   gameOver: 'Thua cuộc',
   goodAnswer: 'Câu trả lời đúng',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Câu hỏi',
   retryLevel: 'Thử lại cấp độ',
   wrongAnswer: 'Câu trả lời sai',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;

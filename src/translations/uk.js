@@ -8,7 +8,7 @@ const translations: Translations = {
   clue: 'Підказка',
   coach: 'Тренер',
   congratulations: 'Вітаємо!',
-  correction: undefined,
+  correction: '',
   didYouKnowThat: 'Ви знали це?',
   gameOver: 'Кінець гри',
   goodAnswer: 'Правильна відповідь',
@@ -22,8 +22,8 @@ const translations: Translations = {
   question: 'Питання',
   retryLevel: 'Пройти рівень ще раз',
   wrongAnswer: 'Неправильна відповідь',
-  yourAnswer: undefined,
-  yourAnswers: undefined
+  yourAnswer: '',
+  yourAnswers: ''
 };
 
 export default translations;
