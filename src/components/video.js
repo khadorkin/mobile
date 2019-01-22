@@ -3,17 +3,25 @@
 import * as React from 'react';
 import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
-import Orientation from 'react-native-orientation-locker';
+import orientation from 'react-native-orientation-locker';
+import {
+  NovaSolidResizeMoveExpand3 as ExpandIcon,
+  NovaSolidResizeMoveShrink1 as ShrinkIcon
+} from '@coorpacademy/nova-icons';
+
+import theme from '../modules/theme';
 
 type Props = {|
-  testID?: string,
   source: string,
-  preview: string
+  preview: string,
+  isFullScreen: boolean,
+  onFullScreen?: () => void,
+  onRef?: (VideoPlayer | null) => void
 |};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.black,
     flex: 1
   },
   video: {
@@ -23,63 +31,49 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0
   },
-  btnExpand: {
+  fullScreenButton: {
     alignSelf: 'flex-end',
-    width: 15,
-    height: 15,
-    padding: 15,
-    margin: 15
+    width: theme.spacing.small,
+    height: theme.spacing.small,
+    padding: theme.spacing.small,
+    margin: theme.spacing.small
   }
 });
-
-let isVideoReady: boolean = false;
-let isFullScreen: boolean = false;
 
 class Video extends React.PureComponent<Props> {
   props: Props;
 
-  videoPlayer: ?VideoPlayer;
+  videoPlayer: VideoPlayer;
 
-  componentDidMount = () => {
-    isVideoReady = false;
-  };
+  isReady: boolean = false;
 
   handleVideoReady = () => {
-    if (Platform.OS === 'android' && !isVideoReady) {
-      isVideoReady = true;
+    if (Platform.OS === 'android' && !this.isReady) {
+      this.isReady = true;
       this.videoPlayer.seekTo(0);
     }
   };
 
-  handleFullscreen = () => {
-    if (!isFullScreen) {
-      isFullScreen = true;
-      this.videoPlayer.player.ref.presentFullscreenPlayer();
-      if (Platform.OS === 'android') {
-        Orientation.lockToLandscape();
-      }
-    } else {
-      isFullScreen = false;
-      this.videoPlayer.player.ref.dismissFullscreenPlayer();
-      if (Platform.OS === 'android') {
-        Orientation.lockToPortrait();
-      }
+  handleRef = (element: VideoPlayer | null) => {
+    this.videoPlayer = element;
+
+    if (this.props.onRef) {
+      this.props.onRef(element);
     }
   };
 
   render() {
-    const {source, preview, testID} = this.props;
+    const {source, preview, onFullScreen, isFullScreen} = this.props;
+    const testIDSuffix = isFullScreen ? '-fullscreen' : '';
 
     return (
       <View style={styles.container}>
         <VideoPlayer
-          testID={testID}
+          testID={`video${testIDSuffix}`}
           source={{
             uri: source
           }}
-          ref={ref => {
-            this.videoPlayer = ref;
-          }}
+          ref={this.handleRef}
           style={styles.video}
           poster={preview}
           resizeMode="contain"
@@ -88,19 +82,15 @@ class Video extends React.PureComponent<Props> {
           disableBack
           disableFullscreen
         />
-        <TouchableOpacity
-          activeOpacity={0.3}
-          onPress={() => {
-            this.handleFullscreen();
-          }}
-        >
-          <Image
-            width={15}
-            height={15}
-            style={styles.btnExpand}
-            source={{uri: 'https://reddingdesigns.com/images/icons/icon-expand-white.png'}}
-          />
-        </TouchableOpacity>
+        {onFullScreen && (
+          <TouchableOpacity onPress={onFullScreen} style={styles.fullScreenButton}>
+            {isFullScreen ? (
+              <ShrinkIcon height={15} width={15} color={theme.colors.white} />
+            ) : (
+              <ExpandIcon height={15} width={15} color={theme.colors.white} />
+            )}
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
