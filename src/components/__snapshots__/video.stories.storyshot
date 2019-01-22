@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Video Default 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#14171A",
+      "flex": 1,
+    }
+  }
+>
+  <Mock$ReactNativeVideoControls
+    disableBack={true}
+    disableFullscreen={true}
+    disableVolume={true}
+    resizeMode="contain"
+    source={
+      Object {
+        "testUri": "../../../src/__fixtures__/video.mp4",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="video"
+    toggleResizeModeOnFullscreen={false}
+  />
+</View>
+`;
+
+exports[`Storyshots Video Fullscreen 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#14171A",
+      "flex": 1,
+    }
+  }
+>
+  <Mock$ReactNativeVideoControls
+    disableBack={true}
+    disableFullscreen={false}
+    disableVolume={true}
+    onEnterFullscreen={[Function]}
+    onExitFullscreen={[Function]}
+    onFullscreenPlayerWillDismiss={[Function]}
+    resizeMode="contain"
+    source={
+      Object {
+        "testUri": "../../../src/__fixtures__/video.mp4",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="video"
+    toggleResizeModeOnFullscreen={false}
+  />
+</View>
+`;
+
+exports[`Storyshots Video Remote video 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#14171A",
+      "flex": 1,
+    }
+  }
+>
+  <Mock$ReactNativeVideoControls
+    disableBack={true}
+    disableFullscreen={true}
+    disableVolume={true}
+    resizeMode="contain"
+    source={
+      Object {
+        "uri": "https://content.jwplatform.com/videos/Piqz1Sdy.mp4",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="video"
+    toggleResizeModeOnFullscreen={false}
+  />
+</View>
+`;

@@ -8,66 +8,38 @@ import orientation from 'react-native-orientation-locker';
 import Video from '../components/video';
 
 type Props = {|
-  source: string,
-  preview: string
+  source: File | {uri: string}
 |};
 
-type State = {|
-  isFullScreen: boolean
-|};
-
-class VideoExpandable extends React.PureComponent<Props, State> {
+class VideoExpandable extends React.PureComponent<Props> {
   props: Props;
 
   videoPlayer: VideoPlayer;
 
-  state: State = {
-    isFullScreen: false
-  };
-
-  componentDidUpdate = (prevProps: Props, prevState: State) => {
-    const {isFullScreen} = this.state;
-
-    if (this.videoPlayer && prevState.isFullScreen !== isFullScreen) {
-      this.handleOrientationSwitch();
-    }
-  };
-
-  handleOrientationSwitch = () => {
-    const {isFullScreen} = this.state;
-
-    if (!isFullScreen) {
+  handleExpand = () => {
+    if (this.videoPlayer) {
       this.videoPlayer.player.ref.presentFullscreenPlayer();
-      if (Platform.OS === 'android') {
-        orientation.lockToLandscape();
-      }
-    } else {
-      this.videoPlayer.player.ref.dismissFullscreenPlayer();
-      if (Platform.OS === 'android') {
-        orientation.unlockAllOrientations();
-      }
+      orientation.lockToLandscape();
     }
   };
 
-  handleFullScreen = () =>
-    this.setState(({isFullScreen}: State) => ({
-      isFullScreen: !isFullScreen
-    }));
+  handleShrink = () => {
+    if (this.videoPlayer) {
+      this.videoPlayer.player.ref.dismissFullscreenPlayer();
+      orientation.unlockAllOrientations();
+    }
+  };
 
-  handleRef = (ref: VideoPlayer | null) => {
-    this.videoPlayer = ref;
+  handleRef = (videoPlayer: VideoPlayer | null) => {
+    this.videoPlayer = videoPlayer;
   };
 
   render() {
-    const {source, preview} = this.props;
-    const {isFullScreen} = this.state;
-
     return (
       <Video
-        source={source}
-        preview={preview}
-        isFullScreen={isFullScreen}
-        onFullScreen={this.handleFullScreen}
+        source={this.props.source}
+        onExpand={this.handleExpand}
+        onShrink={this.handleShrink}
         onRef={this.handleRef}
       />
     );
