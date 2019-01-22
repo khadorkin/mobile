@@ -1,9 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
-import orientation from 'react-native-orientation-locker';
 import {
   NovaSolidResizeMoveExpand3 as ExpandIcon,
   NovaSolidResizeMoveShrink1 as ShrinkIcon

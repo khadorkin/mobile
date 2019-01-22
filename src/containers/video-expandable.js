@@ -1,7 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {Platform} from 'react-native';
+import VideoPlayer from 'react-native-video-controls';
+import orientation from 'react-native-orientation-locker';
 
 import Video from '../components/video';
 
@@ -23,12 +25,17 @@ class VideoExpandable extends React.PureComponent<Props, State> {
     isFullScreen: false
   };
 
-  handleFullscreen = () =>
-    this.setState(({isFullScreen}: State) => ({
-      isFullScreen: !isFullScreen
-    }));
+  componentDidUpdate = (prevProps: Props, prevState: State) => {
+    const {isFullScreen} = this.state;
+
+    if (this.videoPlayer && prevState.isFullScreen !== isFullScreen) {
+      this.handleOrientationSwitch();
+    }
+  };
 
   handleOrientationSwitch = () => {
+    const {isFullScreen} = this.state;
+
     if (!isFullScreen) {
       this.videoPlayer.player.ref.presentFullscreenPlayer();
       if (Platform.OS === 'android') {
@@ -42,24 +49,24 @@ class VideoExpandable extends React.PureComponent<Props, State> {
     }
   };
 
-  componentDidUpdate = (prevProps: Props) => {
-    const {isFullScreen} = this.props;
+  handleFullScreen = () =>
+    this.setState(({isFullScreen}: State) => ({
+      isFullScreen: !isFullScreen
+    }));
 
-    if (this.videoPlayer && prevProps.isFullScreen !== isFullScreen) {
-      this.handleOrientationSwitch();
-    }
+  handleRef = (ref: VideoPlayer | null) => {
+    this.videoPlayer = ref;
   };
-
-  handleRef = (ref: VideoPlayer | null) => this.videoPlayer = ref;
 
   render() {
     const {source, preview} = this.props;
+    const {isFullScreen} = this.state;
 
     return (
       <Video
         source={source}
         preview={preview}
-        isFullScreen={this.state.isFullScreen}
+        isFullScreen={isFullScreen}
         onFullScreen={this.handleFullScreen}
         onRef={this.handleRef}
       />
