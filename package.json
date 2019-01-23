@@ -46,7 +46,7 @@
     "pull:translations": "babel-node scripts/pull-translations.js"
   },
   "dependencies": {
-    "@coorpacademy/nova-icons": "2.2.2-alpha.11",
+    "@coorpacademy/nova-icons": "^2.3.0",
     "@coorpacademy/react-native-deck-swiper": "^1.5.27",
     "apsl-react-native-button": "^3.1.1",
     "color": "^3.1.0",

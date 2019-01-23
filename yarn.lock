@@ -1289,10 +1289,10 @@
     prettier "1.11.1"
     requireindex "^1.2.0"
 
-"@coorpacademy/nova-icons@2.2.2-alpha.11":
-  version "2.2.2-alpha.11"
-  resolved "https://registry.npmjs.org/@coorpacademy/nova-icons/-/nova-icons-2.2.2-alpha.11.tgz#a29aa393281344b2a1120e4facab3095effbe917"
-  integrity sha512-YAnPD1qO71KYeQNvShg5+oIanmEBUY7M2RAbniTmVhJ2Re+cbIGb3vMjq6DxMEi3XmPa62VxkfJDJrOl2eftBQ==
+"@coorpacademy/nova-icons@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.npmjs.org/@coorpacademy/nova-icons/-/nova-icons-2.3.1.tgz#105ee04b450b99da7ae7e1fffed7b058971be938"
+  integrity sha512-VkjZGL11cmz0fgVZBGiSw/TBlR/cwmLIT6glSSjOiqmOJsWEmZK/GnR50cy/IXGObjEXVVwpFnsxX+sZO5KCdA==
   dependencies:
     async "^2.4.1"
     react "^16.3.2"
