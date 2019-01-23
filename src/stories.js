@@ -15,6 +15,7 @@ require('./components/header-slide.stories.js');
 require('./components/image.stories.js');
 require('./components/level-end.stories.js');
 require('./components/lives.stories.js');
+require('./components/preview.stories.js');
 require('./components/progression-bar.stories.js');
 require('./components/progression.stories.js');
 require('./components/question-choice.stories.js');
