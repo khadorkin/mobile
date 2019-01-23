@@ -20,8 +20,7 @@ type Props = {|
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.black,
-    flex: 1
+    backgroundColor: theme.colors.black
   },
   video: {
     position: 'absolute',
@@ -61,9 +60,6 @@ class Video extends React.PureComponent<Props> {
     }
   };
 
-  handleRef: (ref: VideoPlayer | null) => this.videoPlayer && this.videoPlayer = ref;
-
-
   render() {
     const {source, preview, onFullScreen, isFullScreen} = this.props;
     const testIDSuffix = isFullScreen ? '-fullscreen' : '';
@@ -71,7 +67,7 @@ class Video extends React.PureComponent<Props> {
     return (
       <View style={styles.container}>
         <VideoPlayer
-          testID={`video${testIDSuffix}`}
+          testID="sss"
           source={{
             uri: source
           }}
@@ -80,7 +76,6 @@ class Video extends React.PureComponent<Props> {
           poster={preview}
           resizeMode="contain"
           onReadyForDisplay={this.handleVideoReady}
-          onEnd={this.handleVideoEnd}
           disableVolume
           disableBack
           disableFullscreen
