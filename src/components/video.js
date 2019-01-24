@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   fullScreen: {
     ...Platform.select({
       android: {
+        zIndex: 1000,
         position: 'absolute',
         top: 0,
         left: 0,

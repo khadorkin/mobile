@@ -60,10 +60,12 @@ class VideoControlable extends React.PureComponent<Props, State> {
     });
   };
 
-  handleEnd = () =>
+  handleEnd = () => {
+    this.handleShrink();
     this.setState({
       step: STEP.END
     });
+  };
 
   handleReady = () => {
     // This is a hack to launch the video
