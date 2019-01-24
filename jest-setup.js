@@ -35,4 +35,4 @@ NativeModules.ReactLocalization = {
 };
 
 // react-native-video-controls
-jest.mock('react-native-video-controls', () => 'Mock$ReactNativeVideoControls');
+jest.mock('react-native-video', () => 'Mock$ReactNativeVideo');
