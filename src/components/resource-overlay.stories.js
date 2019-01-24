@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Text} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 
-import ResourceOverlay from './screen';
+import ResourceOverlay from './resource-overlay';
 
 storiesOf('ResourceOverlay', module).add('Default', () => (
   <ResourceOverlay>
