@@ -7,6 +7,7 @@ exports[`Storyshots Video Fullscreen 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       Object {},
     ]
@@ -406,6 +407,7 @@ exports[`Storyshots Video Local preview 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       undefined,
     ]
@@ -595,6 +597,7 @@ exports[`Storyshots Video Local video 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       undefined,
     ]
@@ -993,6 +996,7 @@ exports[`Storyshots Video Remote preview 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       undefined,
     ]
@@ -1182,6 +1186,7 @@ exports[`Storyshots Video Remote video 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       undefined,
     ]
@@ -1580,6 +1585,7 @@ exports[`Storyshots Video Replay 1`] = `
       Object {
         "backgroundColor": "#14171A",
         "flex": 1,
+        "overflow": "hidden",
       },
       undefined,
     ]

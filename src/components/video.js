@@ -33,7 +33,8 @@ export const STEP: {[key: string]: Step} = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.black,
-    flex: 1
+    flex: 1,
+    overflow: 'hidden'
   },
   video: {
     position: 'absolute',
