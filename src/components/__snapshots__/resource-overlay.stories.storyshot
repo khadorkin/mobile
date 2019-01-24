@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ResourceOverlay Default 1`] = `
+<RCTSafeAreaView
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+    showsHorizontalScrollIndicator={false}
+  >
+    <View>
+      <Text>
+        Foo bar baz
+      </Text>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;

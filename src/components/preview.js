@@ -11,6 +11,7 @@ import type {ResourceType} from '../types';
 import {RESSOURCE_TYPE} from '../const';
 import theme from '../modules/theme';
 import Button from './button';
+import Overlay from './overlay';
 import Space from './space';
 import ResourceOverlay from './resource-overlay';
 
