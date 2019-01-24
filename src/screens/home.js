@@ -9,7 +9,6 @@ import Space from '../components/space';
 import Screen from '../components/screen';
 import theme from '../modules/theme';
 import {setLivesProgression} from '../redux/actions/progression';
-import Video from '../containers/video-expandable.js';
 
 type ConnectedDispatchProps = {|
   setLivesProgression: typeof setLivesProgression
@@ -46,7 +45,6 @@ class HomeScreen extends React.PureComponent<Props> {
     return (
       <Screen testID="home-screen" noScroll>
         <View style={styles.container} testID="home">
-          <Video source={{uri: 'https://content.jwplatform.com/videos/Piqz1Sdy.mp4'}} />
           <Button onPress={this.handlePress(3)} testID="button-start-course-with-lives">
             Start a course
           </Button>
