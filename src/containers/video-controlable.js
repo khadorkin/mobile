@@ -33,9 +33,6 @@ class VideoControlable extends React.PureComponent<Props, State> {
   handleExpand = () => {
     if (this.videoPlayer) {
       this.videoPlayer.player.ref.presentFullscreenPlayer();
-      if (Platform.OS === 'android') {
-        // @todo display width and height on Dimensions.window edges
-      }
       orientation.lockToLandscape();
       this.setState({
         isFullScreen: true

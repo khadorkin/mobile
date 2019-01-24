@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Platform} from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
 import {NovaSolidDesignActionsRedo} from '@coorpacademy/nova-icons';
 
@@ -46,6 +46,17 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     padding: theme.spacing.small,
     margin: theme.spacing.small
+  },
+  fullScreen: {
+    ...Platform.select({
+      android: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      }
+    })
   }
 });
 
@@ -61,7 +72,7 @@ const Video = ({
   onShrink,
   onRef
 }: Props) => (
-  <View style={styles.container}>
+  <View style={[styles.container, isFullScreen && styles.fullScreen]}>
     {step === STEP.PREVIEW && <Preview type="video" source={preview} onPress={onPlay} />}
     {step === STEP.PLAY && (
       <VideoPlayer
