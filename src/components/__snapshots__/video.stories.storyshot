@@ -3,10 +3,13 @@
 exports[`Storyshots Video Fullscreen 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      Object {},
+    ]
   }
 >
   <Mock$ReactNativeVideoControls
@@ -40,10 +43,13 @@ exports[`Storyshots Video Fullscreen 1`] = `
 exports[`Storyshots Video Local preview 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -226,10 +232,13 @@ exports[`Storyshots Video Local preview 1`] = `
 exports[`Storyshots Video Local video 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <Mock$ReactNativeVideoControls
@@ -262,10 +271,13 @@ exports[`Storyshots Video Local video 1`] = `
 exports[`Storyshots Video Remote preview 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -448,10 +460,13 @@ exports[`Storyshots Video Remote preview 1`] = `
 exports[`Storyshots Video Remote video 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <Mock$ReactNativeVideoControls
@@ -484,10 +499,13 @@ exports[`Storyshots Video Remote video 1`] = `
 exports[`Storyshots Video Replay 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#14171A",
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#14171A",
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
