@@ -48,6 +48,7 @@
   "dependencies": {
     "@coorpacademy/nova-icons": "^2.4.0",
     "@coorpacademy/react-native-deck-swiper": "^1.5.27",
+    "@coorpacademy/react-native-video-controls": "^2.3.0",
     "apsl-react-native-button": "^3.1.1",
     "color": "^3.1.0",
     "hoist-non-react-statics": "^3.2.1",
@@ -59,7 +60,6 @@
     "react-native-orientation-locker": "^1.1.1",
     "react-native-svg": "^6.0.0",
     "react-native-video": "3.2.1",
-    "react-native-video-controls": "^2.2.3",
     "react-navigation": "^3.0.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",

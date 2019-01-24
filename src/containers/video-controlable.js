@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {Platform} from 'react-native';
-import VideoPlayer from 'react-native-video-controls';
+import VideoPlayer from '@coorpacademy/react-native-video-controls';
 import orientation from 'react-native-orientation-locker';
 
 import Video, {STEP} from '../components/video';

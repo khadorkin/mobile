@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {StyleSheet, View, TouchableOpacity, Platform} from 'react-native';
-import VideoPlayer from 'react-native-video-controls';
+import VideoPlayer from '@coorpacademy/react-native-video-controls';
 import {NovaSolidDesignActionsRedo} from '@coorpacademy/nova-icons';
 
 import theme from '../modules/theme';
@@ -85,7 +85,7 @@ const Video = ({
         disableBack
         disableFullscreen={Boolean(!onExpand && !onShrink)}
         toggleResizeModeOnFullscreen={false}
-        isFullScreen={isFullScreen}
+        isFullscreen={isFullScreen}
         onEnterFullscreen={onExpand}
         onExitFullscreen={onShrink}
         onFullscreenPlayerWillDismiss={onShrink}
