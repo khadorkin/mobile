@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
         bottom: 0
       }
     })
+  },
+  replay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
@@ -95,7 +101,7 @@ const Video = ({
     )}
     {step === STEP.END && (
       <ResourceOverlay>
-        <TouchableOpacity onPress={onPlay}>
+        <TouchableOpacity onPress={onPlay} style={styles.replay}>
           <NovaSolidDesignActionsRedo color={theme.colors.white} height={40} width={40} />
         </TouchableOpacity>
       </ResourceOverlay>

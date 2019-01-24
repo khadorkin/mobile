@@ -1610,7 +1610,11 @@ exports[`Storyshots Video Replay 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
           "opacity": 1,
+          "width": "100%",
         }
       }
     >
