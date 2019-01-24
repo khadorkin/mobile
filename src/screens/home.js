@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import Button from '../components/button';
 import Space from '../components/space';
 import Screen from '../components/screen';
+import Video from '../containers/video-controlable';
 import theme from '../modules/theme';
 import {setLivesProgression} from '../redux/actions/progression';
 
@@ -45,6 +46,14 @@ class HomeScreen extends React.PureComponent<Props> {
     return (
       <Screen testID="home-screen" noScroll>
         <View style={styles.container} testID="home">
+          <Video
+            source={{uri: 'https://content.jwplatform.com/videos/Piqz1Sdy.mp4'}}
+            preview={{
+              uri:
+                'https://static1.squarespace.com/static/5b0f605e697a98b4a292e4f0/t/5ba17e8a2b6a283ca7aed3e7/1537310369390/Composition-photo-paysage.jpg'
+            }}
+          />
+          <Space />
           <Button onPress={this.handlePress(3)} testID="button-start-course-with-lives">
             Start a course
           </Button>
