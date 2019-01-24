@@ -54,7 +54,6 @@ class VideoControlable extends React.PureComponent<Props, State> {
   };
 
   handlePlay = () => {
-    console.log('');
     this.isReady = false;
     this.setState({
       step: STEP.PLAY
@@ -68,7 +67,6 @@ class VideoControlable extends React.PureComponent<Props, State> {
 
   handleReady = () => {
     // This is a hack to launch the video
-    console.log('onReady');
     if (Platform.OS === 'android' && this.videoPlayer && !this.isReady) {
       this.isReady = true;
       this.videoPlayer.seekTo(0);
