@@ -80,7 +80,7 @@ const Video = ({
 }: Props) => (
   <View style={[styles.container, isFullScreen && styles.fullScreen]}>
     {step === STEP.PREVIEW && <Preview type="video" source={preview} onPress={onPlay} />}
-    {step === STEP.PLAY && (
+    {[STEP.PLAY, STEP.END].includes(step) && (
       <VideoPlayer
         testID="video"
         source={source}

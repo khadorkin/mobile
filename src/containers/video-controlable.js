@@ -52,6 +52,9 @@ class VideoControlable extends React.PureComponent<Props, State> {
 
   handlePlay = () => {
     this.isReady = false;
+    if (this.videoPlayer) {
+      this.videoPlayer.seekTo(0);
+    }
     this.setState({
       step: STEP.PLAY
     });
