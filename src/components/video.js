@@ -62,7 +62,7 @@ const Video = ({
   onRef
 }: Props) => (
   <View style={styles.container}>
-    {step === STEP.PREVIEW && <Preview type="video" source={preview} onButtonPress={onPlay} />}
+    {step === STEP.PREVIEW && <Preview type="video" source={preview} onPress={onPlay} />}
     {step === STEP.PLAY && (
       <VideoPlayer
         testID="video"
