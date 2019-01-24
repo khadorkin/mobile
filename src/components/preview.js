@@ -10,12 +10,10 @@ import {
 import type {ResourceType} from '../types';
 import {RESSOURCE_TYPE} from '../const';
 import theme from '../modules/theme';
+import translations from '../translations';
 import Button from './button';
-import Overlay from './overlay';
 import Space from './space';
 import ResourceOverlay from './resource-overlay';
-
-// NovaLineFilesOfficeFileOfficePdf
 
 type Props = {|
   type: ResourceType,
@@ -45,7 +43,7 @@ const Preview = ({type, source, onPress}: Props) => (
           <PDFIcon color={theme.colors.white} height={70} width={70} />
           <Space type="base" />
           <Button isInverted onPress={onPress}>
-            Open
+            {translations.open}
           </Button>
         </View>
       )}
