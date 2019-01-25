@@ -18,6 +18,8 @@
     "start:clean": "npm run cleanup && npm start -- --reset-cache",
     "start:ios": "react-native run-ios",
     "start:android": "react-native run-android",
+    "start:android:bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "start:android:release": "react-native run-android --variant=release",
     "build:ios:cmd": "cd ios && export RCT_NO_LAUNCH_PACKAGER=1 && xcodebuild -workspace Coorpacademy.xcworkspace -scheme Coorpacademy -derivedDataPath build",
     "build:iphonesimulator:debug": "npm run build:ios:cmd -- -configuration Debug -sdk iphonesimulator | xcpretty",
     "build:iphonesimulator:release": "npm run build:ios:cmd -- -configuration Release -sdk iphonesimulator | xcpretty",
