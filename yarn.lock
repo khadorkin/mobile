@@ -9131,6 +9131,11 @@ react-modal@^3.6.1:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
+react-native-confetti-cannon@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/react-native-confetti-cannon/-/react-native-confetti-cannon-1.0.0.tgz#274d4615b14255ae4ff08809af7eb3dad778b2e9"
+  integrity sha512-F47cAtyRmgqU5XKl970UJlovAaCGOYUDpPT9cd+gnD5uCu7aMytAahnjKnKSDDa1KgLx+7sVEjHaucQA15PIPQ==
+
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
   version "1.0.10"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.0.10.tgz#160e55e4886471931b7f7d52e22d94007540ab83"

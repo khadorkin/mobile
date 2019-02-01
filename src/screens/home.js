@@ -1,11 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
+import Confetti from 'react-native-confetti-cannon';
 
-import Button from '../components/button';
-import Space from '../components/space';
 import Screen from '../components/screen';
 import theme from '../modules/theme';
 import {setLivesProgression} from '../redux/actions/progression';
@@ -42,16 +41,12 @@ class HomeScreen extends React.PureComponent<Props> {
   };
 
   render() {
+    const {height, width} = Dimensions.get('window');
+
     return (
       <Screen testID="home-screen" noScroll>
         <View style={styles.container} testID="home">
-          <Button onPress={this.handlePress(3)} testID="button-start-course-with-lives">
-            Start a course
-          </Button>
-          <Space />
-          <Button onPress={this.handlePress()} testID="button-start-course-without-lives">
-            Start a course without lives
-          </Button>
+          <Confetti count={150} origin={{x: width / 2, y: height / 2}} />
         </View>
       </Screen>
     );

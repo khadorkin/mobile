@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import {StyleSheet, ScrollView, View, SafeAreaView} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import theme from '../modules/theme';
 
 type Props = {|
@@ -41,7 +41,7 @@ class Screen extends React.PureComponent<Props> {
     const {style, noScroll, children, testID} = this.props;
 
     return (
-      <SafeAreaView style={[styles.screen, style]}>
+      <View style={[styles.screen, style]}>
         {noScroll ? (
           <View style={styles.screenScroll} testID={testID}>
             {children}
@@ -56,7 +56,7 @@ class Screen extends React.PureComponent<Props> {
             {children}
           </ScrollView>
         )}
-      </SafeAreaView>
+      </View>
     );
   }
 }
