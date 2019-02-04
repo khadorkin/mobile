@@ -52,6 +52,20 @@ class HomeScreen extends React.PureComponent<Props> {
               uri:
                 'https://static1.squarespace.com/static/5b0f605e697a98b4a292e4f0/t/5ba17e8a2b6a283ca7aed3e7/1537310369390/Composition-photo-paysage.jpg'
             }}
+            textTracks={[
+              {
+                title: 'German CC',
+                language: 'de',
+                type: 'text/vtt', // "text/vtt"
+                uri:
+                  'https://alanlanglois.net/https266296680hdmp4sbb8ba7fa2f35cf447571022ca3007cb6437a373eprofile_id175.de.vtt'
+              }
+            ]}
+            selectedTextTrack={{
+              type: 'language',
+              value: 'de'
+            }}
+            height={300 / (16 / 9)}
           />
           <Space />
           <Button onPress={this.handlePress(3)} testID="button-start-course-with-lives">

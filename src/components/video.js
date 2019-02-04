@@ -14,6 +14,8 @@ export type Step = 'preview' | 'play' | 'end';
 type Props = {|
   source: File | {uri: string},
   preview: File | {uri: string},
+  textTracks: {},
+  selectedTextTrack: {},
   height: number,
   step: Step,
   isFullScreen?: boolean,
@@ -22,6 +24,7 @@ type Props = {|
   onReady: () => void,
   onExpand?: () => void,
   onShrink?: () => void,
+  onCC?: (isCC: Boolean) => void,
   onRef?: (VideoPlayer | null) => void
 |};
 
@@ -70,6 +73,8 @@ const styles = StyleSheet.create({
 
 const Video = ({
   source,
+  textTracks,
+  selectedTextTrack,
   preview,
   height,
   step,
@@ -77,6 +82,7 @@ const Video = ({
   onPlay,
   onReady,
   onEnd,
+  onCC,
   onExpand,
   onShrink,
   onRef
@@ -94,6 +100,8 @@ const Video = ({
         <VideoPlayer
           testID="video"
           source={source}
+          textTracks={textTracks}
+          selectedTextTrack={selectedTextTrack}
           ref={onRef}
           style={styles.video}
           resizeMode="contain"
@@ -107,6 +115,7 @@ const Video = ({
           onFullscreenPlayerWillDismiss={onShrink}
           onEnd={onEnd}
           onReadyForDisplay={onReady}
+          onCC={onCC}
         />
       )}
       {step === STEP.END && (

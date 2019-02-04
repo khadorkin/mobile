@@ -19,12 +19,15 @@ type Props = {|
   ...ConnectedDispatchToProps,
   source: File | {uri: string},
   preview: File | {uri: string},
+  textTracks: {},
+  selectedTextTrack: {},
   height: number
 |};
 
 type State = {|
   step: Step,
-  isFullScreen: boolean
+  isFullScreen: boolean,
+  selectedTextTrack: {}
 |};
 
 class VideoControlable extends React.PureComponent<Props, State> {
@@ -32,7 +35,8 @@ class VideoControlable extends React.PureComponent<Props, State> {
 
   state: State = {
     step: STEP.PREVIEW,
-    isFullScreen: false
+    isFullScreen: false,
+    selectedTextTrack: {type: 'disable'}
   };
 
   videoPlayer: VideoPlayer;
@@ -94,11 +98,28 @@ class VideoControlable extends React.PureComponent<Props, State> {
     this.videoPlayer = videoPlayer;
   };
 
+  handleCC = (isCC: Boolean) => {
+    if (isCC) {
+      this.setState({
+        selectedTextTrack: this.props.selectedTextTrack
+      });
+    } else {
+      this.setState({
+        selectedTextTrack: {
+          type: 'disabled',
+          value: ''
+        }
+      });
+    }
+  };
+
   render() {
     return (
       <Video
         source={this.props.source}
         preview={this.props.preview}
+        textTracks={this.props.textTracks}
+        selectedTextTrack={this.state.selectedTextTrack}
         height={this.props.height}
         step={this.state.step}
         isFullScreen={this.state.isFullScreen}
@@ -108,6 +129,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
         onExpand={this.handleExpand}
         onShrink={this.handleShrink}
         onRef={this.handleRef}
+        onCC={this.handleCC}
       />
     );
   }
