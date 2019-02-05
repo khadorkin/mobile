@@ -19,6 +19,7 @@ type Props = {|
   ...ConnectedDispatchToProps,
   source: File | {uri: string},
   preview: File | {uri: string},
+  isCC: boolean,
   textTracks: {},
   selectedTextTrack: {},
   height: number
@@ -98,7 +99,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
     this.videoPlayer = videoPlayer;
   };
 
-  handleCC = (isCC: Boolean) => {
+  handleCC = (isCC: boolean) => {
     if (isCC) {
       this.setState({
         selectedTextTrack: this.props.selectedTextTrack
@@ -107,11 +108,15 @@ class VideoControlable extends React.PureComponent<Props, State> {
       this.setState({
         selectedTextTrack: {
           type: 'disabled',
-          value: ''
+          value: 'no'
         }
       });
     }
   };
+
+  componentDidMount() {
+    this.handleCC(this.props.isCC);
+  }
 
   render() {
     return (
@@ -123,6 +128,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
         height={this.props.height}
         step={this.state.step}
         isFullScreen={this.state.isFullScreen}
+        isCC={this.props.isCC}
         onPlay={this.handlePlay}
         onEnd={this.handleEnd}
         onReady={this.handleReady}

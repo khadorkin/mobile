@@ -19,12 +19,13 @@ type Props = {|
   height: number,
   step: Step,
   isFullScreen?: boolean,
+  isCC?: boolean,
   onPlay: () => void,
   onEnd: () => void,
   onReady: () => void,
   onExpand?: () => void,
   onShrink?: () => void,
-  onCC?: (isCC: Boolean) => void,
+  onCC?: (isCC: boolean) => void,
   onRef?: (VideoPlayer | null) => void
 |};
 
@@ -79,6 +80,7 @@ const Video = ({
   height,
   step,
   isFullScreen,
+  isCC,
   onPlay,
   onReady,
   onEnd,
@@ -103,6 +105,7 @@ const Video = ({
           textTracks={textTracks}
           selectedTextTrack={selectedTextTrack}
           ref={onRef}
+          isCC={isCC}
           style={styles.video}
           resizeMode="contain"
           disableVolume

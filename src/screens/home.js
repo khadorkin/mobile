@@ -65,6 +65,7 @@ class HomeScreen extends React.PureComponent<Props> {
               type: 'language',
               value: 'de'
             }}
+            isCC
             height={300 / (16 / 9)}
           />
           <Space />
