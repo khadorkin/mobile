@@ -47,7 +47,10 @@ class HomeScreen extends React.PureComponent<Props> {
       <Screen testID="home-screen" noScroll>
         <View style={styles.container} testID="home">
           <Video
-            source={{uri: 'https://content.jwplatform.com/videos/Piqz1Sdy.mp4'}}
+            source={{
+              uri:
+                'https://player.vimeo.com/external/266296680.hd.mp4?s=bb8ba7fa2f35cf447571022ca3007cb6437a373e&profile_id=175'
+            }}
             preview={{
               uri:
                 'https://static1.squarespace.com/static/5b0f605e697a98b4a292e4f0/t/5ba17e8a2b6a283ca7aed3e7/1537310369390/Composition-photo-paysage.jpg'
