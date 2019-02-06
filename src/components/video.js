@@ -111,6 +111,7 @@ const Video = ({
           disableVolume
           disableBack
           disableFullscreen={Boolean(!onExpand && !onShrink)}
+          disableCC={Boolean(!textTracks)}
           toggleResizeModeOnFullscreen={false}
           isFullscreen={isFullScreen}
           onEnterFullscreen={onExpand}

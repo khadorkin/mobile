@@ -115,7 +115,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const {isCC, selectedTextTrack} = this.props;
+    const {isCC, textTracks, selectedTextTrack} = this.props;
     this.handleCC(Boolean(isCC !== undefined ? isCC : selectedTextTrack));
   }
 
