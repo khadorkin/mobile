@@ -118,8 +118,6 @@ class VideoControlable extends React.PureComponent<Props, State> {
               }
       });
     }
-
-    console.log(this.state.selectedTextTrack);
   };
 
   componentDidMount() {
