@@ -3,18 +3,19 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {createProgression} from '@coorpacademy/player-store';
 
 import Button from '../components/button';
 import Space from '../components/space';
 import Screen from '../components/screen';
 import theme from '../modules/theme';
+import {selectLevel, selectChapter} from '../redux/actions/content';
+import type {Level, Chapter, Discipline} from '../layer/data';
 // @todo remove it once we a catalog
 import onboardingCourse from '../__fixtures__/onboarding-course';
-import type {Level, Discipline} from '../layer/data';
 
 type ConnectedDispatchProps = {|
-  createProgression: typeof createProgression
+  selectLevel: typeof selectLevel,
+  selectChapter: typeof selectChapter
 |};
 
 type Props = {|
@@ -42,30 +43,33 @@ class HomeScreen extends React.PureComponent<Props> {
     }
   });
 
-  handlePress = lives => () => {
-    // @todo selectCourse action to dispatch
-    // $FlowFixMe onboardingCourse.disciplines is not mixed
-    const disciplines: Array<Discipline> = Object.values(onboardingCourse.disciplines);
-    const firstModule: Level = disciplines && disciplines[0].modules[0];
-    this.props.createProgression(
-      {ref: 'learner'},
-      {type: 'level', ref: firstModule.universalRef},
-      {lives}
-    );
+  handleLevelPress = (level: Level) => () => {
+    this.props.selectLevel(level);
+    this.props.navigation.navigate('Slide');
+  };
 
+  handleChapterPress = (chapter: Chapter) => () => {
+    this.props.selectChapter(chapter);
     this.props.navigation.navigate('Slide');
   };
 
   render() {
+    const firstDiscipline: Discipline = onboardingCourse.disciplines.dis_4y8q7qLLN;
+    const firstLevel: Level = firstDiscipline.modules[0];
+    const firstChapter: Chapter = onboardingCourse.chapters['cha_Vy-gSqL8E'];
+
     return (
       <Screen testID="home-screen" noScroll>
         <View style={styles.container} testID="home">
-          <Button onPress={this.handlePress(3)} testID="button-start-course-with-lives">
-            Start a course
+          <Button onPress={this.handleLevelPress(firstLevel)} testID="button-start-onboarding">
+            Start onboarding
           </Button>
           <Space />
-          <Button onPress={this.handlePress()} testID="button-start-course-without-lives">
-            Start a course without lives
+          <Button
+            onPress={this.handleChapterPress(firstChapter)}
+            testID="button-start-onboarding-chapter"
+          >
+            Start onboarding chapter
           </Button>
         </View>
       </Screen>
@@ -74,7 +78,8 @@ class HomeScreen extends React.PureComponent<Props> {
 }
 
 const mapDispatchToProps: ConnectedDispatchProps = {
-  createProgression
+  selectLevel,
+  selectChapter
 };
 
 export default connect(null, mapDispatchToProps)(HomeScreen);

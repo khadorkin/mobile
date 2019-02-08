@@ -24,3 +24,5 @@ export type CardType = 'tip' | 'keyPoint' | 'correction';
 export type Question = string;
 
 export type LevelType = 'base' | 'advanced' | 'coach';
+
+export type Engine = 'learner' | 'microlearning';

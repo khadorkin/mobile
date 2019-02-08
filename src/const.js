@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import type {QuestionType, MediaType, ContentType} from '@coorpacademy/progression-engine';
-import type {SpaceType, CardType, LevelType, ResourceType} from './types';
+import type {SpaceType, CardType, LevelType, ResourceType, Engine} from './types';
 
 export const RESSOURCE_TYPE: {
   [string]: ResourceType
@@ -68,4 +68,11 @@ export const SPECIFIC_CONTENT_REF: {
   EXTRA_LIFE: 'extraLife',
   FAILURE_EXIT_NODE: 'failureExitNode',
   SUCCESS_EXIT_NODE: 'successExitNode'
+};
+
+export const ENGINE: {
+  [string]: Engine
+} = {
+  LEARNER: 'learner',
+  MICROLEARNING: 'microlearning'
 };
