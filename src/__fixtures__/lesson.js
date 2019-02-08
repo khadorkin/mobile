@@ -9,7 +9,7 @@ export const lessonWithVideo: Lesson = {
   description: 'Des données au service de tous',
   videoId: '303449523',
   mediaUrl:
-    '//player.vimeo.com/external/303449523.m3u8?s=998d51ae0dfdc40f80faf413bb78f31f7daacee5&oauth2_token_id=41150307',
+    '//player.vimeo.com/external/266296680.hd.mp4?s=bb8ba7fa2f35cf447571022ca3007cb6437a373e&profile_id=175',
   downloadUrl:
     '//player.vimeo.com/external/303449523.sd.mp4?s=ee82aad8a793d94b289638b4bd8823c30964ba36&profile_id=164&oauth2_token_id=411503075',
   mimeType: 'application/vimeo',
@@ -17,7 +17,20 @@ export const lessonWithVideo: Lesson = {
   type: 'video',
   subtitles: [],
   posters: [],
-  src: []
+  src: [],
+  ccTracks: [
+    {
+      title: 'German CC',
+      language: 'de',
+      type: 'text/vtt', // "text/vtt"
+      uri:
+        'https://alanlanglois.net/https266296680hdmp4sbb8ba7fa2f35cf447571022ca3007cb6437a373eprofile_id175.de.vtt'
+    }
+  ],
+  ccSelectedTrack: {
+    type: 'language',
+    value: 'de'
+  }
 };
 
 export const lessonWithPdf: Lesson = {

@@ -194,7 +194,9 @@ export type Lesson = {|
   type: LessonType,
   subtitles: Array<Subtitle>,
   posters: Array<string>,
-  src: Array<string>
+  src: Array<string>,
+  ccTracks?: Array<{}>,
+  ccSelectedTrack?: {}
 |};
 
 type ChapterRuleActionInstruction = {|

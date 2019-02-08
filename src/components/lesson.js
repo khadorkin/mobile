@@ -33,6 +33,8 @@ const Lesson = ({layout, header, resources}: Props) => {
   const resource: LessonType = resources.filter(item => item.type === RESSOURCE_TYPE.VIDEO)[0];
   const video = resource && resource.mediaUrl.replace(/(http:|https:|)\/\//g, 'https://');
   const poster = resource && resource.poster.replace(/(http:|https:|)\/\//g, 'https://');
+  const ccTracks = resource && resource.ccTracks;
+  const ccSelectedTrack = resource && resource.ccSelectedTrack;
 
   return (
     <View testID="lesson" style={styles.container}>
@@ -43,7 +45,14 @@ const Lesson = ({layout, header, resources}: Props) => {
       {video &&
         poster &&
         layout && (
-          <Video source={{uri: video}} preview={{uri: poster}} height={layout.width / (16 / 9)} />
+          <Video
+            source={{uri: video}}
+            preview={{uri: poster}}
+            height={layout.width / (16 / 9)}
+            textTracks={ccTracks}
+            selectedTextTrack={ccSelectedTrack}
+            isCC
+          />
         )}
     </View>
   );
