@@ -14,7 +14,7 @@ export type Step = 'preview' | 'play' | 'end';
 type Props = {|
   source: File | {uri: string},
   preview: File | {uri: string},
-  textTracks: {},
+  textTracks: Array<{}>,
   selectedTextTrack: {},
   height: number,
   step: Step,

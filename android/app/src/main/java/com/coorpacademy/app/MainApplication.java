@@ -2,6 +2,7 @@ package com.coorpacademy.app;
 
 import android.app.Application;
 
+import com.RNFetchBlob.RNFetchBlobPackage;
 import org.wonday.orientation.OrientationPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new RNFetchBlobPackage(),
           new OrientationPackage(),
           new ReactVideoPackage(),
           new ReactNativeLocalizationPackage(),

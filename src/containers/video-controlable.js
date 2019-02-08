@@ -5,6 +5,7 @@ import {Platform} from 'react-native';
 import {connect} from 'react-redux';
 import VideoPlayer from '@coorpacademy/react-native-video-controls';
 import orientation from 'react-native-orientation-locker';
+import RNFetchBlob from 'rn-fetch-blob';
 
 import Video, {STEP} from '../components/video';
 import type {Step} from '../components/video';
@@ -20,7 +21,7 @@ type Props = {|
   source: File | {uri: string},
   preview: File | {uri: string},
   isCC: boolean,
-  textTracks: {},
+  textTracks: Array<{}>,
   selectedTextTrack: {},
   height: number
 |};
@@ -106,17 +107,36 @@ class VideoControlable extends React.PureComponent<Props, State> {
       });
     } else {
       this.setState({
-        selectedTextTrack: {
-          type: 'disabled',
-          value: 'no'
-        }
+        selectedTextTrack:
+          Platform.OS === 'ios'
+            ? {
+                type: 'title',
+                value: 'nocc'
+              }
+            : {
+                type: 'disabled'
+              }
       });
     }
+
+    console.log(this.state.selectedTextTrack);
   };
 
   componentDidMount() {
-    const {isCC, textTracks, selectedTextTrack} = this.props;
+    const {isCC, selectedTextTrack, textTracks} = this.props;
     this.handleCC(Boolean(isCC !== undefined ? isCC : selectedTextTrack));
+
+    if (Platform.OS === 'ios') {
+      const path: string = 'file://' + RNFetchBlob.fs.dirs.MainBundleDir + '/assets/empty.vtt';
+      // let tTracks: Array<{}> =
+
+      textTracks.push({
+        title: 'nocc',
+        language: 'en',
+        type: 'text/vtt', // "text/vtt"
+        uri: path
+      });
+    }
   }
 
   render() {
