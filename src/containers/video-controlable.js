@@ -126,12 +126,10 @@ class VideoControlable extends React.PureComponent<Props, State> {
 
     if (Platform.OS === 'ios') {
       const path: string = 'file://' + RNFetchBlob.fs.dirs.MainBundleDir + '/assets/empty.vtt';
-      // let tTracks: Array<{}> =
-
       textTracks.push({
         title: 'nocc',
         language: 'en',
-        type: 'text/vtt', // "text/vtt"
+        type: 'text/vtt',
         uri: path
       });
     }
