@@ -1,35 +1,22 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
-import Button from '../components/button';
-import Space from '../components/space';
+import Home from '../components/home';
 import Screen from '../components/screen';
-import theme from '../modules/theme';
-import {selectLevel, selectChapter} from '../redux/actions/content';
-import type {Level, Chapter, Discipline} from '../layer/data';
-// @todo remove it once we a catalog
-import onboardingCourse from '../__fixtures__/onboarding-course';
+import {createLevelProgression, createChapterProgression} from '../redux/actions/progression';
+import type {Level, Chapter, Discipline} from '../layer/data/_types';
 
 type ConnectedDispatchProps = {|
-  selectLevel: typeof selectLevel,
-  selectChapter: typeof selectChapter
+  createLevelProgression: typeof createLevelProgression,
+  createChapterProgression: typeof createChapterProgression
 |};
 
 type Props = {|
   ...ReactNavigation$ScreenProps,
   ...ConnectedDispatchProps
 |};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: theme.spacing.base,
-    justifyContent: 'flex-end'
-  }
-});
 
 class HomeScreen extends React.PureComponent<Props> {
   props: Props;
@@ -43,43 +30,33 @@ class HomeScreen extends React.PureComponent<Props> {
     }
   });
 
-  handleLevelPress = (level: Level) => () => {
-    this.props.selectLevel(level);
+  handleDisciplinePress = (discipline: Discipline) => {
+    // @todo redirect to discipline page once developed
+    const level: Level = discipline.modules[0];
+    this.props.createLevelProgression(level);
     this.props.navigation.navigate('Slide');
   };
 
-  handleChapterPress = (chapter: Chapter) => () => {
-    this.props.selectChapter(chapter);
+  handleChapterPress = (chapter: Chapter) => {
+    this.props.createChapterProgression(chapter);
     this.props.navigation.navigate('Slide');
   };
 
   render() {
-    const firstDiscipline: Discipline = onboardingCourse.disciplines.dis_4y8q7qLLN;
-    const firstLevel: Level = firstDiscipline.modules[0];
-    const firstChapter: Chapter = onboardingCourse.chapters['cha_Vy-gSqL8E'];
-
     return (
       <Screen testID="home-screen" noScroll>
-        <View style={styles.container} testID="home">
-          <Button onPress={this.handleLevelPress(firstLevel)} testID="button-start-onboarding">
-            Start onboarding
-          </Button>
-          <Space />
-          <Button
-            onPress={this.handleChapterPress(firstChapter)}
-            testID="button-start-onboarding-chapter"
-          >
-            Start onboarding chapter
-          </Button>
-        </View>
+        <Home
+          onDisciplinePress={this.handleDisciplinePress}
+          onChapterPress={this.handleChapterPress}
+        />
       </Screen>
     );
   }
 }
 
 const mapDispatchToProps: ConnectedDispatchProps = {
-  selectLevel,
-  selectChapter
+  createLevelProgression,
+  createChapterProgression
 };
 
 export default connect(null, mapDispatchToProps)(HomeScreen);
