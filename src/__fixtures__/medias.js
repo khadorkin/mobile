@@ -1,9 +1,10 @@
 // @flow strict
 
 import type {Media} from '@coorpacademy/progression-engine';
+
 import {MEDIA_TYPE} from '../const';
 
-const media: Media = {
+export const image: Media = {
   type: MEDIA_TYPE.IMAGE,
   src: [
     {
@@ -15,4 +16,6 @@ const media: Media = {
   ]
 };
 
-export default media;
+export default {
+  image
+};
