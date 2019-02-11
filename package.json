@@ -16,6 +16,7 @@
     "generate:assets": "npm run -s check:imagemagick && babel-node scripts/generate-assets.js",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start:clean": "npm run cleanup && npm start -- --reset-cache",
+    "start:e2e": "REACT_NATIVE_FLAVOR=E2E npm run -s start:clean",
     "start:ios": "react-native run-ios",
     "start:ios:release": "npm run -s start:ios -- --configuration Release",
     "start:android": "react-native run-android",
