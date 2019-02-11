@@ -20,7 +20,7 @@ type Props = {|
   ...ConnectedDispatchToProps,
   source: File | {uri: string},
   preview: File | {uri: string},
-  isCC: boolean,
+  hasSubtitles: boolean,
   textTracks: Array<{}>,
   selectedTextTrack: {},
   height: number
@@ -100,8 +100,8 @@ class VideoControlable extends React.PureComponent<Props, State> {
     this.videoPlayer = videoPlayer;
   };
 
-  handleCC = (isCC: boolean) => {
-    if (isCC) {
+  handleCC = (hasSubtitles: boolean) => {
+    if (hasSubtitles) {
       this.setState({
         selectedTextTrack: this.props.selectedTextTrack
       });
@@ -121,8 +121,8 @@ class VideoControlable extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const {isCC, selectedTextTrack, textTracks} = this.props;
-    this.handleCC(Boolean(isCC !== undefined ? isCC : selectedTextTrack));
+    const {hasSubtitles, selectedTextTrack, textTracks} = this.props;
+    this.handleCC(Boolean(hasSubtitles !== undefined ? hasSubtitles : selectedTextTrack));
 
     if (Platform.OS === 'ios') {
       const path: string = 'file://' + RNFetchBlob.fs.dirs.MainBundleDir + '/assets/empty.vtt';
@@ -145,7 +145,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
         height={this.props.height}
         step={this.state.step}
         isFullScreen={this.state.isFullScreen}
-        isCC={this.props.isCC}
+        hasSubtitles={this.props.hasSubtitles}
         onPlay={this.handlePlay}
         onEnd={this.handleEnd}
         onReady={this.handleReady}

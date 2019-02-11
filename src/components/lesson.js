@@ -62,7 +62,7 @@ const Lesson = ({layout, header, resources}: Props) => {
             height={layout.width / (16 / 9)}
             textTracks={ccTracks}
             selectedTextTrack={ccSelectedTrack}
-            isCC
+            hasSubtitles
           />
         )}
     </View>
