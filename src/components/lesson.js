@@ -33,8 +33,19 @@ const Lesson = ({layout, header, resources}: Props) => {
   const resource: LessonType = resources.filter(item => item.type === RESSOURCE_TYPE.VIDEO)[0];
   const video = resource && resource.mediaUrl.replace(/(http:|https:|)\/\//g, 'https://');
   const poster = resource && resource.poster.replace(/(http:|https:|)\/\//g, 'https://');
-  const ccTracks = resource && resource.ccTracks;
-  const ccSelectedTrack = resource && resource.ccSelectedTrack;
+
+  const ccTracks = [
+    {
+      title: 'Subtitles',
+      language: 'nc',
+      type: 'text/vtt', // "text/vtt"
+      uri: resource && resource.subtitles[0].replace(/(http:|https:|)\/\//g, 'https://')
+    }
+  ];
+  const ccSelectedTrack = {
+    type: 'language',
+    value: 'nc'
+  };
 
   return (
     <View testID="lesson" style={styles.container}>

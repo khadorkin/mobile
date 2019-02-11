@@ -15,22 +15,11 @@ export const lessonWithVideo: Lesson = {
   mimeType: 'application/vimeo',
   ref: 'les_E1TniqOCB',
   type: 'video',
-  subtitles: [],
-  posters: [],
-  src: [],
-  ccTracks: [
-    {
-      title: 'German CC',
-      language: 'de',
-      type: 'text/vtt', // "text/vtt"
-      uri:
-        'https://alanlanglois.net/https266296680hdmp4sbb8ba7fa2f35cf447571022ca3007cb6437a373eprofile_id175.de.vtt'
-    }
+  subtitles: [
+    '//alanlanglois.net/https266296680hdmp4sbb8ba7fa2f35cf447571022ca3007cb6437a373eprofile_id175.de.vtt'
   ],
-  ccSelectedTrack: {
-    type: 'language',
-    value: 'de'
-  }
+  posters: [],
+  src: []
 };
 
 export const lessonWithPdf: Lesson = {
