@@ -3,19 +3,25 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
+import {createProgression} from '@coorpacademy/player-store';
 
 import Button from '../components/button';
 import Space from '../components/space';
 import Screen from '../components/screen';
 import Video from '../containers/video-controlable';
 import theme from '../modules/theme';
-import {setLivesProgression} from '../redux/actions/progression';
+// @todo remove it once we a catalog
+import onboardingCourse from '../__fixtures__/onboarding-course';
+import type {Level, Discipline} from '../layer/data';
 
 type ConnectedDispatchProps = {|
-  setLivesProgression: typeof setLivesProgression
+  createProgression: typeof createProgression
 |};
 
-type Props = ReactNavigation$ScreenProps;
+type Props = {|
+  ...ReactNavigation$ScreenProps,
+  ...ConnectedDispatchProps
+|};
 
 const styles = StyleSheet.create({
   container: {
@@ -37,8 +43,17 @@ class HomeScreen extends React.PureComponent<Props> {
     }
   });
 
-  handlePress = (lives?: number) => () => {
-    this.props.setLivesProgression(lives);
+  handlePress = lives => () => {
+    // @todo selectCourse action to dispatch
+    // $FlowFixMe onboardingCourse.disciplines is not mixed
+    const disciplines: Array<Discipline> = Object.values(onboardingCourse.disciplines);
+    const firstModule: Level = disciplines && disciplines[0].modules[0];
+    this.props.createProgression(
+      {ref: 'learner'},
+      {type: 'level', ref: firstModule.universalRef},
+      {lives}
+    );
+
     this.props.navigation.navigate('Slide');
   };
 
@@ -68,7 +83,7 @@ class HomeScreen extends React.PureComponent<Props> {
 }
 
 const mapDispatchToProps: ConnectedDispatchProps = {
-  setLivesProgression
+  createProgression
 };
 
 export default connect(null, mapDispatchToProps)(HomeScreen);
