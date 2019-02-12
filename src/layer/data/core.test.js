@@ -240,5 +240,10 @@ describe('Data Layer Core', () => {
       // @todo should be mocked
       expect(result).resolves.toBe(onboardingCourse);
     });
+
+    it('should trigger error', () => {
+      const result = fetchDisciplineBundle('foobarbaz', 'fr');
+      expect(result).rejects.toThrow(new Error('API fetching not supported yet.'));
+    });
   });
 });

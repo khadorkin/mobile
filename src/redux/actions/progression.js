@@ -8,30 +8,10 @@ import {CONTENT_TYPE, ENGINE} from '../../const';
 
 /* eslint-disable import/prefer-default-export */
 
-export const SELECT_CONTENT = 'SELECT_CONTENT';
-
 const ENGINE_VERSION = '1';
 const ENGINE_CONFIG_VERSION = '1';
 
-type Meta = {|
-  chapter?: Chapter,
-  level?: Level
-|};
-
-export type Action = {|
-  type: 'SELECT_CONTENT',
-  meta: Meta
-|};
-
-const selectContent = ({chapter, level}: Meta): Action => ({
-  type: SELECT_CONTENT,
-  meta: {
-    chapter,
-    level
-  }
-});
-
-export const selectLevel = (level: Level) => (dispatch: Dispatch) => {
+export const createLevelProgression = (level: Level) => {
   const engine: Engine = {ref: ENGINE.LEARNER, version: ENGINE_VERSION};
   // @todo use universalRef
   const content: Content = {type: CONTENT_TYPE.LEVEL, ref: level.ref};
@@ -40,15 +20,13 @@ export const selectLevel = (level: Level) => (dispatch: Dispatch) => {
     livesDisabled: level.infiniteLives
   };
 
-  dispatch(selectContent({level}));
-  dispatch(createProgression(engine, content, engineConfig));
+  return createProgression(engine, content, engineConfig);
 };
 
-export const selectChapter = (chapter: Chapter) => (dispatch: Dispatch) => {
+export const createChapterProgression = (chapter: Chapter) => {
   const engine: Engine = {ref: ENGINE.MICROLEARNING, version: ENGINE_VERSION};
   const content: Content = {type: CONTENT_TYPE.CHAPTER, ref: chapter.universalRef};
   const engineConfig: EngineConfig = {version: ENGINE_CONFIG_VERSION};
 
-  dispatch(selectContent({chapter}));
-  dispatch(createProgression(engine, content, engineConfig));
+  return createProgression(engine, content, engineConfig);
 };
