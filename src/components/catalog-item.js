@@ -17,7 +17,10 @@ type Props = {|
   image: File | {uri: string},
   editor: string,
   isNew: boolean,
-  isInfinite: boolean
+  isInfinite: boolean,
+  titleFontSize?: number,
+  subtitleFontSize?: number,
+  progressionBarHeight?: number
 |};
 
 const styles = StyleSheet.create({
@@ -33,13 +36,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   title: {
-    fontSize: 16,
     color: theme.colors.white,
     fontWeight: theme.fontWeight.bold,
     paddingTop: theme.spacing.tiny
   },
   subtitle: {
-    fontSize: 14,
     color: theme.colors.white,
     fontWeight: theme.fontWeight.regular,
     paddingBottom: theme.spacing.small,
@@ -65,7 +66,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const Item = ({title, subtitle, progression, image, editor, isNew, isInfinite}: Props) => {
+const Item = ({
+  title,
+  subtitle,
+  progression,
+  image,
+  isNew,
+  isInfinite,
+  titleFontSize,
+  subtitleFontSize,
+  progressionBarHeight
+}: Props) => {
+  const titleSize = titleFontSize ? titleFontSize : 16;
+  const subtitleSize = subtitleFontSize ? subtitleFontSize : 14;
+  const progressBarHeight = progressionBarHeight ? progressionBarHeight : 5;
+
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => (
@@ -87,13 +102,13 @@ const Item = ({title, subtitle, progression, image, editor, isNew, isInfinite}: 
                   width={22}
                 />
               )}
-              <Text style={styles.title}>{title}</Text>
-              <Text style={styles.subtitle}>{subtitle}</Text>
+              <Text style={[styles.title, {fontSize: titleSize}]}>{title}</Text>
+              <Text style={[styles.subtitle, {fontSize: subtitleSize}]}>{subtitle}</Text>
               <View style={styles.progressionBar}>
                 <ProgressionBar
                   current={progression.current}
                   count={progression.count}
-                  height={5}
+                  height={progressBarHeight}
                   bgBarColor={theme.colors.white}
                   isInnerRounded
                 />

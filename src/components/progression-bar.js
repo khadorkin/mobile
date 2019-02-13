@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
+import {View, Animated} from 'react-native';
 
 import theme from '../modules/theme';
 import {BrandThemeContext} from './brand-theme-provider';
@@ -16,8 +16,6 @@ type Props = {|
 |};
 
 const BAR_HEIGHT = 3;
-
-const styles = StyleSheet.create({});
 
 class ProgressionBar extends React.PureComponent<Props> {
   props: Props;

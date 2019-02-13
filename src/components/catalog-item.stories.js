@@ -44,5 +44,8 @@ storiesOf('Catalogue Item', module)
       editor="COORP ORIGINAL"
       isNew
       isInfinite
+      titleFontSize={22}
+      subtitleFontSize={16}
+      progressionBarHeight={3}
     />
   ));
