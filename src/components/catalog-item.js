@@ -113,37 +113,56 @@ const Item = ({
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => (
-        <ImageBackground source={image} style={styles.image}>
+        <ImageBackground testID="image-background" source={image} style={styles.image}>
           <LinearGradient
+            testID="gradient"
             colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
             style={styles.container}
           >
             {badge && (
               <View style={styles.badgeContainer}>
-                <Text style={[styles.badge, {color: brandTheme.colors.primary}]}>{badge}</Text>
+                <Text
+                  testID={`badge-${badge}`}
+                  style={[styles.badge, {color: brandTheme.colors.primary}]}
+                >
+                  {badge}
+                </Text>
               </View>
             )}
-            {editor && (
+            {editor === 'coorp' && (
               <View style={styles.editorContainer}>
-                <Text style={[styles.editor, {fontSize: editorSize}]}>
+                <Text testID="editor-coorp" style={[styles.editor, {fontSize: editorSize}]}>
                   COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
+                </Text>
+              </View>
+            )}
+            {editor !== 'coorp' && (
+              <View style={styles.editorContainer}>
+                <Text testID="editor-custom" style={[styles.editor, {fontSize: editorSize}]}>
+                  {editor}
                 </Text>
               </View>
             )}
             <View style={styles.bottomContainer}>
               {isInfinite && (
                 <NovaCompositionCoorpacademyAdaptive
+                  testID="infinite-icon"
                   color={theme.colors.white}
                   height={22}
                   width={22}
                 />
               )}
-              <Text style={[styles.title, {fontSize: titleSize}]}>{title}</Text>
-              <View style={styles.subtitleContainer}>
-                <Text style={[styles.subtitle, {fontSize: subtitleSize}]}>{subtitle}</Text>
+              <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>
+                {title}
+              </Text>
+              <View tyle={styles.subtitleContainer}>
+                <Text testID="subtitle" style={[styles.subtitle, {fontSize: subtitleSize}]}>
+                  {subtitle}
+                </Text>
                 {isCertified && (
                   <View style={styles.certified}>
                     <NovaSolidStatusCheckCircle2
+                      testID="certified-icon"
                       color={theme.colors.white}
                       height={subtitleSize}
                       width={subtitleSize}

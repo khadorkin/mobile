@@ -34,13 +34,29 @@ storiesOf('Catalogue Item', module)
       isInfinite={false}
     />
   ))
-  .add('Adaptive/New/Certified', () => (
+  .add('Adaptive/New/Certified/Coorp', () => (
     <Item
       title="Predicting the future"
       subtitle="Coorpacademy"
       progression={progression}
       image={image}
-      editor="verified"
+      editor="coorp"
+      badge="New"
+      isInfinite
+      editorFontSize={12}
+      titleFontSize={22}
+      subtitleFontSize={16}
+      progressionBarHeight={3}
+      isCertified
+    />
+  ))
+  .add('Adaptive/New/Certified/Custom', () => (
+    <Item
+      title="Predicting the future"
+      subtitle="Coorpacademy"
+      progression={progression}
+      image={image}
+      editor="CUSTOM EDITOR"
       badge="New"
       isInfinite
       editorFontSize={12}
