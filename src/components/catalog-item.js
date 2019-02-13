@@ -155,7 +155,7 @@ const Item = ({
               <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>
                 {title}
               </Text>
-              <View tyle={styles.subtitleContainer}>
+              <View style={styles.subtitleContainer}>
                 <Text testID="subtitle" style={[styles.subtitle, {fontSize: subtitleSize}]}>
                   {subtitle}
                 </Text>
