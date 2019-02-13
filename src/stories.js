@@ -7,6 +7,7 @@ require('./components/button.stories.js');
 require('./components/card-correction.stories.js');
 require('./components/card.stories.js');
 require('./components/cards.stories.js');
+require('./components/catalog-item.stories.js');
 require('./components/correction.stories.js');
 require('./components/gradient.stories.js');
 require('./components/header-back-image.stories.js');

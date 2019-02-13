@@ -24,3 +24,8 @@ export type CardType = 'tip' | 'keyPoint' | 'correction';
 export type Question = string;
 
 export type LevelType = 'base' | 'advanced' | 'coach';
+
+export type Progression = {|
+  current: number,
+  count: number
+|};

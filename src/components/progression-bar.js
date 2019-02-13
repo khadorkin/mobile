@@ -8,19 +8,16 @@ import {BrandThemeContext} from './brand-theme-provider';
 
 type Props = {|
   current: number,
-  count: number
+  count: number,
+  isInnerRounded?: boolean,
+  height?: number,
+  bgBarColor?: string,
+  topBarColor?: string
 |};
 
 const BAR_HEIGHT = 3;
 
-const styles = StyleSheet.create({
-  barContainer: {
-    backgroundColor: theme.colors.gray.light
-  },
-  bar: {
-    height: BAR_HEIGHT
-  }
-});
+const styles = StyleSheet.create({});
 
 class ProgressionBar extends React.PureComponent<Props> {
   props: Props;
@@ -28,7 +25,18 @@ class ProgressionBar extends React.PureComponent<Props> {
   percentage: Animated.Value = new Animated.Value(this.props.current / this.props.count);
 
   render() {
-    const {current, count} = this.props;
+    const {current, count, height, isInnerRounded, bgBarColor, topBarColor} = this.props;
+    const barHeight = height ? height : BAR_HEIGHT;
+    const barRadius = isInnerRounded ? barHeight / 2 : 0;
+    const barStyle = {
+      height: barHeight,
+      borderBottomRightRadius: barRadius,
+      borderTopRightRadius: barRadius
+    };
+
+    const barContainer = {
+      backgroundColor: bgBarColor ? bgBarColor : theme.colors.gray.light
+    };
 
     Animated.timing(this.percentage, {
       toValue: current / count
@@ -42,9 +50,12 @@ class ProgressionBar extends React.PureComponent<Props> {
     return (
       <BrandThemeContext.Consumer>
         {brandTheme => (
-          <View style={styles.barContainer}>
+          <View style={barContainer}>
             <Animated.View
-              style={[styles.bar, {backgroundColor: brandTheme.colors.primary, width}]}
+              style={[
+                barStyle,
+                {backgroundColor: topBarColor ? topBarColor : brandTheme.colors.primary, width}
+              ]}
               testID={`progression-bar-${current}`}
             />
           </View>
