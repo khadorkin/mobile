@@ -4,7 +4,7 @@ import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 
 import image from '../__fixtures__/image-landscape-1.jpg';
-import Progression from '../types';
+import type {Progression} from '../types';
 import Item from './catalog-item';
 
 const progression: Progression = {
