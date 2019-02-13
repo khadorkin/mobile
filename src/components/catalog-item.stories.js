@@ -19,8 +19,7 @@ storiesOf('Catalogue Item', module)
       subtitle="Coorpacademy"
       progression={progression}
       image={image}
-      editor="COORP ORIGINAL"
-      isNew={false}
+      authorType="COORP ORIGINAL"
       isInfinite
     />
   ))
@@ -30,22 +29,24 @@ storiesOf('Catalogue Item', module)
       subtitle="Coorpacademy"
       progression={progression}
       image={image}
-      editor="COORP ORIGINAL"
-      isNew
+      authorType="COORP ORIGINAL"
+      badge="New"
       isInfinite={false}
     />
   ))
-  .add('Adaptive and New', () => (
+  .add('Adaptive/New/Certified', () => (
     <Item
       title="Predicting the future"
       subtitle="Coorpacademy"
       progression={progression}
       image={image}
-      editor="COORP ORIGINAL"
-      isNew
+      editor="verified"
+      badge="New"
       isInfinite
+      editorFontSize={12}
       titleFontSize={22}
       subtitleFontSize={16}
       progressionBarHeight={3}
+      isCertified
     />
   ));

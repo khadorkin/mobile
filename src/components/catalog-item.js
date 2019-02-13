@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
-import {NovaCompositionCoorpacademyAdaptive} from '@coorpacademy/nova-icons';
+import {
+  NovaCompositionCoorpacademyAdaptive,
+  NovaSolidStatusCheckCircle2
+} from '@coorpacademy/nova-icons';
 import LinearGradient from 'react-native-linear-gradient';
 import type {Progression} from '../types';
 import theme from '../modules/theme';
@@ -15,9 +18,11 @@ type Props = {|
   subtitle: string,
   progression: Progression,
   image: File | {uri: string},
-  editor: string,
-  isNew: boolean,
+  badge?: string,
+  editor?: string,
   isInfinite: boolean,
+  isCertified?: boolean,
+  editorFontSize?: number,
   titleFontSize?: number,
   subtitleFontSize?: number,
   progressionBarHeight?: number
@@ -35,10 +40,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end'
   },
+  editorContainer: {
+    position: 'absolute',
+    margin: theme.spacing.small + theme.spacing.micro,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  editor: {
+    color: theme.colors.white,
+    fontSize: 12
+  },
   title: {
     color: theme.colors.white,
     fontWeight: theme.fontWeight.bold,
     paddingTop: theme.spacing.tiny
+  },
+  subtitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   subtitle: {
     color: theme.colors.white,
@@ -46,14 +66,20 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing.small,
     paddingTop: theme.spacing.tiny
   },
+  certified: {
+    paddingLeft: theme.spacing.tiny,
+    marginTop: -5
+  },
   progressionBar: {
     borderRadius: theme.radius.common,
     overflow: 'hidden'
   },
-  tagContainer: {
+  badgeContainer: {
+    position: 'absolute',
+    margin: theme.spacing.small,
     flexDirection: 'row'
   },
-  tag: {
+  badge: {
     fontSize: 11,
     backgroundColor: theme.colors.white,
     borderRadius: theme.radius.medium,
@@ -71,8 +97,11 @@ const Item = ({
   subtitle,
   progression,
   image,
-  isNew,
+  badge,
   isInfinite,
+  editor,
+  isCertified,
+  editorFontSize,
   titleFontSize,
   subtitleFontSize,
   progressionBarHeight
@@ -80,7 +109,7 @@ const Item = ({
   const titleSize = titleFontSize ? titleFontSize : 16;
   const subtitleSize = subtitleFontSize ? subtitleFontSize : 14;
   const progressBarHeight = progressionBarHeight ? progressionBarHeight : 5;
-
+  const editorSize = editorFontSize ? editorFontSize : 10;
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => (
@@ -89,9 +118,16 @@ const Item = ({
             colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
             style={styles.container}
           >
-            {isNew && (
-              <View style={styles.tagContainer}>
-                <Text style={[styles.tag, {color: brandTheme.colors.primary}]}>New</Text>
+            {badge && (
+              <View style={styles.badgeContainer}>
+                <Text style={[styles.badge, {color: brandTheme.colors.primary}]}>{badge}</Text>
+              </View>
+            )}
+            {editor && (
+              <View style={styles.editorContainer}>
+                <Text style={[styles.editor, {fontSize: editorSize}]}>
+                  COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
+                </Text>
               </View>
             )}
             <View style={styles.bottomContainer}>
@@ -103,7 +139,18 @@ const Item = ({
                 />
               )}
               <Text style={[styles.title, {fontSize: titleSize}]}>{title}</Text>
-              <Text style={[styles.subtitle, {fontSize: subtitleSize}]}>{subtitle}</Text>
+              <View style={styles.subtitleContainer}>
+                <Text style={[styles.subtitle, {fontSize: subtitleSize}]}>{subtitle}</Text>
+                {isCertified && (
+                  <View style={styles.certified}>
+                    <NovaSolidStatusCheckCircle2
+                      color={theme.colors.white}
+                      height={subtitleSize}
+                      width={subtitleSize}
+                    />
+                  </View>
+                )}
+              </View>
               <View style={styles.progressionBar}>
                 <ProgressionBar
                   current={progression.current}
