@@ -139,7 +139,10 @@ const Item = ({
             )}
             {editor !== 'coorp' && (
               <View style={styles.editorContainer}>
-                <Text testID="editor-custom" style={[styles.editor, {fontSize: editorSize}]}>
+                <Text
+                  testID="editor-custom"
+                  style={[styles.editor, {fontSize: editorSize, fontWeight: theme.fontWeight.bold}]}
+                >
                   {editor}
                 </Text>
               </View>
