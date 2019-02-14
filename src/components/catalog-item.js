@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
   },
   editor: {
     color: theme.colors.white,
-    fontSize: 12
+    fontSize: 12,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowRadius: 4
   },
   title: {
     color: theme.colors.white,
@@ -76,17 +78,16 @@ const styles = StyleSheet.create({
   },
   badgeContainer: {
     position: 'absolute',
-    margin: theme.spacing.small,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: theme.colors.white,
+    overflow: 'hidden',
+    borderBottomEndRadius: theme.radius.medium
   },
   badge: {
     fontSize: 11,
-    backgroundColor: theme.colors.white,
-    borderRadius: theme.radius.medium,
-    overflow: 'hidden',
     padding: theme.spacing.micro,
     paddingLeft: theme.spacing.tiny,
-    paddingRight: theme.spacing.tiny,
+    paddingRight: theme.spacing.tiny + theme.spacing.micro,
     fontWeight: theme.fontWeight.bold,
     textAlign: 'center'
   }
