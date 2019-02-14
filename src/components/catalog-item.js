@@ -127,12 +127,6 @@ const Item = ({
       progressBarHeight = 2;
       editorSize = 12;
       break;
-    case DISPLAY_MODE.FULLSCREEN:
-      titleSize = 16;
-      subtitleSize = 14;
-      progressBarHeight = 2;
-      editorSize = 5;
-      break;
     default:
       titleSize = 16;
       subtitleSize = 14;

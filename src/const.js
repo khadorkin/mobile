@@ -46,8 +46,7 @@ export const DISPLAY_MODE: {
   [string]: DisplayMode
 } = {
   CARD: 'card',
-  COVER: 'cover',
-  FULLSCREEN: 'fullscreen'
+  COVER: 'cover'
 };
 
 export const LEVEL_TYPE: {
