@@ -5,6 +5,7 @@ import {storiesOf} from '@storybook/react-native';
 
 import image from '../__fixtures__/image-landscape-1.jpg';
 import type {Progression} from '../types';
+import {DISPLAY_MODE} from '../const';
 import Item from './catalog-item';
 
 const progression: Progression = {
@@ -43,10 +44,7 @@ storiesOf('Catalogue Item', module)
       editor="coorp"
       badge="New"
       isInfinite
-      editorFontSize={12}
-      titleFontSize={22}
-      subtitleFontSize={16}
-      progressionBarHeight={3}
+      mode={DISPLAY_MODE.COVER}
       isCertified
     />
   ))
@@ -59,10 +57,7 @@ storiesOf('Catalogue Item', module)
       editor="CUSTOM EDITOR"
       badge="New"
       isInfinite
-      editorFontSize={12}
-      titleFontSize={22}
-      subtitleFontSize={16}
-      progressionBarHeight={3}
+      mode={DISPLAY_MODE.CARD}
       isCertified
     />
   ));

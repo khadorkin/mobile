@@ -21,6 +21,8 @@ export type SpaceType = 'micro' | 'tiny' | 'small' | 'base' | 'large' | 'xlarge'
 
 export type CardType = 'tip' | 'keyPoint' | 'correction';
 
+export type DisplayMode = 'card' | 'cover' | 'fullscreen';
+
 export type Question = string;
 
 export type LevelType = 'base' | 'advanced' | 'coach';

@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import type {QuestionType, MediaType, ContentType} from '@coorpacademy/progression-engine';
-import type {SpaceType, CardType, LevelType, ResourceType} from './types';
+import type {SpaceType, CardType, LevelType, ResourceType, DisplayMode} from './types';
 
 export const RESSOURCE_TYPE: {
   [string]: ResourceType
@@ -40,6 +40,14 @@ export const CARD_TYPE: {
   TIP: 'tip',
   KEY_POINT: 'keyPoint',
   CORRECTION: 'correction'
+};
+
+export const DISPLAY_MODE: {
+  [string]: DisplayMode
+} = {
+  CARD: 'card',
+  COVER: 'cover',
+  FULLSCREEN: 'fullscreen'
 };
 
 export const LEVEL_TYPE: {

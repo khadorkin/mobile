@@ -7,7 +7,8 @@ import {
   NovaSolidStatusCheckCircle2
 } from '@coorpacademy/nova-icons';
 import LinearGradient from 'react-native-linear-gradient';
-import type {Progression} from '../types';
+import type {Progression, DisplayMode} from '../types';
+import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
 import Text from './text';
 import ProgressionBar from './progression-bar';
@@ -25,7 +26,8 @@ type Props = {|
   editorFontSize?: number,
   titleFontSize?: number,
   subtitleFontSize?: number,
-  progressionBarHeight?: number
+  progressionBarHeight?: number,
+  mode?: DisplayMode
 |};
 
 const styles = StyleSheet.create({
@@ -105,12 +107,39 @@ const Item = ({
   editorFontSize,
   titleFontSize,
   subtitleFontSize,
-  progressionBarHeight
+  progressionBarHeight,
+  mode
 }: Props) => {
-  const titleSize = titleFontSize ? titleFontSize : 16;
-  const subtitleSize = subtitleFontSize ? subtitleFontSize : 14;
-  const progressBarHeight = progressionBarHeight ? progressionBarHeight : 5;
-  const editorSize = editorFontSize ? editorFontSize : 10;
+  let titleSize, subtitleSize, progressBarHeight, editorSize: number;
+
+  const displayMode: DisplayMode = mode ? mode : DISPLAY_MODE.COVER;
+
+  switch (displayMode) {
+    case DISPLAY_MODE.CARD:
+      titleSize = 16;
+      subtitleSize = 14;
+      progressBarHeight = 2;
+      editorSize = 8;
+      break;
+    case DISPLAY_MODE.COVER:
+      titleSize = 22;
+      subtitleSize = 16;
+      progressBarHeight = 2;
+      editorSize = 12;
+      break;
+    case DISPLAY_MODE.FULLSCREEN:
+      titleSize = 16;
+      subtitleSize = 14;
+      progressBarHeight = 2;
+      editorSize = 5;
+      break;
+    default:
+      titleSize = 16;
+      subtitleSize = 14;
+      progressBarHeight = 2;
+      editorSize = 5;
+  }
+
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => (
