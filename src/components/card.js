@@ -11,8 +11,7 @@ export type Props = {|
   children: React.Node,
   style?: GenericStyleProp,
   testID?: string,
-  hasShadow?: boolean,
-  hasMargin?: boolean
+  hasShadow?: boolean
 |};
 
 const styles = StyleSheet.create({
@@ -22,19 +21,16 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     overflow: 'hidden'
   },
-  containerMargin: {
-    margin: theme.spacing.base
-  },
   content: {
     flex: 1
   }
 });
 
-const Card = ({children, style, testID, hasShadow, hasMargin}: Props) => (
+const Card = ({children, style, testID, hasShadow}: Props) => (
   <View>
     {hasShadow && (
       <Box>
-        <View style={[styles.container, styles.containerMargin, style]} testID={testID}>
+        <View style={[styles.container, style]} testID={testID}>
           <View style={styles.content}>{children}</View>
         </View>
       </Box>
