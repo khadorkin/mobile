@@ -1,6 +1,4 @@
 rootProject.name = 'Coorpacademy'
-include ':react-native-linear-gradient'
-project(':react-native-linear-gradient').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-linear-gradient/android')
 include ':react-native-orientation-locker', ':app'
 project(':react-native-orientation-locker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-orientation-locker/android')
 include ':react-native-video'

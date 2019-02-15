@@ -20,10 +20,10 @@ type Props = {|
   progression: Progression,
   image: File | {uri: string},
   badge?: string,
-  editor?: string,
+  authorType?: string,
   isInfinite: boolean,
   isCertified?: boolean,
-  editorFontSize?: number,
+  authorFontSize?: number,
   titleFontSize?: number,
   subtitleFontSize?: number,
   progressionBarHeight?: number,
@@ -35,21 +35,20 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    flex: 1,
-    padding: theme.spacing.small
+    flex: 1
   },
   bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end'
   },
-  editorContainer: {
+  authorContainer: {
     position: 'absolute',
     margin: theme.spacing.small + theme.spacing.micro,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%'
   },
-  editor: {
+  author: {
     color: theme.colors.white,
     fontSize: 12,
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -95,22 +94,22 @@ const styles = StyleSheet.create({
   }
 });
 
-const Item = ({
+const CatalogItem = ({
   title,
   subtitle,
   progression,
   image,
   badge,
   isInfinite,
-  editor,
+  authorType,
   isCertified,
-  editorFontSize,
+  authorFontSize,
   titleFontSize,
   subtitleFontSize,
   progressionBarHeight,
   mode
 }: Props) => {
-  let titleSize, subtitleSize, progressBarHeight, editorSize: number;
+  let titleSize, subtitleSize, progressBarHeight, authorSize, padding: number;
 
   const displayMode: DisplayMode = mode ? mode : DISPLAY_MODE.COVER;
 
@@ -119,29 +118,40 @@ const Item = ({
       titleSize = 16;
       subtitleSize = 14;
       progressBarHeight = 2;
-      editorSize = 8;
+      authorSize = 8;
+      padding = theme.spacing.small;
       break;
     case DISPLAY_MODE.COVER:
       titleSize = 22;
       subtitleSize = 16;
       progressBarHeight = 2;
-      editorSize = 12;
+      authorSize = 12;
+      padding = theme.spacing.base;
       break;
     default:
       titleSize = 16;
       subtitleSize = 14;
       progressBarHeight = 2;
-      editorSize = 5;
+      authorSize = 5;
+      padding = theme.spacing.small;
   }
 
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => (
-        <ImageBackground testID="image-background" source={image} style={styles.image}>
+        <ImageBackground
+          testID="image-background"
+          source={image}
+          style={[
+            styles.image,
+            displayMode === DISPLAY_MODE.CARD && {minHeight: 205},
+            displayMode === DISPLAY_MODE.COVER && {minHeight: 265}
+          ]}
+        >
           <LinearGradient
             testID="gradient"
             colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
-            style={styles.container}
+            style={[styles.container, {padding: padding}]}
           >
             {badge && (
               <View style={styles.badgeContainer}>
@@ -153,20 +163,20 @@ const Item = ({
                 </Text>
               </View>
             )}
-            {editor === 'coorp' && (
-              <View style={styles.editorContainer}>
-                <Text testID="editor-coorp" style={[styles.editor, {fontSize: editorSize}]}>
+            {authorType === 'coorp' && (
+              <View style={styles.authorContainer}>
+                <Text testID="author-coorp" style={[styles.author, {fontSize: authorSize}]}>
                   COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
                 </Text>
               </View>
             )}
-            {editor !== 'coorp' && (
-              <View style={styles.editorContainer}>
+            {authorType !== 'coorp' && (
+              <View style={styles.authorContainer}>
                 <Text
-                  testID="editor-custom"
-                  style={[styles.editor, {fontSize: editorSize, fontWeight: theme.fontWeight.bold}]}
+                  testID="author-custom"
+                  style={[styles.author, {fontSize: authorSize, fontWeight: theme.fontWeight.bold}]}
                 >
-                  {editor}
+                  {authorType}
                 </Text>
               </View>
             )}
@@ -214,4 +224,4 @@ const Item = ({
   );
 };
 
-export default Item;
+export default CatalogItem;
