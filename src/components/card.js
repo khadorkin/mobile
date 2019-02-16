@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     overflow: 'hidden'
   },
-  content: {
+  flex1: {
     flex: 1
   }
 });
 
 const Card = ({children, style, testID, hasShadow}: Props) => (
-  <View>
+  <View style={styles.flex1}>
     {hasShadow && (
       <Box>
         <View style={[styles.container, style]} testID={testID}>
@@ -36,7 +36,7 @@ const Card = ({children, style, testID, hasShadow}: Props) => (
     )}
     {!hasShadow && (
       <View style={[styles.container, style]} testID={testID}>
-        <View style={styles.content}>{children}</View>
+        <View style={styles.flex1}>{children}</View>
       </View>
     )}
   </View>

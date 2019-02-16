@@ -3,12 +3,13 @@
 import * as React from 'react';
 import {View} from 'react-native';
 
+import theme from '../modules/theme';
 import Gradient from './gradient';
 
 export type Props = {|
   children: React.Node,
-  color: string,
-  height: number
+  color?: string,
+  height?: number
 |};
 
 const CardFooterOverlay = ({children, color, height}: Props) => {
@@ -18,11 +19,15 @@ const CardFooterOverlay = ({children, color, height}: Props) => {
     width: '100%',
     height: height
   };
+
+  const overlayColor = color ? color : theme.colors.white;
+  const overlayHeight = height ? height : theme.spacing.large;
+
   return (
     <View>
       {children}
       <View style={gradientStyle}>
-        <Gradient height={height} color={color} />
+        <Gradient height={overlayHeight} color={overlayColor} />
       </View>
     </View>
   );

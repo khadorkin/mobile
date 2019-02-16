@@ -1,12 +1,11 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
-import theme from '../modules/theme';
 import Text from './text';
 
 import CardFooterOverlay from './card-footer-overlay';
 
 storiesOf('Card Overlay', module).add('default', () => (
-  <CardFooterOverlay color={theme.colors.white} height={theme.spacing.large}>
+  <CardFooterOverlay>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in mauris sem. Aliquam a
       dignissim eros. Suspendisse efficitur egestas eros, vitae auctor augue lacinia eget. Aenean

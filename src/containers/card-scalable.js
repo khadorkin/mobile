@@ -4,10 +4,14 @@ import * as React from 'react';
 import {Animated, TouchableOpacity, StyleSheet} from 'react-native';
 
 import Card from '../components/card';
+import CardHeader from '../components/card-header';
+import CardFooterOverlay from '../components/card-footer-overlay';
 import type {Props as CardProps} from '../components/card';
+import type {Props as CardHeaderProps} from '../components/card-header';
 
 type Props = {|
   ...CardProps,
+  ...CardHeaderProps,
   height: number,
   fullScreenHeight: number,
   isFullScreen?: boolean,
@@ -75,8 +79,9 @@ class CardScalable extends React.PureComponent<Props, State> {
     return (
       <Animated.View style={{...style, height: this.height, top: this.top}}>
         <TouchableOpacity onPress={this.handlePress} activeOpacity={1} style={styles.expanded}>
-          <Card title={title} type={type} testID={testID}>
-            {children}
+          <Card testID={testID} hasSÒhadow>
+            <CardHeader type={type} title={title} />
+            <CardFooterOverlay>{children}</CardFooterOverlay>
           </Card>
         </TouchableOpacity>
       </Animated.View>
