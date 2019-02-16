@@ -4,14 +4,10 @@ import * as React from 'react';
 import {ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {
-  createAnswer,
   editAnswer,
-  fetchAnswer,
-  fetchSlideChapter,
   getAnswerValues,
   getChoices,
   getCurrentProgression,
-  getCurrentProgressionId,
   getCurrentSlide,
   getLives,
   getCurrentCorrection,
@@ -20,7 +16,7 @@ import {
   getQuestionMedia,
   getQuestionType,
   getRoute,
-  selectRoute
+  validateAnswer
 } from '@coorpacademy/player-store';
 import type {Choice, Media, QuestionType} from '@coorpacademy/progression-engine';
 
@@ -45,12 +41,13 @@ type ConnectedStateProps = {|
   keyPoint?: string,
   lives?: number,
   isFinished?: boolean,
+  hasLives: boolean,
   isValidating: boolean
 |};
 
 type ConnectedDispatchProps = {|
-  editAnswer: (item: Choice) => (dispatch: Dispatch, getState: GetState) => void,
-  validateAnswer: () => (dispatch: Dispatch, getState: GetState) => Promise<void>
+  editAnswer: typeof editAnswer,
+  validateAnswer: typeof validateAnswer
 |};
 
 type Props = {|
@@ -100,7 +97,8 @@ class QuestionScreen extends React.PureComponent<Props> {
       lives,
       answers,
       userAnswers,
-      isFinished
+      isFinished,
+      hasLives
     } = this.props;
 
     const correctionParams: CorrectionScreenParams = {
@@ -113,7 +111,8 @@ class QuestionScreen extends React.PureComponent<Props> {
       tip,
       keyPoint,
       lives,
-      isFinished
+      isFinished,
+      hasLives
     };
 
     navigation.navigate('Correction', correctionParams);
@@ -175,16 +174,18 @@ const mapStateToProps = (state: StoreState): ConnectedStateProps => {
       tip: undefined,
       keyPoint: undefined,
       lives: undefined,
+      hasLives: false,
       isFinished: undefined,
       isValidating: false
     };
   }
   const progression = getCurrentProgression(state);
-  const lives = getLives(state) || undefined;
+  const {hide: hideLives, count: livesCount} = getLives(state);
+  const lives = hideLives ? undefined : livesCount;
   const correction = getCurrentCorrection(state);
   const media = getQuestionMedia(state);
   const currentRoute = getRoute(state);
-  const isValidating = currentRoute === 'validating';
+  const isValidating = currentRoute === 'correction';
 
   const answers: Array<string> = correction && correction.correctAnswer[0];
   const userAnswers: Array<string> =
@@ -206,7 +207,7 @@ const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const isExtraLife = nextContent.ref === SPECIFIC_CONTENT_REF.EXTRA_LIFE;
   const isFinished =
     isExtraLife || [CONTENT_TYPE.SUCCESS, CONTENT_TYPE.FAILURE].includes(nextContent.type);
-
+  const hasLives = !hideLives;
   const slide = isFinished || openingCorrection ? getPreviousSlide(state) : getCurrentSlide(state);
 
   if (!slide) {
@@ -224,6 +225,7 @@ const mapStateToProps = (state: StoreState): ConnectedStateProps => {
       tip: undefined,
       keyPoint: undefined,
       lives,
+      hasLives,
       isFinished
     };
   }
@@ -247,50 +249,16 @@ const mapStateToProps = (state: StoreState): ConnectedStateProps => {
     media,
     isCorrect,
     isFinished,
+    hasLives,
     isValidating,
     tip: slide && slide.tips,
     keyPoint: slide && slide.klf,
     lives
   };
 };
-const _editAnswer = (item: Choice) => (dispatch: Dispatch, getState: GetState) => {
-  const state = getState();
-  const slide = getCurrentSlide(state);
-  const progressionId = getCurrentProgressionId(state);
-
-  if (slide && progressionId) {
-    const userAnswers = getAnswerValues(slide, state);
-    const questionType = getQuestionType(slide);
-
-    dispatch(editAnswer(userAnswers, questionType, progressionId, item));
-  }
-};
-
-const validateAnswer = () => async (dispatch: Dispatch, getState: GetState) => {
-  const state = getState();
-  const slide = getCurrentSlide(state);
-  const currentProgressionId = getCurrentProgressionId(state);
-
-  if (slide && currentProgressionId) {
-    const answer = getAnswerValues(slide, state);
-
-    dispatch(selectRoute('validating'));
-    const createAnswerResponse = await dispatch(createAnswer(currentProgressionId, answer));
-
-    const progressionState = createAnswerResponse.payload.state;
-    const slideId = progressionState.content.ref;
-    const nextContentRef = progressionState.nextContent.ref;
-
-    dispatch(fetchAnswer(currentProgressionId, slideId, answer));
-
-    if (progressionState.nextContent.type === CONTENT_TYPE.SLIDE) {
-      dispatch(fetchSlideChapter(nextContentRef));
-    }
-  }
-};
 
 const mapDispatchToProps: ConnectedDispatchProps = {
-  editAnswer: _editAnswer,
+  editAnswer,
   validateAnswer
 };
 

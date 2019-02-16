@@ -3,10 +3,8 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: 'アドバンス',
-  base: 'ベーシック',
   clue: 'ヒント',
-  coach: 'コーチ',
+  clueStarsToLoose: 'ヒントを参照すると通常より獲得ができるスターの数が{{count}}つ減ります。',
   congratulations: 'おめでとうございます!',
   correction: '解答',
   didYouKnowThat: 'ご存知でしたか。',
@@ -22,6 +20,7 @@ const translations: Translations = {
   outOfLives: 'ライフがなくなりました。',
   question: '質問',
   retryLevel: 'リトライする',
+  seeClue: 'ヒントをみる ',
   validate: '回答',
   wrongAnswer: '不正解',
   yourAnswer: 'あなたの答え：',

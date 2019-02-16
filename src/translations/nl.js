@@ -3,10 +3,9 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: 'Gevorderde',
-  base: 'Beginner',
   clue: 'Tip',
-  coach: 'Coach',
+  clueStarsToLoose:
+    'Het gebruiken van een tip vermindert het aantal sterren dat je met deze vraag kan winnen met {{count}} (als je goed antwoordt)',
   congratulations: 'Proficiat!',
   correction: 'Correctie',
   didYouKnowThat: 'Wist je dat?',
@@ -22,6 +21,7 @@ const translations: Translations = {
   outOfLives: 'Je heb geen levens meer!',
   question: 'Vraag',
   retryLevel: 'Probeer dit niveau opnieuw',
+  seeClue: 'Bekijk tip',
   validate: 'Valideren',
   wrongAnswer: 'Verkeerd antwoord',
   yourAnswer: 'Jouw antwoord:',

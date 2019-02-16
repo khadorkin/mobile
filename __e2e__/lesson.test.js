@@ -2,12 +2,11 @@
 
 import utils from './utils';
 
-describe('Slide', () => {
+describe('Lesson', () => {
   beforeAll(async () => {
     await utils.reloadApp();
-    await waitFor(element(by.id('button-start-course-with-lives'))).toBeVisible();
-    await element(by.id('button-start-course-with-lives')).tap();
-    await waitFor(element(by.id('slide-tab'))).toBeVisible();
+    await waitFor(element(by.id('catalog-item-basic-dis-1'))).toBeVisible();
+    await element(by.id('catalog-item-basic-dis-1')).tap();
   });
 
   it('should see lesson tab', async () => {
@@ -61,25 +60,21 @@ describe('Slide', () => {
     await weExpect(element(by.id('video'))).toBeVisible();
   });
 
-  /*
+  // This is not possible to test it with iOS native fullscreen
 
-  This is not possible to test it with iOS native fullscreen
-
-  it('should expand the video', async () => {
-    await element(by.id('video-fullscreen-expand')).tap();
-    await waitFor(element(by.id('video-container-fullscreen'))).toBeVisible();
-    await weExpect(element(by.id('video-container'))).toBeNotVisible();
-    await weExpect(element(by.id('video-container-fullscreen'))).toBeVisible();
-    await weExpect(element(by.id('video-fullscreen-shrink'))).toBeVisible();
-  });
-
-  it('should shrink the video', async () => {
-    await element(by.id('video-fullscreen-shrink')).tap();
-    await waitFor(element(by.id('video-container'))).toBeVisible();
-    await weExpect(element(by.id('video-container'))).toBeVisible();
-    await weExpect(element(by.id('video-container-fullscreen'))).toBeNotVisible();
-    await weExpect(element(by.id('video-fullscreen-expand'))).toBeVisible();
-  });
-
-  */
+  // it('should expand the video', async () => {
+  //   await element(by.id('video-fullscreen-expand')).tap();
+  //   await waitFor(element(by.id('video-container-fullscreen'))).toBeVisible();
+  //   await weExpect(element(by.id('video-container'))).toBeNotVisible();
+  //   await weExpect(element(by.id('video-container-fullscreen'))).toBeVisible();
+  //   await weExpect(element(by.id('video-fullscreen-shrink'))).toBeVisible();
+  // });
+  //
+  // it('should shrink the video', async () => {
+  //   await element(by.id('video-fullscreen-shrink')).tap();
+  //   await waitFor(element(by.id('video-container'))).toBeVisible();
+  //   await weExpect(element(by.id('video-container'))).toBeVisible();
+  //   await weExpect(element(by.id('video-container-fullscreen'))).toBeNotVisible();
+  //   await weExpect(element(by.id('video-fullscreen-expand'))).toBeVisible();
+  // });
 });

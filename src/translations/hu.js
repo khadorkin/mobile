@@ -3,10 +3,9 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: 'Speciális',
-  base: 'Alapvető',
   clue: 'Tipp',
-  coach: 'Edző',
+  clueStarsToLoose:
+    'A tipp feloldása {{count}} csillaggal csökkentheti a nyereményét ennél a kérdésnél (ha jól válaszol)',
   congratulations: 'Gratulálunk!',
   correction: 'Javítás',
   didYouKnowThat: 'Tudta?',
@@ -22,6 +21,7 @@ const translations: Translations = {
   outOfLives: 'Önnek nincs több élete!',
   question: 'Kérdés',
   retryLevel: 'Szint  újrajátszása',
+  seeClue: 'Tipp megtekintése',
   validate: 'Érvényesít',
   wrongAnswer: 'Rossz válasz',
   yourAnswer: 'Az ön válasza:',

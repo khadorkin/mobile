@@ -3,10 +3,9 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: 'Avançado',
-  base: 'Básico',
   clue: 'Dica',
-  coach: 'Treinador',
+  clueStarsToLoose:
+    'Desbloquear a solução reduz as estrelas que pode ganhar nesta pergunta em {{count}} (se responder corretamente)',
   congratulations: 'Parabéns!',
   correction: 'Correção',
   didYouKnowThat: 'Sabias que?',
@@ -22,6 +21,7 @@ const translations: Translations = {
   outOfLives: 'Esgotou as suas vidas!',
   question: 'Pergunta',
   retryLevel: 'Voltar a tentar nível',
+  seeClue: 'Ver solução',
   validate: 'Validar',
   wrongAnswer: 'Resposta errada',
   yourAnswer: 'Sua resposta:',

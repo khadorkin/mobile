@@ -3,10 +3,9 @@
 import type {Translations} from './_types';
 
 const translations: Translations = {
-  advanced: '高级',
-  base: '基本',
   clue: '线索',
-  coach: '教练',
+  clueStarsToLoose:
+    '解锁提示意味着你从本问题获得的星星数量会被减少 {{count}} （如果你回答正确的话）',
   congratulations: '恭喜！',
   correction: '修改',
   didYouKnowThat: '你知道吗？',
@@ -22,6 +21,7 @@ const translations: Translations = {
   outOfLives: '你已经没有生命了！',
   question: '问题',
   retryLevel: '重试级别',
+  seeClue: '查看线索',
   validate: '确认',
   wrongAnswer: '错误的答案',
   yourAnswer: '您的答案：',

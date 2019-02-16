@@ -44,12 +44,6 @@ const fetchTranslations = (
 };
 
 const generate = async (locale: string) => {
-  const globalTranslations = await fetchTranslations(
-    locale,
-    'coorpacademy',
-    'core/locales',
-    'global.json'
-  );
   const playerTranslations = await fetchTranslations(
     locale,
     'components',
@@ -63,10 +57,8 @@ const generate = async (locale: string) => {
     'global.json'
   );
   const translations: Translations = {
-    advanced: globalTranslations.module_level.advanced,
-    base: globalTranslations.module_level.base,
     clue: playerTranslations.Clue,
-    coach: globalTranslations.module_level.coach,
+    clueStarsToLoose: componentsTranslations.clue_stars_to_loose,
     congratulations: playerTranslations['Congratulations!'],
     correction: playerTranslations.Correction,
     didYouKnowThat: playerTranslations['Did you know that?'],
@@ -82,6 +74,7 @@ const generate = async (locale: string) => {
     outOfLives: playerTranslations['You are out of lives!'],
     question: playerTranslations.Question,
     retryLevel: playerTranslations['Retry level'],
+    seeClue: componentsTranslations['See clue'],
     validate: playerTranslations.Validate,
     wrongAnswer: playerTranslations['Wrong answer'],
     yourAnswer: playerTranslations['Your answer_'],

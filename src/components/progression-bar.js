@@ -48,7 +48,7 @@ class ProgressionBar extends React.PureComponent<Props> {
     return (
       <BrandThemeContext.Consumer>
         {brandTheme => (
-          <View style={barContainer}>
+          <View style={barContainer} testID="progression-bar">
             <Animated.View
               style={[
                 barStyle,

@@ -1460,29 +1460,29 @@
     async "^2.4.1"
     react "^16.3.2"
 
-"@coorpacademy/player-services@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-2.3.4.tgz#7e55f546f492c2df0a40096abcc872c4cb82332f"
-  integrity sha512-fX4gddz/ZkgRBBByW+7xeTLmIHPdvCQBL5KWTXlZaXYOhaLv5wzZAVxCBRYzCpfFvetUGXVKHXk6jdhxzgvtpw==
+"@coorpacademy/player-services@^2.3.9":
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-2.3.9.tgz#70201d1d65c246047a34d0064d95878bdfec4b53"
+  integrity sha512-NT+cbu76gijrOPW6tc98PVE1pfJ6bzBtxRj7eOuvI9vd/ZMLtMKyATGbgYRtgjLi7+u3bR/lH0ieZvWwQpSWEg==
   dependencies:
-    "@coorpacademy/progression-engine" "10.2.3"
+    "@coorpacademy/progression-engine" "10.2.7"
     lodash "^4.17.4"
 
-"@coorpacademy/player-store@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.npmjs.org/@coorpacademy/player-store/-/player-store-2.3.5.tgz#8b9e230790e0b1c32d380c8fad19d8dcfba2e69e"
-  integrity sha512-gDZQK5rkCHt7vHnGaftO6fRfxTKhZ7qOIEtoXAczrwO83RwCW8zMelDN2W6CtEjpLOIopmtw6Dv5z2/wyDL0iQ==
+"@coorpacademy/player-store@^2.4.7":
+  version "2.4.7"
+  resolved "https://registry.npmjs.org/@coorpacademy/player-store/-/player-store-2.4.7.tgz#4140daf3c82207c1a9952432fe12cceaa94e3760"
+  integrity sha512-0MWdEV3goG1H9op6Hup2AxtFr8izuldHi0QwYpE5J6UOg8zr6hu1W8WiNK9ikYYfwF7hD4wj0MxSJFfmHdANZg==
   dependencies:
-    "@coorpacademy/progression-engine" "10.2.3"
+    "@coorpacademy/progression-engine" "10.2.7"
     "@coorpacademy/redux-task" "0.0.10"
     lodash "^4.17.4"
     redux "^4.0.0"
     redux-thunk "^2.2.0"
 
-"@coorpacademy/progression-engine@10.2.3", "@coorpacademy/progression-engine@^10.2.3":
-  version "10.2.3"
-  resolved "https://registry.npmjs.org/@coorpacademy/progression-engine/-/progression-engine-10.2.3.tgz#a2d47c4e73e5e2b72d05e9be646d3864661d1e18"
-  integrity sha512-RmzrFkBCvifQ2QqQAYXwR/fn4p5WZkfKIV/zBIMN6YAlWTke67/NVN//1g8Q1R88708v65DKvOGCRT8TFyKFHQ==
+"@coorpacademy/progression-engine@10.2.7", "@coorpacademy/progression-engine@^10.2.7":
+  version "10.2.7"
+  resolved "https://registry.npmjs.org/@coorpacademy/progression-engine/-/progression-engine-10.2.7.tgz#3701418123f533a9a911d7b7d307001f70c82f19"
+  integrity sha512-ps3ov2k7aa/qd6W1QY8tHyB1VOWtT39bjRD4VzcjniIVpg5KChR0NEjF2gaLs96oFieFo0DAteic4wEnLqNF7w==
   dependencies:
     fuzzy-matching "^0.4.3"
     lodash "^4.17.4"
@@ -10609,6 +10609,13 @@ react-modal@^3.6.1:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
+
+react-native-card-flip@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/react-native-card-flip/-/react-native-card-flip-1.0.4.tgz#cf01fccbb98697842de7134a4f7b51ee69da430a"
+  integrity sha512-CbCLrcGxEkHP87Aid7YBZXQiiXin/dH8ve4UI4Xin7/fpmoWaSv2bRsCgcCvRsfYXvkyx1pgdBOBlGqLJy52cA==
+  dependencies:
+    prop-types "15.5.10"
 
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
   version "1.0.15"
