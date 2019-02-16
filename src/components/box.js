@@ -15,7 +15,8 @@ export const STYLE: GenericStyleProp = {
   shadowOpacity: 0.15,
   shadowOffset: {width: 0, height: 0},
   shadowRadius: 8,
-  elevation: 2
+  elevation: 5,
+  backgroundColor: 'rgba(0,0,0,0.002)' // in order to get shadows working on Android
 };
 
 const styles = StyleSheet.create({

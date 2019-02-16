@@ -4,7 +4,6 @@ import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import theme from '../modules/theme';
-import Gradient from './gradient';
 import Box from './box';
 
 export type Props = {|

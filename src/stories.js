@@ -5,6 +5,7 @@ require('./components/box.stories.js');
 require('./components/brand-theme-provider.stories.js');
 require('./components/button.stories.js');
 require('./components/card-correction.stories.js');
+require('./components/card-footer-overlay.stories.js');
 require('./components/card-header.stories.js');
 require('./components/card.stories.js');
 require('./components/cards.stories.js');
