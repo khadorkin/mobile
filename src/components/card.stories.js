@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Text} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 import {CARD_TYPE, DISPLAY_MODE} from '../const';
-import image from '../__fixtures__/image-landscape-1.jpg';
+import image from '../__fixtures__/assets/landscape-1.jpg';
 import type {Progression} from '../types';
 
 import Card from './card';

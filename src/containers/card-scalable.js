@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import {Animated, TouchableOpacity, StyleSheet} from 'react-native';
+import {Animated, TouchableOpacity, StyleSheet, View} from 'react-native';
 
 import Card from '../components/card';
 import CardHeader from '../components/card-header';
 import CardFooterOverlay from '../components/card-footer-overlay';
 import type {Props as CardProps} from '../components/card';
 import type {Props as CardHeaderProps} from '../components/card-header';
+import theme from '../modules/theme';
 
 type Props = {|
   ...CardProps,
@@ -27,6 +28,14 @@ type State = {|
 const styles = StyleSheet.create({
   expanded: {
     flex: 1
+  },
+  content: {
+    flex: 1,
+    paddingTop: theme.spacing.base,
+    paddingHorizontal: theme.spacing.base,
+    borderBottomLeftRadius: theme.radius.card,
+    borderBottomRightRadius: theme.radius.card,
+    overflow: 'hidden'
   }
 });
 
@@ -79,9 +88,9 @@ class CardScalable extends React.PureComponent<Props, State> {
     return (
       <Animated.View style={{...style, height: this.height, top: this.top}}>
         <TouchableOpacity onPress={this.handlePress} activeOpacity={1} style={styles.expanded}>
-          <Card testID={testID} hasSÒhadow>
+          <Card testID={testID}>
             <CardHeader type={type} title={title} />
-            <CardFooterOverlay>{children}</CardFooterOverlay>
+            <View style={styles.content}>{children}</View>
           </Card>
         </TouchableOpacity>
       </Animated.View>

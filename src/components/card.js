@@ -4,41 +4,24 @@ import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import theme from '../modules/theme';
-import Box from './box';
 
 export type Props = {|
   children: React.Node,
   style?: GenericStyleProp,
-  testID?: string,
-  hasShadow?: boolean
+  testID?: string
 |};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: theme.radius.card,
-    backgroundColor: theme.colors.white,
-    overflow: 'hidden'
-  },
-  flex1: {
-    flex: 1
+    backgroundColor: theme.colors.white
   }
 });
 
-const Card = ({children, style, testID, hasShadow}: Props) => (
-  <View style={styles.flex1}>
-    {hasShadow && (
-      <Box>
-        <View style={[styles.container, style]} testID={testID}>
-          <View style={styles.content}>{children}</View>
-        </View>
-      </Box>
-    )}
-    {!hasShadow && (
-      <View style={[styles.container, style]} testID={testID}>
-        <View style={styles.flex1}>{children}</View>
-      </View>
-    )}
+const Card = ({children, style, testID}: Props) => (
+  <View style={[styles.container, style]} testID={testID}>
+    {children}
   </View>
 );
 

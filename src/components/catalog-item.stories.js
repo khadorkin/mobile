@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 
-import image from '../__fixtures__/image-landscape-1.jpg';
+import image from '../__fixtures__/assets/landscape-1.jpg';
 import type {Progression} from '../types';
 import {DISPLAY_MODE} from '../const';
 import CatalogItem from './catalog-item';
