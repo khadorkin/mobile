@@ -5,10 +5,10 @@ import {Animated, TouchableOpacity, StyleSheet, View} from 'react-native';
 
 import Card from '../components/card';
 import CardHeader from '../components/card-header';
-import CardFooterOverlay from '../components/card-footer-overlay';
 import type {Props as CardProps} from '../components/card';
 import type {Props as CardHeaderProps} from '../components/card-header';
 import theme from '../modules/theme';
+import Gradient from '../components/gradient';
 
 type Props = {|
   ...CardProps,
@@ -90,7 +90,10 @@ class CardScalable extends React.PureComponent<Props, State> {
         <TouchableOpacity onPress={this.handlePress} activeOpacity={1} style={styles.expanded}>
           <Card testID={testID}>
             <CardHeader type={type} title={title} />
-            <View style={styles.content}>{children}</View>
+            <View style={styles.content}>
+              {children}
+              <Gradient height={theme.spacing.large} color={theme.colors.white} />
+            </View>
           </Card>
         </TouchableOpacity>
       </Animated.View>

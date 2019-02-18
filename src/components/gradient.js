@@ -13,12 +13,7 @@ const Gradient = ({color, height}: Props) => {
   const {r, g, b} = Color(color).object();
   const style: GenericStyleProp = {height};
 
-  return (
-    <LinearGradient
-      colors={[`rgba(${r}, ${g}, ${b}, 0)`, `rgba(${r}, ${g}, ${b}, 0.8)`, color]}
-      style={style}
-    />
-  );
+  return <LinearGradient colors={[`rgba(${r}, ${g}, ${b}, 0)`, color, color]} style={style} />;
 };
 
 export default Gradient;
