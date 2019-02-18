@@ -11,8 +11,10 @@ import type {Progression, DisplayMode} from '../types';
 import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
 import Text from './text';
+import Card from './card';
 import ProgressionBar from './progression-bar';
 import {BrandThemeContext} from './brand-theme-provider';
+import {STYLE as BOX_STYLE} from './box';
 
 type Props = {|
   title: string,
@@ -31,10 +33,10 @@ type Props = {|
 |};
 
 const styles = StyleSheet.create({
-  image: {
+  background: {
     flex: 1
   },
-  container: {
+  content: {
     flex: 1
   },
   bottomContainer: {
@@ -137,90 +139,90 @@ const CatalogItem = ({
   }
 
   return (
-    <BrandThemeContext.Consumer>
-      {brandTheme => (
-        <ImageBackground
-          testID="image-background"
-          source={image}
-          style={[
-            styles.image,
-            displayMode === DISPLAY_MODE.CARD && {minHeight: 205},
-            displayMode === DISPLAY_MODE.COVER && {minHeight: 265}
-          ]}
-        >
-          <LinearGradient
-            testID="gradient"
-            colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
-            style={[styles.container, {padding: padding}]}
-          >
-            {badge && (
-              <View style={styles.badgeContainer}>
+    <ImageBackground
+      testID="image-background"
+      source={image}
+      style={[
+        styles.background,
+        displayMode === DISPLAY_MODE.CARD && {minHeight: 205},
+        displayMode === DISPLAY_MODE.COVER && {minHeight: 265}
+      ]}
+    >
+      <LinearGradient
+        testID="gradient"
+        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
+        style={[styles.content, {padding: padding}]}
+      >
+        {badge && (
+          <View style={styles.badgeContainer}>
+            <BrandThemeContext.Consumer>
+              {brandTheme => (
                 <Text
                   testID={`badge-${badge}`}
                   style={[styles.badge, {color: brandTheme.colors.primary}]}
                 >
                   {badge}
                 </Text>
-              </View>
-            )}
-            {authorType === 'coorp' && (
-              <View style={styles.authorContainer}>
-                <Text testID="author-coorp" style={[styles.author, {fontSize: authorSize}]}>
-                  COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
-                </Text>
-              </View>
-            )}
-            {authorType !== 'coorp' && (
-              <View style={styles.authorContainer}>
-                <Text
-                  testID="author-custom"
-                  style={[styles.author, {fontSize: authorSize, fontWeight: theme.fontWeight.bold}]}
-                >
-                  {authorType}
-                </Text>
-              </View>
-            )}
-            <View style={styles.bottomContainer}>
-              {isInfinite && (
-                <NovaCompositionCoorpacademyAdaptive
-                  testID="infinite-icon"
-                  color={theme.colors.white}
-                  height={22}
-                  width={22}
-                />
               )}
-              <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>
-                {title}
-              </Text>
-              <View style={styles.subtitleContainer}>
-                <Text testID="subtitle" style={[styles.subtitle, {fontSize: subtitleSize}]}>
-                  {subtitle}
-                </Text>
-                {isCertified && (
-                  <View style={styles.certified}>
-                    <NovaSolidStatusCheckCircle2
-                      testID="certified-icon"
-                      color={theme.colors.white}
-                      height={subtitleSize}
-                      width={subtitleSize}
-                    />
-                  </View>
-                )}
-              </View>
-              <View style={styles.progressionBar}>
-                <ProgressionBar
-                  current={progression.current}
-                  count={progression.count}
-                  height={progressBarHeight}
-                  bgBarColor={theme.colors.white}
-                  isInnerRounded
+            </BrandThemeContext.Consumer>
+          </View>
+        )}
+        {authorType === 'coorp' && (
+          <View style={styles.authorContainer}>
+            <Text testID="author-coorp" style={[styles.author, {fontSize: authorSize}]}>
+              COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
+            </Text>
+          </View>
+        )}
+        {authorType !== 'coorp' && (
+          <View style={styles.authorContainer}>
+            <Text
+              testID="author-custom"
+              style={[styles.author, {fontSize: authorSize, fontWeight: theme.fontWeight.bold}]}
+            >
+              {authorType}
+            </Text>
+          </View>
+        )}
+        <View style={styles.bottomContainer}>
+          {isInfinite && (
+            <NovaCompositionCoorpacademyAdaptive
+              testID="infinite-icon"
+              color={theme.colors.white}
+              height={22}
+              width={22}
+            />
+          )}
+          <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>
+            {title}
+          </Text>
+          <View style={styles.subtitleContainer}>
+            <Text testID="subtitle" style={[styles.subtitle, {fontSize: subtitleSize}]}>
+              {subtitle}
+            </Text>
+            {isCertified && (
+              <View style={styles.certified}>
+                <NovaSolidStatusCheckCircle2
+                  testID="certified-icon"
+                  color={theme.colors.white}
+                  height={subtitleSize}
+                  width={subtitleSize}
                 />
               </View>
-            </View>
-          </LinearGradient>
-        </ImageBackground>
-      )}
-    </BrandThemeContext.Consumer>
+            )}
+          </View>
+          <View style={styles.progressionBar}>
+            <ProgressionBar
+              current={progression.current}
+              count={progression.count}
+              height={progressBarHeight}
+              bgBarColor={theme.colors.white}
+              isInnerRounded
+            />
+          </View>
+        </View>
+      </LinearGradient>
+    </ImageBackground>
   );
 };
 

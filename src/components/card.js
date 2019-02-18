@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: theme.radius.card,
-    backgroundColor: theme.colors.white
+    backgroundColor: theme.colors.white,
+    overflow: 'hidden'
   },
   shadow: {
     ...BOX_STYLE,
@@ -29,8 +30,12 @@ const styles = StyleSheet.create({
 
 const Card = ({children, style, testID, hasShadow}: Props) => {
   return (
-    <View style={[styles.container, style, hasShadow && styles.shadow]} testID={testID}>
-      {children}
+    <View
+      style={[!hasShadow && styles.container, style, hasShadow && styles.shadow]}
+      testID={testID}
+    >
+      {hasShadow && <View style={styles.container}>{children}</View>}
+      {!hasShadow && children}
     </View>
   );
 };
