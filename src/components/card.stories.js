@@ -30,7 +30,7 @@ storiesOf('Card', module)
     </Card>
   ))
   .add('Correction', () => (
-    <Card hasShadow>
+    <Card>
       <CardHeader type={CARD_TYPE.CORRECTION} title="Foo bar baz" />
       <Text>A sponsored post is a small advertising insert appearing in users’ timelines.</Text>
     </Card>
