@@ -1,88 +1,88 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 
 import type {Lesson as LessonType} from '../layer/data/_types';
-import {RESSOURCE_TYPE} from '../const';
 import theme from '../modules/theme';
-import Video from '../containers/video-controlable';
 import withLayout from '../containers/with-layout';
+import type {SelectResource} from '../types';
+import translations from '../translations';
 import type {WithLayoutProps} from '../containers/with-layout';
-import {getCleanUri} from '../modules/uri';
+import Html from './html';
 import QuestionTitle from './question-title';
+import Resource from './resource';
+import ResourcesBrowser from './resources-browser';
 import Space from './space';
-import Preview from './preview';
 
 type Props = {|
   ...WithLayoutProps,
   header: string,
+  starsGranted: number,
   resources: Array<LessonType>,
+  selectResource: SelectResource,
   onPDFButtonPress: (url: string, description: string) => void
 |};
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: theme.spacing.base,
+    paddingTop: theme.spacing.base,
     flexGrow: 1
+  },
+  scroller: {
+    flex: 1
   },
   questionContainer: {
     paddingHorizontal: theme.spacing.xlarge
+  },
+  bottomTextWrapper: {
+    backgroundColor: '#eceff1',
+    width: '100%',
+    paddingVertical: 16,
+    paddingHorizontal: 77
+  },
+  bottomText: {
+    color: theme.colors.gray.dark
   }
 });
 
-class Lesson extends React.PureComponent<Props> {
-  props: Props;
+const Lesson = (props: Props) => {
+  const {layout, header, resources, selectResource, starsGranted} = props;
 
-  handlePDFButtonPress = (url: string, description: string) => () => {
-    const {onPDFButtonPress} = this.props;
+  const selectedResource: LessonType = resources.filter(resource => resource.selected)[0];
+  const height = layout && layout.width / (16 / 9);
 
-    onPDFButtonPress(url, description);
-  };
-
-  render() {
-    const {layout, header, resources} = this.props;
-
-    // @todo other US, iterate over resources
-    const resourceVideo: LessonType = resources.filter(
-      item => item.type === RESSOURCE_TYPE.VIDEO
-    )[0];
-    const videoUrl = resourceVideo && resourceVideo.mediaUrl && getCleanUri(resourceVideo.mediaUrl);
-    const videoPoster = resourceVideo && getCleanUri(resourceVideo.poster);
-
-    const resourcePDF: LessonType = resources.filter(item => item.type === RESSOURCE_TYPE.PDF)[0];
-    const pdfUrl = resourcePDF && getCleanUri(resourcePDF.mediaUrl);
-    const pdfPoster = resourcePDF && getCleanUri(resourcePDF.poster);
-    const pdfDescription = resourcePDF && resourcePDF.description;
-
-    const height = layout && layout.width / (16 / 9);
-
-    return (
-      <View testID="lesson" style={styles.container}>
-        <View style={styles.questionContainer}>
-          <QuestionTitle>{header}</QuestionTitle>
-        </View>
-        <Space type="base" />
-        {videoUrl &&
-          videoPoster &&
-          height && <Video source={{uri: videoUrl}} preview={{uri: videoPoster}} height={height} />}
-        <Space type="base" />
-        {pdfPoster &&
-          pdfUrl &&
-          pdfDescription &&
-          height && (
-            <View style={{height}}>
-              <Preview
-                type={RESSOURCE_TYPE.PDF}
-                source={{uri: pdfPoster}}
-                onPress={this.handlePDFButtonPress(pdfUrl, pdfDescription)}
-              />
-            </View>
-          )}
-      </View>
-    );
+  if (!height || !selectedResource) {
+    return null;
   }
-}
+
+  const winAdditionalStars = translations.winAdditionalStars.replace(
+    /{{count}}/g,
+    String(starsGranted)
+  );
+
+  return (
+    <View testID="lesson" style={styles.container}>
+      <View style={styles.questionContainer}>
+        <QuestionTitle>{header}</QuestionTitle>
+      </View>
+      <Space type="base" />
+      <Resource resource={selectedResource} height={height} onPress={props.onPDFButtonPress} />
+      <ScrollView
+        style={styles.scroller}
+        showsHorizontalScrollIndicator={false}
+        testID="resources-scroller"
+      >
+        <ResourcesBrowser resources={resources || []} selectResource={selectResource} />
+      </ScrollView>
+      <View style={styles.bottomTextWrapper}>
+        <Html fontSize={12} style={styles.bottomText}>
+          {winAdditionalStars}
+        </Html>
+      </View>
+    </View>
+  );
+};
 
 export {Lesson as Component};
 export default withLayout(Lesson);

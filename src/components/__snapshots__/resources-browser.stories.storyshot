@@ -1,0 +1,1507 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-0"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-1"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          Object {
+            "borderColor": "#00B0FF",
+            "borderWidth": 1,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/image-support-de-cours-1543490353160.jpg",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          Object {
+            "borderColor": "#00B0FF",
+            "fontWeight": "700",
+          },
+        ]
+      }
+    >
+      Des données au service de tous - PDF
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-2"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-3"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-4"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-5"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Storyshots ResourcesBrowser One lesson 1`] = `null`;
+
+exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-0"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/vignette_fabernovel_new-1543482536203.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M11.995 2.003c-5.514 0-10 4.486-10 10 0 5.513 4.486 10 10 10s10-4.487 10-10c0-5.514-4.486-10-10-10zm-3 15v-9l9 4.5-9 4.5z"
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 14,
+        "paddingHorizontal": 34,
+      }
+    }
+    testID="resource-1"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "height": 45,
+            "justifyContent": "center",
+            "resizeMode": "stretch",
+            "width": 70,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 41,
+            "width": 66,
+          }
+        }
+      >
+        <Image
+          onPress={[Function]}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/default/image-support-de-cours-1543490353160.jpg",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": 41,
+                "width": 66,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        color="#FFFFFF"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "position": "absolute",
+            },
+            false,
+            Object {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGPath
+          d="M0 0h24v24H0z"
+          fill={null}
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        />
+        <RNSVGGroup
+          fill={
+            Array [
+              0,
+              1,
+              1,
+              1,
+              1,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          font={Object {}}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="1"
+          x={0}
+          y={0}
+        >
+          <RNSVGPath
+            d="M5 3h10v4h4v1h2V5.586L16.414 1H5c-1.103 0-2 .898-2 2v5h2V3zM19 21H5v-1H3v1c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-1h-2v1zM9 10v8h2c2.206 0 4-1.794 4-4s-1.794-4-4-4H9zm4 4c0 1.103-.897 2-2 2v-4c1.103 0 2 .898 2 2zM22 12v-2h-4c-1.103 0-2 .898-2 2v6h2v-3h3v-2h-3v-1h4zM4 16h1c1.654 0 3-1.346 3-3s-1.346-3-3-3H2v8h2v-2zm0-4h1a1.001 1.001 0 0 1 0 2H4v-2z"
+            fill={
+              Array [
+                0,
+                0,
+                0,
+                0,
+                1,
+              ]
+            }
+            fillOpacity={1}
+            fillRule={1}
+            matrix={
+              Array [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+              ]
+            }
+            opacity={1}
+            originX={0}
+            originY={0}
+            propList={Array []}
+            rotation={0}
+            scaleX={1}
+            scaleY={1}
+            skewX={0}
+            skewY={0}
+            stroke={null}
+            strokeDasharray={null}
+            strokeDashoffset={null}
+            strokeLinecap={0}
+            strokeLinejoin={0}
+            strokeMiterlimit={4}
+            strokeOpacity={1}
+            strokeWidth="1"
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "color": "#546E7A",
+            "fontSize": 15,
+            "paddingLeft": 14,
+            "paddingRight": 60,
+          },
+          undefined,
+        ]
+      }
+    >
+      Des données au service de tous - PDF
+    </Text>
+  </View>
+</View>
+`;

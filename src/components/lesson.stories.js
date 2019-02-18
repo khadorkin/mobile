@@ -4,17 +4,26 @@ import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
 
-import {lessonWithVideo, lessonWithPdf} from '../__fixtures__/lessons';
+import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
 import {TestContextProvider, handleFakePress, fakeLayout} from '../utils/tests';
 import {getCleanUri} from '../modules/uri';
 import {Component as Lesson} from './lesson';
+
+const fakeSelectResource = (id: string) => ({
+  type: '@@ui/SELECT_RESOURCE_IN_POPIN',
+  payload: {
+    id
+  }
+});
 
 storiesOf('Lesson', module)
   .add('Default', () => (
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[lessonWithVideo, lessonWithPdf]}
+        resources={[createVideo({}), lessonWithPdf]}
+        selectResource={fakeSelectResource}
+        starsGranted={4}
         layout={fakeLayout}
         onPDFButtonPress={handleFakePress}
       />
@@ -24,7 +33,9 @@ storiesOf('Lesson', module)
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[lessonWithVideo, lessonWithPdf]}
+        resources={[createVideo({}), lessonWithPdf]}
+        selectResource={fakeSelectResource}
+        starsGranted={4}
         onPDFButtonPress={handleFakePress}
       />
     </TestContextProvider>
@@ -38,8 +49,10 @@ if (process.env.NODE_ENV === 'test') {
         <TestContextProvider>
           <Lesson
             header="What was the nationality of Steve Jobs?"
-            resources={[lessonWithVideo, lessonWithPdf]}
+            resources={[createVideo({}), lessonWithPdf]}
             onPDFButtonPress={handlePress}
+            selectResource={fakeSelectResource}
+            starsGranted={4}
             layout={fakeLayout}
           />
         </TestContextProvider>

@@ -2,20 +2,22 @@
 
 import type {Question} from '@coorpacademy/progression-engine';
 
-import type {Slide} from '../layer/data/_types';
-import {lessonWithVideo, lessonWithPdf} from './lessons';
+import type {Lesson, Slide} from '../layer/data/_types';
+import {createVideo, lessonWithPdf} from './lessons';
 import {image} from './medias';
 
 export const createSlide = ({
   ref,
   chapterId,
   question,
-  clue
+  clue,
+  lessons = [createVideo({}), lessonWithPdf]
 }: {
   ref: string,
   chapterId: string,
   question: Question,
-  clue?: string | null
+  clue?: string | null,
+  lessons?: Array<Lesson>
 }): Slide => ({
   _id: ref,
   universalRef: ref,
@@ -36,7 +38,7 @@ export const createSlide = ({
     updatedAt: '2019-01-17T09:35:44.450Z',
     createdAt: '2019-01-17T09:35:44.450Z'
   },
-  lessons: [lessonWithVideo, lessonWithPdf],
+  lessons,
   question
 });
 

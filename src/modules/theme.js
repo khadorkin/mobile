@@ -45,7 +45,7 @@ const theme: Theme = {
       light: '#ECEFF1',
       lightMedium: '#CFD8DC',
       medium: '#90A4AE',
-      dark: '#546E7A'
+      dark: '#546E7A' // rgb 84 110 122
     },
     negative: '#F73F52',
     positive: '#3EC483',
