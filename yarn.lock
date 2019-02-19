@@ -1460,29 +1460,29 @@
     async "^2.4.1"
     react "^16.3.2"
 
-"@coorpacademy/player-services@^2.3.9":
-  version "2.3.9"
-  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-2.3.9.tgz#70201d1d65c246047a34d0064d95878bdfec4b53"
-  integrity sha512-NT+cbu76gijrOPW6tc98PVE1pfJ6bzBtxRj7eOuvI9vd/ZMLtMKyATGbgYRtgjLi7+u3bR/lH0ieZvWwQpSWEg==
+"@coorpacademy/player-services@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-2.4.0.tgz#4cca571c6a0e0e8aae985a79b7b2f7d1c01815f7"
+  integrity sha512-narn0gYpAVfR++hhrKr/N3/u/+6oxC1CvzZRI37LGB1pQZndyohmIdXYgC4N22huljUTZipDgMfx3Jo4BKPO5Q==
   dependencies:
-    "@coorpacademy/progression-engine" "10.2.7"
+    "@coorpacademy/progression-engine" "10.3.0"
     lodash "^4.17.4"
 
-"@coorpacademy/player-store@^2.4.7":
-  version "2.4.7"
-  resolved "https://registry.npmjs.org/@coorpacademy/player-store/-/player-store-2.4.7.tgz#4140daf3c82207c1a9952432fe12cceaa94e3760"
-  integrity sha512-0MWdEV3goG1H9op6Hup2AxtFr8izuldHi0QwYpE5J6UOg8zr6hu1W8WiNK9ikYYfwF7hD4wj0MxSJFfmHdANZg==
+"@coorpacademy/player-store@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.npmjs.org/@coorpacademy/player-store/-/player-store-2.5.0.tgz#e0c3a6f2447b09b6daa8175b8f30365aec37a810"
+  integrity sha512-3OFwBPfDf6k2uMpDNhpIzon2j+NAM0A5I+Uis9+sLJt5vktDp8PX1oNa1wUKIv7GPw5Sxspg6qAEDf3HOyRNZA==
   dependencies:
-    "@coorpacademy/progression-engine" "10.2.7"
+    "@coorpacademy/progression-engine" "10.3.0"
     "@coorpacademy/redux-task" "0.0.10"
     lodash "^4.17.4"
     redux "^4.0.0"
     redux-thunk "^2.2.0"
 
-"@coorpacademy/progression-engine@10.2.7", "@coorpacademy/progression-engine@^10.2.7":
-  version "10.2.7"
-  resolved "https://registry.npmjs.org/@coorpacademy/progression-engine/-/progression-engine-10.2.7.tgz#3701418123f533a9a911d7b7d307001f70c82f19"
-  integrity sha512-ps3ov2k7aa/qd6W1QY8tHyB1VOWtT39bjRD4VzcjniIVpg5KChR0NEjF2gaLs96oFieFo0DAteic4wEnLqNF7w==
+"@coorpacademy/progression-engine@10.3.0":
+  version "10.3.0"
+  resolved "https://registry.npmjs.org/@coorpacademy/progression-engine/-/progression-engine-10.3.0.tgz#cc9dae4bff3459bb529cdac03b8d9e7e06dbaae5"
+  integrity sha512-JE5QJU4rvZ3TTt6KI1fTOsT2pLlWI+zzWFhXr7er5sGl2g2UNHIaVBR/jt5vA9Qz7+FtpmrfPoCTQGpMq8W8Ag==
   dependencies:
     fuzzy-matching "^0.4.3"
     lodash "^4.17.4"
@@ -3817,6 +3817,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
+base-64@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha1-eAqZyE59YAJgNhURxId2E78k9rs=
+
 base64-js@1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
@@ -4833,6 +4838,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^3.1.9-1:
+  version "3.1.9-1"
+  resolved "https://registry.npmjs.org/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
+  integrity sha1-/aGedh/Ad+Af+/3G6f38WeiAbNg=
 
 crypto-random-string@^1.0.0:
   version "1.0.0"
@@ -6599,6 +6609,18 @@ glob-to-regexp@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz#8c5a1494d2066c570cc3bfe4496175acc4d502ab"
   integrity sha1-jFoUlNIGbFcMw7/kSWF1rMTVAqs=
+
+glob@7.0.6:
+  version "7.0.6"
+  resolved "https://registry.npmjs.org/glob/-/glob-7.0.6.tgz#211bafaf49e525b8cd93260d14ab136152b3f57a"
+  integrity sha1-IRuvr0nlJbjNkyYNFKsTYVKz9Xo=
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.2"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
 
 glob@^6.0.1:
   version "6.0.4"
@@ -9089,7 +9111,7 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   resolved "https://registry.npmjs.org/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
   integrity sha1-9sAMHAsIIkblxNmd+4x8CDsrWCo=
 
-"minimatch@2 || 3", minimatch@3.0.4, minimatch@^3.0.0, minimatch@^3.0.3, minimatch@^3.0.4:
+"minimatch@2 || 3", minimatch@3.0.4, minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
@@ -10644,6 +10666,14 @@ react-native-orientation-locker@^1.1.1:
   resolved "https://registry.npmjs.org/react-native-orientation-locker/-/react-native-orientation-locker-1.1.1.tgz#1192fc9b0571c9bdf749633d553104f7bbc72c16"
   integrity sha512-JFypx9gJulWT0H3izHMMZgQikeELtYTZDQbrip1RI3bnY7V1vY5uZ0XsmKCR2BSWXWXfx8wLBa69QpI9+CA8rw==
 
+react-native-pdf@5.0.8:
+  version "5.0.8"
+  resolved "https://registry.npmjs.org/react-native-pdf/-/react-native-pdf-5.0.8.tgz#bb6f2893fadeaac3c9cff3147ca5d2bf310e1148"
+  integrity sha512-lLfD5C3zptYlvTaqyV5qSRCAM7l/zthLK5qh9JRjSPqhZBwHoZ68ZyVtDJR8JRDR4jQ8nSa3N4rAWp2WmQ/emQ==
+  dependencies:
+    crypto-js "^3.1.9-1"
+    prop-types "^15.5.10"
+
 react-native-render-html@3:
   version "3.10.0"
   resolved "https://registry.npmjs.org/react-native-render-html/-/react-native-render-html-3.10.0.tgz#fe72264bb8f2bc8a8e60b345d5c2ed10d7bde08d"
@@ -11423,6 +11453,14 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rn-fetch-blob@0.10.13:
+  version "0.10.13"
+  resolved "https://registry.npmjs.org/rn-fetch-blob/-/rn-fetch-blob-0.10.13.tgz#e0fd5eac1a3a872563b35061353d96c4e51ae1cc"
+  integrity sha512-CEz7coPlMMUpX5RB+k7Mqzq+eYYfZuFbpuNkFYhvEFnT5DnZyqdNF50Xk6BuZyqZwAjNvsQ1CUMz7XDvuN10DA==
+  dependencies:
+    base-64 "0.1.0"
+    glob "7.0.6"
 
 rsvp@^3.3.3:
   version "3.6.2"
