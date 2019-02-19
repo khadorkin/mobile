@@ -11,15 +11,13 @@ import type {Progression, DisplayMode} from '../types';
 import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
 import Text from './text';
-import Card from './card';
 import ProgressionBar from './progression-bar';
 import {BrandThemeContext} from './brand-theme-provider';
-import {STYLE as BOX_STYLE} from './box';
 
 type Props = {|
   title: string,
   subtitle: string,
-  progression: Progression,
+  progression?: Progression,
   image: File | {uri: string},
   badge?: string,
   authorType?: string,
@@ -211,15 +209,17 @@ const CatalogItem = ({
               </View>
             )}
           </View>
-          <View style={styles.progressionBar}>
-            <ProgressionBar
-              current={progression.current}
-              count={progression.count}
-              height={progressBarHeight}
-              bgBarColor={theme.colors.white}
-              isInnerRounded
-            />
-          </View>
+          {progression && (
+            <View style={styles.progressionBar}>
+              <ProgressionBar
+                current={progression.current}
+                count={progression.count}
+                height={progressBarHeight}
+                bgBarColor={theme.colors.white}
+                isInnerRounded
+              />
+            </View>
+          )}
         </View>
       </LinearGradient>
     </ImageBackground>
