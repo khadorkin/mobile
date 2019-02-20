@@ -12,12 +12,12 @@ import Resource from './resource';
 storiesOf('Resource', module)
   .add('Video', () => (
     <TestContextProvider>
-      <Resource resource={createVideo({})} height={200} onPress={handleFakePress} />
+      <Resource resource={createVideo({})} height={200} onPDFButtonPress={handleFakePress} />
     </TestContextProvider>
   ))
   .add('Pdf', () => (
     <TestContextProvider>
-      <Resource resource={lessonWithPdf} height={200} onPress={handleFakePress} />
+      <Resource resource={lessonWithPdf} height={200} onPDFButtonPress={handleFakePress} />
     </TestContextProvider>
   ));
 
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'test') {
       const handlePress = jest.fn();
       const component = renderer.create(
         <TestContextProvider>
-          <Resource resource={lessonWithPdf} height={200} onPress={handlePress} />
+          <Resource resource={lessonWithPdf} height={200} onPDFButtonPress={handlePress} />
         </TestContextProvider>
       );
 

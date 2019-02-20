@@ -25,10 +25,10 @@ type PdfProps = {|
 class ResourcePdf extends React.PureComponent<PdfProps> {
   props: PdfProps;
 
-  handleOnPress() {
+  handleOnPress = () => {
     const {description, onPress, url} = this.props;
     onPress(url, description);
-  }
+  };
 
   render() {
     const {height, poster} = this.props;
@@ -47,11 +47,11 @@ const ResourceVideo = ({url, poster, height}: VideoProps) => (
 const Resource = ({
   resource,
   height,
-  onPress
+  onPDFButtonPress
 }: {|
   resource: Lesson,
   height: number,
-  onPress: OnPDFButtonPress
+  onPDFButtonPress: OnPDFButtonPress
 |}) => {
   if (!resource) {
     return null;
@@ -74,13 +74,14 @@ const Resource = ({
         return null;
       }
 
+      console.log(resource);
       return (
         <ResourcePdf
           url={url}
           poster={poster}
           height={height}
           description={description}
-          onPress={onPress}
+          onPress={onPDFButtonPress}
         />
       );
     }

@@ -67,7 +67,11 @@ const Lesson = (props: Props) => {
         <QuestionTitle>{header}</QuestionTitle>
       </View>
       <Space type="base" />
-      <Resource resource={selectedResource} height={height} onPress={props.onPDFButtonPress} />
+      <Resource
+        resource={selectedResource}
+        height={height}
+        onPDFButtonPress={props.onPDFButtonPress}
+      />
       <ScrollView
         style={styles.scroller}
         showsHorizontalScrollIndicator={false}
