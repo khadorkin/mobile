@@ -16,15 +16,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: theme.radius.card,
-    backgroundColor: theme.colors.white,
     overflow: 'hidden'
   },
   shadow: {
     ...BOX_STYLE,
     borderRadius: theme.radius.card,
     borderBottomWidth: 1,
-    borderColor: 'rgba(20, 23, 26, 0.15)',
-    backgroundColor: theme.colors.white
+    borderColor: 'rgba(20, 23, 26, 0.15)'
   }
 });
 
