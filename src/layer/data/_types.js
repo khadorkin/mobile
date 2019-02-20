@@ -146,24 +146,3 @@ export type BundledDiscipline = {|
   chapterRules: {[key: string]: ChapterRule}
 |};
 export type Resource = Slide | Discipline | Chapter | ExitNode;
-
-export type CatalogItemData = {|
-  _id: string,
-  ref: string,
-  universalRef: string,
-  name: string,
-  partnershipType: string,
-  deliverCoachStatus?: boolean,
-  hidden: boolean,
-  __v: number,
-  position: number,
-  conditions: Array<Condition>,
-  skills: Array<Skill>,
-  groups: Array<Group>,
-  stats: Stat,
-  meta: Meta,
-  partners: Array<Partner>,
-  modules: Array<Level>,
-  cover?: Cover,
-  version: string
-|};

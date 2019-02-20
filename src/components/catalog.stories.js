@@ -12,10 +12,10 @@ import Catalog from './catalog';
 
 const level = createLevel({ref: 'mod_1', chapterIds: ['cha_1']});
 const discipline = createDiscipline({ref: 'dis_1', levels: [level], name: 'Fake discipline'});
-const chapter = createChapter({ref: 'cha_1', name: 'Fake chapter'});
+const chapter = createChapter({ref: 'cha_1', name: 'Predicting the future'});
 
 storiesOf('Catalog', module).add('Default', () => (
-  <Catalog items={[discipline, chapter]} onPress={handleFakePress} />
+  <Catalog items={[discipline, chapter, discipline, discipline]} onPress={handleFakePress} />
 ));
 
 if (process.env.NODE_ENV === 'test') {
