@@ -37,6 +37,16 @@ const styles = StyleSheet.create({
   card: {
     marginTop: theme.spacing.tiny,
     width: columnW
+  },
+  footer: {
+    position: 'absolute',
+    bottom: '-55%',
+    backgroundColor: '#222',
+    height: '100%',
+    width: '100%',
+    borderTopLeftRadius: 300,
+    borderTopRightRadius: 300,
+    transform: [{scaleX: 2}]
   }
 });
 
@@ -61,42 +71,45 @@ class Catalog extends React.PureComponent<Props> {
     let displayMode: DisplayMode;
 
     return (
-      <View testID="catalog" style={styles.container}>
-        {items.map((item, index) => {
-          if (this.isChapter(item)) {
-            // $FlowFixMe this is a chapter
-            image = item.poster.mediaUrl;
-          } else {
-            // $FlowFixMe this is a discipline
-            image = item.cover.media.mediaUrl;
-          }
+      <View>
+        <View style={styles.footer} />
+        <View testID="catalog" style={styles.container}>
+          {items.map((item, index) => {
+            if (this.isChapter(item)) {
+              // $FlowFixMe this is a chapter
+              image = item.poster.mediaUrl;
+            } else {
+              // $FlowFixMe this is a discipline
+              image = item.cover.media.mediaUrl;
+            }
 
-          if (index === 0) {
-            displayMode = DISPLAY_MODE.COVER;
-            cardStyle = styles.cover;
-          } else {
-            displayMode = DISPLAY_MODE.CARD;
-            cardStyle = styles.card;
-          }
+            if (index === 0) {
+              displayMode = DISPLAY_MODE.COVER;
+              cardStyle = styles.cover;
+            } else {
+              displayMode = DISPLAY_MODE.CARD;
+              cardStyle = styles.card;
+            }
 
-          return (
-            <Card key={index} style={cardStyle} hasShadow>
-              <CatalogItem
-                title={item.name}
-                subtitle="eee"
-                progression={progression}
-                image={{
-                  uri: getCleanUri(image)
-                }}
-                authorType="CUSTOM EDITOR"
-                badge="New"
-                isInfinite
-                mode={DISPLAY_MODE.CARD}
-                isCertified
-              />
-            </Card>
-          );
-        })}
+            return (
+              <Card key={index} style={cardStyle} hasShadow>
+                <CatalogItem
+                  title={item.name}
+                  subtitle="eee"
+                  progression={progression}
+                  image={{
+                    uri: getCleanUri(image)
+                  }}
+                  authorType="CUSTOM EDITOR"
+                  badge="New"
+                  isInfinite
+                  mode={DISPLAY_MODE.CARD}
+                  isCertified
+                />
+              </Card>
+            );
+          })}
+        </View>
       </View>
     );
   }

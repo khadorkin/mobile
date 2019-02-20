@@ -82,10 +82,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: theme.colors.white,
     overflow: 'hidden',
-    borderBottomEndRadius: theme.radius.medium
+    borderBottomEndRadius: theme.radius.medium,
+    height: 19
   },
   badge: {
-    fontSize: 11,
+    fontSize: 8,
     padding: theme.spacing.micro,
     paddingLeft: theme.spacing.tiny,
     paddingRight: theme.spacing.tiny + theme.spacing.micro,
