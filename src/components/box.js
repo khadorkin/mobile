@@ -12,9 +12,9 @@ type Props = {|
 
 export const STYLE: GenericStyleProp = {
   shadowColor: theme.colors.black,
-  shadowOpacity: 0.15,
+  shadowOpacity: 0.3,
   shadowOffset: {width: 0, height: 0},
-  shadowRadius: 8,
+  shadowRadius: 3,
   elevation: 4
 };
 

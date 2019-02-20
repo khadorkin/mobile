@@ -11,6 +11,7 @@ import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
 import CatalogItem from './catalog-item';
 import Card from './card';
+import {BrandThemeContext} from './brand-theme-provider';
 
 export type Item = Discipline | Chapter;
 
@@ -72,7 +73,11 @@ class Catalog extends React.PureComponent<Props> {
 
     return (
       <View>
-        <View style={styles.footer} />
+        <BrandThemeContext.Consumer>
+          {brandTheme => (
+            <View style={[styles.footer, {backgroundColor: brandTheme.colors.primary}]} />
+          )}
+        </BrandThemeContext.Consumer>
         <View testID="catalog" style={styles.container}>
           {items.map((item, index) => {
             if (this.isChapter(item)) {
@@ -103,7 +108,7 @@ class Catalog extends React.PureComponent<Props> {
                   authorType="CUSTOM EDITOR"
                   badge="New"
                   isInfinite
-                  mode={DISPLAY_MODE.CARD}
+                  mode={displayMode}
                   isCertified
                 />
               </Card>
