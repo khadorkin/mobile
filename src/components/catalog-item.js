@@ -27,11 +27,7 @@ type Props = {|
   authorType?: string,
   isInfinite: boolean,
   isCertified?: boolean,
-  authorFontSize?: number,
-  titleFontSize?: number,
-  subtitleFontSize?: number,
-  progressionBarHeight?: number,
-  mode?: DisplayMode
+  displayMode?: DisplayMode
 |};
 
 const styles = StyleSheet.create({
@@ -109,70 +105,58 @@ const CatalogItem = ({
   isInfinite,
   authorType,
   isCertified,
-  authorFontSize,
-  titleFontSize,
-  subtitleFontSize,
-  progressionBarHeight,
-  mode
+  displayMode
 }: Props) => {
-  let titleSize,
-    subtitleSize,
-    progressBarHeight,
-    authorSize,
-    paddingGradient,
-    badgeW,
-    badgeH,
-    badgeFontSize: number;
+  const mode: DisplayMode = displayMode ? displayMode : DISPLAY_MODE.COVER;
 
-  const displayMode: DisplayMode = mode ? mode : DISPLAY_MODE.COVER;
+  const cardStyle: GenericStyleProp = {
+    titleSize: 16,
+    subtitleSize: 14,
+    progressBarHeight: 2,
+    authorSize: 8,
+    paddingGradient: theme.spacing.small,
+    badgeW: 40,
+    badgeH: 17,
+    badgeFontSize: 8,
+    minHeight: 205
+  };
 
-  switch (displayMode) {
+  const coverStyle: GenericStyleProp = {
+    titleSize: 22,
+    subtitleSize: 16,
+    progressBarHeight: 2,
+    authorSize: 12,
+    paddingGradient: theme.spacing.base,
+    badgeW: 45,
+    badgeH: 20,
+    badgeFontSize: 11,
+    minHeight: 265
+  };
+
+  let currentStyle: GenericStyleProp;
+  switch (mode) {
     case DISPLAY_MODE.CARD:
-      titleSize = 16;
-      subtitleSize = 14;
-      progressBarHeight = 2;
-      authorSize = 8;
-      paddingGradient = theme.spacing.small;
-      badgeW = 40;
-      badgeH = 17;
-      badgeFontSize = 8;
+      currentStyle = cardStyle;
       break;
     case DISPLAY_MODE.COVER:
-      titleSize = 22;
-      subtitleSize = 16;
-      progressBarHeight = 2;
-      authorSize = 12;
-      paddingGradient = theme.spacing.base;
-      badgeW = 45;
-      badgeH = 20;
-      badgeFontSize = 11;
+      currentStyle = coverStyle;
       break;
     default:
-      titleSize = 16;
-      subtitleSize = 14;
-      progressBarHeight = 2;
-      authorSize = 5;
-      paddingGradient = theme.spacing.small;
-      badgeW = 40;
-      badgeH = 17;
-      badgeFontSize = 8;
+      currentStyle = cardStyle;
   }
+
   const badgeLabel = badge && badge !== '' ? badge : undefined;
   return (
     <TouchableHighlight onPress={onPress}>
       <ImageBackground
         testID="image-background"
         source={image}
-        style={[
-          styles.background,
-          displayMode === DISPLAY_MODE.CARD && {minHeight: 205},
-          displayMode === DISPLAY_MODE.COVER && {minHeight: 265}
-        ]}
+        style={[styles.background, {minHeight: currentStyle.minHeight}]}
       >
         <LinearGradient
           testID="gradient"
           colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
-          style={[styles.content, {padding: paddingGradient}]}
+          style={[styles.content, {padding: currentStyle.paddingGradient}]}
         >
           {badgeLabel && (
             <View style={styles.badgeContainer}>
@@ -183,9 +167,9 @@ const CatalogItem = ({
                     style={[
                       styles.badge,
                       {
-                        width: badgeW,
-                        height: badgeH,
-                        fontSize: badgeFontSize,
+                        width: currentStyle.badgeW,
+                        height: currentStyle.badgeH,
+                        fontSize: currentStyle.badgeFontSize,
                         color: brandTheme.colors.primary
                       }
                     ]}
@@ -198,7 +182,10 @@ const CatalogItem = ({
           )}
           {authorType === 'coorp' && (
             <View style={styles.authorContainer}>
-              <Text testID="author-coorp" style={[styles.author, {fontSize: authorSize}]}>
+              <Text
+                testID="author-coorp"
+                style={[styles.author, {fontSize: currentStyle.fontSize}]}
+              >
                 COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
               </Text>
             </View>
@@ -207,7 +194,10 @@ const CatalogItem = ({
             <View style={styles.authorContainer}>
               <Text
                 testID="author-custom"
-                style={[styles.author, {fontSize: authorSize, fontWeight: theme.fontWeight.bold}]}
+                style={[
+                  styles.author,
+                  {fontSize: currentStyle.authorSize, fontWeight: theme.fontWeight.bold}
+                ]}
               >
                 {authorType}
               </Text>
@@ -218,15 +208,18 @@ const CatalogItem = ({
               <NovaCompositionCoorpacademyAdaptive
                 testID="infinite-icon"
                 color={theme.colors.white}
-                height={titleSize}
-                width={titleSize}
+                height={currentStyle.titleSize}
+                width={currentStyle.titleSize}
               />
             )}
-            <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>
+            <Text testID="title" style={[styles.title, {fontSize: currentStyle.titleSize}]}>
               {title}
             </Text>
             <View style={styles.subtitleContainer}>
-              <Text testID="subtitle" style={[styles.subtitle, {fontSize: subtitleSize}]}>
+              <Text
+                testID="subtitle"
+                style={[styles.subtitle, {fontSize: currentStyle.subtitleSize}]}
+              >
                 {subtitle}
               </Text>
               {isCertified && (
@@ -234,8 +227,8 @@ const CatalogItem = ({
                   <NovaSolidStatusCheckCircle2
                     testID="certified-icon"
                     color={theme.colors.white}
-                    height={subtitleSize}
-                    width={subtitleSize}
+                    height={currentStyle.subtitleSize}
+                    width={currentStyle.subtitleSize}
                   />
                 </View>
               )}
@@ -245,7 +238,7 @@ const CatalogItem = ({
                 <ProgressionBar
                   current={progression.current}
                   count={progression.count}
-                  height={progressBarHeight}
+                  height={currentStyle.progressBarHeight}
                   bgBarColor={theme.colors.white}
                   isInnerRounded
                 />

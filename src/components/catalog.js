@@ -78,7 +78,7 @@ class Catalog extends React.PureComponent<Props> {
                   authorType={item.partnershipType && item.partnershipType}
                   badge={isNew}
                   isInfinite={isInfinite}
-                  mode={displayMode}
+                  displayMode={displayMode}
                   isCertified={isCertified}
                 />
               </Card>

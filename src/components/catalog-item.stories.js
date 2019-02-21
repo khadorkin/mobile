@@ -47,7 +47,7 @@ storiesOf('Catalogue Item', module)
       authorType="coorp"
       badge="New"
       isInfinite
-      mode={DISPLAY_MODE.COVER}
+      displayMode={DISPLAY_MODE.COVER}
       isCertified
       onPress={handleFakePress}
     />
@@ -61,7 +61,7 @@ storiesOf('Catalogue Item', module)
       authorType="CUSTOM EDITOR"
       badge="New"
       isInfinite
-      mode={DISPLAY_MODE.CARD}
+      displayMode={DISPLAY_MODE.CARD}
       isCertified
       onPress={handleFakePress}
     />
