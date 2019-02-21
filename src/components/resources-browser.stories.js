@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import renderer from 'react-test-renderer';
 import {storiesOf} from '@storybook/react-native';
+import renderer from 'react-test-renderer';
 import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
 import {TestContextProvider} from '../utils/tests';
 
@@ -40,17 +40,31 @@ storiesOf('ResourcesBrowser', module)
 
 if (process.env.NODE_ENV === 'test') {
   describe('ResourcesBrowser', () => {
-    it('should handle selectResource callback', () => {
-      const fakePress = jest.fn();
+    it('should handle onPress callback', () => {
+      const handlePress = jest.fn();
       const component = renderer.create(
         <TestContextProvider>
-          <ResourcesBrowser resources={oneResource} selectResource={fakePress} />
+          <ResourcesBrowser resources={twoResources} selectResource={handlePress} />
         </TestContextProvider>
       );
-      const button = component.root.find(el => el.props.testID === 'button-open-pdf');
-      button.props.onPress();
-      expect(fakePress.mock.calls.length).toBe(1);
-      expect(fakePress.mock.calls[0]).toEqual(['plop']);
+
+      const line = component.root.find(el => el.props.testID === 'resource-0');
+      line.props.onPress();
+      expect(handlePress.mock.calls.length).toBe(1);
+      expect(handlePress.mock.calls[0]).toEqual([oneResource[0]._id]);
+    });
+
+    it('should hide resource if only one Resource is provided', () => {
+      const handlePress = jest.fn();
+      const component = renderer.create(
+        <TestContextProvider>
+          <ResourcesBrowser resources={oneResource} selectResource={handlePress} />
+        </TestContextProvider>
+      );
+
+      expect(() => component.root.find(el => el.props.testID === 'resource-0')).toThrow(
+        'No instances found matching custom predicate'
+      );
     });
   });
 }

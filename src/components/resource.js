@@ -53,28 +53,17 @@ const Resource = ({
   height: number,
   onPDFButtonPress: OnPDFButtonPress
 |}) => {
-  if (!resource) {
-    return null;
-  }
-
   switch (resource.type) {
     case RESOURCE_TYPE.VIDEO: {
       const url = resource.mediaUrl && getCleanUri(resource.mediaUrl);
       const poster = getCleanUri(resource.poster);
-      if (!url || !poster) {
-        return null;
-      }
       return <ResourceVideo url={url} poster={poster} height={height} />;
     }
     case RESOURCE_TYPE.PDF: {
       const url = getCleanUri(resource.mediaUrl);
       const poster = getCleanUri(resource.poster);
       const description = resource.description;
-      if (!url || !poster) {
-        return null;
-      }
 
-      console.log(resource);
       return (
         <ResourcePdf
           url={url}
@@ -85,8 +74,6 @@ const Resource = ({
         />
       );
     }
-    default:
-      return null;
   }
 };
 

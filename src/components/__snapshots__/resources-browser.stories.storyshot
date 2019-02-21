@@ -10,11 +10,20 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
   }
 >
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -45,7 +54,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -185,29 +193,57 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -241,7 +277,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -267,32 +302,59 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </View>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          Object {
-            "borderColor": "#00B0FF",
-            "fontWeight": "700",
-          },
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous - PDF
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "borderColor": "#00B0FF",
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                }
+              }
+            >
+              Des données au service de tous - PDF
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -323,7 +385,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -463,29 +524,57 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -516,7 +605,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -656,29 +744,57 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -709,7 +825,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -849,29 +964,57 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -902,7 +1045,6 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -1042,22 +1184,41 @@ exports[`Storyshots ResourcesBrowser Many lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
 </View>
 `;
@@ -1074,11 +1235,20 @@ exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
   }
 >
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -1109,7 +1279,6 @@ exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -1249,29 +1418,57 @@ exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
         />
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
   <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flexDirection": "row",
         "marginBottom": 14,
+        "opacity": 1,
         "paddingHorizontal": 34,
       }
     }
@@ -1302,7 +1499,6 @@ exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
         }
       >
         <Image
-          onPress={[Function]}
           resizeMode="cover"
           source={
             Object {
@@ -1486,22 +1682,41 @@ exports[`Storyshots ResourcesBrowser Two lessons 1`] = `
         </RNSVGGroup>
       </RNSVGSvgView>
     </View>
-    <Text
-      onPress={[Function]}
+    <View
       style={
-        Array [
-          Object {
-            "color": "#546E7A",
-            "fontSize": 15,
-            "paddingLeft": 14,
-            "paddingRight": 60,
-          },
-          undefined,
-        ]
+        Object {
+          "paddingLeft": 14,
+          "paddingRight": 60,
+        }
       }
     >
-      Des données au service de tous - PDF
-    </Text>
+      <View>
+        <View
+          style={Object {}}
+        >
+          <Text
+            selectable={false}
+            style={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#546E7A",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Des données au service de tous - PDF
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
   </View>
 </View>
 `;

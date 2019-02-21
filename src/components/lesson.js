@@ -77,7 +77,7 @@ const Lesson = (props: Props) => {
         showsHorizontalScrollIndicator={false}
         testID="resources-scroller"
       >
-        <ResourcesBrowser resources={resources || []} selectResource={selectResource} />
+        <ResourcesBrowser resources={resources} selectResource={selectResource} />
       </ScrollView>
       <View style={styles.bottomTextWrapper}>
         <Html fontSize={12} style={styles.bottomText}>
