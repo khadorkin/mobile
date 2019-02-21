@@ -62,8 +62,6 @@ class ResourcesBrowser extends React.PureComponent<Props> {
 
   renderSeparator = () => <Space />;
 
-  renderItem = () => <Space />;
-
   render() {
     const {selectedResourceId, resources} = this.props;
 
@@ -111,7 +109,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                         resizeMode="cover"
                       />
                       {resource.type === RESOURCE_TYPE.VIDEO &&
-                        !selectedResourceId === resource._id && (
+                        selectedResourceId !== resource._id && (
                           <PlayIcon
                             style={styles.icon}
                             color={theme.colors.white}
@@ -120,7 +118,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                           />
                         )}
                       {resource.type === RESOURCE_TYPE.PDF &&
-                        !selectedResourceId === resource._id && (
+                        selectedResourceId !== resource._id && (
                           <PDFIcon
                             style={styles.icon}
                             color={theme.colors.white}
@@ -138,7 +136,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                           selectedResourceId === resource._id && selectedDescriptionStyle
                         ]}
                       >
-                        {resource.description || ''}
+                        {resource.description}
                       </Html>
                     </View>
                   </TouchableOpacity>

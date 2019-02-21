@@ -8,7 +8,6 @@ import {
   getResourceToPlay,
   selectResource
 } from '@coorpacademy/player-store';
-import type {Resource} from '@coorpacademy/player-store';
 
 import Screen from '../components/screen';
 import Lesson from '../components/lesson';
