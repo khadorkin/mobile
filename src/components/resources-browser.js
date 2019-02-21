@@ -13,6 +13,7 @@ import theme from '../modules/theme';
 import {getCleanUri} from '../modules/uri';
 import {BrandThemeContext} from './brand-theme-provider';
 import Html from './html';
+import Space from './space';
 
 type Props = {|
   onChange: (id: string) => void,
@@ -24,10 +25,9 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: theme.spacing.small
   },
-  line: {
+  resourceLine: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: theme.spacing.small,
     paddingHorizontal: theme.spacing.base
   },
   imageBorder: {
@@ -60,6 +60,10 @@ class ResourcesBrowser extends React.PureComponent<Props> {
 
   handleOnPress = (resource: Lesson) => () => this.props.onChange(resource._id);
 
+  renderSeparator = () => <Space />;
+
+  renderItem = () => <Space />;
+
   render() {
     const {selectedResourceId, resources} = this.props;
 
@@ -85,13 +89,14 @@ class ResourcesBrowser extends React.PureComponent<Props> {
               style={styles.container}
               data={resources}
               extraData={selectedResourceId}
+              ItemSeparatorComponent={this.renderSeparator}
               // eslint-disable-next-line react/jsx-no-bind
               renderItem={({item: resource}) => {
                 return (
                   <TouchableOpacity
                     onPress={this.handleOnPress(resource)}
                     key={resource._id}
-                    style={styles.line}
+                    style={styles.resourceLine}
                     testID={`resource-${resource._id}`}
                   >
                     <View
