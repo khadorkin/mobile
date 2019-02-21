@@ -1,47 +1,52 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
-
-import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import type {Chapter, Discipline} from '../layer/data/_types';
-import type {Progression, DisplayMode} from '../types';
+import type {Progression} from '../types';
 import {getCleanUri} from '../modules/uri';
 import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
 import CatalogItem from './catalog-item';
 import Card from './card';
 import {BrandThemeContext} from './brand-theme-provider';
+import Space from './space';
 
 export type Item = Discipline | Chapter;
 
 type Props = {|
+  titleCover: string,
+  titleCards: string,
+  logo: File | {uri: string},
   items: Array<Item>,
   onPress: (item: Item) => void
 |};
 
-let w: number = Dimensions.get('window').width - theme.spacing.small * 2;
-let columnW: number = (w - theme.spacing.tiny) / 2;
-
 const styles = StyleSheet.create({
   container: {
-    width: w,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: theme.spacing.small,
-    justifyContent: 'space-between'
+    margin: theme.spacing.small
   },
-  cover: {
+  logo: {
+    height: 36,
     width: '100%',
-    marginBottom: theme.spacing.base
+    resizeMode: 'contain'
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: theme.fontWeight.bold,
+    paddingBottom: theme.spacing.small,
+    paddingTop: theme.spacing.base
+  },
+  cards: {
+    flexDirection: 'row',
+    alignItems: 'stretch'
   },
   card: {
-    marginTop: theme.spacing.tiny,
-    width: columnW
+    flex: 1
   },
   footer: {
     position: 'absolute',
-    bottom: '-55%',
+    bottom: '-60%',
     backgroundColor: '#222',
     height: '100%',
     width: '100%',
@@ -58,8 +63,19 @@ class Catalog extends React.PureComponent<Props> {
 
   isChapter = (item: Item): boolean => !item.hasOwnProperty('modules');
 
+  getImageURI(item: Item): string {
+    let image;
+    if (this.isChapter(item)) {
+      image = item.poster && item.poster.mediaUrl;
+    } else {
+      image = item.cover && item.cover.media.mediaUrl;
+    }
+    if (image) return image;
+    return '';
+  }
+
   render() {
-    const {items} = this.props;
+    const {items, titleCover, titleCards, logo} = this.props;
 
     // @todo Replace progression with user data
     const progression: Progression = {
@@ -67,9 +83,10 @@ class Catalog extends React.PureComponent<Props> {
       count: 10
     };
 
-    let image: string;
-    let cardStyle: ViewStyleProp;
-    let displayMode: DisplayMode;
+    let nextItem: Item;
+    let rowIndex: number = -1;
+
+    const cover: Item = items.splice(0, 1)[0];
 
     return (
       <View>
@@ -78,40 +95,72 @@ class Catalog extends React.PureComponent<Props> {
             <View style={[styles.footer, {backgroundColor: brandTheme.colors.primary}]} />
           )}
         </BrandThemeContext.Consumer>
-        <View testID="catalog" style={styles.container}>
+        <View style={styles.container}>
+          <Image
+            style={styles.logo}
+            source={{
+              uri: 'https://www.totec.travel/wp-content/uploads/2018/07/cooropacademy.png'
+            }}
+          />
+          <Text style={styles.title}>{titleCover}</Text>
+
+          <Card style={styles.card} hasShadow>
+            <CatalogItem
+              title={cover.name}
+              subtitle="eee"
+              progression={progression}
+              image={{uri: getCleanUri(this.getImageURI(cover))}}
+              authorType="CUSTOM EDITOR"
+              badge="New"
+              isInfinite
+              mode={DISPLAY_MODE.COVER}
+              isCertified
+            />
+          </Card>
+          <Text style={styles.title}>{titleCards}</Text>
           {items.map((item, index) => {
-            if (this.isChapter(item)) {
-              // $FlowFixMe this is a chapter
-              image = item.poster.mediaUrl;
-            } else {
-              // $FlowFixMe this is a discipline
-              image = item.cover.media.mediaUrl;
-            }
+            nextItem = items[index + 1];
 
-            if (index === 0) {
-              displayMode = DISPLAY_MODE.COVER;
-              cardStyle = styles.cover;
-            } else {
-              displayMode = DISPLAY_MODE.CARD;
-              cardStyle = styles.card;
+            if (index % 2 === 1) {
+              return null;
             }
-
+            rowIndex++;
             return (
-              <Card key={index} style={cardStyle} hasShadow>
-                <CatalogItem
-                  title={item.name}
-                  subtitle="eee"
-                  progression={progression}
-                  image={{
-                    uri: getCleanUri(image)
-                  }}
-                  authorType="CUSTOM EDITOR"
-                  badge="New"
-                  isInfinite
-                  mode={displayMode}
-                  isCertified
-                />
-              </Card>
+              <View key={`question-choice-row-${rowIndex}`}>
+                {index > 0 && <Space />}
+                <View style={styles.cards}>
+                  <Card style={styles.card} hasShadow>
+                    <CatalogItem
+                      title={item.name}
+                      subtitle="eee"
+                      progression={progression}
+                      image={{uri: getCleanUri(this.getImageURI(item))}}
+                      authorType="CUSTOM EDITOR"
+                      badge="New"
+                      isInfinite
+                      mode={DISPLAY_MODE.CARD}
+                      isCertified
+                    />
+                  </Card>
+                  <Space />
+                  {nextItem && (
+                    <Card style={styles.card} hasShadow>
+                      <CatalogItem
+                        title={nextItem.name}
+                        subtitle="eee"
+                        progression={progression}
+                        image={{uri: getCleanUri(this.getImageURI(nextItem))}}
+                        authorType="CUSTOM EDITOR"
+                        badge="New"
+                        isInfinite
+                        mode={DISPLAY_MODE.CARD}
+                        isCertified
+                      />
+                    </Card>
+                  )}
+                  {!nextItem && <View style={styles.card} />}
+                </View>
+              </View>
             );
           })}
         </View>

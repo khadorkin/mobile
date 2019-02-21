@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
   author: {
     color: theme.colors.white,
     fontSize: 12,
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowRadius: 4
+    textShadowColor: 'rgba(0, 0, 0, 1)',
+    textShadowRadius: 2
   },
   title: {
     color: theme.colors.white,
@@ -110,7 +110,15 @@ const CatalogItem = ({
   progressionBarHeight,
   mode
 }: Props) => {
-  let titleSize, subtitleSize, progressBarHeight, authorSize, padding: number;
+  let titleSize,
+    subtitleSize,
+    progressBarHeight,
+    authorSize,
+    paddingGradient,
+    paddingText,
+    badgeW,
+    badgeH,
+    badgeFontSize: number;
 
   const displayMode: DisplayMode = mode ? mode : DISPLAY_MODE.COVER;
 
@@ -120,21 +128,30 @@ const CatalogItem = ({
       subtitleSize = 14;
       progressBarHeight = 2;
       authorSize = 8;
-      padding = theme.spacing.small;
+      paddingGradient = theme.spacing.small;
+      badgeW = 35;
+      badgeH = 16;
+      badgeFontSize = 8;
       break;
     case DISPLAY_MODE.COVER:
       titleSize = 22;
       subtitleSize = 16;
       progressBarHeight = 2;
       authorSize = 12;
-      padding = theme.spacing.base;
+      paddingGradient = theme.spacing.base;
+      badgeW = 41;
+      badgeH = 19;
+      badgeFontSize = 11;
       break;
     default:
       titleSize = 16;
       subtitleSize = 14;
       progressBarHeight = 2;
       authorSize = 5;
-      padding = theme.spacing.small;
+      paddingGradient = theme.spacing.small;
+      badgeW = 35;
+      badgeH = 16;
+      badgeFontSize = 8;
   }
 
   return (
@@ -150,7 +167,7 @@ const CatalogItem = ({
       <LinearGradient
         testID="gradient"
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
-        style={[styles.content, {padding: padding}]}
+        style={[styles.content, {padding: paddingGradient}]}
       >
         {badge && (
           <View style={styles.badgeContainer}>
@@ -158,7 +175,15 @@ const CatalogItem = ({
               {brandTheme => (
                 <Text
                   testID={`badge-${badge}`}
-                  style={[styles.badge, {color: brandTheme.colors.primary}]}
+                  style={[
+                    styles.badge,
+                    {
+                      width: badgeW,
+                      height: badgeH,
+                      fontSize: badgeFontSize,
+                      color: brandTheme.colors.primary
+                    }
+                  ]}
                 >
                   {badge}
                 </Text>
@@ -188,8 +213,8 @@ const CatalogItem = ({
             <NovaCompositionCoorpacademyAdaptive
               testID="infinite-icon"
               color={theme.colors.white}
-              height={22}
-              width={22}
+              height={titleSize}
+              width={titleSize}
             />
           )}
           <Text testID="title" style={[styles.title, {fontSize: titleSize}]}>

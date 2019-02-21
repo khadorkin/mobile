@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.base,
     borderBottomLeftRadius: theme.radius.card,
     borderBottomRightRadius: theme.radius.card,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: theme.colors.white
   }
 });
 

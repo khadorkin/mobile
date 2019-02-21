@@ -15,7 +15,12 @@ const discipline = createDiscipline({ref: 'dis_1', levels: [level], name: 'Fake 
 const chapter = createChapter({ref: 'cha_1', name: 'Predicting the future'});
 
 storiesOf('Catalog', module).add('Default', () => (
-  <Catalog items={[discipline, chapter, discipline, discipline]} onPress={handleFakePress} />
+  <Catalog
+    titleCover="Finish Learning"
+    titleCards="For you"
+    items={[discipline, chapter, discipline, discipline, chapter]}
+    onPress={handleFakePress}
+  />
 ));
 
 if (process.env.NODE_ENV === 'test') {
