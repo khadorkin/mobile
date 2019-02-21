@@ -45,15 +45,12 @@ class Catalog extends React.PureComponent<Props> {
   render() {
     const {items} = this.props;
     // @todo Replace progression with user data
-    const progression: Progression = {
-      current: 3,
-      count: 10
-    };
 
     let displayMode: DisplayMode;
     let isInfinite: boolean;
     let isCertified: boolean;
     let isNew;
+    let progression: Progression;
     return (
       <View testID="catalog">
         {items.map((item, index) => {
@@ -61,6 +58,7 @@ class Catalog extends React.PureComponent<Props> {
           isInfinite = index % 2 === 1;
           isCertified = index % 3 === 1;
           isNew = index % 4 === 1 ? 'New' : '';
+          progression = {current: Math.random() * 10, count: 10};
           return (
             <React.Fragment key={index}>
               {index > 0 && <Space />}
