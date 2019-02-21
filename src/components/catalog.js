@@ -1,15 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import type {Chapter, Discipline} from '../layer/data/_types';
 import type {Progression, DisplayMode} from '../types';
 import {DISPLAY_MODE} from '../const';
 import {getCleanUri} from '../modules/uri';
+import theme from '../modules/theme';
 import Space from './space';
 import Card from './card';
 import CatalogItem from './catalog-item';
+import {STYLE as BOX_STYLE} from './box';
 
 export type Item = Discipline | Chapter;
 
@@ -20,7 +22,8 @@ type Props = {|
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1
+    ...BOX_STYLE,
+    borderRadius: theme.radius.card
   }
 });
 
@@ -62,25 +65,24 @@ class Catalog extends React.PureComponent<Props> {
           return (
             <React.Fragment key={index}>
               {index > 0 && <Space />}
-              <TouchableOpacity onPress={this.handlePress(item)}>
-                <Card
-                  style={styles.card}
-                  hasShadow
-                  testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
-                >
-                  <CatalogItem
-                    title={item.name}
-                    subtitle="Coorpacademy"
-                    progression={progression}
-                    image={{uri: getCleanUri(this.getImageURI(item))}}
-                    authorType={item.partnershipType}
-                    badge={isNew}
-                    isInfinite={isInfinite}
-                    mode={displayMode}
-                    isCertified={isCertified}
-                  />
-                </Card>
-              </TouchableOpacity>
+              <Card
+                style={[styles.card]}
+                testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
+              >
+                <CatalogItem
+                  onPress={this.handlePress(item)}
+                  title={item.name}
+                  subtitle="Coorpacademy"
+                  progression={progression}
+                  image={{uri: getCleanUri(this.getImageURI(item))}}
+                  authorType={item.partnershipType && item.partnershipType}
+                  badge={isNew}
+                  isInfinite={isInfinite}
+                  mode={displayMode}
+                  isCertified={isCertified}
+                />
+              </Card>
+              <Space />
             </React.Fragment>
           );
         })}

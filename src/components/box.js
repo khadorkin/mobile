@@ -14,7 +14,7 @@ export const STYLE: GenericStyleProp = {
   shadowColor: theme.colors.black,
   shadowOpacity: 0.3,
   shadowOffset: {width: 0, height: 0},
-  shadowRadius: 3,
+  shadowRadius: 5,
   elevation: 4
 };
 

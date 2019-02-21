@@ -3,13 +3,11 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import theme from '../modules/theme';
-import {STYLE as BOX_STYLE} from './box';
 
 export type Props = {|
   children: React.Node,
   style?: GenericStyleProp,
-  testID?: string,
-  hasShadow?: boolean
+  testID?: string
 |};
 
 const styles = StyleSheet.create({
@@ -17,23 +15,15 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: theme.radius.card,
     overflow: 'hidden'
-  },
-  shadow: {
-    ...BOX_STYLE,
-    borderRadius: theme.radius.card,
-    borderBottomWidth: 1,
-    borderColor: 'rgba(20, 23, 26, 0.15)'
   }
 });
 
-const Card = ({children, style, testID, hasShadow}: Props) => {
+const Card = ({children, style, testID}: Props) => {
   return (
-    <View
-      style={[!hasShadow && styles.container, style, hasShadow && styles.shadow]}
-      testID={testID}
-    >
-      {hasShadow && <View style={styles.container}>{children}</View>}
-      {!hasShadow && children}
+    <View style={[style, {flex: 1}]}>
+      <View style={[styles.container]} testID={testID}>
+        {children}
+      </View>
     </View>
   );
 };

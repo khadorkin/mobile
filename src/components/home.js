@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: theme.spacing.base,
+    paddingLeft: theme.spacing.base,
+    paddingRight: theme.spacing.base,
     justifyContent: 'flex-end'
   },
   version: {
