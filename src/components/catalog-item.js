@@ -153,7 +153,7 @@ const CatalogItem = ({
       badgeH = 16;
       badgeFontSize = 8;
   }
-
+  const badgeLabel = badge && badge !== '' ? badge : undefined;
   return (
     <ImageBackground
       testID="image-background"
@@ -169,7 +169,7 @@ const CatalogItem = ({
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
         style={[styles.content, {padding: paddingGradient}]}
       >
-        {badge && (
+        {badgeLabel && (
           <View style={styles.badgeContainer}>
             <BrandThemeContext.Consumer>
               {brandTheme => (
@@ -185,7 +185,7 @@ const CatalogItem = ({
                     }
                   ]}
                 >
-                  {badge}
+                  {badgeLabel}
                 </Text>
               )}
             </BrandThemeContext.Consumer>
