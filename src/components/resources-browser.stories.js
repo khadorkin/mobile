@@ -50,17 +50,17 @@ if (process.env.NODE_ENV === 'test') {
       const component = renderer.create(
         <TestContextProvider>
           <ResourcesBrowser
-            onChange={handleFakePress}
+            onChange={handlePress}
             selectedResourceId={twoResources[0]._id}
             resources={twoResources}
           />
         </TestContextProvider>
       );
 
-      const line = component.root.find(el => el.props.testID === 'resource-0');
+      const line = component.root.find(el => el.props.testID === `resource-${twoResources[1]._id}`);
       line.props.onPress();
       expect(handlePress.mock.calls.length).toBe(1);
-      expect(handlePress.mock.calls[0]).toEqual([oneResource[0]._id]);
+      expect(handlePress.mock.calls[0]).toEqual([twoResources[1]._id]);
     });
 
     it('should hide resource if only one Resource is provided', () => {
