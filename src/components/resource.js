@@ -10,71 +10,45 @@ import Preview from './preview';
 
 type OnPDFButtonPress = (url: string, description: string) => void;
 
-type VideoProps = {|
-  url: string,
-  poster: string,
-  height: number
-|};
-
-type PdfProps = {|
-  ...VideoProps,
-  description: string,
-  onPress: OnPDFButtonPress
-|};
-
-class ResourcePdf extends React.PureComponent<PdfProps> {
-  props: PdfProps;
-
-  handleOnPress = () => {
-    const {description, onPress, url} = this.props;
-    onPress(url, description);
-  };
-
-  render() {
-    const {height, poster} = this.props;
-    return (
-      <View style={{height}}>
-        <Preview type={RESOURCE_TYPE.PDF} source={{uri: poster}} onPress={this.handleOnPress} />
-      </View>
-    );
-  }
-}
-
-const ResourceVideo = ({url, poster, height}: VideoProps) => (
-  <Video source={{uri: url}} preview={{uri: poster}} height={height} />
-);
-
-const Resource = ({
-  resource,
-  height,
-  onPDFButtonPress
-}: {|
+type Props = {|
   resource: Lesson,
   height: number,
   onPDFButtonPress: OnPDFButtonPress
-|}) => {
-  switch (resource.type) {
-    case RESOURCE_TYPE.VIDEO: {
-      const url = resource.mediaUrl && getCleanUri(resource.mediaUrl);
-      const poster = getCleanUri(resource.poster);
-      return <ResourceVideo url={url} poster={poster} height={height} />;
-    }
-    case RESOURCE_TYPE.PDF: {
-      const url = getCleanUri(resource.mediaUrl);
-      const poster = getCleanUri(resource.poster);
-      const description = resource.description;
+|};
 
-      return (
-        <ResourcePdf
-          url={url}
-          poster={poster}
-          height={height}
-          description={description}
-          onPress={onPDFButtonPress}
-        />
-      );
+class Resource extends React.PureComponent<Props> {
+  props: Props;
+
+  handlePress = (resource: Lesson) => () => {
+    const url = getCleanUri(resource.mediaUrl);
+    const description = resource.description;
+    const {onPDFButtonPress} = this.props;
+    onPDFButtonPress(url, description);
+  };
+
+  render() {
+    const {resource, height} = this.props;
+    switch (resource.type) {
+      case RESOURCE_TYPE.VIDEO: {
+        const url = resource.mediaUrl && getCleanUri(resource.mediaUrl);
+        const poster = getCleanUri(resource.poster);
+        return <Video source={{uri: url}} preview={{uri: poster}} height={height} />;
+      }
+      case RESOURCE_TYPE.PDF: {
+        const poster = getCleanUri(resource.poster);
+
+        return (
+          <View style={{height}}>
+            <Preview
+              type={RESOURCE_TYPE.PDF}
+              source={{uri: poster}}
+              onPress={this.handlePress(resource)}
+            />
+          </View>
+        );
+      }
     }
   }
-};
+}
 
 export default Resource;

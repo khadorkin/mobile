@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {ImageBackground, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {FlatList, ImageBackground, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {
   NovaSolidAudioAudioControlPlay as PlayIcon,
   NovaLineFilesOfficeFileOfficePdf as PDFIcon
@@ -9,27 +9,26 @@ import {
 
 import type {Lesson} from '../layer/data/_types';
 import {RESOURCE_TYPE} from '../const';
-import type {SelectResource} from '../types';
 import theme from '../modules/theme';
 import {getCleanUri} from '../modules/uri';
 import {BrandThemeContext} from './brand-theme-provider';
 import Html from './html';
 
 type Props = {|
-  selectResource: SelectResource,
+  onChange: (id: string) => void,
+  selectedResourceId: string,
   resources: Array<Lesson>
 |};
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
-    alignItems: 'flex-start'
+    paddingVertical: theme.spacing.small
   },
   line: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 14,
-    paddingHorizontal: 34
+    marginBottom: theme.spacing.small,
+    paddingHorizontal: theme.spacing.base
   },
   imageBorder: {
     width: 70,
@@ -48,8 +47,8 @@ const styles = StyleSheet.create({
     position: 'absolute'
   },
   descriptionWrapper: {
-    paddingLeft: 14,
-    paddingRight: 60
+    paddingLeft: theme.spacing.small,
+    paddingRight: theme.spacing.xlarge
   },
   description: {
     color: theme.colors.gray.dark
@@ -59,10 +58,11 @@ const styles = StyleSheet.create({
 class ResourcesBrowser extends React.PureComponent<Props> {
   props: Props;
 
-  handleOnPress = (resource: Lesson) => () => this.props.selectResource(resource._id);
+  handleOnPress = (resource: Lesson) => () => this.props.onChange(resource._id);
 
   render() {
-    const {resources} = this.props;
+    const {selectedResourceId, resources} = this.props;
+
     return (
       <BrandThemeContext.Consumer>
         {brandTheme => {
@@ -81,23 +81,32 @@ class ResourcesBrowser extends React.PureComponent<Props> {
           }
 
           return (
-            <View style={styles.container}>
-              {resources.map((resource, index) => {
+            <FlatList
+              style={styles.container}
+              data={resources}
+              extraData={selectedResourceId}
+              // eslint-disable-next-line react/jsx-no-bind
+              renderItem={({item: resource}) => {
                 return (
                   <TouchableOpacity
                     onPress={this.handleOnPress(resource)}
-                    key={index}
+                    key={resource._id}
                     style={styles.line}
-                    testID={`resource-${index}`}
+                    testID={`resource-${resource._id}`}
                   >
-                    <View style={[styles.imageBorder, resource.selected && selectedImageStyle]}>
+                    <View
+                      style={[
+                        styles.imageBorder,
+                        selectedResourceId === resource._id && selectedImageStyle
+                      ]}
+                    >
                       <ImageBackground
                         source={{uri: resource.poster && getCleanUri(resource.poster)}}
                         style={styles.image}
                         resizeMode="cover"
                       />
                       {resource.type === RESOURCE_TYPE.VIDEO &&
-                        !resource.selected && (
+                        !selectedResourceId === resource._id && (
                           <PlayIcon
                             style={styles.icon}
                             color={theme.colors.white}
@@ -106,7 +115,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                           />
                         )}
                       {resource.type === RESOURCE_TYPE.PDF &&
-                        !resource.selected && (
+                        !selectedResourceId === resource._id && (
                           <PDFIcon
                             style={styles.icon}
                             color={theme.colors.white}
@@ -119,15 +128,18 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                     <View style={styles.descriptionWrapper}>
                       <Html
                         fontSize={15}
-                        style={[styles.description, resource.selected && selectedDescriptionStyle]}
+                        style={[
+                          styles.description,
+                          selectedResourceId === resource._id && selectedDescriptionStyle
+                        ]}
                       >
-                        {resource.description}
+                        {resource.description || ''}
                       </Html>
                     </View>
                   </TouchableOpacity>
                 );
-              })}
-            </View>
+              }}
+            />
           );
         }}
       </BrandThemeContext.Consumer>

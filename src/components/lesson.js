@@ -6,7 +6,6 @@ import {View, StyleSheet, ScrollView} from 'react-native';
 import type {Lesson as LessonType} from '../layer/data/_types';
 import theme from '../modules/theme';
 import withLayout from '../containers/with-layout';
-import type {SelectResource} from '../types';
 import translations from '../translations';
 import type {WithLayoutProps} from '../containers/with-layout';
 import Html from './html';
@@ -19,8 +18,9 @@ type Props = {|
   ...WithLayoutProps,
   header: string,
   starsGranted: number,
+  selectedResourceId: string,
   resources: Array<LessonType>,
-  selectResource: SelectResource,
+  onChange: (id: string) => void,
   onPDFButtonPress: (url: string, description: string) => void
 |};
 
@@ -36,23 +36,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.xlarge
   },
   bottomTextWrapper: {
-    backgroundColor: '#eceff1',
+    backgroundColor: theme.colors.gray.light,
     width: '100%',
-    paddingVertical: 16,
-    paddingHorizontal: 77
+    paddingVertical: theme.spacing.small,
+    paddingHorizontal: theme.spacing.xlarge
   },
   bottomText: {
-    color: theme.colors.gray.dark
+    color: theme.colors.gray.dark,
+    textAlign: 'center'
   }
 });
 
 const Lesson = (props: Props) => {
-  const {layout, header, resources, selectResource, starsGranted} = props;
+  const {layout, header, onChange, resources, selectedResourceId, starsGranted} = props;
 
-  const selectedResource: LessonType = resources.filter(resource => resource.selected)[0];
+  const openedResource: LessonType = resources.filter(
+    resource => resource._id === selectedResourceId
+  )[0];
   const height = layout && layout.width / (16 / 9);
 
-  if (!height || !selectedResource) {
+  if (!height || !selectedResourceId) {
     return null;
   }
 
@@ -68,7 +71,7 @@ const Lesson = (props: Props) => {
       </View>
       <Space type="base" />
       <Resource
-        resource={selectedResource}
+        resource={openedResource}
         height={height}
         onPDFButtonPress={props.onPDFButtonPress}
       />
@@ -77,7 +80,11 @@ const Lesson = (props: Props) => {
         showsHorizontalScrollIndicator={false}
         testID="resources-scroller"
       >
-        <ResourcesBrowser resources={resources} selectResource={selectResource} />
+        <ResourcesBrowser
+          resources={resources}
+          onChange={onChange}
+          selectedResourceId={selectedResourceId}
+        />
       </ScrollView>
       <View style={styles.bottomTextWrapper}>
         <Html fontSize={12} style={styles.bottomText}>

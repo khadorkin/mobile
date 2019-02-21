@@ -7,21 +7,17 @@ import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
 import {TestContextProvider, handleFakePress, fakeLayout} from '../utils/tests';
 import {Component as Lesson} from './lesson';
 
-const fakeSelectResource = (id: string) => ({
-  type: '@@ui/SELECT_RESOURCE_IN_POPIN',
-  payload: {
-    id
-  }
-});
+const video = createVideo({});
 
 storiesOf('Lesson', module)
   .add('No selected resource', () => (
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[createVideo({}), lessonWithPdf]}
-        selectResource={fakeSelectResource}
+        resources={[video, lessonWithPdf]}
+        onChange={handleFakePress}
         starsGranted={4}
+        selectedResourceId={video._id}
         layout={fakeLayout}
         onPDFButtonPress={handleFakePress}
       />
@@ -31,14 +27,9 @@ storiesOf('Lesson', module)
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[
-          createVideo({}),
-          {
-            ...lessonWithPdf,
-            selected: true
-          }
-        ]}
-        selectResource={fakeSelectResource}
+        resources={[createVideo({}), lessonWithPdf]}
+        selectedResourceId={lessonWithPdf._id}
+        onChange={handleFakePress}
         starsGranted={4}
         layout={fakeLayout}
         onPDFButtonPress={handleFakePress}
@@ -50,7 +41,8 @@ storiesOf('Lesson', module)
       <Lesson
         header="What was the nationality of Steve Jobs?"
         resources={[createVideo({}), lessonWithPdf]}
-        selectResource={fakeSelectResource}
+        selectedResourceId={video._id}
+        onChange={handleFakePress}
         starsGranted={4}
         onPDFButtonPress={handleFakePress}
       />

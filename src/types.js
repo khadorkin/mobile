@@ -6,10 +6,6 @@ import type {
   GenericContent as GenericContentBase
 } from '@coorpacademy/progression-engine';
 
-import {selectResource} from '@coorpacademy/player-store';
-
-export type SelectResource = typeof selectResource;
-
 export type QuestionChoiceItem = {|
   ...Choice,
   selected?: boolean

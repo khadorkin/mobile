@@ -4,38 +4,43 @@ import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
 import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
-import {TestContextProvider} from '../utils/tests';
+import {TestContextProvider, handleFakePress} from '../utils/tests';
 
 import ResourcesBrowser from './resources-browser';
 
 const manyResources = [
   createVideo({}),
-  {...lessonWithPdf, selected: true},
+  lessonWithPdf,
   createVideo({}),
   createVideo({}),
   createVideo({}),
   createVideo({})
 ];
 
-const fakeSelectResource = (id: string) => ({
-  type: '@@ui/SELECT_RESOURCE_IN_POPIN',
-  payload: {
-    id
-  }
-});
-
 const oneResource = [createVideo({})];
 const twoResources = [createVideo({}), lessonWithPdf];
 
 storiesOf('ResourcesBrowser', module)
   .add('Many lessons', () => (
-    <ResourcesBrowser resources={manyResources} selectResource={fakeSelectResource} />
+    <ResourcesBrowser
+      resources={manyResources}
+      selectedResourceId={manyResources[0]._id}
+      onChange={handleFakePress}
+    />
   ))
   .add('Two lessons', () => (
-    <ResourcesBrowser resources={twoResources} selectResource={fakeSelectResource} />
+    <ResourcesBrowser
+      onChange={handleFakePress}
+      resources={twoResources}
+      selectedResourceId={twoResources[0]._id}
+    />
   ))
   .add('One lesson', () => (
-    <ResourcesBrowser resources={oneResource} selectResource={fakeSelectResource} />
+    <ResourcesBrowser
+      onChange={handleFakePress}
+      resources={oneResource}
+      selectedResourceId={oneResource[0]._id}
+    />
   ));
 
 if (process.env.NODE_ENV === 'test') {
@@ -44,7 +49,11 @@ if (process.env.NODE_ENV === 'test') {
       const handlePress = jest.fn();
       const component = renderer.create(
         <TestContextProvider>
-          <ResourcesBrowser resources={twoResources} selectResource={handlePress} />
+          <ResourcesBrowser
+            onChange={handleFakePress}
+            selectedResourceId={twoResources[0]._id}
+            resources={twoResources}
+          />
         </TestContextProvider>
       );
 
@@ -58,7 +67,11 @@ if (process.env.NODE_ENV === 'test') {
       const handlePress = jest.fn();
       const component = renderer.create(
         <TestContextProvider>
-          <ResourcesBrowser resources={oneResource} selectResource={handlePress} />
+          <ResourcesBrowser
+            onChange={handlePress}
+            resources={oneResource}
+            selectedResourceId={oneResource[0]._id}
+          />
         </TestContextProvider>
       );
 

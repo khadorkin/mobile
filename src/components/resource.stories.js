@@ -22,7 +22,7 @@ storiesOf('Resource', module)
   ));
 
 if (process.env.NODE_ENV === 'test') {
-  describe('Lesson', () => {
+  describe('Resource', () => {
     it('should handle onPress callback', () => {
       const handlePress = jest.fn();
       const component = renderer.create(

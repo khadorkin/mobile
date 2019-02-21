@@ -12,8 +12,7 @@ import type {
 export type Lesson = $Exact<{|
   ...LessonAPI,
   downloadUrl?: string,
-  mediaRef?: string,
-  selected?: boolean
+  mediaRef?: string
 |}>;
 
 export type MimeType =
