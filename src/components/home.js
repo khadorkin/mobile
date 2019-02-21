@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: theme.spacing.base,
-    paddingLeft: theme.spacing.base,
+    paddingLeft: theme.spacing.base - theme.spacing.micro,
     paddingRight: theme.spacing.base,
     justifyContent: 'flex-end'
   },

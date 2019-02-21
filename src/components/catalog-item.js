@@ -130,8 +130,8 @@ const CatalogItem = ({
       progressBarHeight = 2;
       authorSize = 8;
       paddingGradient = theme.spacing.small;
-      badgeW = 35;
-      badgeH = 16;
+      badgeW = 40;
+      badgeH = 17;
       badgeFontSize = 8;
       break;
     case DISPLAY_MODE.COVER:
@@ -140,8 +140,8 @@ const CatalogItem = ({
       progressBarHeight = 2;
       authorSize = 12;
       paddingGradient = theme.spacing.base;
-      badgeW = 41;
-      badgeH = 19;
+      badgeW = 45;
+      badgeH = 20;
       badgeFontSize = 11;
       break;
     default:
@@ -150,8 +150,8 @@ const CatalogItem = ({
       progressBarHeight = 2;
       authorSize = 5;
       paddingGradient = theme.spacing.small;
-      badgeW = 35;
-      badgeH = 16;
+      badgeW = 40;
+      badgeH = 17;
       badgeFontSize = 8;
   }
   const badgeLabel = badge && badge !== '' ? badge : undefined;

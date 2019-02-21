@@ -66,7 +66,7 @@ class Catalog extends React.PureComponent<Props> {
             <React.Fragment key={index}>
               {index > 0 && <Space />}
               <Card
-                style={[styles.card]}
+                style={[styles.card, {margin: theme.spacing.micro}]}
                 testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
               >
                 <CatalogItem
