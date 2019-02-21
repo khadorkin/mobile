@@ -10,9 +10,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import type {Progression, DisplayMode} from '../types';
 import {DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
+import type {Chapter, Discipline} from '../layer/data/_types';
 import Text from './text';
 import ProgressionBar from './progression-bar';
 import {BrandThemeContext} from './brand-theme-provider';
+
+export type Item = Discipline | Chapter;
 
 type Props = {|
   title: string,
@@ -176,7 +179,7 @@ const CatalogItem = ({
               <BrandThemeContext.Consumer>
                 {brandTheme => (
                   <Text
-                    testID={`badge-${badge}`}
+                    testID={`badge-${badgeLabel}`}
                     style={[
                       styles.badge,
                       {

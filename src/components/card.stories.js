@@ -7,6 +7,7 @@ import {CARD_TYPE, DISPLAY_MODE} from '../const';
 import image from '../__fixtures__/assets/landscape-1.jpg';
 import type {Progression} from '../types';
 
+import {handleFakePress} from '../utils/tests';
 import Card from './card';
 import CardHeader from './card-header';
 import CatalogItem from './catalog-item';
@@ -36,7 +37,7 @@ storiesOf('Card', module)
     </Card>
   ))
   .add('Catalog Item Cover', () => (
-    <Card hasShadow>
+    <Card>
       <CatalogItem
         title="Predicting the future"
         subtitle="Coorpacademy"
@@ -47,11 +48,12 @@ storiesOf('Card', module)
         isInfinite
         mode={DISPLAY_MODE.COVER}
         isCertified
+        onPress={handleFakePress}
       />
     </Card>
   ))
   .add('Catalog Item Card', () => (
-    <Card hasShadow>
+    <Card>
       <CatalogItem
         title="Predicting the future"
         subtitle="Coorpacademy"
@@ -62,6 +64,7 @@ storiesOf('Card', module)
         isInfinite
         mode={DISPLAY_MODE.CARD}
         isCertified
+        onPress={handleFakePress}
       />
     </Card>
   ));

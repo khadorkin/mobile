@@ -6,6 +6,7 @@ import {storiesOf} from '@storybook/react-native';
 import image from '../__fixtures__/assets/landscape-1.jpg';
 import type {Progression} from '../types';
 import {DISPLAY_MODE} from '../const';
+import {handleFakePress} from '../utils/tests';
 import CatalogItem from './catalog-item';
 
 const progression: Progression = {
@@ -22,6 +23,7 @@ storiesOf('Catalogue Item', module)
       image={image}
       authorType="COORP ORIGINAL"
       isInfinite
+      onPress={handleFakePress}
     />
   ))
   .add('New', () => (
@@ -33,6 +35,7 @@ storiesOf('Catalogue Item', module)
       authorType="COORP ORIGINAL"
       badge="New"
       isInfinite={false}
+      onPress={handleFakePress}
     />
   ))
   .add('Adaptive/New/Certified/Coorp', () => (
@@ -46,6 +49,7 @@ storiesOf('Catalogue Item', module)
       isInfinite
       mode={DISPLAY_MODE.COVER}
       isCertified
+      onPress={handleFakePress}
     />
   ))
   .add('Adaptive/New/Certified/Custom', () => (
@@ -59,5 +63,6 @@ storiesOf('Catalogue Item', module)
       isInfinite
       mode={DISPLAY_MODE.CARD}
       isCertified
+      onPress={handleFakePress}
     />
   ));
