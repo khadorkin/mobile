@@ -443,7 +443,7 @@ exports[`Storyshots Lesson Default 1`] = `
                   "paddingHorizontal": 24,
                 }
               }
-              testID="resource-5c3dfa39660b9b1278c0fb61-303449523"
+              testID="resource-5c3dfa39660b9b1278c0fb61-303449523-unselected"
             >
               <View
                 style={
@@ -518,6 +518,7 @@ exports[`Storyshots Lesson Default 1`] = `
                       },
                     ]
                   }
+                  testID="resource-5c3dfa39660b9b1278c0fb61-303449523-video-icon"
                   vbHeight={24}
                   vbWidth={24}
                 >
@@ -617,7 +618,9 @@ exports[`Storyshots Lesson Default 1`] = `
                   }
                 }
               >
-                <View>
+                <View
+                  testID="resource-5c3dfa39660b9b1278c0fb61-303449523-description"
+                >
                   <View
                     style={Object {}}
                   >
@@ -675,7 +678,7 @@ exports[`Storyshots Lesson Default 1`] = `
                   "paddingHorizontal": 24,
                 }
               }
-              testID="resource-5c3dfa39660b9b1278c0fb60"
+              testID="resource-5c3dfa39660b9b1278c0fb60-selected"
             >
               <View
                 style={
@@ -738,7 +741,9 @@ exports[`Storyshots Lesson Default 1`] = `
                   }
                 }
               >
-                <View>
+                <View
+                  testID="resource-5c3dfa39660b9b1278c0fb60-description"
+                >
                   <View
                     style={Object {}}
                   >
@@ -783,7 +788,9 @@ exports[`Storyshots Lesson Default 1`] = `
       }
     }
   >
-    <View>
+    <View
+      testID="additional-stars-note"
+    >
       <View
         style={Object {}}
       >
@@ -1153,7 +1160,7 @@ exports[`Storyshots Lesson No selected resource 1`] = `
                   "paddingHorizontal": 24,
                 }
               }
-              testID="resource-5c3dfa39660b9b1278c0fb61-303449523"
+              testID="resource-5c3dfa39660b9b1278c0fb61-303449523-selected"
             >
               <View
                 style={
@@ -1216,7 +1223,9 @@ exports[`Storyshots Lesson No selected resource 1`] = `
                   }
                 }
               >
-                <View>
+                <View
+                  testID="resource-5c3dfa39660b9b1278c0fb61-303449523-description"
+                >
                   <View
                     style={Object {}}
                   >
@@ -1276,7 +1285,7 @@ exports[`Storyshots Lesson No selected resource 1`] = `
                   "paddingHorizontal": 24,
                 }
               }
-              testID="resource-5c3dfa39660b9b1278c0fb60"
+              testID="resource-5c3dfa39660b9b1278c0fb60-unselected"
             >
               <View
                 style={
@@ -1351,6 +1360,7 @@ exports[`Storyshots Lesson No selected resource 1`] = `
                       },
                     ]
                   }
+                  testID="resource-5c3dfa39660b9b1278c0fb60-pdf-icon"
                   vbHeight={24}
                   vbWidth={24}
                 >
@@ -1494,7 +1504,9 @@ exports[`Storyshots Lesson No selected resource 1`] = `
                   }
                 }
               >
-                <View>
+                <View
+                  testID="resource-5c3dfa39660b9b1278c0fb60-description"
+                >
                   <View
                     style={Object {}}
                   >
@@ -1537,7 +1549,9 @@ exports[`Storyshots Lesson No selected resource 1`] = `
       }
     }
   >
-    <View>
+    <View
+      testID="additional-stars-note"
+    >
       <View
         style={Object {}}
       >

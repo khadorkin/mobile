@@ -28,11 +28,18 @@ storiesOf('ResourcesBrowser', module)
       onChange={handleFakePress}
     />
   ))
-  .add('Two lessons', () => (
+  .add('Two lessons, video selected', () => (
     <ResourcesBrowser
       onChange={handleFakePress}
       resources={twoResources}
       selectedResourceId={twoResources[0]._id}
+    />
+  ))
+  .add('Two lessons, pdf selected', () => (
+    <ResourcesBrowser
+      onChange={handleFakePress}
+      resources={twoResources}
+      selectedResourceId={twoResources[1]._id}
     />
   ))
   .add('One lesson', () => (
@@ -57,7 +64,9 @@ if (process.env.NODE_ENV === 'test') {
         </TestContextProvider>
       );
 
-      const line = component.root.find(el => el.props.testID === `resource-${twoResources[1]._id}`);
+      const line = component.root.find(
+        el => el.props.testID === `resource-${twoResources[1]._id}-unselected`
+      );
       line.props.onPress();
       expect(handlePress.mock.calls.length).toBe(1);
       expect(handlePress.mock.calls[0]).toEqual([twoResources[1]._id]);
@@ -75,7 +84,7 @@ if (process.env.NODE_ENV === 'test') {
         </TestContextProvider>
       );
 
-      expect(() => component.root.find(el => el.props.testID === 'resource-0')).toThrow(
+      expect(() => component.root.find(el => el.props.testID === 'resource-0-selected')).toThrow(
         'No instances found matching custom predicate'
       );
     });
