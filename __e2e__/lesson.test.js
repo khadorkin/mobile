@@ -33,40 +33,40 @@ describe('Lesson', () => {
 
     describe('Video', () => {
       it('should start the video', async () => {
-        // await element(by.id('preview-video')).tap();
-        // await waitFor(element(by.id('video-container'))).toBeVisible();
-        // await weExpect(element(by.id('video-container-container'))).toBeNotVisible();
-        // await weExpect(element(by.id('video-container'))).toBeVisible();
-        // await weExpect(element(by.id('video'))).toBeVisible();
-        // await weExpect(element(by.id('video-pause'))).toBeVisible();
-        // await weExpect(element(by.id('video-play'))).toBeNotVisible();
-        // await weExpect(element(by.id('video-seekbar'))).toBeVisible();
-        // await weExpect(element(by.id('video-timer'))).toBeVisible();
-        // await weExpect(element(by.id('video-fullscreen-expand'))).toBeVisible();
+        await element(by.id('preview-video')).tap();
+        await waitFor(element(by.id('video-container'))).toBeVisible();
+        await weExpect(element(by.id('video-container-container'))).toBeNotVisible();
+        await weExpect(element(by.id('video-container'))).toBeVisible();
+        await weExpect(element(by.id('video'))).toBeVisible();
+        await weExpect(element(by.id('video-pause'))).toBeVisible();
+        await weExpect(element(by.id('video-play'))).toBeNotVisible();
+        await weExpect(element(by.id('video-seekbar'))).toBeVisible();
+        await weExpect(element(by.id('video-timer'))).toBeVisible();
+        await weExpect(element(by.id('video-fullscreen-expand'))).toBeVisible();
       });
 
       it('should pause the video', async () => {
-        // await element(by.id('video-pause')).tap();
-        // await weExpect(element(by.id('video-play'))).toBeVisible();
-        // await weExpect(element(by.id('video-pause'))).toBeNotVisible();
+        await element(by.id('video-pause')).tap();
+        await weExpect(element(by.id('video-play'))).toBeVisible();
+        await weExpect(element(by.id('video-pause'))).toBeNotVisible();
       });
 
       it('should resume the video', async () => {
-        // await element(by.id('video-play')).tap();
-        // await weExpect(element(by.id('video-play'))).toBeNotVisible();
-        // await weExpect(element(by.id('video-pause'))).toBeVisible();
+        await element(by.id('video-play')).tap();
+        await weExpect(element(by.id('video-play'))).toBeNotVisible();
+        await weExpect(element(by.id('video-pause'))).toBeVisible();
       });
 
       it('should fast forward the video', async () => {
-        // await element(by.id('video-seekbar-pin')).swipe('right');
-        // await waitFor(element(by.id('video-replay'))).toBeVisible();
-        // await weExpect(element(by.id('video-replay'))).toBeVisible();
+        await element(by.id('video-seekbar-pin')).swipe('right');
+        await waitFor(element(by.id('video-replay'))).toBeVisible();
+        await weExpect(element(by.id('video-replay'))).toBeVisible();
       });
 
       it('should replay the video', async () => {
-        // await element(by.id('video-replay')).tap();
-        // await weExpect(element(by.id('video-replay'))).toBeNotVisible();
-        // await weExpect(element(by.id('video'))).toBeVisible();
+        await element(by.id('video-replay')).tap();
+        await weExpect(element(by.id('video-replay'))).toBeNotVisible();
+        await weExpect(element(by.id('video'))).toBeVisible();
       });
 
       // This is not possible to test it with iOS native fullscreen
