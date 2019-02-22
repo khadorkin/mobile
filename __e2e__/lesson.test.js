@@ -143,5 +143,9 @@ describe('Lesson', () => {
     it('should not see resources browser', async () => {
       await waitFor(element(by.id('resources-scroller'))).toBeNotVisible();
     });
+
+    afterAll(async () => {
+      await element(by.id('header-back')).tap();
+    });
   });
 });
