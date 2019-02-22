@@ -33,6 +33,7 @@ export type Translations = {|
   goodJob: string,
   keyPoint: string,
   lesson: string,
+  new: string,
   next: string,
   nextLevel: string,
   open: string,

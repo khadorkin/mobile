@@ -13,6 +13,7 @@ const translations: Translations = {
   goodJob: '做得好！',
   keyPoint: '關鍵點',
   lesson: '課程',
+  new: '新增功能',
   next: '下一個',
   nextLevel: '下一級',
   open: '開啟',

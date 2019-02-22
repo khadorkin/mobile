@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: '¡Buen trabajo!',
   keyPoint: 'Dato clave',
   lesson: 'Lección',
+  new: 'Nuevo',
   next: 'Siguiente',
   nextLevel: 'Siguiente nivel',
   open: 'Abrir',

@@ -49,6 +49,7 @@ storiesOf('Card', module)
         displayMode={DISPLAY_MODE.COVER}
         isCertified
         onPress={handleFakePress}
+        testID="catalog1"
       />
     </Card>
   ))
@@ -65,6 +66,7 @@ storiesOf('Card', module)
         displayMode={DISPLAY_MODE.CARD}
         isCertified
         onPress={handleFakePress}
+        testID="catalog2"
       />
     </Card>
   ));

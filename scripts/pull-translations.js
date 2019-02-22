@@ -44,6 +44,13 @@ const fetchTranslations = (
 };
 
 const generate = async (locale: string) => {
+  const moocTranslations = await fetchTranslations(
+    locale,
+    'coorpacademy',
+    'core/locales',
+    'global.json'
+  );
+
   const playerTranslations = await fetchTranslations(
     locale,
     'components',
@@ -67,6 +74,7 @@ const generate = async (locale: string) => {
     goodJob: playerTranslations['Good job'],
     keyPoint: playerTranslations['Key point'],
     lesson: playerTranslations.Media,
+    new: moocTranslations.content.new,
     next: playerTranslations.Next,
     nextLevel: playerTranslations['Next level'],
     open: componentsTranslations.Open,

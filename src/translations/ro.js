@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: 'V-ați descurcat bine!',
   keyPoint: 'Punct cheie',
   lesson: 'Lecție',
+  new: 'noi',
   next: 'Următoarea',
   nextLevel: 'Nivelul următor',
   open: 'Deschide',

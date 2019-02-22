@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: 'Tebrikler!',
   keyPoint: 'Anahtar noktası',
   lesson: 'Ders',
+  new: 'Yeni',
   next: 'Sonraki',
   nextLevel: 'Sonraki seviye',
   open: 'Aç',

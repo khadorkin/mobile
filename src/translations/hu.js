@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: 'Remek munka!',
   keyPoint: 'Kulcspont',
   lesson: 'Lecke',
+  new: 'új',
   next: 'Következő',
   nextLevel: 'Következő szint',
   open: 'Megnyitás',

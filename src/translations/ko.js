@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: '잘 했습니다!',
   keyPoint: '핵심 포인트',
   lesson: '강의',
+  new: '새로운',
   next: '다음',
   nextLevel: '다음 레벨',
   open: '열기',

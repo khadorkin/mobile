@@ -13,6 +13,7 @@ const translations: Translations = {
   goodJob: 'よく出来ました！',
   keyPoint: '重要なポイント',
   lesson: 'レッスン',
+  new: 'new',
   next: 'Next',
   nextLevel: '次のレベル',
   open: 'オープン',

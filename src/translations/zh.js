@@ -14,6 +14,7 @@ const translations: Translations = {
   goodJob: '干得好！',
   keyPoint: '关键点',
   lesson: '课',
+  new: '新',
   next: '下一个',
   nextLevel: '下一级',
   open: '打开',

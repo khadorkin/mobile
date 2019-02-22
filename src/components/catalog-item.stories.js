@@ -24,6 +24,7 @@ storiesOf('Catalogue Item', module)
       authorType="COORP ORIGINAL"
       isInfinite
       onPress={handleFakePress}
+      testID="catalog1"
     />
   ))
   .add('New', () => (
@@ -36,6 +37,7 @@ storiesOf('Catalogue Item', module)
       badge="New"
       isInfinite={false}
       onPress={handleFakePress}
+      testID="catalog2"
     />
   ))
   .add('Adaptive/New/Certified/Coorp', () => (
@@ -50,6 +52,7 @@ storiesOf('Catalogue Item', module)
       displayMode={DISPLAY_MODE.COVER}
       isCertified
       onPress={handleFakePress}
+      testID="catalog3"
     />
   ))
   .add('Adaptive/New/Certified/Custom', () => (
@@ -64,5 +67,6 @@ storiesOf('Catalogue Item', module)
       displayMode={DISPLAY_MODE.CARD}
       isCertified
       onPress={handleFakePress}
+      testID="catalog4"
     />
   ));

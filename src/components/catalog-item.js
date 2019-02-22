@@ -27,7 +27,8 @@ type Props = {|
   authorType?: string,
   isInfinite: boolean,
   isCertified?: boolean,
-  displayMode?: DisplayMode
+  displayMode?: DisplayMode,
+  testID: string
 |};
 
 const styles = StyleSheet.create({
@@ -105,7 +106,8 @@ const CatalogItem = ({
   isInfinite,
   authorType,
   isCertified,
-  displayMode
+  displayMode,
+  testID
 }: Props) => {
   const mode: DisplayMode = displayMode ? displayMode : DISPLAY_MODE.COVER;
 
@@ -145,16 +147,18 @@ const CatalogItem = ({
       currentStyle = cardStyle;
   }
 
-  const badgeLabel = badge && badge !== '' ? badge : undefined;
+  const badgeLabel =
+    badge && badge !== '' ? badge.charAt(0).toUpperCase() + badge.slice(1) : undefined;
+
   return (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableHighlight testID={testID} onPress={onPress}>
       <ImageBackground
-        testID="image-background"
+        testID={`background-image-${testID}`}
         source={image}
         style={[styles.background, {minHeight: currentStyle.minHeight}]}
       >
         <LinearGradient
-          testID="gradient"
+          testID={`gradient-${testID}`}
           colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}
           style={[styles.content, {padding: currentStyle.paddingGradient}]}
         >
@@ -163,7 +167,7 @@ const CatalogItem = ({
               <BrandThemeContext.Consumer>
                 {brandTheme => (
                   <Text
-                    testID={`badge-${badgeLabel}`}
+                    testID={`badge-${testID}`}
                     style={[
                       styles.badge,
                       {
@@ -183,7 +187,7 @@ const CatalogItem = ({
           {authorType === 'coorp' && (
             <View style={styles.authorContainer}>
               <Text
-                testID="author-coorp"
+                testID={`author-${testID}`}
                 style={[styles.author, {fontSize: currentStyle.fontSize}]}
               >
                 COORP <Text style={{fontWeight: theme.fontWeight.bold}}>ORIGINAL</Text>
@@ -193,31 +197,34 @@ const CatalogItem = ({
           {authorType !== 'coorp' && (
             <View style={styles.authorContainer}>
               <Text
-                testID="author-custom"
+                testID={`author-${testID}`}
                 style={[
                   styles.author,
                   {fontSize: currentStyle.authorSize, fontWeight: theme.fontWeight.bold}
                 ]}
               >
-                {authorType}
+                {authorType && authorType.toUpperCase()}
               </Text>
             </View>
           )}
           <View style={styles.bottomContainer}>
             {isInfinite && (
               <NovaCompositionCoorpacademyAdaptive
-                testID="infinite-icon"
+                testID={`infinite-${testID}`}
                 color={theme.colors.white}
                 height={currentStyle.titleSize}
                 width={currentStyle.titleSize}
               />
             )}
-            <Text testID="title" style={[styles.title, {fontSize: currentStyle.titleSize}]}>
+            <Text
+              testID={`title-${testID}`}
+              style={[styles.title, {fontSize: currentStyle.titleSize}]}
+            >
               {title}
             </Text>
             <View style={styles.subtitleContainer}>
               <Text
-                testID="subtitle"
+                testID={`subtitle-${testID}`}
                 style={[styles.subtitle, {fontSize: currentStyle.subtitleSize}]}
               >
                 {subtitle}
@@ -225,7 +232,7 @@ const CatalogItem = ({
               {isCertified && (
                 <View style={styles.certified}>
                   <NovaSolidStatusCheckCircle2
-                    testID="certified-icon"
+                    testID={`certified-${testID}`}
                     color={theme.colors.white}
                     height={currentStyle.subtitleSize}
                     width={currentStyle.subtitleSize}
@@ -234,7 +241,7 @@ const CatalogItem = ({
               )}
             </View>
             {progression && (
-              <View style={styles.progressionBar}>
+              <View style={styles.progressionBar} testID={`progressBar-${testID}`}>
                 <ProgressionBar
                   current={progression.current}
                   count={progression.count}

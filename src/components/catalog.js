@@ -8,6 +8,7 @@ import type {Progression, DisplayMode} from '../types';
 import {DISPLAY_MODE} from '../const';
 import {getCleanUri} from '../modules/uri';
 import theme from '../modules/theme';
+import translations from '../translations';
 import Space from './space';
 import Card from './card';
 import CatalogItem from './catalog-item';
@@ -60,16 +61,14 @@ class Catalog extends React.PureComponent<Props> {
           displayMode = index % 2 === 1 ? DISPLAY_MODE.CARD : DISPLAY_MODE.COVER;
           isInfinite = index % 2 === 1;
           isCertified = index % 3 === 1;
-          isNew = index % 4 === 1 ? 'New' : '';
+          isNew = index % 4 === 1 ? translations.new : '';
           progression = {current: Math.random() * 10, count: 10};
           return (
             <React.Fragment key={index}>
               {index > 0 && <Space />}
-              <Card
-                style={[styles.card, {margin: theme.spacing.micro}]}
-                testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
-              >
+              <Card style={[styles.card, {margin: theme.spacing.micro}]}>
                 <CatalogItem
+                  testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
                   onPress={this.handlePress(item)}
                   title={item.name}
                   subtitle="Coorpacademy"
