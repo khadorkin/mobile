@@ -90,38 +90,37 @@ class ResourcesBrowser extends React.PureComponent<Props> {
               ItemSeparatorComponent={this.renderSeparator}
               // eslint-disable-next-line react/jsx-no-bind
               renderItem={({item: resource}) => {
+                const isSelected = selectedResourceId === resource._id;
+                const suffix = isSelected ? 'selected' : 'unselected';
                 return (
                   <TouchableOpacity
                     onPress={this.handleOnPress(resource)}
                     key={resource._id}
                     style={styles.resourceLine}
-                    testID={`resource-${resource._id}`}
+                    testID={`resource-${resource._id}-${suffix}`}
                   >
-                    <View
-                      style={[
-                        styles.imageBorder,
-                        selectedResourceId === resource._id && selectedImageStyle
-                      ]}
-                    >
+                    <View style={[styles.imageBorder, isSelected && selectedImageStyle]}>
                       <ImageBackground
                         source={{uri: resource.poster && getCleanUri(resource.poster)}}
                         style={styles.image}
                         resizeMode="cover"
                       />
                       {resource.type === RESOURCE_TYPE.VIDEO &&
-                        selectedResourceId !== resource._id && (
+                        !isSelected && (
                           <PlayIcon
                             style={styles.icon}
                             color={theme.colors.white}
+                            testID={`resource-${resource._id}-video-icon`}
                             height={20}
                             width={20}
                           />
                         )}
                       {resource.type === RESOURCE_TYPE.PDF &&
-                        selectedResourceId !== resource._id && (
+                        !isSelected && (
                           <PDFIcon
                             style={styles.icon}
                             color={theme.colors.white}
+                            testID={`resource-${resource._id}-pdf-icon`}
                             height={20}
                             width={20}
                           />
@@ -130,6 +129,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
 
                     <View style={styles.descriptionWrapper}>
                       <Html
+                        testID={`resource-${resource._id}-description`}
                         fontSize={15}
                         style={[
                           styles.description,

@@ -87,7 +87,7 @@ const Lesson = (props: Props) => {
         />
       </ScrollView>
       <View style={styles.bottomTextWrapper}>
-        <Html fontSize={12} style={styles.bottomText}>
+        <Html testID="additional-stars-note" fontSize={12} style={styles.bottomText}>
           {winAdditionalStars}
         </Html>
       </View>
