@@ -144,9 +144,4 @@ describe('Lesson', () => {
       await waitFor(element(by.id('resources-scroller'))).toBeNotVisible();
     });
   });
-
-  afterAll(async () => {
-    console.log('after all ---> reloadApp');
-    await utils.reloadApp();
-  });
 });
