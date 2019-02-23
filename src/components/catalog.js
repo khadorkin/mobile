@@ -58,6 +58,7 @@ class Catalog extends React.PureComponent<Props> {
     return (
       <View testID="catalog">
         {items.map((item, index) => {
+          // @todo Replace this with real data
           displayMode = index % 2 === 1 ? DISPLAY_MODE.CARD : DISPLAY_MODE.COVER;
           isInfinite = index % 2 === 1;
           isCertified = index % 3 === 1;

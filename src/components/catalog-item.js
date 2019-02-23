@@ -171,8 +171,8 @@ const CatalogItem = ({
                     style={[
                       styles.badge,
                       {
-                        width: currentStyle.badgeW,
-                        height: currentStyle.badgeH,
+                        minWidth: currentStyle.badgeW,
+                        minHeight: currentStyle.badgeH,
                         fontSize: currentStyle.badgeFontSize,
                         color: brandTheme.colors.primary
                       }

@@ -30,7 +30,7 @@ describe('Catalog', () => {
       await weExpect(element(by.id('author-catalog-item-basic-dis-1'))).toBeVisible();
       await weExpect(element(by.id('background-image-catalog-item-basic-dis-1'))).toBeVisible();
     });
-    /* can't have swipe/scroll working to test the last card
+    // can't have swipe/scroll working to test the last card
     it('should be able to see lesson picture/title/author/noBadge/notAdaptive/notCertified', async () => {
       await waitFor(element(by.id('catalog-item-1'))).toBeVisible();
       await element(by.id('home')).swipe('up');
@@ -43,6 +43,5 @@ describe('Catalog', () => {
       await weExpect(element(by.id('infinite-catalog-item-6'))).toBeNotVisible();
       await weExpect(element(by.id('author-catalog-item-6'))).toBeNotVisible();
     });
-  */
   });
 });
