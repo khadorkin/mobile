@@ -13,14 +13,13 @@ export type Props = {|
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: theme.radius.card,
-    overflow: 'hidden'
+    borderRadius: theme.radius.card
   }
 });
 
 const Card = ({children, style, testID}: Props) => {
   return (
-    <View style={[style, {flex: 1}]}>
+    <View style={[styles.container, style, {flex: 1}]}>
       <View style={[styles.container]} testID={testID}>
         {children}
       </View>

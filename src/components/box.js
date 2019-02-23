@@ -15,7 +15,8 @@ export const STYLE: GenericStyleProp = {
   shadowOpacity: 0.3,
   shadowOffset: {width: 0, height: 0},
   shadowRadius: 5,
-  elevation: 4
+  elevation: 4,
+  backgroundColor: 'rgba(0,0,0,0.011)' // fix android shadow issue
 };
 
 const styles = StyleSheet.create({
