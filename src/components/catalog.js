@@ -24,7 +24,9 @@ type Props = {|
 const styles = StyleSheet.create({
   card: {
     ...BOX_STYLE,
-    borderRadius: theme.radius.card
+    borderRadius: theme.radius.card,
+    borderBottomWidth: 1,
+    borderColor: 'rgba(20, 23, 26, 0.15)'
   }
 });
 
@@ -67,7 +69,7 @@ class Catalog extends React.PureComponent<Props> {
           return (
             <React.Fragment key={index}>
               {index > 0 && <Space />}
-              <Card style={[styles.card, {margin: theme.spacing.micro}]}>
+              <Card style={[styles.card]}>
                 <CatalogItem
                   testID={`catalog-item-${item.universalRef.replace(/_/g, '-')}`}
                   onPress={this.handlePress(item)}

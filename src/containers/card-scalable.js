@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.base,
     borderBottomLeftRadius: theme.radius.card,
     borderBottomRightRadius: theme.radius.card,
-    overflow: 'hidden',
     backgroundColor: theme.colors.white
   }
 });
@@ -85,11 +84,10 @@ class CardScalable extends React.PureComponent<Props, State> {
 
   render() {
     const {type, title, children, style, testID} = this.props;
-
     return (
       <Animated.View style={{...style, height: this.height, top: this.top}}>
         <TouchableOpacity onPress={this.handlePress} activeOpacity={1} style={styles.expanded}>
-          <Card testID={testID}>
+          <Card testID={testID} isDeckCard>
             <CardHeader type={type} title={title} />
             <View style={styles.content}>
               {children}

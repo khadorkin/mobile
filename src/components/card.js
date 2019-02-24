@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import theme from '../modules/theme';
 
 export type Props = {|
   children: React.Node,
   style?: GenericStyleProp,
-  testID?: string
+  testID?: string,
+  isDeckCard?: boolean
 |};
 
 const styles = StyleSheet.create({
@@ -17,14 +18,23 @@ const styles = StyleSheet.create({
   }
 });
 
-const Card = ({children, style, testID}: Props) => {
-  return (
-    <View style={[styles.container, style, {flex: 1}]}>
-      <View style={[styles.container]} testID={testID}>
-        {children}
+const Card = ({children, style, testID, isDeckCard}: Props) => {
+  if (isDeckCard) {
+    return (
+      <View
+        style={[style, styles.container, Platform.OS === 'ios' && {overflow: 'hidden'}]}
+        testID={testID}
+      >
+        <View style={[styles.container]}>{children}</View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return (
+      <View style={[style, styles.container]} testID={testID}>
+        <View style={[styles.container, {overflow: 'hidden'}]}>{children}</View>
+      </View>
+    );
+  }
 };
 
 export default Card;
