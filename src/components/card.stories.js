@@ -45,7 +45,7 @@ storiesOf('Card', module)
         image={image}
         authorType="CUSTOM EDITOR"
         badge="New"
-        isInfinite
+        isAdaptive
         displayMode={DISPLAY_MODE.COVER}
         isCertified
         onPress={handleFakePress}
@@ -62,7 +62,7 @@ storiesOf('Card', module)
         image={image}
         authorType="CUSTOM EDITOR"
         badge="New"
-        isInfinite
+        isAdaptive
         displayMode={DISPLAY_MODE.CARD}
         isCertified
         onPress={handleFakePress}

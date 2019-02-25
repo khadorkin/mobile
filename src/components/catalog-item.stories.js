@@ -22,7 +22,7 @@ storiesOf('Catalogue Item', module)
       progression={progression}
       image={image}
       authorType="COORP ORIGINAL"
-      isInfinite
+      isAdaptive
       onPress={handleFakePress}
       testID="catalog1"
     />
@@ -35,7 +35,7 @@ storiesOf('Catalogue Item', module)
       image={image}
       authorType="COORP ORIGINAL"
       badge="New"
-      isInfinite={false}
+      isAdaptive={false}
       onPress={handleFakePress}
       testID="catalog2"
     />
@@ -48,7 +48,7 @@ storiesOf('Catalogue Item', module)
       image={image}
       authorType="coorp"
       badge="New"
-      isInfinite
+      isAdaptive
       displayMode={DISPLAY_MODE.COVER}
       isCertified
       onPress={handleFakePress}
@@ -63,7 +63,7 @@ storiesOf('Catalogue Item', module)
       image={image}
       authorType="CUSTOM EDITOR"
       badge="New"
-      isInfinite
+      isAdaptive
       displayMode={DISPLAY_MODE.CARD}
       isCertified
       onPress={handleFakePress}

@@ -50,7 +50,7 @@ class Catalog extends React.PureComponent<Props> {
     // @todo Replace progression with user data
 
     let displayMode: DisplayMode;
-    let isInfinite: boolean;
+    let isAdaptive: boolean;
     let isCertified: boolean;
     let isNew;
     let progression: Progression;
@@ -59,7 +59,7 @@ class Catalog extends React.PureComponent<Props> {
         {items.map((item, index) => {
           // @todo Replace this with real data
           displayMode = index % 2 === 1 ? DISPLAY_MODE.CARD : DISPLAY_MODE.COVER;
-          isInfinite = index % 2 === 1;
+          isAdaptive = index % 2 === 1;
           isCertified = index % 3 === 1;
           isNew = index % 4 === 1 ? translations.new : '';
           progression = {current: Math.random() * 10, count: 10};
@@ -76,7 +76,7 @@ class Catalog extends React.PureComponent<Props> {
                   image={{uri: getCleanUri(this.getImageURI(item))}}
                   authorType={item.partnershipType && item.partnershipType}
                   badge={isNew}
-                  isInfinite={isInfinite}
+                  isAdaptive={isAdaptive}
                   displayMode={displayMode}
                   isCertified={isCertified}
                 />
