@@ -12,7 +12,6 @@ import {
 import Screen from '../components/screen';
 import Lesson from '../components/lesson';
 import type {StoreState} from '../redux/store';
-
 import type {Lesson as LessonType} from '../layer/data/_types';
 import type {Params as PdfScreenParams} from './pdf';
 
