@@ -1,12 +1,11 @@
 // @flow strict
 
 import type {BundledDiscipline} from '../../layer/data/_types';
-
 import {createDiscipline} from '../disciplines';
 import {createLevel} from '../levels';
 import {createChapter} from '../chapters';
 import {createSlide} from '../slides';
-import {createVideo, lessonWithPdf} from '../lessons';
+import {createVideo, createPdf} from '../lessons';
 import {createQCM, createQCMGraphic} from '../questions';
 import {failureExitNode, successExitNode} from '../exit-nodes';
 import {image} from '../medias';
@@ -16,14 +15,16 @@ const qcm = createQCM({media: image});
 const qcmGraphic = createQCMGraphic({});
 
 const lessons = [
-  createVideo({}),
+  createVideo({ref: 'les_1', description: 'First video'}),
   createVideo({
-    videoId: '245198546'
+    ref: 'les_2',
+    description: 'Second video'
   }),
   createVideo({
-    videoId: '245198617'
+    ref: 'les_3',
+    description: 'Third video'
   }),
-  lessonWithPdf
+  createPdf({ref: 'les_4', description: 'First PDF'})
 ];
 
 const bundledDiscipline: BundledDiscipline = {
@@ -60,10 +61,30 @@ const bundledDiscipline: BundledDiscipline = {
       question: qcm,
       lessons
     }),
-    basic_sli_5: createSlide({ref: 'basic_sli_5', chapterId: 'basic_cha_2', question: qcmGraphic}),
-    basic_sli_6: createSlide({ref: 'basic_sli_6', chapterId: 'basic_cha_2', question: qcmGraphic}),
-    basic_sli_7: createSlide({ref: 'basic_sli_7', chapterId: 'basic_cha_2', question: qcmGraphic}),
-    basic_sli_8: createSlide({ref: 'basic_sli_8', chapterId: 'basic_cha_2', question: qcmGraphic})
+    basic_sli_5: createSlide({
+      ref: 'basic_sli_5',
+      chapterId: 'basic_cha_2',
+      question: qcmGraphic,
+      lessons: lessons.filter(lesson => lesson.ref === 'les_1')
+    }),
+    basic_sli_6: createSlide({
+      ref: 'basic_sli_6',
+      chapterId: 'basic_cha_2',
+      question: qcmGraphic,
+      lessons: lessons.filter(lesson => lesson.ref === 'les_1')
+    }),
+    basic_sli_7: createSlide({
+      ref: 'basic_sli_7',
+      chapterId: 'basic_cha_2',
+      question: qcmGraphic,
+      lessons: lessons.filter(lesson => lesson.ref === 'les_1')
+    }),
+    basic_sli_8: createSlide({
+      ref: 'basic_sli_8',
+      chapterId: 'basic_cha_2',
+      question: qcmGraphic,
+      lessons: lessons.filter(lesson => lesson.ref === 'les_1')
+    })
   },
   exitNodes: {
     [failureExitNode.ref]: failureExitNode,

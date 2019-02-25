@@ -3,7 +3,6 @@
 import type {Question} from '@coorpacademy/progression-engine';
 
 import type {Lesson, Slide} from '../layer/data/_types';
-import {createVideo} from './lessons';
 import {image} from './medias';
 
 export const createSlide = ({
@@ -11,7 +10,7 @@ export const createSlide = ({
   chapterId,
   question,
   clue,
-  lessons = [createVideo({})]
+  lessons = []
 }: {
   ref: string,
   chapterId: string,
