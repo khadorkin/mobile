@@ -1123,7 +1123,7 @@ declare module 'react-navigation' {
     activeBackgroundColor?: string,
     inactiveTintColor?: string,
     inactiveBackgroundColor?: string,
-    getLabel: (scene: _DrawerScene) => ?(React$Node | string),
+    getLabelText: (scene: _DrawerScene) => ?(React$Node | string),
     renderIcon: (scene: _DrawerScene) => ?React$Node,
     onItemPress: (info: _DrawerItem) => void,
     itemsContainerForceInset?: Object,
@@ -1165,7 +1165,7 @@ declare module 'react-navigation' {
     tabBarPosition: string,
     navigation: NavigationScreenProp<NavigationState>,
     jumpToIndex: (index: number) => void,
-    getLabel: (scene: TabScene) => ?(React$Node | string),
+    getLabelText: (scene: TabScene) => ?(React$Node | string),
     getOnPress: (
       previousScene: NavigationRoute,
       scene: TabScene
@@ -1192,7 +1192,7 @@ declare module 'react-navigation' {
     position: AnimatedValue,
     navigation: NavigationScreenProp<NavigationState>,
     jumpToIndex: (index: number) => void,
-    getLabel: (scene: TabScene) => ?(React$Node | string),
+    getLabelText: (scene: TabScene) => ?(React$Node | string),
     getOnPress: (
       previousScene: NavigationRoute,
       scene: TabScene
