@@ -3,32 +3,46 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 
-import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
+import {createVideo, createPdf} from '../__fixtures__/lessons';
 import {TestContextProvider, handleFakePress, fakeLayout} from '../utils/tests';
 import {Component as Lesson} from './lesson';
 
-const video = createVideo({});
+const video = createVideo({ref: 'les_1', description: 'Foo bar baz - Video'});
+const pdf = createPdf({ref: 'les_2', description: 'Foo bar baz - PDF'});
+const resources = [video, pdf];
 
 storiesOf('Lesson', module)
-  .add('No selected resource', () => (
+  .add('Default', () => (
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[video, lessonWithPdf]}
+        resources={resources}
         onChange={handleFakePress}
         starsGranted={4}
-        selectedResourceId={video._id}
         layout={fakeLayout}
         onPDFButtonPress={handleFakePress}
       />
     </TestContextProvider>
   ))
-  .add('Default', () => (
+  .add('Video selected', () => (
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[createVideo({}), lessonWithPdf]}
-        selectedResourceId={lessonWithPdf._id}
+        resources={resources}
+        selected={video._id}
+        onChange={handleFakePress}
+        starsGranted={4}
+        layout={fakeLayout}
+        onPDFButtonPress={handleFakePress}
+      />
+    </TestContextProvider>
+  ))
+  .add('PDF selected', () => (
+    <TestContextProvider>
+      <Lesson
+        header="What was the nationality of Steve Jobs?"
+        resources={resources}
+        selected={pdf._id}
         onChange={handleFakePress}
         starsGranted={4}
         layout={fakeLayout}
@@ -40,8 +54,7 @@ storiesOf('Lesson', module)
     <TestContextProvider>
       <Lesson
         header="What was the nationality of Steve Jobs?"
-        resources={[createVideo({}), lessonWithPdf]}
-        selectedResourceId={video._id}
+        resources={resources}
         onChange={handleFakePress}
         starsGranted={4}
         onPDFButtonPress={handleFakePress}

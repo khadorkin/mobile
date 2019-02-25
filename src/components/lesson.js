@@ -18,7 +18,7 @@ type Props = {|
   ...WithLayoutProps,
   header: string,
   starsGranted: number,
-  selectedResourceId: string,
+  selected?: string,
   resources: Array<LessonType>,
   onChange: (id: string) => void,
   onPDFButtonPress: (url: string, description: string) => void
@@ -48,14 +48,12 @@ const styles = StyleSheet.create({
 });
 
 const Lesson = (props: Props) => {
-  const {layout, header, onChange, resources, selectedResourceId, starsGranted} = props;
+  const {layout, header, onChange, resources, selected, starsGranted} = props;
 
-  const openedResource: LessonType = resources.filter(
-    resource => resource._id === selectedResourceId
-  )[0];
+  const openedResource: LessonType = resources.filter(resource => resource._id === selected)[0];
   const height = layout && layout.width / (16 / 9);
 
-  if (!height || !selectedResourceId) {
+  if (!height || !selected) {
     return null;
   }
 
@@ -75,16 +73,8 @@ const Lesson = (props: Props) => {
         height={height}
         onPDFButtonPress={props.onPDFButtonPress}
       />
-      <ScrollView
-        style={styles.scroller}
-        showsHorizontalScrollIndicator={false}
-        testID="resources-scroller"
-      >
-        <ResourcesBrowser
-          resources={resources}
-          onChange={onChange}
-          selectedResourceId={selectedResourceId}
-        />
+      <ScrollView style={styles.scroller} showsHorizontalScrollIndicator={false} testID="resources">
+        <ResourcesBrowser resources={resources} onChange={onChange} selected={selected} />
       </ScrollView>
       <View style={styles.bottomTextWrapper}>
         <Html testID="additional-stars-note" fontSize={12} style={styles.bottomText}>

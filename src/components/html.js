@@ -9,6 +9,7 @@ import theme from '../modules/theme';
 type Props = {|
   children: string,
   fontSize: number,
+  containerStyle?: GenericStyleProp,
   style?: GenericStyleProp,
   testID?: string
 |};
@@ -20,7 +21,7 @@ const styles = {
   }
 };
 
-const Html = ({children, fontSize, style, testID}: Props) => {
+const Html = ({children, fontSize, containerStyle, style, testID}: Props) => {
   const tagsStyles = {
     ...styles,
     h1: {fontSize},
@@ -50,7 +51,7 @@ const Html = ({children, fontSize, style, testID}: Props) => {
   }
 
   return (
-    <View testID={testID}>
+    <View testID={testID} style={containerStyle}>
       <HtmlBase html={`${children}`} tagsStyles={tagsStyles} baseFontStyle={baseFontStyle} />
     </View>
   );

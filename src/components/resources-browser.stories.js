@@ -3,50 +3,33 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
-import {createVideo, lessonWithPdf} from '../__fixtures__/lessons';
+import {createVideo, createPdf} from '../__fixtures__/lessons';
 import {TestContextProvider, handleFakePress} from '../utils/tests';
 
 import ResourcesBrowser from './resources-browser';
 
-const manyResources = [
-  createVideo({}),
-  lessonWithPdf,
-  createVideo({}),
-  createVideo({}),
-  createVideo({}),
-  createVideo({})
+const resources = [
+  createVideo({ref: 'les_1'}),
+  createPdf({ref: 'les_2'}),
+  createVideo({ref: 'les_3'}),
+  createVideo({ref: 'les_4'}),
+  createVideo({ref: 'les_5'}),
+  createVideo({ref: 'les_6'})
 ];
 
-const oneResource = [createVideo({})];
-const twoResources = [createVideo({}), lessonWithPdf];
-
 storiesOf('ResourcesBrowser', module)
-  .add('Many lessons', () => (
+  .add('Default', () => <ResourcesBrowser resources={resources} onChange={handleFakePress} />)
+  .add('Selected', () => (
     <ResourcesBrowser
-      resources={manyResources}
-      selectedResourceId={manyResources[0]._id}
+      resources={resources}
+      selected={resources[1]._id}
       onChange={handleFakePress}
     />
   ))
-  .add('Two lessons, video selected', () => (
+  .add('Only one resource', () => (
     <ResourcesBrowser
+      resources={resources.filter(resource => resource.ref === 'les_1')}
       onChange={handleFakePress}
-      resources={twoResources}
-      selectedResourceId={twoResources[0]._id}
-    />
-  ))
-  .add('Two lessons, pdf selected', () => (
-    <ResourcesBrowser
-      onChange={handleFakePress}
-      resources={twoResources}
-      selectedResourceId={twoResources[1]._id}
-    />
-  ))
-  .add('One lesson', () => (
-    <ResourcesBrowser
-      onChange={handleFakePress}
-      resources={oneResource}
-      selectedResourceId={oneResource[0]._id}
     />
   ));
 
@@ -58,35 +41,16 @@ if (process.env.NODE_ENV === 'test') {
         <TestContextProvider>
           <ResourcesBrowser
             onChange={handlePress}
-            selectedResourceId={twoResources[0]._id}
-            resources={twoResources}
+            selected={resources[0]._id}
+            resources={resources}
           />
         </TestContextProvider>
       );
 
-      const line = component.root.find(
-        el => el.props.testID === `resource-${twoResources[1]._id}-unselected`
-      );
-      line.props.onPress();
+      const item = component.root.find(el => el.props.testID === `resource-les-2`);
+      item.props.onPress();
       expect(handlePress.mock.calls.length).toBe(1);
-      expect(handlePress.mock.calls[0]).toEqual([twoResources[1]._id]);
-    });
-
-    it('should hide resource if only one Resource is provided', () => {
-      const handlePress = jest.fn();
-      const component = renderer.create(
-        <TestContextProvider>
-          <ResourcesBrowser
-            onChange={handlePress}
-            resources={oneResource}
-            selectedResourceId={oneResource[0]._id}
-          />
-        </TestContextProvider>
-      );
-
-      expect(() => component.root.find(el => el.props.testID === 'resource-0-selected')).toThrow(
-        'No instances found matching custom predicate'
-      );
+      expect(handlePress.mock.calls[0]).toEqual([resources[1]._id]);
     });
   });
 }

@@ -18,7 +18,7 @@ import type {Params as PdfScreenParams} from './pdf';
 export type ConnectedStateProps = {|
   header?: string,
   resources?: Array<LessonType>,
-  selectedResourceId: string,
+  selected?: string,
   starsGranted: number
 |};
 
@@ -44,12 +44,12 @@ class LessonScreen extends React.PureComponent<Props> {
     this.props.navigation.navigate('PdfModal', pdfParams);
   };
 
-  handleOnChange = (resourceId: string) => {
-    this.props.selectResource(resourceId);
+  handleChange = (id: string) => {
+    this.props.selectResource(id);
   };
 
   render() {
-    const {header, resources, starsGranted, selectedResourceId} = this.props;
+    const {header, resources, starsGranted, selected} = this.props;
 
     return (
       <Screen testID="lesson-screen" noScroll>
@@ -58,8 +58,8 @@ class LessonScreen extends React.PureComponent<Props> {
             header={header}
             resources={resources}
             starsGranted={starsGranted}
-            onChange={this.handleOnChange}
-            selectedResourceId={selectedResourceId}
+            onChange={this.handleChange}
+            selected={selected}
             onPDFButtonPress={this.handlePDFButtonPress}
           />
         )}
@@ -70,19 +70,19 @@ class LessonScreen extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const slide = getCurrentSlide(state);
-  const resources = (slide && slide.lessons && slide.lessons) || [];
-  const selectedResourceId: string =
-    getResourceToPlay(state) || (resources.length === 0 ? '' : resources[0]._id);
+  const header = (slide && slide.question && slide.question.header) || undefined;
+  // $FlowFixMe overrided type
+  const resources: Array<LessonType> = (slide && slide.lessons) || [];
+  const currentResource = getResourceToPlay(state);
+  const selected = currentResource || (resources[0] && resources[0]._id);
 
   const engineConfig = getEngineConfig(state);
   const starsGranted = (engineConfig && engineConfig.starsPerResourceViewed) || 0;
 
   return {
-    // $FlowFixMe union type
-    header: slide && slide.question && slide.question.header,
-    // $FlowFixMe union type
+    header,
     resources,
-    selectedResourceId,
+    selected,
     starsGranted
   };
 };
