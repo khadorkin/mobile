@@ -1175,6 +1175,7 @@ declare module 'react-navigation' {
       jumpToIndex: (index: number) => void,
     }) => void,
     renderIcon: (scene: TabScene) => React$Element<*>,
+    onTabPress: (scene: TabScene) => React$Element<*>,
     labelStyle?: TextStyleProp,
     iconStyle?: ViewStyleProp,
   };
@@ -1203,6 +1204,7 @@ declare module 'react-navigation' {
     }) => void,
     getTestIDProps: (scene: TabScene) => (scene: TabScene) => any,
     renderIcon: (scene: TabScene) => React$Node,
+    onTabPress: (scene: TabScene) => React$Element<*>,
     style?: ViewStyleProp,
     animateStyle?: ViewStyleProp,
     labelStyle?: TextStyleProp,

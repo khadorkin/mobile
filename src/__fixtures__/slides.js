@@ -10,13 +10,15 @@ export const createSlide = ({
   chapterId,
   question,
   clue,
-  lessons = []
+  lessons = [],
+  context
 }: {
   ref: string,
   chapterId: string,
   question: Question,
   clue?: string | null,
-  lessons?: Array<Lesson>
+  lessons?: Array<Lesson>,
+  context?: boolean | null
 }): Slide => ({
   _id: ref,
   universalRef: ref,
@@ -28,11 +30,13 @@ export const createSlide = ({
   chapter_id: chapterId,
   __v: 0,
   authors: [],
-  context: {
-    media: image,
-    description: 'This is a description',
-    title: 'This is a title'
-  },
+  context: !context
+    ? {media: {src: [], posters: [], subtitles: []}}
+    : {
+        media: image,
+        description: 'This is a description',
+        title: 'This is a title'
+      },
   meta: {
     updatedAt: '2019-01-17T09:35:44.450Z',
     createdAt: '2019-01-17T09:35:44.450Z'

@@ -9,7 +9,9 @@ import theme from '../modules/theme';
 type Props = {|
   children: string,
   fontSize: number,
+  onLinkPress?: () => void,
   containerStyle?: GenericStyleProp,
+  imageStyle?: GenericStyleProp,
   style?: GenericStyleProp,
   testID?: string
 |};
@@ -21,7 +23,15 @@ const styles = {
   }
 };
 
-const Html = ({children, fontSize, containerStyle, style, testID}: Props) => {
+const Html = ({
+  children,
+  fontSize,
+  containerStyle,
+  imageStyle,
+  style,
+  onLinkPress,
+  testID
+}: Props) => {
   const tagsStyles = {
     ...styles,
     h1: {fontSize},
@@ -29,7 +39,8 @@ const Html = ({children, fontSize, containerStyle, style, testID}: Props) => {
     h3: {fontSize},
     h4: {fontSize},
     h5: {fontSize},
-    h6: {fontSize}
+    h6: {fontSize},
+    img: imageStyle
   };
   let baseFontStyle = {fontSize, color: theme.colors.black};
   if (style) {
@@ -52,7 +63,17 @@ const Html = ({children, fontSize, containerStyle, style, testID}: Props) => {
 
   return (
     <View testID={testID} style={containerStyle}>
-      <HtmlBase html={`${children}`} tagsStyles={tagsStyles} baseFontStyle={baseFontStyle} />
+      <HtmlBase
+        html={`${children}`}
+        tagsStyles={tagsStyles}
+        baseFontStyle={baseFontStyle}
+        onLinkPress={onLinkPress}
+        // this is exceptionally for the onboarding course
+        // is the only course that has a gif in the context but the img tag
+        // comes with width & height attr and these makes this lib do not render the gif
+        // so to avoid it, we decided to ignore these attr
+        ignoredStyles={['width', 'height']}
+      />
     </View>
   );
 };

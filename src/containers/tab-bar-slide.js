@@ -12,7 +12,8 @@ import Text from '../components/text';
 import TabBar from './tab-bar';
 
 type ConnectedStateToProps = {|
-  hasNotClue: boolean,
+  hasNoClue: boolean,
+  hasNoContext: boolean,
   hasNoLesson: boolean
 |};
 
@@ -29,15 +30,30 @@ const styles = StyleSheet.create({
   }
 });
 
-class TabBarSlide extends React.PureComponent<Props> {
+class TabBarSlide extends React.Component<Props> {
   props: Props;
 
+  componentWillMount() {
+    if (!this.props.hasNoContext) {
+      this.props.navigation.navigate('Context');
+    }
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const contextHasChanged =
+      !this.props.hasNoContext && this.props.hasNoContext !== prevProps.hasNoContext;
+
+    if (contextHasChanged) {
+      this.props.navigation.navigate('Context');
+    }
+  }
+
   handleTabPress = (scene: TabScene) => {
-    // $FlowFixMe the definition is incomplete for this
-    const {onTabPress, hasNotClue, hasNoLesson} = this.props;
+    const {onTabPress, hasNoClue, hasNoContext, hasNoLesson} = this.props;
 
     if (
-      (scene.route.routeName === 'Clue' && hasNotClue) ||
+      (scene.route.routeName === 'Clue' && hasNoClue) ||
+      (scene.route.routeName === 'Context' && hasNoContext) ||
       (scene.route.routeName === 'Lesson' && hasNoLesson)
     ) {
       return;
@@ -47,15 +63,16 @@ class TabBarSlide extends React.PureComponent<Props> {
   };
 
   renderIcon = (scene: TabScene) => {
-    const {renderIcon, hasNotClue, hasNoLesson} = this.props;
+    const {renderIcon, hasNoClue, hasNoContext, hasNoLesson} = this.props;
 
     if (
-      (scene.route.key === 'Clue' && hasNotClue) ||
+      (scene.route.key === 'Clue' && hasNoClue) ||
+      (scene.route.key === 'Context' && hasNoContext) ||
       (scene.route.key === 'Lesson' && hasNoLesson)
     ) {
       return renderIcon({
         ...scene,
-        tintColor: hasNotClue ? INACTIVE_COLOR : scene.tintColor
+        tintColor: INACTIVE_COLOR
       });
     }
 
@@ -63,10 +80,11 @@ class TabBarSlide extends React.PureComponent<Props> {
   };
 
   getLabelText = (scene: TabScene) => {
-    const {getLabelText, labelStyle, hasNotClue, hasNoLesson} = this.props;
+    const {getLabelText, labelStyle, hasNoClue, hasNoContext, hasNoLesson} = this.props;
 
     if (
-      (scene.route.key === 'Clue' && hasNotClue) ||
+      (scene.route.key === 'Clue' && hasNoClue) ||
+      (scene.route.key === 'Context' && hasNoContext) ||
       (scene.route.key === 'Lesson' && hasNoLesson)
     ) {
       return <Text style={[labelStyle, styles.inactiveText]}>{getLabelText(scene)}</Text>;
@@ -94,12 +112,11 @@ const mapStateToProps = (state: StoreState): ConnectedStateToProps => {
   const slide = getCurrentSlide(state);
   // $FlowFixMe overrided type
   const resources: Array<LessonType> = (slide && slide.lessons) || [];
-  const hasNotClue = !(slide && slide.clue);
-  const hasNoLesson = !resources.length;
 
   return {
-    hasNotClue,
-    hasNoLesson
+    hasNoClue: !(slide && slide.clue),
+    hasNoLesson: !resources.length,
+    hasNoContext: !(slide && slide.context && slide.context.title)
   };
 };
 

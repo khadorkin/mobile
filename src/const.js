@@ -10,7 +10,8 @@ export const RESOURCE_TYPE: {
   [string]: ResourceType
 } = {
   VIDEO: 'video',
-  PDF: 'pdf'
+  PDF: 'pdf',
+  IMG: 'img'
 };
 
 type QuestionTypeKey = 'QCM' | 'QCM_GRAPHIC';

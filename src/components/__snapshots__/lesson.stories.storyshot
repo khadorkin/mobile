@@ -341,6 +341,7 @@ exports[`Storyshots Lesson PDF selected 1`] = `
                       Object {
                         "color": "#FFFFFF",
                       },
+                      undefined,
                     ],
                   ]
                 }
