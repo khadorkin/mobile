@@ -85,14 +85,14 @@ jobs:
             - $(yarn global dir)
 
       - restore_cache:
-          key: pods-v1-{{ checksum "ios/Podfile.lock" }}-{{ arch }}
+          key: pods-v3-{{ checksum "ios/Podfile.lock" }}-{{ arch }}
 
       - run:
           name: Pods dependencies
           command: yarn cocoapods:install
 
       - save_cache:
-          key: pods-v1-{{ checksum "ios/Podfile.lock" }}-{{ arch }}
+          key: pods-v3-{{ checksum "ios/Podfile.lock" }}-{{ arch }}
           paths:
             - ~/Library/Caches/CocoaPods
             - ios/Pods
