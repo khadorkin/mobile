@@ -95,6 +95,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                     style={styles.image}
                     resizeMode="cover"
                   />
+                  {/* $FlowFixMe img is not defined in progression-engine */}
                   {resource.type === RESOURCE_TYPE.VIDEO &&
                     !isSelected && (
                       <PlayIcon
@@ -105,6 +106,7 @@ class ResourcesBrowser extends React.PureComponent<Props> {
                         width={20}
                       />
                     )}
+                  {/* $FlowFixMe img is not defined in progression-engine */}
                   {resource.type === RESOURCE_TYPE.PDF &&
                     !isSelected && (
                       <PDFIcon

@@ -20,6 +20,7 @@ export const createVideo = ({
   downloadUrl: `//player.vimeo.com/external/303449523.sd.mp4?s=ee82aad8a793d94b289638b4bd8823c30964ba36&profile_id=164&oauth2_token_id=411503075`,
   mimeType: 'application/vimeo',
   ref,
+  // $FlowFixMe img is not defined in progression-engine
   type: RESOURCE_TYPE.VIDEO,
   subtitles: [],
   posters: [],
@@ -42,6 +43,7 @@ export const createPdf = ({
     '//static.coorpacademy.com/content/CoorpAcademy/content-partnerships-fabernovel/cockpit-fabernovel/raw/fabernovel_data_fr_4a4_des-donnees-au-service-de-tous_vdef-1543484261461.pdf',
   mimeType: 'application/pdf',
   ref,
+  // $FlowFixMe img is not defined in progression-engine
   type: RESOURCE_TYPE.PDF,
   subtitles: [],
   posters: [],
