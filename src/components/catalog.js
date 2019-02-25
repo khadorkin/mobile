@@ -38,14 +38,11 @@ class Catalog extends React.PureComponent<Props> {
   isChapter = (item: Item): boolean => !item.hasOwnProperty('modules');
 
   getImageURI(item: Item): string {
-    let image;
     if (this.isChapter(item)) {
-      image = item.poster && item.poster.mediaUrl;
+      return (item.poster && item.poster.mediaUrl) || '';
     } else {
-      image = item.cover && item.cover.media.mediaUrl;
+      return (item.cover && item.cover.media.mediaUrl) || '';
     }
-    if (image) return image;
-    return '';
   }
 
   render() {
