@@ -86,7 +86,10 @@ class ResourcesBrowser extends React.PureComponent<Props> {
 
             return (
               <React.Fragment>
-                <View style={[styles.thumbnail, isSelected && selectedStyle]}>
+                <View
+                  style={[styles.thumbnail, isSelected && selectedStyle]}
+                  testID={`${testID}-thumbnail`}
+                >
                   <ImageBackground
                     source={{uri: resource.poster && getCleanUri(resource.poster)}}
                     style={styles.image}
