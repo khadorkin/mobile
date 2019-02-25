@@ -465,6 +465,7 @@ exports[`Storyshots Lesson PDF selected 1`] = `
                     false,
                   ]
                 }
+                testID="resource-les-1-thumbnail"
               >
                 <View
                   style={
@@ -707,6 +708,7 @@ exports[`Storyshots Lesson PDF selected 1`] = `
                     },
                   ]
                 }
+                testID="resource-les-2-thumbnail"
               >
                 <View
                   style={
@@ -1194,6 +1196,7 @@ exports[`Storyshots Lesson Video selected 1`] = `
                     },
                   ]
                 }
+                testID="resource-les-1-thumbnail"
               >
                 <View
                   style={
@@ -1321,6 +1324,7 @@ exports[`Storyshots Lesson Video selected 1`] = `
                     false,
                   ]
                 }
+                testID="resource-les-2-thumbnail"
               >
                 <View
                   style={
