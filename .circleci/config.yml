@@ -161,7 +161,7 @@ jobs:
 
       - run:
           name: Tests
-          command: yarn test:end2end:ios:release:test
+          command: yarn test:end2end:ios:release:test --cleanup
 
   build_ios:
     macos:
