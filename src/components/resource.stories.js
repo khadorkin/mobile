@@ -15,12 +15,26 @@ const pdf = createPdf({ref: 'les_2', description: 'Foo bar baz'});
 storiesOf('Resource', module)
   .add('Video', () => (
     <TestContextProvider>
-      <Resource resource={video} height={200} onPDFButtonPress={handleFakePress} />
+      <Resource
+        type={video.type}
+        url={video.mediaUrl}
+        description={video.description}
+        thumbnail={video.poster}
+        height={200}
+        onPDFButtonPress={handleFakePress}
+      />
     </TestContextProvider>
   ))
   .add('PDF', () => (
     <TestContextProvider>
-      <Resource resource={pdf} height={200} onPDFButtonPress={handleFakePress} />
+      <Resource
+        type={pdf.type}
+        url={pdf.mediaUrl}
+        description={pdf.description}
+        thumbnail={pdf.poster}
+        height={200}
+        onPDFButtonPress={handleFakePress}
+      />
     </TestContextProvider>
   ));
 
@@ -30,7 +44,14 @@ if (process.env.NODE_ENV === 'test') {
       const handlePress = jest.fn();
       const component = renderer.create(
         <TestContextProvider>
-          <Resource resource={pdf} height={200} onPDFButtonPress={handlePress} />
+          <Resource
+            type={pdf.type}
+            url={pdf.mediaUrl}
+            description={pdf.description}
+            thumbnail={pdf.poster}
+            height={200}
+            onPDFButtonPress={handlePress}
+          />
         </TestContextProvider>
       );
 

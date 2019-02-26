@@ -2,47 +2,50 @@
 
 import * as React from 'react';
 import {View} from 'react-native';
+
 import {RESOURCE_TYPE} from '../const';
+import type {ResourceType} from '../types';
 import Video from '../containers/video-controlable';
 import {getCleanUri} from '../modules/uri';
-import type {Lesson} from '../layer/data/_types';
 import Preview from './preview';
 
-type OnPDFButtonPress = (url: string, description: string) => void;
-
 type Props = {|
-  resource: Lesson,
+  type: ResourceType,
+  thumbnail: string,
+  url: string,
+  description: string,
   height: number,
-  onPDFButtonPress: OnPDFButtonPress
+  onPDFButtonPress: (url: string, description: string) => void
 |};
 
 class Resource extends React.PureComponent<Props> {
   props: Props;
 
-  handlePress = (resource: Lesson) => () => {
-    const url = getCleanUri(resource.mediaUrl);
-    const description = resource.description;
-    const {onPDFButtonPress} = this.props;
-    onPDFButtonPress(url, description);
+  handlePress = () => {
+    const {url, description, onPDFButtonPress} = this.props;
+    onPDFButtonPress(getCleanUri(url), description);
   };
 
   render() {
-    const {resource, height} = this.props;
-    switch (resource.type) {
+    const {type, thumbnail, url, height} = this.props;
+
+    switch (type) {
       case RESOURCE_TYPE.VIDEO: {
-        const url = resource.mediaUrl && getCleanUri(resource.mediaUrl);
-        const poster = getCleanUri(resource.poster);
-        return <Video source={{uri: url}} preview={{uri: poster}} height={height} />;
+        return (
+          <Video
+            source={{uri: getCleanUri(url)}}
+            preview={{uri: getCleanUri(thumbnail)}}
+            height={height}
+          />
+        );
       }
       case RESOURCE_TYPE.PDF: {
-        const poster = getCleanUri(resource.poster);
-
         return (
           <View style={{height}}>
             <Preview
               type={RESOURCE_TYPE.PDF}
-              source={{uri: poster}}
-              onPress={this.handlePress(resource)}
+              source={{uri: getCleanUri(thumbnail)}}
+              onPress={this.handlePress}
             />
           </View>
         );

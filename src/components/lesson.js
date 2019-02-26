@@ -69,7 +69,10 @@ const Lesson = (props: Props) => {
       </View>
       <Space type="base" />
       <Resource
-        resource={openedResource}
+        type={openedResource.type}
+        url={openedResource.mediaUrl}
+        description={openedResource.description}
+        thumbnail={openedResource.poster}
         height={height}
         onPDFButtonPress={props.onPDFButtonPress}
       />
