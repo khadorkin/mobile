@@ -62,14 +62,5 @@ describe('Cards', () => {
       };
       expect(result).toEqual(expected);
     });
-
-    it('Without payload', () => {
-      const action = {
-        type: FETCH_SUCCESS
-      };
-      // $FlowFixMe this is to emulate an empty payload
-      const result = reducer(undefined, action);
-      expect(result).toEqual(expectedInitialState);
-    });
   });
 });
