@@ -8,8 +8,10 @@ import type {State as NavigationState} from './reducers/navigation';
 import navigation from './reducers/navigation';
 import type {State as DisciplineBundleState} from './reducers/discipline-bundle';
 import type {State as CardsState} from './reducers/cards';
+import type {State as UserState} from './reducers/user';
 import disciplineBundle from './reducers/discipline-bundle';
 import cards from './reducers/cards';
+import user from './reducers/user';
 import DisciplineBundle from './middlewares/discipline-bundle';
 import Cards from './middlewares/cards';
 import type {Options, ReduxDevTools} from './_types';
@@ -18,7 +20,8 @@ export type StoreState = $Exact<{|
   ...$Exact<ReduxState>,
   navigation: NavigationState,
   disciplineBundle: DisciplineBundleState,
-  cards: CardsState
+  cards: CardsState,
+  user: UserState
 |}>;
 
 const {ErrorLogger, ReduxThunkMemoized} = middlewares;
@@ -29,7 +32,8 @@ const reducers = combineReducers({
   ui,
   navigation,
   disciplineBundle,
-  cards
+  cards,
+  user
 });
 
 const createMiddlewares = (options: Options, reduxDevTools?: ReduxDevTools) => {

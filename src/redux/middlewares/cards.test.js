@@ -24,7 +24,12 @@ import {sleep} from '../../utils/tests';
 import createMiddleware from './cards';
 
 const createStore = () => ({
-  getState: jest.fn(),
+  getState: jest.fn(() => ({
+    user: {
+      host: 'https://domain.tld',
+      token: 'foobarbaz'
+    }
+  })),
   dispatch: jest.fn()
 });
 
@@ -112,6 +117,29 @@ describe('Cards', () => {
       };
       expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
       expect(next).toHaveBeenCalledWith(emptyAction);
+    });
+
+    it('should handle unauthenticated user', async () => {
+      const middleware = createMiddleware(options);
+      const store = {
+        ...createStore(),
+        getState: jest.fn(() => ({
+          user: {}
+        }))
+      };
+      const next = jest.fn();
+      // $FlowFixMe this si to test only
+      middleware(store)(next)(action);
+      await sleep();
+      const expectedPayload: FetchErrorPayload = {
+        error: 'Not authenticated'
+      };
+      const expectedAction: Action = {
+        type: FETCH_ERROR,
+        payload: expectedPayload
+      };
+      expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
+      expect(next).toHaveBeenCalledWith(action);
     });
 
     it('should handle find rejection', async () => {

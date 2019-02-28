@@ -20,22 +20,23 @@ import type {Cards, Level, Chapter} from '../../layer/data/_types';
 
 type State = StoreState;
 
-const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWM3NTFhYTY4ZjI3MTMwMDFiMzBlMWIzIiwiYnJhbmQiOiJtb2JpbGUiLCJob3N0IjoiaHR0cHM6Ly9tb2JpbGUtc3RhZ2luZy5jb29ycGFjYWRlbXkuY29tIiwiaWF0IjoxNTUxMTc4ODEwLCJleHAiOjIwMDAwMDAwMDAsImF1ZCI6Im1vYmlsZSIsImlzcyI6ImNvb3JwYWNhZGVteS1qd3QifQ.MRRlxll4lX5lel45679Nj-4IDGsVRwybxsUxbrl20Qs';
-const HOST = 'https://mobile-staging.coorpacademy.com';
-
 const createMiddleware = ({services}: Options): Middleware<State, Action, Dispatch<Action>> => ({
-  dispatch
+  dispatch,
+  getState
 }: MiddlewareAPI<State, Action, Dispatch<Action>>) => (
   next: Dispatch<Action>
 ): Dispatch<Action> => (action: Action) => {
   const {type, payload} = action;
 
   if (type === FETCH_REQUEST) {
+    const {user: {host, token}} = getState();
+
     if (!payload || !payload.language) {
       dispatch(fetchError('Invalid payload'));
+    } else if (!host || !token) {
+      dispatch(fetchError('Not authenticated'));
     } else {
-      services.Cards.find(payload.language, HOST, TOKEN)
+      services.Cards.find(payload.language, host, token)
         .then((result: Cards) => dispatch(fetchSuccess(result, payload.language)))
         .catch(e => {
           dispatch(fetchError(e.toString()));
