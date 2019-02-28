@@ -5,11 +5,11 @@ import {Text} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 
 import {TestContextProvider} from '../utils/tests';
-import {BrandThemeProvider, BrandThemeContext} from './brand-theme-provider';
+import BrandThemeProvider, {BrandThemeContext} from './brand-theme-provider';
 
 storiesOf('BrandThemeProvider', module).add('Colors', () => (
   <TestContextProvider>
-    <BrandThemeProvider>
+    <BrandThemeProvider host="https://domain.tld">
       <BrandThemeContext.Consumer>
         {brandTheme => <Text style={{color: brandTheme.colors.primary}}>Primary color</Text>}
       </BrandThemeContext.Consumer>

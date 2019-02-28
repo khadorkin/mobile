@@ -71,7 +71,6 @@ const Lesson = (props: Props) => {
         const subtitles =
           openedResource &&
           openedResource.subtitleRef &&
-          brandTheme.host &&
           // @todo use user language
           getSubtitlesUri(brandTheme.host, openedResource.subtitleRef, 'en');
 
