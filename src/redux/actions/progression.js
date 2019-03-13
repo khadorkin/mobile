@@ -20,6 +20,7 @@ export const createLevelProgression = (level: Level) => {
   const content: GenericContent = {type: CONTENT_TYPE.LEVEL, ref: level.ref};
   const engineConfig: EngineConfig = {
     version: ENGINE_CONFIG_VERSION,
+    lives: 1,
     livesDisabled: level.infiniteLives
   };
 

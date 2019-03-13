@@ -9,11 +9,13 @@ import {
   getChoices,
   getLives,
   getCurrentCorrection,
+  getCurrentProgression,
   getPreviousSlide,
   getStepContent,
   getQuestionMedia,
   getQuestionType,
   hasSeenLesson as checkHasSeenLesson,
+  hasViewedAResourceAtThisStep as checkHasViewedAResourceAtThisStep,
   validateAnswer
 } from '@coorpacademy/player-store';
 import type {Lesson, Media, QuestionType, Choice} from '@coorpacademy/progression-engine';
@@ -44,11 +46,14 @@ type ConnectedStateProps = {|
   media?: Media,
   isCorrect?: boolean,
   tip?: string,
-  isCurrentScreen?: boolean,
+  isPdfOpen?: boolean,
   keyPoint?: string,
   lives?: number,
   isFinished?: boolean,
   hasViewedAResource?: boolean,
+  hasViewedAResourceAtThisStep?: boolean,
+  offerExtraLife?: boolean,
+  consumedExtraLife?: boolean,
   resourcesForCorrection?: Array<Resource>,
   hasLives: boolean,
   isValidating: boolean,
@@ -99,7 +104,7 @@ class QuestionScreen extends React.PureComponent<Props> {
 
   handleCorrectionNavigation = () => {
     const {
-      isCurrentScreen,
+      isPdfOpen,
       navigation,
       header,
       isCorrect,
@@ -111,11 +116,14 @@ class QuestionScreen extends React.PureComponent<Props> {
       isFinished,
       hasLives,
       hasViewedAResource,
+      hasViewedAResourceAtThisStep,
+      offerExtraLife,
+      consumedExtraLife,
       resourcesForCorrection: resources
     } = this.props;
 
     // not to trigger navigate('Correction') on resourceViewed on a correction card
-    if (!isCurrentScreen) {
+    if (isPdfOpen) {
       return;
     }
 
@@ -132,6 +140,9 @@ class QuestionScreen extends React.PureComponent<Props> {
       isFinished,
       hasLives,
       hasViewedAResource,
+      hasViewedAResourceAtThisStep,
+      offerExtraLife,
+      consumedExtraLife,
       resources
     };
 
@@ -212,11 +223,12 @@ class QuestionScreen extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStateProps => {
   const nextContent = getStepContent(state);
-  const isCurrentScreen = state.navigation.currentScreenName === 'Slide';
+  const progression = getCurrentProgression(state);
+  const isPdfOpen = state.navigation.currentScreenName === 'PdfModal';
 
-  if (!nextContent) {
+  if (!nextContent || progression === undefined || progression.state === undefined) {
     return {
-      isCurrentScreen,
+      isPdfOpen,
       type: undefined,
       header: undefined,
       explanation: undefined,
@@ -245,6 +257,7 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
       }
     };
   }
+
   const {hide: hideLives, count: livesCount} = getLives(state);
   const lives = hideLives ? undefined : livesCount;
   const correction = getCurrentCorrection(state);
@@ -266,6 +279,11 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
   const isFinished = checkIsFinished(state);
   const isValidating = checkIsValidating(state);
   const hasViewedAResource = checkHasSeenLesson(state, true);
+  const hasViewedAResourceAtThisStep = checkHasViewedAResourceAtThisStep(state);
+
+  const stateExtraLife = progression.state.nextContent.ref === 'extraLife';
+  const offerExtraLife = stateExtraLife && !hasViewedAResourceAtThisStep;
+  const consumedExtraLife = stateExtraLife && hasViewedAResourceAtThisStep;
 
   if (!slide) {
     return {
@@ -276,12 +294,15 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
       choices: undefined,
       userChoices: undefined,
       hasViewedAResource,
+      hasViewedAResourceAtThisStep,
+      offerExtraLife,
+      consumedExtraLife,
       answers,
       userAnswers,
       media,
       isCorrect,
       isValidating,
-      isCurrentScreen,
+      isPdfOpen,
       tip: undefined,
       keyPoint: undefined,
       lives,
@@ -328,6 +349,11 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
 
   const resourcesForCorrection: Array<Resource> = reduceToResources(lessons);
 
+  console.log({
+    offerExtraLife,
+    consumedExtraLife
+  });
+
   return {
     type,
     header,
@@ -340,9 +366,12 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     media,
     isCorrect,
     isFinished,
-    isCurrentScreen,
+    isPdfOpen,
     hasLives,
     hasViewedAResource,
+    hasViewedAResourceAtThisStep,
+    offerExtraLife,
+    consumedExtraLife,
     resourcesForCorrection,
     isValidating,
     tip: slide && slide.tips,

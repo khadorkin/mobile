@@ -35,6 +35,9 @@ type Props = {|
   isFinished: boolean,
   isLoading: boolean,
   hasViewedAResource: boolean,
+  hasViewedAResourceAtThisStep: boolean,
+  offerExtraLife: boolean,
+  consumedExtraLife: boolean,
   resources: Array<ResourceType>,
   lives?: number,
   onPDFButtonPress: (url: string, description: string) => void
@@ -111,7 +114,8 @@ class Correction extends React.PureComponent<Props> {
       keyPoint,
       isCorrect,
       layout,
-      onPDFButtonPress
+      onPDFButtonPress,
+      offerExtraLife
     } = this.props;
     // This is the offset added by the deck swiper
     const offsetBottom = CARDS_LENGTH * 7;
@@ -167,7 +171,7 @@ class Correction extends React.PureComponent<Props> {
                 testID={testIDSuffix}
               />
               <Text testID={'resource-description-' + testIDSuffix} style={styles.resourceTitle}>
-                {resource.description}
+                {resource.description} {offerExtraLife ? '@Alan todo extralife overlay ' : ''}
               </Text>
             </View>
           )}
@@ -186,9 +190,12 @@ class Correction extends React.PureComponent<Props> {
       isLoading,
       lives,
       hasViewedAResource,
+      hasViewedAResourceAtThisStep,
+      consumedExtraLife,
       resources
     } = this.props;
 
+    // < @todo extract createCards() ----------------------
     const correctionCard: Card = {
       type: CARD_TYPE.CORRECTION,
       title: translations.correction
@@ -227,13 +234,21 @@ class Correction extends React.PureComponent<Props> {
     ];
 
     let cards: Array<Card> = [];
+    const resourceWasSeenBefore = hasViewedAResource && !hasViewedAResourceAtThisStep;
+
     if (isCorrect) {
-      cards = hasViewedAResource ? isCorrectAndHasViewResource : isCorrectAndHasNotViewResource;
+      cards = resourceWasSeenBefore ? isCorrectAndHasViewResource : isCorrectAndHasNotViewResource;
     } else {
-      cards = hasViewedAResource
+      cards = resourceWasSeenBefore
         ? isNotCorrectAndHasViewResource
         : isNotCorrectAndHasNotViewResource;
     }
+
+    // ------------ @todo extract createCards() >
+
+    const hasLivesRemaining = lives === undefined || lives > 0;
+    const canGoNext = hasLivesRemaining || consumedExtraLife;
+    const buttonLabel = canGoNext ? translations.next : 'quit';
 
     return (
       <View
@@ -272,9 +287,9 @@ class Correction extends React.PureComponent<Props> {
             isInverted
             onPress={onButtonPress}
             isLoading={isLoading}
-            testID={`button-${isFinished ? 'next' : 'next-question'}`}
+            testID={`button-${isFinished ? 'quit' : 'next-question'}`}
           >
-            {translations.next}
+            {buttonLabel}
           </Button>
         </View>
       </View>

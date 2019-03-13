@@ -30,6 +30,9 @@ export type Params = {|
   lives?: number,
   hasLives: boolean,
   hasViewedAResource: boolean,
+  hasViewedAResourceAtThisStep: boolean,
+  offerExtraLife: boolean,
+  consumedExtraLife: boolean,
   resources: Array<Resource>,
   isFinished: boolean
 |};
@@ -105,7 +108,17 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
     const {navigation} = this.props;
     const {isCorrect, isFinished, hasLives} = navigation.state.params;
 
+    // if(consumedExtraLife){
+    //   this.props.acceptExtraLife()
+    // }
+    // else if(offerExtraLife) {
+    //   this.props.refuseExtraLife()
+    // }
+    // else {
+    //   this.props.selectProgression();
+    // }
     this.props.selectProgression();
+
     this.setState({isLoading: true});
 
     if (isFinished) {
@@ -144,6 +157,9 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
       keyPoint,
       isFinished,
       hasViewedAResource,
+      hasViewedAResourceAtThisStep,
+      offerExtraLife,
+      consumedExtraLife,
       resources
     } = this.props.navigation.state.params;
 
@@ -166,7 +182,10 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
           onButtonPress={this.handleButtonPress}
           isFinished={isFinished}
           isLoading={isLoading}
+          offerExtraLife={offerExtraLife}
+          consumedExtraLife={consumedExtraLife}
           hasViewedAResource={hasViewedAResource}
+          hasViewedAResourceAtThisStep={hasViewedAResourceAtThisStep}
           resources={resources}
           lives={lives}
           onPDFButtonPress={this.handlePDFButtonPress}

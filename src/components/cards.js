@@ -19,21 +19,47 @@ export type Props = {|
   onRef?: (element: DeckSwiper | null) => void
 |};
 
-const Cards = ({items, renderItem, cardStyle, onRef}: Props) => (
-  <DeckSwiper
-    cards={items}
-    renderCard={renderItem}
-    stackSize={items.length}
-    infinite
-    animateCardOpacity
-    cardVerticalMargin={0}
-    stackSeparation={15}
-    stackScale={5}
-    backgroundColor="transparent"
-    cardHorizontalMargin={theme.spacing.base}
-    cardStyle={cardStyle}
-    ref={onRef}
-  />
-);
+type State = {|
+  cardIndexShown: number
+|};
+
+class Cards extends React.PureComponent<Props, State> {
+  props: Props;
+
+  state: State = {
+    cardIndexShown: 0
+  };
+
+  handleSwiped = (cardIndexSwiped: number) => {
+    this.setState({cardIndexShown: cardIndexSwiped + 1});
+  };
+
+  handleSwipedAll = () => {
+    this.setState({cardIndexShown: 0});
+  };
+
+  render() {
+    const {items, renderItem, cardStyle, onRef} = this.props;
+    return (
+      <DeckSwiper
+        cards={items}
+        onSwiped={this.handleSwiped}
+        onSwipedAll={this.handleSwipedAll}
+        cardIndex={this.state.cardIndexShown}
+        renderCard={renderItem}
+        stackSize={items.length}
+        infinite
+        animateCardOpacity
+        cardVerticalMargin={0}
+        stackSeparation={15}
+        stackScale={5}
+        backgroundColor="transparent"
+        cardHorizontalMargin={theme.spacing.base}
+        cardStyle={cardStyle}
+        ref={onRef}
+      />
+    );
+  }
+}
 
 export default Cards;
