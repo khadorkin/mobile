@@ -5,7 +5,9 @@ import {StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationEvents} from 'react-navigation';
 import {
+  acceptExtraLife,
   getRoute,
+  refuseExtraLife,
   selectProgression,
   selectRoute,
   getCurrentProgressionId,
@@ -31,7 +33,7 @@ export type Params = {|
   hasLives: boolean,
   hasViewedAResource: boolean,
   hasViewedAResourceAtThisStep: boolean,
-  offerExtraLife: boolean,
+  offeringExtraLife: boolean,
   consumedExtraLife: boolean,
   resources: Array<Resource>,
   isFinished: boolean
@@ -44,7 +46,9 @@ type ConnectedStateProps = {|
 type ConnectedDispatchProps = {|
   play: typeof play,
   selectProgression: () => (dispatch: Dispatch, getState: GetState) => void,
-  selectRoute: typeof selectRoute
+  selectRoute: typeof selectRoute,
+  acceptExtraLife: typeof acceptExtraLife,
+  refuseExtraLife: typeof refuseExtraLife
 |};
 
 type Props = {|
@@ -103,25 +107,28 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
     this.props.navigation.navigate('PdfModal', pdfParams);
   };
 
-  handleButtonPress = () => {
+  handleButtonPress = async () => {
     const {lives} = this.state;
     const {navigation} = this.props;
-    const {isCorrect, isFinished, hasLives} = navigation.state.params;
-
-    // if(consumedExtraLife){
-    //   this.props.acceptExtraLife()
-    // }
-    // else if(offerExtraLife) {
-    //   this.props.refuseExtraLife()
-    // }
-    // else {
-    //   this.props.selectProgression();
-    // }
-    this.props.selectProgression();
+    const {
+      isCorrect,
+      isFinished,
+      hasLives,
+      consumedExtraLife,
+      offeringExtraLife
+    } = navigation.state.params;
 
     this.setState({isLoading: true});
 
-    if (isFinished) {
+    if (consumedExtraLife) {
+      await this.props.acceptExtraLife();
+    } else if (offeringExtraLife) {
+      await this.props.refuseExtraLife();
+    } else {
+      await this.props.selectProgression();
+    }
+
+    if (isFinished || offeringExtraLife) {
       const levelEndParams: LevelEndScreenParams = {
         isCorrect: isCorrect || (hasLives && lives !== undefined && lives > 0)
       };
@@ -158,7 +165,7 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
       isFinished,
       hasViewedAResource,
       hasViewedAResourceAtThisStep,
-      offerExtraLife,
+      offeringExtraLife,
       consumedExtraLife,
       resources
     } = this.props.navigation.state.params;
@@ -182,7 +189,7 @@ class CorrectionScreen extends React.PureComponent<Props, State> {
           onButtonPress={this.handleButtonPress}
           isFinished={isFinished}
           isLoading={isLoading}
-          offerExtraLife={offerExtraLife}
+          offeringExtraLife={offeringExtraLife}
           consumedExtraLife={consumedExtraLife}
           hasViewedAResource={hasViewedAResource}
           hasViewedAResourceAtThisStep={hasViewedAResourceAtThisStep}
@@ -211,6 +218,8 @@ const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
 const mapDispatchToProps: ConnectedDispatchProps = {
   play,
   selectProgression: _selectProgression,
+  acceptExtraLife,
+  refuseExtraLife,
   selectRoute
 };
 

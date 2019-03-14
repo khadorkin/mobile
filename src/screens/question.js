@@ -52,7 +52,7 @@ type ConnectedStateProps = {|
   isFinished?: boolean,
   hasViewedAResource?: boolean,
   hasViewedAResourceAtThisStep?: boolean,
-  offerExtraLife?: boolean,
+  offeringExtraLife?: boolean,
   consumedExtraLife?: boolean,
   resourcesForCorrection?: Array<Resource>,
   hasLives: boolean,
@@ -117,12 +117,12 @@ class QuestionScreen extends React.PureComponent<Props> {
       hasLives,
       hasViewedAResource,
       hasViewedAResourceAtThisStep,
-      offerExtraLife,
+      offeringExtraLife,
       consumedExtraLife,
       resourcesForCorrection: resources
     } = this.props;
 
-    // not to trigger navigate('Correction') on resourceViewed on a correction card
+    // not to trigger navigate('Correction') on resourceViewed on extra-life opening a pdf
     if (isPdfOpen) {
       return;
     }
@@ -141,7 +141,7 @@ class QuestionScreen extends React.PureComponent<Props> {
       hasLives,
       hasViewedAResource,
       hasViewedAResourceAtThisStep,
-      offerExtraLife,
+      offeringExtraLife,
       consumedExtraLife,
       resources
     };
@@ -282,7 +282,7 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
   const hasViewedAResourceAtThisStep = checkHasViewedAResourceAtThisStep(state);
 
   const stateExtraLife = progression.state.nextContent.ref === 'extraLife';
-  const offerExtraLife = stateExtraLife && !hasViewedAResourceAtThisStep;
+  const offeringExtraLife = stateExtraLife && !hasViewedAResourceAtThisStep;
   const consumedExtraLife = stateExtraLife && hasViewedAResourceAtThisStep;
 
   if (!slide) {
@@ -295,7 +295,7 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
       userChoices: undefined,
       hasViewedAResource,
       hasViewedAResourceAtThisStep,
-      offerExtraLife,
+      offeringExtraLife,
       consumedExtraLife,
       answers,
       userAnswers,
@@ -349,11 +349,6 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
 
   const resourcesForCorrection: Array<Resource> = reduceToResources(lessons);
 
-  console.log({
-    offerExtraLife,
-    consumedExtraLife
-  });
-
   return {
     type,
     header,
@@ -370,7 +365,7 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     hasLives,
     hasViewedAResource,
     hasViewedAResourceAtThisStep,
-    offerExtraLife,
+    offeringExtraLife,
     consumedExtraLife,
     resourcesForCorrection,
     isValidating,

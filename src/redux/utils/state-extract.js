@@ -11,7 +11,7 @@ import {
 import type {Slide} from '@coorpacademy/progression-engine';
 import type {Lives} from '@coorpacademy/player-store';
 
-import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
+import {CONTENT_TYPE} from '../../const';
 import type {StoreState} from '../store';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {OfflineContents, OfflineStatus} from '../reducers/discipline-bundle';
@@ -34,9 +34,7 @@ export const checkIsFinished = (state: StoreState): boolean => {
     return false;
   }
 
-  const isExtraLife = nextContent.ref === SPECIFIC_CONTENT_REF.EXTRA_LIFE;
-  const isFinished =
-    isExtraLife || [CONTENT_TYPE.SUCCESS, CONTENT_TYPE.FAILURE].includes(nextContent.type);
+  const isFinished = [CONTENT_TYPE.SUCCESS, CONTENT_TYPE.FAILURE].includes(nextContent.type);
 
   return isFinished;
 };

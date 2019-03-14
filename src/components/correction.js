@@ -36,7 +36,7 @@ type Props = {|
   isLoading: boolean,
   hasViewedAResource: boolean,
   hasViewedAResourceAtThisStep: boolean,
-  offerExtraLife: boolean,
+  offeringExtraLife: boolean,
   consumedExtraLife: boolean,
   resources: Array<ResourceType>,
   lives?: number,
@@ -115,7 +115,7 @@ class Correction extends React.PureComponent<Props> {
       isCorrect,
       layout,
       onPDFButtonPress,
-      offerExtraLife
+      offeringExtraLife
     } = this.props;
     // This is the offset added by the deck swiper
     const offsetBottom = CARDS_LENGTH * 7;
@@ -171,7 +171,7 @@ class Correction extends React.PureComponent<Props> {
                 testID={testIDSuffix}
               />
               <Text testID={'resource-description-' + testIDSuffix} style={styles.resourceTitle}>
-                {resource.description} {offerExtraLife ? '@Alan todo extralife overlay ' : ''}
+                {resource.description} {offeringExtraLife ? '@Alan todo extralife overlay ' : ''}
               </Text>
             </View>
           )}
