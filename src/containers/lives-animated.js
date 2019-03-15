@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {Animated} from 'react-native';
+import {Animated, Easing} from 'react-native';
 
 import Lives from '../components/lives';
 
@@ -11,9 +11,16 @@ type Props = {|
   isBroken?: boolean,
   testID?: string
 |};
+type State = {|
+  winningLife: boolean
+|};
 
-class LivesAnimated extends React.PureComponent<Props> {
+class LivesAnimated extends React.PureComponent<Props, State> {
   props: Props;
+
+  state: State = {
+    winningLife: false
+  };
 
   shake: Animated.Value = new Animated.Value(0);
 
@@ -21,17 +28,33 @@ class LivesAnimated extends React.PureComponent<Props> {
 
   broken: Animated.Value = new Animated.Value(0);
 
+  textGoUp: Animated.Value = new Animated.Value(0);
+
+  textGoDown: Animated.Value = new Animated.Value(0);
+
+  tmpTextGoUp: Animated.Value = new Animated.Value(0);
+
+  tmpTextGoDown: Animated.Value = new Animated.Value(0);
+
   componentDidUpdate(prevProps: Props) {
     if (this.props.count < prevProps.count) {
+      this.updateUpdate({winningLife: false});
       this.loseLife();
     }
     if (this.props.count > prevProps.count) {
+      this.updateUpdate({winningLife: true});
       this.winLife();
     }
   }
 
+  updateUpdate(newState: State) {
+    this.setState(newState);
+  }
+
   loseLife = () => {
     Animated.sequence([
+      Animated.timing(this.textGoDown, {toValue: 0, duration: 0}),
+      Animated.timing(this.tmpTextGoDown, {toValue: 0, duration: 0}),
       Animated.timing(this.broken, {toValue: 0, duration: 0}),
       Animated.timing(this.shake, {toValue: 0, duration: 0}),
       Animated.timing(this.shake, {
@@ -39,6 +62,16 @@ class LivesAnimated extends React.PureComponent<Props> {
       }),
       Animated.delay(350),
       Animated.parallel([
+        Animated.timing(this.textGoDown, {
+          toValue: 1,
+          duration: 1200,
+          easing: Easing.out(Easing.poly(5))
+        }),
+        Animated.timing(this.tmpTextGoDown, {
+          toValue: 1,
+          duration: 1200,
+          easing: Easing.out(Easing.poly(5))
+        }),
         Animated.timing(this.shake, {toValue: 0, duration: 0}),
         Animated.timing(this.shake, {
           toValue: 1,
@@ -62,9 +95,20 @@ class LivesAnimated extends React.PureComponent<Props> {
 
   winLife = () => {
     Animated.sequence([
-      Animated.timing(this.broken, {toValue: 1, duration: 0}),
+      Animated.timing(this.textGoUp, {toValue: 0, duration: 0}),
+      Animated.timing(this.tmpTextGoUp, {toValue: 0, duration: 0}),
+      Animated.timing(this.scale, {toValue: 0, duration: 0}),
       Animated.parallel([
-        Animated.timing(this.scale, {toValue: 0, duration: 0}),
+        Animated.timing(this.textGoUp, {
+          toValue: 1,
+          duration: 1200,
+          easing: Easing.out(Easing.poly(5))
+        }),
+        Animated.timing(this.tmpTextGoUp, {
+          toValue: 1,
+          duration: 1200,
+          easing: Easing.out(Easing.poly(5))
+        }),
         Animated.timing(this.scale, {
           toValue: 1,
           duration: 1200
@@ -104,13 +148,37 @@ class LivesAnimated extends React.PureComponent<Props> {
       outputRange: [0, 1]
     });
 
+    let textTranslateY, tmpTextTranslateY;
+    if (this.state.winningLife) {
+      textTranslateY = this.textGoUp.interpolate({
+        inputRange: [0, 1],
+        outputRange: [50, 0]
+      });
+      tmpTextTranslateY = this.tmpTextGoUp.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, -50]
+      });
+    } else {
+      textTranslateY = this.textGoDown.interpolate({
+        inputRange: [0, 1],
+        outputRange: [-50, 0]
+      });
+      tmpTextTranslateY = this.tmpTextGoDown.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 50]
+      });
+    }
+
     return (
       <Lives
         count={count}
+        winningLife={this.state.winningLife}
         height={height}
         isBroken={isBroken}
         testID={testID}
         translateX={translateX}
+        textTranslateY={textTranslateY}
+        tmpTextTranslateY={tmpTextTranslateY}
         scaleX={scaleX}
         scaleY={scaleY}
         heartOpacity={heartOpacity}

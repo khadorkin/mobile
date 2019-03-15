@@ -13,9 +13,12 @@ import theme from '../modules/theme';
 export type Props = {|
   count: number,
   height: number,
+  winningLife: boolean,
   isBroken?: boolean,
   testID?: string,
   translateX?: Animated.Interpolation,
+  textTranslateY?: Animated.Interpolation,
+  tmpTextTranslateY?: Animated.Interpolation,
   scaleX?: Animated.Interpolation,
   scaleY?: Animated.Interpolation,
   heartOpacity?: Animated.Interpolation,
@@ -46,15 +49,21 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: theme.fontWeight.bold,
     color: theme.colors.gray.dark
+  },
+  texts: {
+    position: 'relative'
   }
 });
 
 const Lives = ({
   count,
+  winningLife,
   height,
   isBroken,
   testID = 'lives',
   translateX,
+  textTranslateY,
+  tmpTextTranslateY,
   scaleX,
   scaleY,
   heartOpacity,
@@ -68,6 +77,8 @@ const Lives = ({
     height
   };
   const transform = [];
+  const textTransform = [];
+  const tmpTextTransform = [];
   if (translateX) {
     transform.push({translateX});
   }
@@ -77,6 +88,13 @@ const Lives = ({
   if (scaleY) {
     transform.push({scaleY});
   }
+  if (textTranslateY) {
+    textTransform.push({translateY: textTranslateY});
+  }
+  if (tmpTextTranslateY) {
+    tmpTextTransform.push({translateY: textTranslateY});
+  }
+
   const heartStyle = {
     height: heartHeight,
     width: heartHeight,
@@ -84,18 +102,52 @@ const Lives = ({
   };
   const livesStyle = {
     width: height,
-    height
+    height,
+    overflow: 'hidden'
   };
   const textStyle = {
     fontSize: height / 3
   };
+  const animatedTextStyle = {
+    left: -height / 6,
+    top: -height / 6,
+    position: 'absolute',
+    backgroundColor: '#ff00ff',
+    transform: textTransform
+  };
+  const animatedTmpTextTransform = {
+    left: -height / 6,
+    position: 'absolute',
+    backgroundColor: '#0faa0f',
+    transform: textTransform
+  };
 
   const brokenSuffix = isBroken ? '-broken' : '';
+  const tmpCount = winningLife ? count - 1 : count + 1;
 
   return (
     <View style={[styles.container, containerStyle]} testID={testID}>
       <View style={[styles.lives, livesStyle]} testID={`${testID}-${count}${brokenSuffix}`}>
-        <Text style={[styles.text, textStyle]}>x{count}</Text>
+        {winningLife === true && (
+          <View style={styles.texts}>
+            <Animated.View style={animatedTmpTextTransform}>
+              <Text style={[styles.text, textStyle]}>x{tmpCount}</Text>
+            </Animated.View>
+            <Animated.View style={animatedTextStyle}>
+              <Text style={[styles.text, textStyle]}>x{count}</Text>
+            </Animated.View>
+          </View>
+        )}
+        {winningLife === false && (
+          <View style={styles.texts}>
+            <Animated.View style={animatedTextStyle}>
+              <Text style={[styles.text, textStyle]}>x{count}</Text>
+            </Animated.View>
+            <Animated.View style={animatedTmpTextTransform}>
+              <Text style={[styles.text, textStyle]}>x{tmpCount}</Text>
+            </Animated.View>
+          </View>
+        )}
       </View>
       <Animated.View style={[styles.heart, heartStyle]}>
         <HeartOutlineIcon

@@ -102,8 +102,16 @@ const styles = StyleSheet.create({
   }
 });
 
-class Correction extends React.PureComponent<Props> {
+type State = {|
+  l: number
+|};
+
+class Correction extends React.PureComponent<Props, State> {
   props: Props;
+
+  state: State = {
+    l: 1
+  };
 
   createCards(): Array<Card> {
     const {isCorrect, hasViewedAResource, hasViewedAResourceAtThisStep, resources} = this.props;
@@ -214,6 +222,14 @@ class Correction extends React.PureComponent<Props> {
     );
   };
 
+  handleAdd = () => {
+    this.setState({l: this.state.l + 1});
+  };
+
+  handleRemove = () => {
+    this.setState({l: this.state.l - 1});
+  };
+
   render() {
     const {
       title,
@@ -247,22 +263,27 @@ class Correction extends React.PureComponent<Props> {
             </Text>
           </View>
           {lives !== undefined && (
-            <LivesAnimated
-              count={consumedExtraLife ? lives + 1 : lives}
-              isBroken={!isCorrect}
-              height={67}
-              testID="correction-lives"
-            />
+            <View>
+              <LivesAnimated
+                count={this.state.l}
+                // count={consumedExtraLife ? lives + 1 : lives}
+                isBroken={!isCorrect}
+                height={67}
+                testID="correction-lives"
+              />
+              <Button onPress={this.handleAdd}>add</Button>
+              <Button onPress={this.handleRemove}>remove</Button>
+            </View>
           )}
         </View>
         <Space type="base" />
-        {layout && (
+        {/* {layout && (
           <Cards
             items={cards}
             renderItem={this.renderCard}
             cardStyle={{paddingTop: (layout.height - CARDS_HEIGHT) / 2}}
           />
-        )}
+        )} */}
         <Space type="base" />
         <View style={styles.footer}>
           <Button
