@@ -105,6 +105,41 @@ const styles = StyleSheet.create({
 class Correction extends React.PureComponent<Props> {
   props: Props;
 
+  createCards(): Array<Card> {
+    const {isCorrect, hasViewedAResource, hasViewedAResourceAtThisStep, resources} = this.props;
+    const correctionCard: Card = {
+      type: CARD_TYPE.CORRECTION,
+      title: translations.correction
+    };
+    const tipCard = {type: CARD_TYPE.TIP, title: translations.didYouKnowThat};
+    const keyPointCard = {type: CARD_TYPE.KEY_POINT, title: translations.keyPoint};
+    const lessonCards = resources.map(resource => ({
+      type: CARD_TYPE.RESOURCE,
+      title: translations.accessTheLesson,
+      resource
+    }));
+
+    const resourceWasSeenBefore = hasViewedAResource && !hasViewedAResourceAtThisStep;
+
+    if (isCorrect && resourceWasSeenBefore) {
+      return [tipCard, keyPointCard, correctionCard, ...lessonCards];
+    }
+
+    if (isCorrect && !resourceWasSeenBefore) {
+      return [tipCard, ...lessonCards, keyPointCard, correctionCard];
+    }
+
+    if (!isCorrect && resourceWasSeenBefore) {
+      return [correctionCard, keyPointCard, ...lessonCards, tipCard];
+    }
+
+    if (!isCorrect && !resourceWasSeenBefore) {
+      return [correctionCard, ...lessonCards, keyPointCard, tipCard];
+    }
+
+    return [];
+  }
+
   renderCard = ({type, title: cardTitle, resource}: Card) => {
     const {
       answers,
@@ -189,63 +224,10 @@ class Correction extends React.PureComponent<Props> {
       isFinished,
       isLoading,
       lives,
-      hasViewedAResource,
-      hasViewedAResourceAtThisStep,
-      consumedExtraLife,
-      resources
+      consumedExtraLife
     } = this.props;
 
-    // < @todo extract createCards() ----------------------
-    const correctionCard: Card = {
-      type: CARD_TYPE.CORRECTION,
-      title: translations.correction
-    };
-    const tipCard = {type: CARD_TYPE.TIP, title: translations.didYouKnowThat};
-    const keyPointCard = {type: CARD_TYPE.KEY_POINT, title: translations.keyPoint};
-    const lessonCards = resources.map(resource => ({
-      type: CARD_TYPE.RESOURCE,
-      title: translations.accessTheLesson,
-      resource
-    }));
-
-    const isCorrectAndHasViewResource: Array<Card> = [
-      tipCard,
-      keyPointCard,
-      correctionCard,
-      ...lessonCards
-    ];
-    const isCorrectAndHasNotViewResource: Array<Card> = [
-      tipCard,
-      ...lessonCards,
-      keyPointCard,
-      correctionCard
-    ];
-    const isNotCorrectAndHasViewResource: Array<Card> = [
-      correctionCard,
-      keyPointCard,
-      ...lessonCards,
-      tipCard
-    ];
-    const isNotCorrectAndHasNotViewResource: Array<Card> = [
-      correctionCard,
-      ...lessonCards,
-      keyPointCard,
-      tipCard
-    ];
-
-    let cards: Array<Card> = [];
-    const resourceWasSeenBefore = hasViewedAResource && !hasViewedAResourceAtThisStep;
-
-    if (isCorrect) {
-      cards = resourceWasSeenBefore ? isCorrectAndHasViewResource : isCorrectAndHasNotViewResource;
-    } else {
-      cards = resourceWasSeenBefore
-        ? isNotCorrectAndHasViewResource
-        : isNotCorrectAndHasNotViewResource;
-    }
-
-    // ------------ @todo extract createCards() >
-
+    const cards = this.createCards();
     const hasLivesRemaining = lives === undefined || lives > 0;
     const canGoNext = hasLivesRemaining || consumedExtraLife;
     const buttonLabel = canGoNext ? translations.next : 'quit';
