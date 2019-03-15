@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   logo: {
     height: 36,
     width: '100%',
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    marginTop: theme.spacing.base
   },
   title: {
     fontSize: theme.fontSize.large,
