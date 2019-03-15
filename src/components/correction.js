@@ -248,7 +248,7 @@ class Correction extends React.PureComponent<Props> {
           </View>
           {lives !== undefined && (
             <LivesAnimated
-              count={lives}
+              count={consumedExtraLife ? lives + 1 : lives}
               isBroken={!isCorrect}
               height={67}
               testID="correction-lives"
