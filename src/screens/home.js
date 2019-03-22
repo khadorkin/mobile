@@ -3,6 +3,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {NavigationActions} from 'react-navigation';
+import {StatusBar} from 'react-native';
 import Home from '../components/home';
 import Screen from '../components/screen';
 import {selectCard, fetchCards} from '../redux/actions/cards';
@@ -11,6 +12,7 @@ import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import localToken from '../utils/local-token';
 import {signIn, signOut} from '../redux/actions/authentication';
 import translationUtil from '../translations';
+import {BLUE_COORP_DARK} from '../modules/theme';
 
 type ConnectedDispatchProps = {|
   selectCard: typeof selectCard,
@@ -58,6 +60,7 @@ class HomeScreen extends React.PureComponent<Props> {
     const {items} = this.props;
     return (
       <Screen testID="home-screen" noSafeArea>
+        <StatusBar barStyle="dark-content" backgroundColor={BLUE_COORP_DARK} />
         <Home
           onCardPress={this.handleCardPress}
           // $FlowFixMe
