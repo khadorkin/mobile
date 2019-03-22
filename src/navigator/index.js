@@ -9,6 +9,7 @@ import type {
   NavigationStackRouterConfig
 } from 'react-navigation';
 import {NovaCompositionNavigationArrowLeft} from '@coorpacademy/nova-icons';
+import orientation from 'react-native-orientation-locker';
 
 import theme from '../modules/theme';
 import Header from '../containers/header';
@@ -139,6 +140,10 @@ const extractScreens = (state: NavigationState): ExtractScreensResult => {
 
 class NavigatorWithState extends React.PureComponent<Props> {
   props: Props;
+
+  componentDidMount() {
+    orientation.lockToPortrait();
+  }
 
   handleNavigationStateChange = (prevState: NavigationState, currentState: NavigationState) => {
     const {onScreenChange} = this.props;

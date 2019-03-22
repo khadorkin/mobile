@@ -61,7 +61,7 @@ class VideoControlable extends React.PureComponent<Props, State> {
   handleShrink = () => {
     if (this.videoPlayer) {
       this.videoPlayer.player.ref.dismissFullscreenPlayer();
-      orientation.unlockAllOrientations();
+      orientation.lockToPortrait();
       this.setState({
         isFullScreen: false
       });
