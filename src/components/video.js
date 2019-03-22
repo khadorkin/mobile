@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, View, TouchableOpacity, Platform} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Platform, StatusBar} from 'react-native';
 import VideoPlayer from '@coorpacademy/react-native-video-controls';
 import {TextTrackType} from 'react-native-video';
 import {NovaSolidDesignActionsRedo} from '@coorpacademy/nova-icons';
@@ -141,6 +141,7 @@ const Video = ({
       style={[styles.container, isFullScreen && styles.fullScreen, {height: containerHeight}]}
       testID={`video-container${testIDFullscreenSuffix}`}
     >
+      <StatusBar hidden={isFullScreen} />
       {step === STEP.PREVIEW && (
         <Preview
           type={extralifeOverlay ? EXTRALIFE : RESOURCE_TYPE.VIDEO}
