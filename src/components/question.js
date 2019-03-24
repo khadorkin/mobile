@@ -1,7 +1,8 @@
-// @flow strict
+// @flow
 
 import * as React from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import type {Media, QuestionType, Choice} from '@coorpacademy/progression-engine';
 import type {SliderProps} from '../types';
 
@@ -87,7 +88,12 @@ const Question = ({
   const mediaUri = media && media.url && getCleanUri(media.url);
 
   return (
-    <View testID="question" style={styles.container}>
+    // $FlowFixMe
+    <KeyboardAwareScrollView
+      testID="question"
+      contentContainerStyle={styles.container}
+      enableOnAndroid
+    >
       <View style={styles.questionContainer}>
         <QuestionTitle>{header}</QuestionTitle>
         <Space type="small" />
@@ -137,7 +143,7 @@ const Question = ({
           {translations.validate}
         </Button>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
