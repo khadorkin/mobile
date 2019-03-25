@@ -10774,6 +10774,11 @@ react-native-card-flip@^1.0.4:
   dependencies:
     prop-types "15.5.10"
 
+react-native-device-info@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-1.1.0.tgz#bcf5b0d4522413eb9970e4299d5bed29ba28b602"
+  integrity sha512-RfWBWTHTyFDDC/Xg4FG0VXE/hv98JkkCGCy5yUzSPT4lIQVHRo5/vN73T4dYR8P9wA8MSlATtqm2Wx+TOnk/Kg==
+
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
   version "1.0.15"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.0.15.tgz#7e0d0a457820a3c9325a3d492daaed14400508a6"
