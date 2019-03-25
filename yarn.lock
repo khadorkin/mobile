@@ -10809,10 +10809,10 @@ react-native-localization@^2.0.3:
     react "^16.0.0"
     react-localization "^1.0.13"
 
-react-native-orientation-locker@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/react-native-orientation-locker/-/react-native-orientation-locker-1.1.1.tgz#1192fc9b0571c9bdf749633d553104f7bbc72c16"
-  integrity sha512-JFypx9gJulWT0H3izHMMZgQikeELtYTZDQbrip1RI3bnY7V1vY5uZ0XsmKCR2BSWXWXfx8wLBa69QpI9+CA8rw==
+react-native-orientation-locker@1.1.5:
+  version "1.1.5"
+  resolved "https://registry.npmjs.org/react-native-orientation-locker/-/react-native-orientation-locker-1.1.5.tgz#695babee0e0b97a9620a12bb677792d0b9b88ef8"
+  integrity sha512-RY2kwXK1SNq8+nQN0xVCTdi0A08FnUtzR4dOOEm2dGUUIcxSqnseE7adx5cr+oqwd0WUqb043MS+NKDPMUCmMA==
 
 react-native-pdf@5.0.8:
   version "5.0.8"
