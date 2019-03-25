@@ -10,6 +10,7 @@ import type {
 } from 'react-navigation';
 import {NovaCompositionNavigationArrowLeft} from '@coorpacademy/nova-icons';
 import orientation from 'react-native-orientation-locker';
+import DeviceInfo from 'react-native-device-info';
 
 import theme from '../modules/theme';
 import Header from '../containers/header';
@@ -24,6 +25,8 @@ import {slideNavigator, slideModalsNavigator} from './slide';
 import pdfNavigator from './pdf';
 import browserNavigator from './browser';
 import navigationOptions, {navigationOptionsWithoutHeader} from './navigation-options';
+
+export const IS_TABLET = DeviceInfo.isTablet();
 
 const _Header = (props: NavigationStackRouterConfig) => <Header {...props} />;
 
@@ -143,6 +146,9 @@ class NavigatorWithState extends React.PureComponent<Props> {
 
   componentDidMount() {
     orientation.lockToPortrait();
+    if (IS_TABLET) {
+      orientation.unlockAllOrientations();
+    }
   }
 
   handleNavigationStateChange = (prevState: NavigationState, currentState: NavigationState) => {

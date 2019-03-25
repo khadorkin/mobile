@@ -203,26 +203,26 @@ class Correction extends React.PureComponent<Props> {
               )}
               {type === CARD_TYPE.RESOURCE &&
                 resource && (
-                  <View>
-                    <Resource
-                      type={resource.type}
-                      url={resource.url}
-                      description={resource.description}
-                      thumbnail={resource.poster}
-                      subtitles={subtitleUri}
-                      height={200}
-                      onPDFButtonPress={onPDFButtonPress}
-                      onVideoPlay={onVideoPlay}
-                      testID={testIDSuffix}
-                      extralifeOverlay={offeringExtraLife}
-                    />
-                    <Text
-                      testID={'resource-description-' + testIDSuffix}
-                      style={styles.resourceTitle}
-                    >
-                      {resource.description}
-                    </Text>
-                  </View>
+                    <React.Fragment>
+                      <Resource
+                        type={resource.type}
+                        url={resource.url}
+                        description={resource.description}
+                        thumbnail={resource.poster}
+                        subtitles={subtitleUri}
+                        height={200}
+                        onPDFButtonPress={onPDFButtonPress}
+                        onVideoPlay={onVideoPlay}
+                        testID={testIDSuffix}
+                        extralifeOverlay={offeringExtraLife}
+                      />
+                      <Text
+                        testID={'resource-description-' + testIDSuffix}
+                        style={styles.resourceTitle}
+                      >
+                        {resource.description}
+                      </Text>
+                    </React.Fragment>
                 )}
             </CardComponent>
           );
