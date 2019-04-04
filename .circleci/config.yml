@@ -68,7 +68,7 @@ jobs:
           at: ~/app
 
       - restore_cache:
-          key: detox-v3-{{ arch }}
+          key: detox-v4-{{ arch }}
 
       - run:
           name: Detox framework
@@ -77,7 +77,7 @@ jobs:
             detox build-framework-cache
 
       - save_cache:
-          key: detox-v3-{{ arch }}
+          key: detox-v4-{{ arch }}
           paths:
             - ~/Library/Detox/ios
             - ~/.config/yarn/global
@@ -104,7 +104,7 @@ jobs:
           at: ~/app
 
       - restore_cache:
-          key: detox-v3-{{ arch }}
+          key: detox-v4-{{ arch }}
 
       - restore_cache:
           key: brew-v2-ios-{{ arch }}
