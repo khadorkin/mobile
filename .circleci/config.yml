@@ -226,7 +226,7 @@ jobs:
             - android/gems
 
       - restore_cache:
-          key: gradle-v1-{{ checksum "android/app/gradle/dependency-locks/releaseCompileClasspath.lockfile" }}-{{ arch }}
+          key: gradle-v2-{{ checksum "android/app/gradle/dependency-locks/releaseCompileClasspath.lockfile" }}-{{ arch }}
 
       - run:
           name: SDK licenses
@@ -240,7 +240,7 @@ jobs:
             ANDROID_HOME: /opt/android/sdk
 
       - save_cache:
-          key: gradle-v1-{{ checksum "android/app/gradle/dependency-locks/releaseCompileClasspath.lockfile" }}-{{ arch }}
+          key: gradle-v2-{{ checksum "android/app/gradle/dependency-locks/releaseCompileClasspath.lockfile" }}-{{ arch }}
           paths:
             - ~/.gradle/caches
 
