@@ -58,7 +58,7 @@ jobs:
 
   end2end_tests_ios_build:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.2.0'
     working_directory: ~/app
 
     steps:
@@ -93,7 +93,7 @@ jobs:
 
   end2end_tests_ios_run:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.2.0'
     working_directory: ~/app
     parallelism: 8
 
@@ -139,7 +139,7 @@ jobs:
 
   prepare_ios:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.2.0'
     working_directory: ~/app
 
     steps:
@@ -180,7 +180,7 @@ jobs:
 
   build_ios:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.2.0'
     working_directory: ~/app
 
     steps:
@@ -247,8 +247,8 @@ jobs:
       - run:
           name: Pull certificate and service account
           command: |
-              yarn pull:certificate:android
-              echo "${ANDROID_SERVICE_ACCOUNT}" > android/service-account.json
+            yarn pull:certificate:android
+            echo "${ANDROID_SERVICE_ACCOUNT}" > android/service-account.json
 
       - persist_to_workspace:
           root: ~/app
@@ -283,7 +283,7 @@ jobs:
       - persist_to_workspace:
           root: ~/app
           paths:
-          - android/app/build/outputs/apk/release
+            - android/app/build/outputs/apk/release
 
   deploy_android:
     working_directory: ~/app
@@ -295,7 +295,7 @@ jobs:
           at: ~/app
       - add_ssh_keys:
           fingerprints:
-            - "e0:3d:95:dd:ab:22:62:0c:6d:67:10:af:80:ca:ed:64"
+            - 'e0:3d:95:dd:ab:22:62:0c:6d:67:10:af:80:ca:ed:64'
       - run:
           name: Known hosts
           command: ssh-keyscan -H ${AWS_DOMAIN} >> ~/.ssh/known_hosts
@@ -323,7 +323,7 @@ jobs:
           at: ~/app
       - add_ssh_keys:
           fingerprints:
-            - "e0:3d:95:dd:ab:22:62:0c:6d:67:10:af:80:ca:ed:64"
+            - 'e0:3d:95:dd:ab:22:62:0c:6d:67:10:af:80:ca:ed:64'
       - run:
           name: Known hosts
           command: ssh-keyscan -H ${AWS_DOMAIN} >> ~/.ssh/known_hosts
@@ -365,7 +365,7 @@ jobs:
 
   publish_ios:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.2.0'
     working_directory: ~/app
     steps:
       - checkout
@@ -415,82 +415,82 @@ workflows:
     jobs:
       - dependencies
       - linting:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - unit_tests:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - end2end_tests_ios_build:
-         requires:
-           - prepare_ios
-           - linting # to prevent quota exceed
-           - unit_tests # to prevent quota exceed
+          requires:
+            - prepare_ios
+            - linting # to prevent quota exceed
+            - unit_tests # to prevent quota exceed
       - end2end_tests_ios_run:
-         requires:
-           - end2end_tests_ios_build
+          requires:
+            - end2end_tests_ios_build
       - prepare_android:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - build_android:
-         requires:
-           - prepare_android
+          requires:
+            - prepare_android
       - deploy_android:
-         requires:
-           - build_android
+          requires:
+            - build_android
       - prepare_ios:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - build_ios:
-         requires:
-           - prepare_ios
+          requires:
+            - prepare_ios
       - deploy_ios:
-         requires:
-           - build_ios
+          requires:
+            - build_ios
       - publish_android:
-         requires:
-           - prepare_android
-         filters:
-           branches:
-             ignore: /.*/
-           tags:
-             only: /v.*/
+          requires:
+            - prepare_android
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/
       - publish_ios:
-         requires:
-           - prepare_ios
-         filters:
-           branches:
-             ignore: /.*/
-           tags:
-             only: /v.*/
+          requires:
+            - prepare_ios
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/
   auto-increment-app-version:
     jobs:
       - dependencies:
-         filters:
-           branches:
-             only: master
+          filters:
+            branches:
+              only: master
       - auto_bump_version:
-         requires:
-           - dependencies
-         filters:
-           branches:
-             only: master
+          requires:
+            - dependencies
+          filters:
+            branches:
+              only: master
   publish-to-store:
     jobs:
       - dependencies:
-         filters:
-           branches:
-             only: master
-           tags:
-             only: /v.*/
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /v.*/
       - prepare_android:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - publish_android:
-         requires:
-           - prepare_android
+          requires:
+            - prepare_android
       - prepare_ios:
-         requires:
-           - dependencies
+          requires:
+            - dependencies
       - publish_ios:
-         requires:
-           - prepare_ios
+          requires:
+            - prepare_ios
