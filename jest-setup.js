@@ -100,3 +100,20 @@ jest.mock('react-navigation', () => ({
   SafeAreaView: 'Mock$ReactNavigation$SafeAreaView',
   NavigationEvents: 'Mock$ReactNavigation$NavigationEvents'
 }));
+
+// react-native-confetti-cannon
+
+jest.mock('react-native-confetti-cannon', () => 'Mock$ReactNativeConfettiCannon');
+
+// react-native-firebase
+
+jest.mock('react-native-firebase', () => ({
+  analytics: () => ({
+    setAnalyticsCollectionEnabled: jest.fn(),
+    logEvent: jest.fn(),
+    setCurrentScreen: jest.fn(),
+    setUserProperty: jest.fn(),
+    setUserProperties: jest.fn()
+  }),
+  utils: jest.fn(() => ({}))
+}));

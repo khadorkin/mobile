@@ -9,8 +9,12 @@ import translations from '../translations';
 import theme from '../modules/theme';
 import {SETTINGS, COMPUTER, QR_CODE} from '../components/steps-icon';
 import type {IconName} from '../components/steps-icon';
+import Space from '../components/space';
+import {ANALYTICS_EVENT_TYPE} from '../const';
 import type {Layout} from './with-layout';
 import withLayout from './with-layout';
+import withAnalytics from './with-analytics';
+import type {WithAnalyticsProps} from './with-analytics';
 
 export type Item = {|
   iconName: IconName,
@@ -30,12 +34,13 @@ const styles: GenericStyleProp = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 5,
-    marginHorizontal: 2,
     padding: 0,
+    marginHorizontal: theme.spacing.tiny,
     margin: 0,
     backgroundColor: theme.colors.white
   },
   paginationContainer: {
+    flex: 1,
     paddingVertical: 8
   },
   paginationDots: {
@@ -47,9 +52,10 @@ const styles: GenericStyleProp = StyleSheet.create({
   }
 });
 
-type Props = {|
+type Props = $Exact<{|
+  ...WithAnalyticsProps,
   layout?: Layout
-|};
+|}>;
 
 type State = {|
   currentItemIndex: number,
@@ -97,6 +103,15 @@ class Carousel extends React.PureComponent<Props, State> {
   };
 
   handleItemChange = (index: number) => {
+    const {analytics} = this.props;
+
+    analytics &&
+      analytics.logEvent(ANALYTICS_EVENT_TYPE.SWIPE, {
+        id: 'authentication-card',
+        from: `${this.state.items[this.state.currentItemIndex].iconName}`,
+        to: `${this.state.items[index].iconName}`
+      });
+
     this.setState({currentItemIndex: index});
   };
 
@@ -117,7 +132,10 @@ class Carousel extends React.PureComponent<Props, State> {
   extractKey = (item: Item) => item.iconName;
 
   render() {
-    const {state: {items}, props: {layout}} = this;
+    const {
+      state: {items},
+      props: {layout}
+    } = this;
     const layoutWidth = layout && layout.width;
     const contentOffset = theme.spacing.medium + theme.spacing.tiny;
     const width = layoutWidth && layoutWidth - contentOffset * 2;
@@ -136,10 +154,11 @@ class Carousel extends React.PureComponent<Props, State> {
             useVelocityForIndex={false}
           />
         )}
+        <Space type="tiny" />
         {this.pagination()}
       </View>
     );
   }
 }
 
-export default withLayout(Carousel);
+export default withAnalytics(withLayout(Carousel));

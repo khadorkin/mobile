@@ -2,18 +2,14 @@
 
 import * as React from 'react';
 import {storiesOf} from '@storybook/react-native';
-
 import renderer from 'react-test-renderer';
+
+import {__TEST__} from '../modules/environment';
 import {createCardLevel, createDisciplineCard, createChapterCard} from '../__fixtures__/cards';
 import {CARD_STATUS} from '../layer/data/_const';
 import {handleFakePress} from '../utils/tests';
 import {AUTHOR_TYPE} from '../const';
 import LevelEnd from './level-end';
-
-// This is for the loader
-if (process.env.NODE_ENV === 'test') {
-  jest.useFakeTimers();
-}
 
 const level = createCardLevel({ref: 'mod_1', status: CARD_STATUS.ACTIVE, label: 'Fake level'});
 
@@ -55,10 +51,11 @@ storiesOf('LevelEnd', module)
   .add('Failure', () => (
     <LevelEnd
       isSuccess={false}
+      isFocused={false}
       onButtonPress={handleFakePress}
       onCardPress={handleFakePress}
       onClose={handleFakePress}
-      recommendedContent={disciplineNew}
+      recommendation={disciplineNew}
       bestScore="0"
       isLevelUnlocked={false}
       levelUnlockedName=""
@@ -68,10 +65,11 @@ storiesOf('LevelEnd', module)
   .add('Success', () => (
     <LevelEnd
       isSuccess
+      isFocused
       onButtonPress={handleFakePress}
       onCardPress={handleFakePress}
       onClose={handleFakePress}
-      recommendedContent={chapterNew}
+      recommendation={chapterNew}
       bestScore="20"
       hasFinishedCourse={false}
       isLevelUnlocked
@@ -81,10 +79,11 @@ storiesOf('LevelEnd', module)
   .add('Failure Author Coorp', () => (
     <LevelEnd
       isSuccess={false}
+      isFocused
       onButtonPress={handleFakePress}
       onCardPress={handleFakePress}
       onClose={handleFakePress}
-      recommendedContent={disciplineNewCoorp}
+      recommendation={disciplineNewCoorp}
       bestScore="0"
       isLevelUnlocked={false}
       levelUnlockedName=""
@@ -94,10 +93,11 @@ storiesOf('LevelEnd', module)
   .add('Success Author Coorp', () => (
     <LevelEnd
       isSuccess
+      isFocused
       onButtonPress={handleFakePress}
       onCardPress={handleFakePress}
       onClose={handleFakePress}
-      recommendedContent={chapterNewCoorp}
+      recommendation={chapterNewCoorp}
       bestScore="0"
       isLevelUnlocked
       levelUnlockedName=""
@@ -107,10 +107,11 @@ storiesOf('LevelEnd', module)
   .add('Finished', () => (
     <LevelEnd
       isSuccess
+      isFocused
       onButtonPress={handleFakePress}
       onCardPress={handleFakePress}
       onClose={handleFakePress}
-      recommendedContent={chapterNewCoorp}
+      recommendation={chapterNewCoorp}
       bestScore="0"
       isLevelUnlocked
       levelUnlockedName=""
@@ -118,17 +119,18 @@ storiesOf('LevelEnd', module)
     />
   ));
 
-if (process.env.NODE_ENV === 'test') {
+if (__TEST__) {
   describe('LevelEnd', () => {
     it('should handle onCardPress callback', () => {
       const handlePress = jest.fn();
       const component = renderer.create(
         <LevelEnd
           isSuccess={false}
+          isFocused
           onButtonPress={handleFakePress}
           onCardPress={handlePress}
           onClose={handleFakePress}
-          recommendedContent={disciplineNewCoorp}
+          recommendation={disciplineNewCoorp}
           bestScore="0"
           isLevelUnlocked={false}
           levelUnlockedName=""
@@ -145,10 +147,11 @@ if (process.env.NODE_ENV === 'test') {
       const component = renderer.create(
         <LevelEnd
           isSuccess={false}
+          isFocused
           onButtonPress={handlePress}
           onCardPress={handlePress}
           onClose={handleFakePress}
-          recommendedContent={disciplineNew}
+          recommendation={disciplineNew}
           bestScore="0"
           isLevelUnlocked={false}
           levelUnlockedName=""

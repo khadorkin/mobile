@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {StatusBar} from 'react-native';
 import {connect} from 'react-redux';
-import {NavigationActions} from 'react-navigation';
+import {NavigationActions, NavigationEvents} from 'react-navigation';
 import {getNextContent} from '@coorpacademy/player-store';
 import get from 'lodash/fp/get';
 import {selectCard} from '../redux/actions/cards';
@@ -19,26 +19,38 @@ import translationUtil from '../translations';
 type ConnectedDispatchProps = {|
   selectCard: typeof selectCard
 |};
+
 type ConnectedStateProps = {|
-  recommendedContent: DisciplineCard | ChapterCard,
+  recommendation: DisciplineCard | ChapterCard,
   currentContent: DisciplineCard | ChapterCard | void,
   bestScore?: string,
   nextContent: DisciplineCard | ChapterCard | void,
   unlockedLevelInfo?: UnlockedLevelInfo,
   hasFinishedCourse?: boolean
 |};
+
 export type Params = {|
   isCorrect: boolean,
   progressionId: string
 |};
 
-type Props = {|
+type Props = $Exact<{|
   ...ReactNavigation$ScreenPropsWithParams<Params>,
   ...ConnectedStateProps
+|}>;
+
+type State = {|
+  isFocused: boolean
 |};
 
-class LevelEndScreen extends React.PureComponent<Props> {
+class LevelEndScreen extends React.PureComponent<Props, State> {
   props: Props;
+
+  state: State;
+
+  state = {
+    isFocused: false
+  };
 
   static navigationOptions = ({navigationOptions, navigation}: ReactNavigation$ScreenProps) => ({
     ...navigationOptions,
@@ -55,7 +67,7 @@ class LevelEndScreen extends React.PureComponent<Props> {
   };
 
   handleCardPress = (item: DisciplineCard | ChapterCard) => {
-    this.props.selectCard(this.props.recommendedContent);
+    this.props.selectCard(this.props.recommendation);
     this.props.navigation.navigate('Slide');
   };
 
@@ -74,10 +86,12 @@ class LevelEndScreen extends React.PureComponent<Props> {
     }
   };
 
+  handleDidFocus = () => this.setState({isFocused: true});
+
   render() {
     const {
       navigation,
-      recommendedContent,
+      recommendation,
       unlockedLevelInfo,
       bestScore = '',
       hasFinishedCourse = false
@@ -91,8 +105,10 @@ class LevelEndScreen extends React.PureComponent<Props> {
     return (
       <Screen testID="level-end-screen" noScroll noSafeArea style={{backgroundColor}}>
         <StatusBar barStyle="light-content" backgroundColor={backgroundColor} />
+        <NavigationEvents onDidFocus={this.handleDidFocus} />
         <LevelEnd
-          recommendedContent={recommendedContent}
+          recommendation={recommendation}
+          isFocused={this.state.isFocused}
           isSuccess={isCorrect}
           bestScore={bestScore}
           isLevelUnlocked={isLevelUnlocked}
@@ -131,7 +147,7 @@ export const mapStateToProps = (state: StoreState, {navigation}: Props): Connect
     bestScore,
     unlockedLevelInfo,
     hasFinishedCourse,
-    recommendedContent: Object.keys(state.cards.entities)
+    recommendation: Object.keys(state.cards.entities)
       .map(key => state.cards.entities[key][language])
       .filter(item => item !== undefined)
       .filter(item => item !== currentContent)
@@ -143,4 +159,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   selectCard
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LevelEndScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LevelEndScreen);

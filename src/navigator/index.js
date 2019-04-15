@@ -19,7 +19,8 @@ import pdfNavigator from './pdf';
 import browserNavigator from './browser';
 import navigationOptions, {
   navigationOptionsWithoutHeader,
-  HEADER_BACKGROUND_COLOR
+  HEADER_BACKGROUND_COLOR,
+  INITIAL_ROUTE_NAME
 } from './navigation-options';
 
 const appNavigator = createStackNavigator(
@@ -60,7 +61,7 @@ const appNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Splash',
+    initialRouteName: INITIAL_ROUTE_NAME,
     defaultNavigationOptions: {
       ...navigationOptions,
       headerBackImage: (
@@ -161,6 +162,10 @@ class NavigatorWithState extends React.PureComponent<Props> {
       currentTabName
     } = currentScreens;
 
+    if (!currentAppScreenName || !currentScreenName) {
+      return null;
+    }
+
     onScreenChange(currentNavigatorName, currentAppScreenName, currentScreenName, currentTabName);
   };
 
@@ -173,4 +178,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   onScreenChange: changeScreen
 };
 
-export default connect(null, mapDispatchToProps)(NavigatorWithState);
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavigatorWithState);

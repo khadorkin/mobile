@@ -1,12 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {NovaSolidLocationsLocationPinQuestionMark1 as QuestionIcon} from '@coorpacademy/nova-icons';
 
 import {SPACE} from '../const';
-
 import logo from '../assets/images/logo-coorp.png';
 import theme, {defaultHitSlop, BLUE_COORP_DARK, BLUE_COORP_LIGHT} from '../modules/theme';
 import translations from '../translations';
@@ -17,10 +16,13 @@ import Space from './space';
 import Html from './html';
 import Gradient from './gradient';
 import StepsIcon, {TARGET} from './steps-icon';
+import Text from './text';
+import Touchable from './touchable';
 
 type Props = {|
   onPress: () => void,
-  onAssistancePress: () => void
+  onAssistancePress: () => void,
+  onStartDemoPress: () => void
 |};
 
 const styles = StyleSheet.create({
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing.base
   },
   headerContainer: {
-    paddingHorizontal: theme.spacing.tiny
+    paddingHorizontal: theme.spacing.medium
   },
   header: {
     color: 'white',
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
-  needHelpWrapper: {
+  centeredContent: {
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center'
@@ -73,6 +75,11 @@ const styles = StyleSheet.create({
   needHelp: {
     textDecorationLine: 'underline',
     fontSize: theme.fontSize.medium,
+    color: theme.colors.white
+  },
+  startDemo: {
+    textAlign: 'center',
+    fontSize: theme.fontSize.large,
     color: theme.colors.white
   },
   questionIcon: {
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
 export const TOP_COLOR = BLUE_COORP_DARK;
 export const BOTTOM_COLOR = BLUE_COORP_LIGHT;
 
-const Authentication = ({onPress, onAssistancePress}: Props) => (
+const Authentication = ({onPress, onStartDemoPress, onAssistancePress}: Props) => (
   <Gradient colors={[TOP_COLOR, BOTTOM_COLOR]} style={styles.gradient}>
     <SafeAreaView style={styles.container}>
       <View style={[styles.wrapper, styles.logo]} testID="logo-header">
@@ -97,9 +104,17 @@ const Authentication = ({onPress, onAssistancePress}: Props) => (
           </Html>
         </View>
       </View>
+      <Space type="tiny" />
       <Carousel />
+      <Space type="tiny" />
       <View style={styles.wrapper}>
-        <Button isInverted isTextSecondary onPress={onPress} testID="scan-qr-code">
+        <Button
+          isInverted
+          isTextSecondary
+          onPress={onPress}
+          testID="button-scan-qr-code"
+          analyticsID="button-scan-qr-code"
+        >
           <View style={styles.buttonWithIcon}>
             <StepsIcon iconName={TARGET} color={BLUE_COORP_LIGHT} height={30} width={30} />
             <Space />
@@ -108,16 +123,29 @@ const Authentication = ({onPress, onAssistancePress}: Props) => (
             </Html>
           </View>
         </Button>
-        <Space type={SPACE.SMALL} />
-        <TouchableOpacity
+        <Space type={SPACE.TINY} />
+        <View style={styles.centeredContent}>
+          <Html
+            fontSize={theme.fontSize.large}
+            style={styles.startDemo}
+            onLinkPress={onStartDemoPress}
+            anchorTextColor={theme.colors.white}
+            isTextCentered
+          >
+            {translations.demoMode}
+          </Html>
+        </View>
+        <Space type={SPACE.TINY} />
+        <Touchable
           hitSlop={defaultHitSlop}
           onPress={onAssistancePress}
-          style={styles.needHelpWrapper}
+          style={styles.centeredContent}
+          analyticsID="need-help"
         >
           <QuestionIcon color={theme.colors.white} style={styles.questionIcon} />
           <Space type={SPACE.TINY} />
           <Text style={styles.needHelp}>{translations.needHelp}</Text>
-        </TouchableOpacity>
+        </Touchable>
       </View>
     </SafeAreaView>
   </Gradient>

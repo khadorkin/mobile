@@ -80,7 +80,7 @@ exports[`Storyshots Authentication Default 1`] = `
         style={
           Array [
             Object {
-              "paddingHorizontal": 8,
+              "paddingHorizontal": 32,
             },
           ]
         }
@@ -170,6 +170,14 @@ exports[`Storyshots Authentication Default 1`] = `
       </View>
     </View>
     <View
+      style={
+        Object {
+          "height": 8,
+          "width": 8,
+        }
+      }
+    />
+    <View
       onLayout={[Function]}
       style={
         Array [
@@ -194,10 +202,19 @@ exports[`Storyshots Authentication Default 1`] = `
         }
         testID="carousel"
       >
+        <View
+          style={
+            Object {
+              "height": 8,
+              "width": 8,
+            }
+          }
+        />
         <Mock$ReactNativeSnapCarousel$Pagination
           activeDotIndex={0}
           containerStyle={
             Object {
+              "flex": 1,
               "paddingVertical": 8,
             }
           }
@@ -216,7 +233,7 @@ exports[`Storyshots Authentication Default 1`] = `
               "borderRadius": 5,
               "height": 8,
               "margin": 0,
-              "marginHorizontal": 2,
+              "marginHorizontal": 8,
               "padding": 0,
               "width": 8,
             }
@@ -231,12 +248,20 @@ exports[`Storyshots Authentication Default 1`] = `
     <View
       style={
         Object {
+          "height": 8,
+          "width": 8,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
           "padding": 24,
         }
       }
     >
       <View
-        testID="scan-qr-code"
+        testID="button-scan-qr-code"
       >
         <View
           accessible={true}
@@ -261,6 +286,7 @@ exports[`Storyshots Authentication Default 1`] = `
               "opacity": 1,
             }
           }
+          testID="button-scan-qr-code-native"
         >
           <View
             style={
@@ -516,8 +542,505 @@ exports[`Storyshots Authentication Default 1`] = `
       <View
         style={
           Object {
-            "height": 16,
-            "width": 16,
+            "height": 8,
+            "width": 8,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View>
+          <View
+            style={Object {}}
+          >
+            <Text
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "marginVertical": 0,
+                    "textAlign": "center",
+                  },
+                  Object {},
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                selectable={false}
+                style={
+                  Array [
+                    Object {},
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontSize": 17,
+                      "marginBottom": 17,
+                      "marginTop": 17,
+                      "marginVertical": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  No learning platform? 
+                </Text>
+              </Text>
+              <Text
+                baseFontStyle={
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontSize": 17,
+                    "textAlign": "center",
+                  }
+                }
+                classesStyles={Object {}}
+                debug={false}
+                decodeEntities={true}
+                emSize={14}
+                html="<p>No learning platform? <a href=\\"/\\"><b><u>Start Demo</u></b></a></p>"
+                ignoredStyles={
+                  Array [
+                    "width",
+                    "height",
+                  ]
+                }
+                ignoredTags={
+                  Array [
+                    "head",
+                    "scripts",
+                    "audio",
+                    "video",
+                    "track",
+                    "embed",
+                    "object",
+                    "param",
+                    "source",
+                    "canvas",
+                    "noscript",
+                    "caption",
+                    "col",
+                    "colgroup",
+                    "table",
+                    "tbody",
+                    "td",
+                    "tfoot",
+                    "th",
+                    "thead",
+                    "tr",
+                    "button",
+                    "datalist",
+                    "fieldset",
+                    "form",
+                    "input",
+                    "label",
+                    "legend",
+                    "meter",
+                    "optgroup",
+                    "option",
+                    "output",
+                    "progress",
+                    "select",
+                    "textarea",
+                    "details",
+                    "diaglog",
+                    "menu",
+                    "menuitem",
+                    "summary",
+                  ]
+                }
+                imagesMaxWidth={750}
+                nodeIndex={1}
+                onLinkPress={[Function]}
+                onPress={[Function]}
+                parentIndex={0}
+                parentTag="p"
+                parentWrapper="Text"
+                ptSize={1.3}
+                rawChildren={
+                  Array [
+                    Object {
+                      "attribs": Object {},
+                      "children": Array [
+                        Object {
+                          "attribs": Object {},
+                          "children": Array [
+                            Object {
+                              "attribs": Object {},
+                              "data": "Start Demo",
+                              "nodeIndex": 0,
+                              "parent": Object {
+                                "attribs": Object {},
+                                "children": Array [
+                                  Object {
+                                    "data": "Start Demo",
+                                    "next": null,
+                                    "parent": [Circular],
+                                    "prev": null,
+                                    "type": "text",
+                                  },
+                                ],
+                                "name": "u",
+                                "next": null,
+                                "parent": Object {
+                                  "attribs": Object {},
+                                  "children": Array [
+                                    [Circular],
+                                  ],
+                                  "name": "b",
+                                  "next": null,
+                                  "parent": Object {
+                                    "attribs": Object {
+                                      "href": "/",
+                                    },
+                                    "children": Array [
+                                      [Circular],
+                                    ],
+                                    "name": "a",
+                                    "next": null,
+                                    "parent": Object {
+                                      "attribs": Object {},
+                                      "children": Array [
+                                        Object {
+                                          "data": "No learning platform? ",
+                                          "next": [Circular],
+                                          "parent": [Circular],
+                                          "prev": null,
+                                          "type": "text",
+                                        },
+                                        [Circular],
+                                      ],
+                                      "name": "p",
+                                      "next": null,
+                                      "parent": null,
+                                      "prev": null,
+                                      "type": "tag",
+                                    },
+                                    "prev": Object {
+                                      "data": "No learning platform? ",
+                                      "next": [Circular],
+                                      "parent": Object {
+                                        "attribs": Object {},
+                                        "children": Array [
+                                          [Circular],
+                                          [Circular],
+                                        ],
+                                        "name": "p",
+                                        "next": null,
+                                        "parent": null,
+                                        "prev": null,
+                                        "type": "tag",
+                                      },
+                                      "prev": null,
+                                      "type": "text",
+                                    },
+                                    "type": "tag",
+                                  },
+                                  "prev": null,
+                                  "type": "tag",
+                                },
+                                "prev": null,
+                                "type": "tag",
+                              },
+                              "parentTag": "u",
+                              "tagName": "rawtext",
+                              "wrapper": "Text",
+                            },
+                          ],
+                          "nodeIndex": 0,
+                          "parent": Object {
+                            "attribs": Object {},
+                            "children": Array [
+                              Object {
+                                "attribs": Object {},
+                                "children": Array [
+                                  Object {
+                                    "data": "Start Demo",
+                                    "next": null,
+                                    "parent": [Circular],
+                                    "prev": null,
+                                    "type": "text",
+                                  },
+                                ],
+                                "name": "u",
+                                "next": null,
+                                "parent": [Circular],
+                                "prev": null,
+                                "type": "tag",
+                              },
+                            ],
+                            "name": "b",
+                            "next": null,
+                            "parent": Object {
+                              "attribs": Object {
+                                "href": "/",
+                              },
+                              "children": Array [
+                                [Circular],
+                              ],
+                              "name": "a",
+                              "next": null,
+                              "parent": Object {
+                                "attribs": Object {},
+                                "children": Array [
+                                  Object {
+                                    "data": "No learning platform? ",
+                                    "next": [Circular],
+                                    "parent": [Circular],
+                                    "prev": null,
+                                    "type": "text",
+                                  },
+                                  [Circular],
+                                ],
+                                "name": "p",
+                                "next": null,
+                                "parent": null,
+                                "prev": null,
+                                "type": "tag",
+                              },
+                              "prev": Object {
+                                "data": "No learning platform? ",
+                                "next": [Circular],
+                                "parent": Object {
+                                  "attribs": Object {},
+                                  "children": Array [
+                                    [Circular],
+                                    [Circular],
+                                  ],
+                                  "name": "p",
+                                  "next": null,
+                                  "parent": null,
+                                  "prev": null,
+                                  "type": "tag",
+                                },
+                                "prev": null,
+                                "type": "text",
+                              },
+                              "type": "tag",
+                            },
+                            "prev": null,
+                            "type": "tag",
+                          },
+                          "parentTag": "b",
+                          "tagName": "u",
+                          "wrapper": "Text",
+                        },
+                      ],
+                      "nodeIndex": 0,
+                      "parent": Object {
+                        "attribs": Object {
+                          "href": "/",
+                        },
+                        "children": Array [
+                          Object {
+                            "attribs": Object {},
+                            "children": Array [
+                              Object {
+                                "attribs": Object {},
+                                "children": Array [
+                                  Object {
+                                    "data": "Start Demo",
+                                    "next": null,
+                                    "parent": [Circular],
+                                    "prev": null,
+                                    "type": "text",
+                                  },
+                                ],
+                                "name": "u",
+                                "next": null,
+                                "parent": [Circular],
+                                "prev": null,
+                                "type": "tag",
+                              },
+                            ],
+                            "name": "b",
+                            "next": null,
+                            "parent": [Circular],
+                            "prev": null,
+                            "type": "tag",
+                          },
+                        ],
+                        "name": "a",
+                        "next": null,
+                        "parent": Object {
+                          "attribs": Object {},
+                          "children": Array [
+                            Object {
+                              "data": "No learning platform? ",
+                              "next": [Circular],
+                              "parent": [Circular],
+                              "prev": null,
+                              "type": "text",
+                            },
+                            [Circular],
+                          ],
+                          "name": "p",
+                          "next": null,
+                          "parent": null,
+                          "prev": null,
+                          "type": "tag",
+                        },
+                        "prev": Object {
+                          "data": "No learning platform? ",
+                          "next": [Circular],
+                          "parent": Object {
+                            "attribs": Object {},
+                            "children": Array [
+                              [Circular],
+                              [Circular],
+                            ],
+                            "name": "p",
+                            "next": null,
+                            "parent": null,
+                            "prev": null,
+                            "type": "tag",
+                          },
+                          "prev": null,
+                          "type": "text",
+                        },
+                        "type": "tag",
+                      },
+                      "parentTag": "a",
+                      "tagName": "b",
+                      "wrapper": "Text",
+                    },
+                  ]
+                }
+                renderers={
+                  Object {
+                    "font": [Function],
+                  }
+                }
+                staticContentMaxWidth={750}
+                style={
+                  Array [
+                    Object {
+                      "color": "#245dc1",
+                      "textDecorationLine": "underline",
+                    },
+                    Object {
+                      "color": "#FFFFFF",
+                    },
+                    Object {},
+                  ]
+                }
+                tagsStyles={
+                  Object {
+                    "a": Object {
+                      "color": "#FFFFFF",
+                    },
+                    "b": Object {
+                      "fontWeight": "500",
+                    },
+                    "h1": Object {
+                      "fontSize": 17,
+                    },
+                    "h2": Object {
+                      "fontSize": 17,
+                    },
+                    "h3": Object {
+                      "fontSize": 17,
+                    },
+                    "h4": Object {
+                      "fontSize": 17,
+                    },
+                    "h5": Object {
+                      "fontSize": 17,
+                    },
+                    "h6": Object {
+                      "fontSize": 17,
+                    },
+                    "i": Object {
+                      "fontStyle": "italic",
+                    },
+                    "img": undefined,
+                    "p": Object {
+                      "marginVertical": 0,
+                      "textAlign": "center",
+                    },
+                    "s": Object {
+                      "textDecorationLine": "line-through",
+                    },
+                    "u": Object {
+                      "textDecorationLine": "underline",
+                    },
+                  }
+                }
+                textSelectable={false}
+              >
+                <Text
+                  selectable={false}
+                  style={
+                    Array [
+                      Object {
+                        "fontWeight": "500",
+                      },
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={false}
+                    style={
+                      Array [
+                        Object {
+                          "textDecorationLine": "underline",
+                        },
+                        Object {},
+                        Object {},
+                      ]
+                    }
+                  >
+                    <Text
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {},
+                          Object {},
+                        ]
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 17,
+                            "fontWeight": "500",
+                            "marginBottom": 17,
+                            "marginTop": 17,
+                            "marginVertical": 0,
+                            "textAlign": "center",
+                            "textDecorationLine": "underline",
+                          }
+                        }
+                      >
+                        Start Demo
+                      </Text>
+                    </Text>
+                  </Text>
+                </Text>
+              </Text>
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "height": 8,
+            "width": 8,
           }
         }
       />

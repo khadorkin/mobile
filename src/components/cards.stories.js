@@ -5,16 +5,17 @@ import {Text, View} from 'react-native';
 import renderer from 'react-test-renderer';
 import {storiesOf} from '@storybook/react-native';
 import DeckSwiper from '@coorpacademy/react-native-deck-swiper';
-import {handleFakePress} from '../utils/tests';
 
+import {handleFakePress} from '../utils/tests';
+import {__TEST__} from '../modules/environment';
 import {CARD_TYPE} from '../const';
 import Cards from './cards';
 import type {Card} from './cards';
 
 const items: Array<Card> = [
-  {title: 'First card', type: CARD_TYPE.TIP},
-  {title: 'Second card', type: CARD_TYPE.KEY_POINT},
-  {title: 'Third card', type: CARD_TYPE.CORRECTION}
+  {title: 'First card', type: CARD_TYPE.TIP, isCorrect: true},
+  {title: 'Second card', type: CARD_TYPE.KEY_POINT, isCorrect: true},
+  {title: 'Third card', type: CARD_TYPE.CORRECTION, isCorrect: true}
 ];
 
 const renderCard = ({type, title}: Card) => (
@@ -26,6 +27,7 @@ const renderCard = ({type, title}: Card) => (
 
 storiesOf('Cards', module).add('Default', () => (
   <Cards
+    testID="cards-story"
     onSwiped={handleFakePress}
     onSwipedAll={handleFakePress}
     onRef={handleFakePress}
@@ -34,7 +36,7 @@ storiesOf('Cards', module).add('Default', () => (
   />
 ));
 
-if (process.env.NODE_ENV === 'test') {
+if (__TEST__) {
   describe('Cards', () => {
     it('should handle onSwiped callback', () => {
       const mockOnSwiped = jest.fn();
@@ -43,6 +45,7 @@ if (process.env.NODE_ENV === 'test') {
 
       const component = renderer.create(
         <Cards
+          testID="cards-story"
           onSwiped={mockOnSwiped}
           onSwipedAll={mockOnSwipedAll}
           onRef={mockOnRef}

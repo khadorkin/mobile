@@ -23,7 +23,7 @@ import type {Card} from './cards';
 import CardCorrection from './card-correction';
 import {BrandThemeContext} from './brand-theme-provider';
 
-type Props = {|
+type Props = $Exact<{|
   ...WithLayoutProps,
   tip: string,
   answers: Array<string>,
@@ -41,7 +41,7 @@ type Props = {|
   lives?: number,
   onPDFButtonPress: (url: string, description: string) => void,
   onVideoPlay: () => void
-|};
+|}>;
 
 const CARDS_HEIGHT = 360;
 const CARDS_LENGTH = 3;
@@ -123,14 +123,25 @@ class Correction extends React.PureComponent<Props> {
     } = this.props;
     const correctionCard: Card = {
       type: CARD_TYPE.CORRECTION,
-      title: translations.correction
+      title: translations.correction,
+      isCorrect
     };
-    const tipCard = {type: CARD_TYPE.TIP, title: translations.didYouKnowThat};
-    const keyPointCard = {type: CARD_TYPE.KEY_POINT, title: translations.keyPoint};
+    const tipCard = {
+      type: CARD_TYPE.TIP,
+      title: translations.didYouKnowThat,
+      isCorrect
+    };
+
+    const keyPointCard = {
+      type: CARD_TYPE.KEY_POINT,
+      title: translations.keyPoint,
+      isCorrect
+    };
     const lessonCards = resources.map(resource => ({
       type: CARD_TYPE.RESOURCE,
       title: translations.accessTheLesson,
       resource,
+      isCorrect,
       offeringExtraLife
     }));
 
@@ -214,33 +225,32 @@ class Correction extends React.PureComponent<Props> {
                   {keyPoint}
                 </Html>
               )}
-              {type === CARD_TYPE.RESOURCE &&
-                resource && (
-                  <React.Fragment>
-                    <Resource
-                      type={resource.type}
-                      url={resource.url}
-                      description={resource.description}
-                      thumbnail={resource.poster}
-                      subtitles={subtitleUri}
-                      onPDFButtonPress={onPDFButtonPress}
-                      onVideoPlay={onVideoPlay}
-                      testID={testIDSuffix}
-                      extralifeOverlay={offeringExtraLife}
-                      containerStyle={styles.resource}
-                    />
-                    <View style={styles.resourceTitleContainer}>
-                      <Html
-                        fontSize={theme.fontSize.regular}
-                        testID={'resource-description-' + testIDSuffix}
-                        style={styles.resourceTitle}
-                        isTextCentered
-                      >
-                        {resource.description}
-                      </Html>
-                    </View>
-                  </React.Fragment>
-                )}
+              {type === CARD_TYPE.RESOURCE && resource && (
+                <React.Fragment>
+                  <Resource
+                    type={resource.type}
+                    url={resource.url}
+                    description={resource.description}
+                    thumbnail={resource.poster}
+                    subtitles={subtitleUri}
+                    onPDFButtonPress={onPDFButtonPress}
+                    onVideoPlay={onVideoPlay}
+                    testID={testIDSuffix}
+                    extralifeOverlay={offeringExtraLife}
+                    containerStyle={styles.resource}
+                  />
+                  <View style={styles.resourceTitleContainer}>
+                    <Html
+                      fontSize={theme.fontSize.regular}
+                      testID={'resource-description-' + testIDSuffix}
+                      style={styles.resourceTitle}
+                      isTextCentered
+                    >
+                      {resource.description}
+                    </Html>
+                  </View>
+                </React.Fragment>
+              )}
             </CardComponent>
           );
         }}
@@ -300,6 +310,7 @@ class Correction extends React.PureComponent<Props> {
             onPress={onButtonPress}
             isLoading={isLoading}
             testID={`button-${canGoNext ? 'next-question' : 'quit'}`}
+            analyticsID={`button-${canGoNext ? 'next-question' : 'quit'}`}
           >
             {offeringExtraLife ? translations.quit : translations.next}
           </Button>

@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationActions} from 'react-navigation';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 import Home from '../components/home';
 import Screen from '../components/screen';
@@ -33,16 +34,24 @@ type Props = {|
   ...ConnectedDispatchProps
 |};
 
-class HomeScreen extends React.PureComponent<Props> {
+type State = {|
+  isRefreshing: boolean
+|};
+
+class HomeScreen extends React.PureComponent<Props, State> {
   props: Props;
+
+  state: State;
+
+  state = {
+    isRefreshing: false
+  };
 
   async componentDidMount() {
     const token = await localToken.get();
     await this.props.signIn(token);
 
-    await this.props.fetchBrand();
-
-    await this.props.fetchCards(translationUtil.getLanguage());
+    await this.fetchContent();
   }
 
   handleCardPress = (item: DisciplineCard | ChapterCard) => {
@@ -54,13 +63,37 @@ class HomeScreen extends React.PureComponent<Props> {
     const action = this.props.onLogoLongPress && (await this.props.onLogoLongPress());
     // When we log out, we reset the entirely stack
     // To avoid router directions and other stuffs
-    if (action) this.props.navigation.reset([NavigationActions.navigate({routeName: 'Splash'})], 0);
+    if (action)
+      this.props.navigation.reset([NavigationActions.navigate({routeName: 'Authentication'})], 0);
+  };
+
+  fetchContent = async () => {
+    await this.props.fetchBrand();
+    await this.props.fetchCards(translationUtil.getLanguage());
+  };
+
+  handleRefresh = () => {
+    this.setState({isRefreshing: true});
+    this.fetchContent()
+      .then(() => this.setState({isRefreshing: false}))
+      .catch(err => {
+        this.setState({isRefreshing: false});
+        // eslint-disable-next-line no-console
+        console.error(err);
+      });
   };
 
   render() {
     const {items} = this.props;
+    const {isRefreshing} = this.state;
+    const refreshingStyle = (isRefreshing && {top: getStatusBarHeight()}) || {};
     return (
-      <Screen testID="home-screen" noSafeArea>
+      <Screen
+        testID="home-screen"
+        noSafeArea
+        style={refreshingStyle}
+        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={this.handleRefresh} />}
+      >
         <StatusBar barStyle="dark-content" backgroundColor={theme.colors.white} />
         <Home
           onCardPress={this.handleCardPress}
@@ -91,4 +124,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   onLogoLongPress: signOut
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);

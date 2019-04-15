@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {ScrollView, StatusBar} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {
   editAnswer,
@@ -13,13 +13,15 @@ import {
   getStepContent,
   getQuestionMedia,
   getQuestionType,
+  getRoute,
   validateAnswer
 } from '@coorpacademy/player-store';
 import type {Lesson, Media, QuestionType, Choice} from '@coorpacademy/progression-engine';
 
 import Question from '../components/question';
+import type {Props as QuestionProps} from '../components/question';
 import Screen from '../components/screen';
-import type {Resource, SliderProps} from '../types';
+import type {Resource} from '../types';
 import type {StoreState} from '../redux/store';
 import {checkIsValidating, getSlide} from '../redux/utils/state-extract';
 import {reduceToResources} from '../layer/data/mappers';
@@ -43,7 +45,10 @@ type ConnectedStateProps = {|
   hasViewedAResourceAtThisStep?: boolean,
   resourcesForCorrection?: Array<Resource>,
   isValidating: boolean,
-  slider: SliderProps
+  min?: $PropertyType<QuestionProps, 'min'>,
+  max?: $PropertyType<QuestionProps, 'max'>,
+  step?: $PropertyType<QuestionProps, 'step'>,
+  value?: $PropertyType<QuestionProps, 'value'>
 |};
 
 type ConnectedDispatchProps = {|
@@ -56,6 +61,14 @@ type Props = {|
   ...ConnectedStateProps,
   ...ConnectedDispatchProps
 |};
+
+const styles = StyleSheet.create({
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 class QuestionScreen extends React.PureComponent<Props> {
   props: Props;
@@ -139,7 +152,10 @@ class QuestionScreen extends React.PureComponent<Props> {
       explanation,
       isValidating,
       media,
-      slider,
+      min,
+      max,
+      step,
+      value,
       template,
       userChoices = []
     } = this.props;
@@ -147,61 +163,67 @@ class QuestionScreen extends React.PureComponent<Props> {
     return (
       <Screen testID="question-screen" onRef={this.handleRef}>
         <StatusBar barStyle="dark-content" backgroundColor={HEADER_BACKGROUND_COLOR} />
-        {type &&
-          header &&
-          explanation && (
-            <Question
-              type={type}
-              choices={choices}
-              header={header}
-              explanation={explanation}
-              template={template}
-              media={media}
-              userChoices={userChoices}
-              onChoicePress={this.handleChoicePress}
-              onButtonPress={this.handleButtonPress}
-              onSliderChange={this.handleOnSliderChange}
-              onChoiceInputChange={this.handleChoiceInputChange}
-              onInputValueChange={this.handleInputValueChange}
-              isValidating={isValidating}
-              slider={slider}
-            />
-          )}
+        {!header && <View style={styles.loaderContainer}>{/* <Loader height={60} /> */}</View>}
+        {type && header && explanation && (
+          <Question
+            type={type}
+            choices={choices}
+            header={header}
+            explanation={explanation}
+            template={template}
+            media={media}
+            userChoices={userChoices}
+            onChoicePress={this.handleChoicePress}
+            onButtonPress={this.handleButtonPress}
+            onSliderChange={this.handleOnSliderChange}
+            onChoiceInputChange={this.handleChoiceInputChange}
+            onInputValueChange={this.handleInputValueChange}
+            isValidating={isValidating}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+          />
+        )}
       </Screen>
     );
   }
 }
 
 const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStateProps => {
+  const isFocused = state.navigation.currentScreenName === 'Slide';
+  const emptySlide = {
+    isFocused,
+    type: undefined,
+    header: undefined,
+    explanation: undefined,
+    template: undefined,
+    choices: undefined,
+    userChoices: undefined,
+    answers: undefined,
+    userAnswers: undefined,
+    media: undefined,
+    tip: undefined,
+    keyPoint: undefined,
+    resourcesForCorrection: undefined,
+    isValidating: false,
+    min: undefined,
+    max: undefined,
+    step: undefined,
+    value: undefined
+  };
+
   const nextContent = getStepContent(state);
   const progression = getCurrentProgression(state);
-  const isFocused = state.navigation.currentScreenName === 'Slide';
 
   if (!nextContent || progression === undefined || progression.state === undefined) {
-    return {
-      isFocused,
-      type: undefined,
-      header: undefined,
-      explanation: undefined,
-      template: undefined,
-      choices: undefined,
-      userChoices: undefined,
-      answers: undefined,
-      userAnswers: undefined,
-      media: undefined,
-      tip: undefined,
-      keyPoint: undefined,
-      resourcesForCorrection: undefined,
-      isValidating: false,
-      slider: {
-        minLabel: undefined,
-        minValue: undefined,
-        maxLabel: undefined,
-        maxValue: undefined,
-        step: undefined,
-        value: undefined
-      }
-    };
+    return emptySlide;
+  }
+
+  const currentRoute = getRoute(state);
+  const showQuestionOrCorrection = currentRoute === 'answer' || currentRoute === 'correction';
+  if (!showQuestionOrCorrection) {
+    return emptySlide;
   }
 
   const correction = getCurrentCorrection(state);
@@ -235,14 +257,10 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
       isFocused,
       tip: undefined,
       keyPoint: undefined,
-      slider: {
-        minLabel: undefined,
-        minValue: undefined,
-        maxLabel: undefined,
-        maxValue: undefined,
-        step: undefined,
-        value: undefined
-      }
+      min: undefined,
+      max: undefined,
+      step: undefined,
+      value: undefined
     };
   }
 
@@ -291,14 +309,16 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     isValidating,
     tip: slide && slide.tips,
     keyPoint: slide && slide.klf,
-    slider: {
-      minLabel: `${sliderMinValue} ${sliderUnitLabel}`,
-      maxLabel: `${sliderMaxValue} ${sliderUnitLabel}`,
-      minValue: sliderMinValue,
-      maxValue: sliderMaxValue,
-      step: sliderStepValue,
-      value: sliderDefaultValue
-    }
+    min: {
+      label: `${sliderMinValue} ${sliderUnitLabel}`,
+      value: sliderMinValue
+    },
+    max: {
+      label: `${sliderMaxValue} ${sliderUnitLabel}`,
+      value: sliderMaxValue
+    },
+    step: sliderStepValue,
+    value: sliderDefaultValue
   };
 };
 
@@ -307,4 +327,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   validateAnswer
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionScreen);
