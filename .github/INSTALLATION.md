@@ -32,8 +32,9 @@ brew install watchman
   xcode-select --install
   ```
 
-* Bundler
-  Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed.
+* [Bundler](https://bundler.io/)
+
+  It provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed.
 
   ```bash
   # Using RubyGems
