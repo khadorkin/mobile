@@ -3,7 +3,7 @@
 import {AsyncStorage} from 'react-native';
 import fetch from 'cross-fetch';
 import {__E2E__} from '../../modules/environment';
-import {createDisciplinesCards} from '../../__fixtures__/cards';
+import {createDisciplinesCards, createChaptersCards} from '../../__fixtures__/cards';
 import disciplinesBundle from '../../__fixtures__/discipline-bundle';
 import type {SupportedLanguage} from '../../translations/_types';
 import {uniqBy} from '../../utils';
@@ -209,7 +209,15 @@ export const fetchCards = async (
     const disciplines = Object.keys(disciplinesBundle.disciplines).map(
       key => disciplinesBundle.disciplines[key]
     );
-    const cards = createDisciplinesCards(disciplines);
+
+    const chapters = Object.keys(disciplinesBundle.chapters).map(
+      key => disciplinesBundle.chapters[key]
+    );
+
+    const disciplineCards = createDisciplinesCards(disciplines);
+    const chapterCards = createChaptersCards(chapters);
+
+    const cards = [...disciplineCards, ...chapterCards];
     await saveDashboardCardsInAsyncStorage(cards, language);
 
     return Promise.all(cards.map(refreshCard));

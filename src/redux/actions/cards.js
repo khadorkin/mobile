@@ -163,7 +163,9 @@ export const selectCard = (item: DisciplineCard | ChapterCard): StoreAction<Acti
           );
 
           // $FlowFixMe union type
-          return await dispatch(createChapterProgression(chapter));
+          const {payload: progression} = await dispatch(createChapterProgression(chapter));
+          // $FlowFixMe union type
+          return dispatch(selectProgression(progression._id));
         } catch (e) {
           return dispatch(selectCardFailure(item, 'Chapter progression not created'));
         }
