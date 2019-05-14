@@ -17,6 +17,7 @@ type Props = {|
   progression?: Progression,
   isAdaptive: boolean,
   isCertified?: boolean,
+  isLearner: boolean,
   testID: string,
   titleStyle?: GenericStyleProp,
   subtitleStyle?: GenericStyleProp,
@@ -61,6 +62,7 @@ const CatalogItemFooter = ({
   isAdaptive,
   isCertified,
   testID,
+  isLearner,
   titleStyle = {
     fontSize: theme.fontSize.regular
   },
@@ -70,30 +72,33 @@ const CatalogItemFooter = ({
   iconAdaptiveSize = 16,
   iconCertifiedSize = 14
 }: Props) => {
+  const color = (isLearner && theme.colors.white) || theme.colors.gray.dark;
+  const progressionBarBgColor = (isLearner && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
+
   return (
     <View style={styles.container}>
       {isAdaptive && (
         <NovaCompositionCoorpacademyAdaptive
           testID={`infinite-${testID}`}
-          color={theme.colors.white}
+          color={color}
           height={iconAdaptiveSize}
           width={iconAdaptiveSize}
         />
       )}
-      <Text testID={`title-${testID}`} style={[styles.title, titleStyle]}>
+      <Text testID={`title-${testID}`} style={[styles.title, titleStyle, {color}]}>
         {title}
       </Text>
 
       <View style={styles.subtitleContainer}>
-        <Text testID={`subtitle-${testID}`} style={[styles.subtitle, subtitleStyle]}>
+        <Text testID={`subtitle-${testID}`} style={[styles.subtitle, subtitleStyle, {color}]}>
           {subtitle}
         </Text>
         {isCertified && (
           <View style={[styles.certified, {marginTop: iconCertifiedMargin}]}>
             <NovaSolidStatusCheckCircle2
               testID={`certified-${testID}`}
-              color={theme.colors.white}
+              color={color}
               height={iconCertifiedSize}
               width={iconCertifiedSize}
             />
@@ -106,7 +111,7 @@ const CatalogItemFooter = ({
             current={progression.current}
             count={progression.count}
             height={2}
-            backgroundColor={theme.colors.white}
+            backgroundColor={progressionBarBgColor}
             isInnerRounded
           />
         </View>
