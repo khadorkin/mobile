@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Conectar a la plataforma de aprendizaje<b>con este dispositivo</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Ve a <b>tu cuenta</b> </br>en la esquina superior derecha',
+    'Accede a <b>tu cuenta</b></br>en la esquina superior izquierda',
   authenticationMagicLinkStepThreeDescription:
     '<b>¡Listo!</b></br>El enlace especial estará exactamente aquí',
   authenticationMagicLinkTitle: 'Enlace especial',
@@ -47,6 +47,7 @@ const translations: Translations = {
   new: 'Nuevo',
   next: 'Siguiente',
   nextLevel: 'Siguiente nivel',
+  nextChapter: 'Siguiente capítulo',
   ok: 'OK',
   ooops: 'Ups...',
   open: 'Abrir',
@@ -61,6 +62,7 @@ const translations: Translations = {
   quit: 'Salir',
   relatedSubjects: 'Recomendado para ti:',
   retryLevel: 'Reintentar nivel',
+  retryChapter: 'Reintentar capítulo',
   scanQRCode: 'Escanea el <b>código QR</b>',
   seeClue: 'Ver pista',
   selectSomethingBelow: 'Selecciona algo de abajo',

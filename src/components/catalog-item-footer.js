@@ -17,7 +17,7 @@ type Props = {|
   progression?: Progression,
   isAdaptive: boolean,
   isCertified?: boolean,
-  isLearner: boolean,
+  isCourse: boolean,
   testID: string,
   titleStyle?: GenericStyleProp,
   subtitleStyle?: GenericStyleProp,
@@ -62,7 +62,7 @@ const CatalogItemFooter = ({
   isAdaptive,
   isCertified,
   testID,
-  isLearner,
+  isCourse,
   titleStyle = {
     fontSize: theme.fontSize.regular
   },
@@ -72,10 +72,10 @@ const CatalogItemFooter = ({
   iconAdaptiveSize = 16,
   iconCertifiedSize = 14
 }: Props) => {
-  const color = (isLearner && theme.colors.white) || theme.colors.gray.dark;
-  const progressionBarBgColor = (isLearner && theme.colors.white) || theme.colors.gray.light;
+  const color = (isCourse && theme.colors.white) || theme.colors.gray.dark;
+  const progressionBarBgColor = (isCourse && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
-  const numberOfLines = !isLearner ? 1 : Infinity;
+  const numberOfLines = !isCourse ? 1 : Infinity;
   return (
     <View style={styles.container}>
       {isAdaptive && (

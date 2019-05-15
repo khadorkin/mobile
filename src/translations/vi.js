@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Kết nối với nền tảng học tập của bạn <b>bằng thiết bị này</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Chuyển đến <b>Tài khoản của bạn</b> </br>ở góc phía trên bên phải',
+    'Vào mục <b>Tài khoản của bạn</b> </br>ở góc trên bên trái',
   authenticationMagicLinkStepThreeDescription:
     '<b>Được rồi!</b></br>Liên kết Ma thuật của bạn sẽ hiển thị ngay thôi',
   authenticationMagicLinkTitle: 'Liên kết ma thuật',
@@ -47,6 +47,7 @@ const translations: Translations = {
   new: 'new',
   next: 'Tiếp',
   nextLevel: 'Cấp tiếp theo ',
+  nextChapter: 'Chương tiếp theo',
   ok: 'OK',
   ooops: 'Rất tiếc…',
   open: 'Mở',
@@ -61,6 +62,7 @@ const translations: Translations = {
   quit: 'Thoát',
   relatedSubjects: 'Đề xuất dành cho bạn:',
   retryLevel: 'Thử lại cấp độ',
+  retryChapter: 'Thử lại chương',
   scanQRCode: 'Quét <b>mã QR </b>của bạn',
   seeClue: 'Xem gợi ý',
   selectSomethingBelow: 'Chọn một điều nào đó dưới đây',

@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     "Під'єднайтесь до вашої навчальної платформи <b>через цей пристрій</b>",
   authenticationMagicLinkStepTwoDescription:
-    'Перейдіть до <b>вашого облікового запису</b> </br> у верхньому правому куті',
+    'Перейдіть до <b>свого облікового запису</b> </br>у верхньому лівому куті',
   authenticationMagicLinkStepThreeDescription:
     '<b>Вуаля!</b></br>Ваше Магічне Посилання буде прямо тут',
   authenticationMagicLinkTitle: 'Магічне Посилання',
@@ -46,6 +46,7 @@ const translations: Translations = {
   new: 'нові',
   next: 'Далі',
   nextLevel: 'Наступний рівень',
+  nextChapter: 'Наступний розділ:',
   ok: 'Гаразд',
   ooops: 'Упс...',
   open: 'Відкрити',
@@ -60,6 +61,7 @@ const translations: Translations = {
   quit: 'Вийти',
   relatedSubjects: 'Рекомендовано для Вас:',
   retryLevel: 'Пройти рівень ще раз',
+  retryChapter: 'Пройти розділ ще раз',
   scanQRCode: 'Відскануйте свій <b>QR-код</b>',
   seeClue: 'Переглянути підказку',
   selectSomethingBelow: 'Оберіть положення нижче',

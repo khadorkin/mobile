@@ -134,7 +134,7 @@ const CatalogItemLearner = ({
         )}
 
         <CatalogItemFooter
-          isLearner
+          isCourse
           title={title}
           subtitle={subtitle}
           isCertified={isCertified}

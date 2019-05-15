@@ -8,7 +8,8 @@ const translations: Translations = {
     'Utilizar este dispositivo para verificar a sua identidade na plataforma web',
   authenticationMagicLinkStepOneDescription:
     'Ligue-se à sua plataforma de aprendizagem <b>com este dispositivo</b>',
-  authenticationMagicLinkStepTwoDescription: 'Vá à <b>sua Conta</b> </br>no canto superior direito',
+  authenticationMagicLinkStepTwoDescription:
+    'Vá à <b>sua Conta</b> </br>no canto superior esquerdo.',
   authenticationMagicLinkStepThreeDescription: '<b>Voilà!</b></br>A sua Ligação Mágica estará lá',
   authenticationMagicLinkTitle: 'Ligação mágica',
   authenticationQRCodeHeader:
@@ -45,6 +46,7 @@ const translations: Translations = {
   new: 'Novo',
   next: 'Seguinte',
   nextLevel: 'Próximo nível',
+  nextChapter: 'Próximo capítulo',
   ok: 'OK',
   ooops: 'Ooops...',
   open: 'Abrir',
@@ -59,6 +61,7 @@ const translations: Translations = {
   quit: 'Desistir',
   relatedSubjects: 'Recomendado para si:',
   retryLevel: 'Voltar a tentar nível',
+  retryChapter: 'Voltar a tentar capítulo',
   scanQRCode: 'Digitalize o seu <b>código QR</b>',
   seeClue: 'Ver solução',
   selectSomethingBelow: 'Selecione algo abaixo',

@@ -7,7 +7,7 @@ const translations: Translations = {
   authenticationMagicLinkHeader: '이 기기를 사용하여 웹 플랫폼에서 본인의 신원을 확인하세요 ',
   authenticationMagicLinkStepOneDescription: '<b>이 기기로</b> 학습 플랫폼에 연결하세요 ',
   authenticationMagicLinkStepTwoDescription:
-    '상단 오른쪽 모퉁이에서 <b>귀하의 계정</b> </br>으로 가세요',
+    '좌상단 구석에 있는 <b>귀하의 계정</b>으로 이동하세요</br>',
   authenticationMagicLinkStepThreeDescription:
     '<b>자 보세요!</b></br>매직 링크가 바로 거기에 있습니다',
   authenticationMagicLinkTitle: '매직 링크',
@@ -44,6 +44,7 @@ const translations: Translations = {
   new: '새로운',
   next: '다음',
   nextLevel: '다음 레벨',
+  nextChapter: '다음 장',
   ok: 'OK',
   ooops: '에구...',
   open: '열기',
@@ -57,6 +58,7 @@ const translations: Translations = {
   quit: '끝내기',
   relatedSubjects: '귀하에 대한 추천:',
   retryLevel: '레벨 재시도',
+  retryChapter: '장 재시도',
   scanQRCode: ' <b>QR 코드</b> 스캔하기 ',
   seeClue: '단서 보기',
   selectSomethingBelow: '아래에서 선택하세요',

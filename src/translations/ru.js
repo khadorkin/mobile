@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Соединяйтесь с вашей учебной платформой <b>с помощью этого устройства</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Перейдите в <b>свой аккаунт</b> </br>в правом верхнем углу',
+    'Перейдите в <b>свой аккаунт</b> </br> в левом верхнем углу',
   authenticationMagicLinkStepThreeDescription:
     '<b>Вуаля!</b></br>Ваша волшебная ссылка окажется прямо здесь',
   authenticationMagicLinkTitle: 'Волшебная ссылка ',
@@ -48,6 +48,7 @@ const translations: Translations = {
   new: 'Новые',
   next: 'Далее',
   nextLevel: 'Следующий уровень',
+  nextChapter: 'Следующая глава',
   ok: 'Хорошо',
   ooops: 'Ой...',
   open: 'Открыть',
@@ -62,6 +63,7 @@ const translations: Translations = {
   quit: 'Выйти',
   relatedSubjects: 'Рекомендовано вам:',
   retryLevel: 'Повторить уровень',
+  retryChapter: 'Повторить главу',
   scanQRCode: 'Сканируйте свой <b>QR-код</b>',
   seeClue: 'Смотреть подсказку',
   selectSomethingBelow: 'Выберите что-либо ниже',

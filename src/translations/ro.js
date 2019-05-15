@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Conectează-te la platforma de învățare <b>cu acest dispozitiv</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Mergi la <b>contul tău</b> </br>în colțul din dreapta sus',
+    'Accesați <b>Contul dvs.</b> </br>în colțul din stânga sus',
   authenticationMagicLinkStepThreeDescription:
     '<b>Voilà!</b></br>Linkul tău magic va apărea imediat',
   authenticationMagicLinkTitle: 'Link magic',
@@ -48,6 +48,7 @@ const translations: Translations = {
   new: 'noi',
   next: 'Următoarea',
   nextLevel: 'Nivelul următor',
+  nextChapter: 'Capitolul următor',
   ok: 'OK',
   ooops: 'Opa...',
   open: 'Deschide',
@@ -61,6 +62,7 @@ const translations: Translations = {
   quit: 'Renunță',
   relatedSubjects: 'Recomandări:',
   retryLevel: 'Încercați din nou acest nivel',
+  retryChapter: 'Încercați din nou acest capitol',
   scanQRCode: 'Scanează <b>codul QR</b>',
   seeClue: 'Arată indiciul',
   selectSomethingBelow: 'Selectați din opțiunile de mai jos',

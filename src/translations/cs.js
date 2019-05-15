@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Připojte se ke vzdělávací platformě <b>pomocí tohoto zařízení</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Přejděte na <b>svůj Účet</b> </br>, je v pravém horním rohu',
+    'V levém horním rohu přejděte na <b>svůj účet</b> </br>',
   authenticationMagicLinkStepThreeDescription: '<b>Voilà!</b></br>Váš Magic Link bude přímo tam ',
   authenticationMagicLinkTitle: 'Magic link ',
   authenticationQRCodeHeader: 'Pro ověření své identity na webové identity použijte počítač',
@@ -46,6 +46,7 @@ const translations: Translations = {
   new: 'nové',
   next: 'Další',
   nextLevel: 'Další úroveň',
+  nextChapter: 'Další kapitola',
   ok: 'OK',
   ooops: 'Ó jé...',
   open: 'Otevřít',
@@ -60,6 +61,7 @@ const translations: Translations = {
   quit: 'Opustit',
   relatedSubjects: 'Doporučeno pro vás:',
   retryLevel: 'Zkuste úroveň znovu',
+  retryChapter: 'Zkuste kapitolu znovu',
   scanQRCode: 'Naskenujte svůj <b>kód QR</b>',
   seeClue: 'Zobrazit nápovědu',
   selectSomethingBelow: 'Vyberte něco níže',

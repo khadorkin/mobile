@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Maak <b>met dit toestel</b> verbinding met uw leerplatform',
   authenticationMagicLinkStepTwoDescription:
-    'Ga naar <b>je account</b> </br> in de rechterbovenhoek',
+    'Ga naar <b>je Account</b> </br> in de linkerbovenhoek',
   authenticationMagicLinkStepThreeDescription: '<b>Voilà!</b></br>Uw magische link komt hier',
   authenticationMagicLinkTitle: 'Magische link',
   authenticationQRCodeHeader:
@@ -46,6 +46,7 @@ const translations: Translations = {
   new: 'Nieuw',
   next: 'Volgende',
   nextLevel: 'Volgend level',
+  nextChapter: 'Volgend hoofdstuk',
   ok: 'OK',
   ooops: 'Oeps...',
   open: 'Openen',
@@ -60,6 +61,7 @@ const translations: Translations = {
   quit: 'Verlaten',
   relatedSubjects: 'Aanbevolen voor jou:',
   retryLevel: 'Probeer dit niveau opnieuw',
+  retryChapter: 'Probeer hoofdstuk opnieuw',
   scanQRCode: 'Scan uw <b>QR-code</b>',
   seeClue: 'Bekijk tip',
   selectSomethingBelow: 'Selecteer iets hieronder',

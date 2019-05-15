@@ -152,7 +152,7 @@ const CatalogItemMicrolearning = ({
       </View>
       <View style={styles.footerContainer}>
         <CatalogItemFooter
-          isLearner={false}
+          isCourse={false}
           title={title}
           subtitle={subtitle}
           isCertified={isCertified}

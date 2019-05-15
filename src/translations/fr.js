@@ -9,7 +9,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Connectez-vous à votre plateforme de formation <b>avec cet appareil</b>',
   authenticationMagicLinkStepTwoDescription:
-    "Allez sur <b>votre compte</b> </br>dans l'angle supérieur droit",
+    "Allez sur <b>votre compte</b> </br>dans l'angle supérieur gauche",
   authenticationMagicLinkStepThreeDescription: '<b>Voilà !</b></br>Votre Magic Link sera ici',
   authenticationMagicLinkTitle: 'Magic link',
   authenticationQRCodeHeader:
@@ -48,6 +48,7 @@ const translations: Translations = {
   new: 'Nouveau',
   next: 'Continuer',
   nextLevel: 'Niveau suivant',
+  nextChapter: 'Chapitre suivant ',
   ok: 'Ok',
   ooops: 'Oups...',
   open: 'Ouvrir',
@@ -62,6 +63,7 @@ const translations: Translations = {
   quit: 'Quitter',
   relatedSubjects: 'Recommandé pour vous : ',
   retryLevel: 'Réessayez ce niveau',
+  retryChapter: 'Réessayez ce chapitre',
   scanQRCode: 'Scannez votre <b>QR Code</b>',
   seeClue: "Voir l'indice",
   selectSomethingBelow: 'Sélectionner la ou les option(s) correcte(s) ci-dessous',

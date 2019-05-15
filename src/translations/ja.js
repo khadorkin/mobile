@@ -8,8 +8,7 @@ const translations: Translations = {
     'このデバイスを使って、ウェブプラットフォーム上であなたの身元を確認する',
   authenticationMagicLinkStepOneDescription:
     '<b>この端末で</b>自分の学習プラットフォームに接続する',
-  authenticationMagicLinkStepTwoDescription:
-    '右上の隅にある<b>あなたのアカウント</b></br>にお進みください',
+  authenticationMagicLinkStepTwoDescription: '左上隅の<b>アカウント</b></br>に移動して',
   authenticationMagicLinkStepThreeDescription:
     '<b>ほら！</b></br>あなたのマジックリンクはすぐそこにあります',
   authenticationMagicLinkTitle: 'マジックリンク',
@@ -47,6 +46,7 @@ const translations: Translations = {
   new: 'new',
   next: 'Next',
   nextLevel: '次のレベル',
+  nextChapter: 'Next Chapter',
   ok: 'OK',
   ooops: 'ゲームオーバー! ',
   open: 'オープン',
@@ -61,6 +61,7 @@ const translations: Translations = {
   quit: '終了する',
   relatedSubjects: 'あなたへおすすめのコース',
   retryLevel: 'リトライする',
+  retryChapter: '章を再試行します。',
   scanQRCode: 'あなたの<b>QRコードを</b>スキャンする',
   seeClue: 'ヒントをみる ',
   selectSomethingBelow: '下に何かを選択します。',

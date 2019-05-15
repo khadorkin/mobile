@@ -31,12 +31,12 @@ type Props = $Exact<{|
   ...CourseInfo,
   ...AnalyticsParams,
   onPress: (item: Item) => void,
-  isLearner: boolean,
+  isCourse: boolean,
   displayMode?: CardDisplayMode,
   testID: string
 |}>;
 
-const CatalogItem = ({isLearner, ...props}: Props) => {
+const CatalogItem = ({isCourse, ...props}: Props) => {
   return (
     <Touchable
       testID={props.testID}
@@ -45,7 +45,7 @@ const CatalogItem = ({isLearner, ...props}: Props) => {
       analyticsID="card"
       analyticsParams={{ref: props.universalRef, type: props.type, section: props.section}}
     >
-      {(isLearner && <CatalogItemLearner {...props} />) || <CatalogItemMicrolearning {...props} />}
+      {(isCourse && <CatalogItemLearner {...props} />) || <CatalogItemMicrolearning {...props} />}
     </Touchable>
   );
 };

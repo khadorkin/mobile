@@ -8,8 +8,7 @@ const translations: Translations = {
     'Használd ezt a készüléket identitásod ellenőrzésére a webes platformon',
   authenticationMagicLinkStepOneDescription:
     'Kapcsolódj tanulási platformodhoz <b>ezzel a készülékkel</b>',
-  authenticationMagicLinkStepTwoDescription:
-    'Lépjen be a <b>Fiókjába</b> </br>a jobb felső sarokban',
+  authenticationMagicLinkStepTwoDescription: 'Menj a <b>Fiókodba</b> </br>a bal felső sarokban',
   authenticationMagicLinkStepThreeDescription: '<b>Voilà!</b></br>Varázshivatkozásod itt is lesz',
   authenticationMagicLinkTitle: 'Varázshivatkozás',
   authenticationQRCodeHeader: 'Számítógép segítségével ellenőrizd identitásodat a webes platformon',
@@ -45,6 +44,7 @@ const translations: Translations = {
   new: 'új',
   next: 'Következő',
   nextLevel: 'Következő szint',
+  nextChapter: 'Következő fejezet',
   ok: 'OK',
   ooops: 'Hoppá...',
   open: 'Megnyitás',
@@ -59,6 +59,7 @@ const translations: Translations = {
   quit: 'Kilépés',
   relatedSubjects: 'Önnek ajánljuk:',
   retryLevel: 'Szint  újrajátszása',
+  retryChapter: 'Fejezet újrapróbálása',
   scanQRCode: 'Olvasd be <b>QR-kódodat</b>',
   seeClue: 'Tipp megtekintése',
   selectSomethingBelow: 'Válasszon ki valamit alul',

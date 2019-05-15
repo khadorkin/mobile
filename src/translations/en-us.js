@@ -8,7 +8,7 @@ const translations: Translations = {
   authenticationMagicLinkStepOneDescription:
     'Connect to your learning platform <b>with this device</b>',
   authenticationMagicLinkStepTwoDescription:
-    'Go to <b>your Account</b> </br>in the upper right-hand corner',
+    'Go to <b>your Account</b> </br>in the upper left-hand corner',
   authenticationMagicLinkStepThreeDescription:
     '<b>Voilà!</b></br>Your Magic Link will be right there',
   authenticationMagicLinkTitle: 'Magic link',
@@ -46,6 +46,7 @@ const translations: Translations = {
   new: 'new',
   next: 'Next',
   nextLevel: 'Next level',
+  nextChapter: 'Next chapter',
   ok: 'OK',
   ooops: 'Ooops...',
   open: 'Open',
@@ -60,6 +61,7 @@ const translations: Translations = {
   quit: 'Quit',
   relatedSubjects: 'Recommended for you:',
   retryLevel: 'Retry level',
+  retryChapter: 'Retry chapter',
   scanQRCode: 'Scan your <b>QR code</b>',
   seeClue: 'See clue',
   selectSomethingBelow: 'Select something below',

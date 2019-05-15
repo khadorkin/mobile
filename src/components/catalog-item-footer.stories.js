@@ -12,7 +12,7 @@ const progression: Progression = {
 
 storiesOf('Catalog Item Footer', module).add('Default', () => (
   <CatalogItemFooter
-    isLearner
+    isCourse
     title="Cours Test"
     subtitle="Coorpacademy"
     isCertified
