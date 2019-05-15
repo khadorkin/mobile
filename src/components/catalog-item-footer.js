@@ -75,7 +75,9 @@ const CatalogItemFooter = ({
   const color = (isCourse && theme.colors.white) || theme.colors.gray.dark;
   const progressionBarBgColor = (isCourse && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
-  const numberOfLines = !isCourse ? 1 : Infinity;
+  const titleNumberOfLines = !isCourse ? 1 : Infinity;
+  const subtitleNumberOfLines = !isCourse ? 2 : Infinity;
+
   return (
     <View style={styles.container}>
       {isAdaptive && (
@@ -89,13 +91,17 @@ const CatalogItemFooter = ({
       <Text
         testID={`title-${testID}`}
         style={[styles.title, titleStyle, {color}]}
-        numberOfLines={numberOfLines}
+        numberOfLines={titleNumberOfLines}
       >
         {title}
       </Text>
 
       <View style={styles.subtitleContainer}>
-        <Text testID={`subtitle-${testID}`} style={[styles.subtitle, subtitleStyle, {color}]}>
+        <Text
+          testID={`subtitle-${testID}`}
+          style={[styles.subtitle, subtitleStyle, {color}]}
+          numberOfLines={subtitleNumberOfLines}
+        >
           {subtitle}
         </Text>
         {isCertified && (

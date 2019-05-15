@@ -96,9 +96,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingHorizontal: theme.spacing.base,
-    paddingVertical: theme.spacing.small,
-    paddingTop: theme.spacing.base
+    padding: theme.spacing.small
   }
 });
 
