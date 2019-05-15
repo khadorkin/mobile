@@ -54,7 +54,11 @@ export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
     };
   }
   return {
-    image: undefined,
+    image:
+      chapterContent &&
+      chapterContent.poster &&
+      chapterContent.poster.mediaUrl &&
+      getCleanUri(chapterContent.poster.mediaUrl),
     subtitle: undefined,
     title: chapterContent && chapterContent.name
   };
