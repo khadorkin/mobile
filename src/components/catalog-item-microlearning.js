@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, Dimensions, View, Image} from 'react-native';
-
+import {StyleSheet, View, ImageBackground} from 'react-native';
+import {NovaCompositionCoorpacademyAdaptive} from '@coorpacademy/nova-icons';
 import type {Progression, CardDisplayMode, AuthorType, Engine} from '../types';
 import {CARD_DISPLAY_MODE} from '../const';
 import theme from '../modules/theme';
@@ -39,21 +39,29 @@ type Props = $Exact<{|
   testID: string
 |}>;
 
-const {height: screenHeight} = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
     height: 205,
     backgroundColor: theme.colors.white
   },
+  imageContainer: {
+    height: 107
+  },
   image: {
-    minHeight: 205 / 2
+    flex: 1,
+    height: 107,
+    width: undefined
   },
   title: {
     fontSize: theme.fontSize.regular
   },
   subtitle: {
     fontSize: theme.fontSize.small
+  },
+  adaptiveIcon: {
+    marginLeft: theme.spacing.base,
+    marginBottom: theme.spacing.tiny,
+    justifyContent: 'flex-end'
   },
   author: {
     fontSize: theme.fontSize.extraSmall,
@@ -66,10 +74,6 @@ const styles = StyleSheet.create({
   badgeLabel: {
     fontWeight: theme.fontWeight.bold,
     fontSize: theme.fontSize.extraSmall
-  },
-  imageCover: {
-    minHeight: (screenHeight * 0.3) / 2,
-    height: (screenHeight * 0.3) / 2
   },
   titleCover: {
     fontSize: theme.fontSize.xlarge
@@ -88,6 +92,13 @@ const styles = StyleSheet.create({
   badgeLabelCover: {
     fontWeight: theme.fontWeight.bold,
     fontSize: theme.fontSize.small
+  },
+  footerContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingHorizontal: theme.spacing.base,
+    paddingVertical: theme.spacing.small,
+    paddingTop: theme.spacing.base
   }
 });
 
@@ -115,8 +126,8 @@ const CatalogItemMicrolearning = ({
 
   return (
     <View style={styles.container}>
-      <View style={{height: 107, backgroundColor: 'red'}}>
-        <Image source={image} style={styles.imageCover} />
+      <View style={styles.imageContainer}>
+        <ImageBackground source={image} style={styles.image} resizeMode="cover" />
         {badgeLabel && (
           <Badge
             label={badgeLabel}
@@ -127,23 +138,33 @@ const CatalogItemMicrolearning = ({
             testID={`badge-${testID}`}
           />
         )}
-      </View>
-      <View style={{height: 107, backgroundColor: 'white'}}>
-        <View style={{flex: 1, margin: theme.spacing.base}}>
-          <CatalogItemFooter
-            isLearner={false}
-            title={title}
-            subtitle={subtitle}
-            isCertified={isCertified}
-            isAdaptive={isAdaptive}
-            progression={progression}
-            titleStyle={mode === CARD_DISPLAY_MODE.CARD ? styles.title : styles.titleCover}
-            subtitleStyle={mode === CARD_DISPLAY_MODE.CARD ? styles.subtitle : styles.subtitleCover}
-            iconAdaptiveSize={mode === CARD_DISPLAY_MODE.CARD ? 16 : 22}
-            iconCertifiedSize={mode === CARD_DISPLAY_MODE.CARD ? 14 : 16}
-            testID={testID}
-          />
+
+        <View style={styles.adaptiveIcon}>
+          {isAdaptive && (
+            <NovaCompositionCoorpacademyAdaptive
+              testID={`infinite-${testID}`}
+              color={theme.colors.white}
+              height={mode === CARD_DISPLAY_MODE.CARD ? 16 : 22}
+              width={mode === CARD_DISPLAY_MODE.CARD ? 16 : 22}
+            />
+          )}
         </View>
+      </View>
+      <View style={styles.footerContainer}>
+        <CatalogItemFooter
+          isLearner={false}
+          title={title}
+          subtitle={subtitle}
+          isCertified={isCertified}
+          // Here we're passing isAdaptive={false} because we do not want to have the adaptiveIcon rendered
+          // from the CatalogItemFooter since we're already doing it here in this component to fit in well
+          isAdaptive={false}
+          progression={progression}
+          titleStyle={mode === CARD_DISPLAY_MODE.CARD ? styles.title : styles.titleCover}
+          subtitleStyle={mode === CARD_DISPLAY_MODE.CARD ? styles.subtitle : styles.subtitleCover}
+          iconCertifiedSize={mode === CARD_DISPLAY_MODE.CARD ? 14 : 16}
+          testID={testID}
+        />
       </View>
       {authorType && (
         <CatalogItemAuthor

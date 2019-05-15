@@ -18,7 +18,6 @@ type CourseInfo = {|
   authorType?: AuthorType,
   authorName?: string,
   isAdaptive: boolean,
-  isLearner: boolean,
   isCertified?: boolean
 |};
 
@@ -32,6 +31,7 @@ type Props = $Exact<{|
   ...CourseInfo,
   ...AnalyticsParams,
   onPress: (item: Item) => void,
+  isLearner: boolean,
   displayMode?: CardDisplayMode,
   testID: string
 |}>;

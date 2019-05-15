@@ -50,6 +50,7 @@ storiesOf('Card', module)
   .add('Catalog Item Cover', () => (
     <Card style={styles.card} shadowStyle={BOX_STYLE}>
       <CatalogItem
+        isLearner
         title="Predicting the future"
         subtitle="Coorpacademy"
         progression={progression}
@@ -71,6 +72,7 @@ storiesOf('Card', module)
   .add('Catalog Item Card', () => (
     <Card style={styles.card} shadowStyle={BOX_STYLE}>
       <CatalogItem
+        isLearner
         title="Predicting the future"
         subtitle="Coorpacademy"
         progression={progression}

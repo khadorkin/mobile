@@ -75,7 +75,7 @@ const CatalogItemFooter = ({
   const color = (isLearner && theme.colors.white) || theme.colors.gray.dark;
   const progressionBarBgColor = (isLearner && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
-
+  const numberOfLines = !isLearner ? 1 : Infinity;
   return (
     <View style={styles.container}>
       {isAdaptive && (
@@ -86,7 +86,11 @@ const CatalogItemFooter = ({
           width={iconAdaptiveSize}
         />
       )}
-      <Text testID={`title-${testID}`} style={[styles.title, titleStyle, {color}]}>
+      <Text
+        testID={`title-${testID}`}
+        style={[styles.title, titleStyle, {color}]}
+        numberOfLines={numberOfLines}
+      >
         {title}
       </Text>
 

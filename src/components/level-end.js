@@ -154,6 +154,8 @@ const styles = StyleSheet.create({
 const {width: screenWidth} = Dimensions.get('window');
 
 class LevelEnd extends React.PureComponent<Props> {
+  static isLearner = (type: string) => type === 'course';
+
   handleCardPress = (item: DisciplineCard | ChapterCard) => () => this.props.onCardPress(item);
 
   handleButtonPress = () => this.props.onButtonPress();
@@ -231,6 +233,7 @@ class LevelEnd extends React.PureComponent<Props> {
                       <Text style={styles.title}>{translations.relatedSubjects}</Text>
                       <Card type={CARD_LAYOUT.CONTAIN} style={styles.card} shadowStyle={BOX_STYLE}>
                         <CatalogItem
+                          isLearner={LevelEnd.isLearner(recommendation.type)}
                           title={recommendation.title}
                           subtitle={recommendation.authors.map(author => author.label).join(', ')}
                           progression={{

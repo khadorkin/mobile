@@ -18,7 +18,7 @@ const progression: Progression = {
 storiesOf('Catalog Item', module)
   .add('Learner', () => (
     <CatalogItem
-      isLeaner
+      isLearner
       title="Predicting the future"
       subtitle="Coorpacademy"
       progression={progression}
@@ -35,7 +35,7 @@ storiesOf('Catalog Item', module)
   ))
   .add('Microlearning', () => (
     <CatalogItem
-      isLeaner={false}
+      isLearner={false}
       title="Predicting the future"
       subtitle="Coorpacademy"
       progression={progression}

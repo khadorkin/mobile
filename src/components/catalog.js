@@ -72,6 +72,8 @@ export const getAuthorName = (card: DisciplineCard | ChapterCard): string | void
 class Catalog extends React.PureComponent<Props> {
   props: Props;
 
+  static isLearner = (type: string) => type === 'course';
+
   handlePress = (item: DisciplineCard | ChapterCard) => () => this.props.onPress(item);
 
   handleLogoLongPress = () => this.props.onLogoLongPress && this.props.onLogoLongPress();
@@ -101,6 +103,7 @@ class Catalog extends React.PureComponent<Props> {
 
               <Card style={styles.card} shadowStyle={BOX_STYLE}>
                 <CatalogItem
+                  isLearner={Catalog.isLearner(cover.type)}
                   title={cover.title}
                   subtitle={cover.authors.map(author => author.label).join(', ')}
                   progression={{
@@ -139,6 +142,7 @@ class Catalog extends React.PureComponent<Props> {
                     <View style={styles.cards}>
                       <Card style={styles.card} shadowStyle={BOX_STYLE}>
                         <CatalogItem
+                          isLearner={Catalog.isLearner(item.type)}
                           title={item.title}
                           subtitle={item.authors.map(author => author.label).join(', ')}
                           progression={{
@@ -169,6 +173,7 @@ class Catalog extends React.PureComponent<Props> {
                       {nextItem && (
                         <Card style={styles.card} shadowStyle={BOX_STYLE}>
                           <CatalogItem
+                            isLearner={Catalog.isLearner(item.type)}
                             title={nextItem.title}
                             subtitle={nextItem.authors.map(author => author.label).join(', ')}
                             progression={{
