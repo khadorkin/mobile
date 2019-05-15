@@ -480,6 +480,7 @@ exports[`Storyshots Preview Extra Life 1`] = `
           }
         >
           <Text
+            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -491,6 +492,7 @@ exports[`Storyshots Preview Extra Life 1`] = `
             Bonus!
           </Text>
           <Text
+            numberOfLines={Infinity}
             style={
               Array [
                 Object {

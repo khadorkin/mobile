@@ -2,6 +2,7 @@
 
 exports[`Storyshots Version Default 1`] = `
 <Text
+  numberOfLines={Infinity}
   style={
     Array [
       Object {

@@ -28,6 +28,7 @@ exports[`Storyshots Catalog Item Badge Default 1`] = `
     }
   >
     <Text
+      numberOfLines={Infinity}
       style={
         Array [
           "new",

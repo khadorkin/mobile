@@ -487,6 +487,7 @@ exports[`Storyshots Resource PDF (with extra life) 1`] = `
             }
           >
             <Text
+              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -498,6 +499,7 @@ exports[`Storyshots Resource PDF (with extra life) 1`] = `
               Bonus!
             </Text>
             <Text
+              numberOfLines={Infinity}
               style={
                 Array [
                   Object {
@@ -1323,6 +1325,7 @@ Array [
               }
             >
               <Text
+                numberOfLines={Infinity}
                 style={
                   Object {
                     "color": "#FFFFFF",
@@ -1334,6 +1337,7 @@ Array [
                 Bonus!
               </Text>
               <Text
+                numberOfLines={Infinity}
                 style={
                   Array [
                     Object {

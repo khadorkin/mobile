@@ -4,6 +4,7 @@
 import * as React from 'react';
 import {View, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import type {ContentType} from '@coorpacademy/progression-engine';
 
 import translations from '../translations';
 import {getCleanUri} from '../modules/uri';
@@ -28,6 +29,7 @@ import Tooltip from './tooltip';
 import HeaderBackButton from './header-back-button';
 
 type Props = {|
+  contentType: ContentType,
   isSuccess: boolean,
   onButtonPress: () => void,
   onCardPress: (item: DisciplineCard | ChapterCard) => void,
@@ -162,6 +164,7 @@ class LevelEnd extends React.PureComponent<Props> {
 
   render() {
     const {
+      contentType,
       isSuccess,
       bestScore,
       onClose,
@@ -179,10 +182,15 @@ class LevelEnd extends React.PureComponent<Props> {
       /{{levelName}}/g,
       levelUnlockedName
     );
+
+    const nextLabel = contentType === 'level' ? translations.nextLevel : translations.nextChapter;
+    const retryLabel =
+      contentType === 'level' ? translations.retryLevel : translations.retryChapter;
+
     const buttonTranslation =
       (isSuccess && hasFinishedCourse && translations.backToHome) ||
-      (isSuccess && translations.nextLevel) ||
-      translations.retryLevel;
+      (isSuccess && nextLabel) ||
+      retryLabel;
 
     return (
       <BrandThemeContext.Consumer>
@@ -283,7 +291,9 @@ class LevelEnd extends React.PureComponent<Props> {
             <ButtonSticky
               onPress={this.handleButtonPress}
               testID={`button-${isSuccess ? 'next' : 'retry'}-level`}
-              analyticsID={`button-level-end-${isSuccess ? 'next' : 'retry'}-level`}
+              analyticsID={`button-${contentType}-end-${
+                isSuccess ? 'next' : 'retry'
+              }-${contentType}`}
             >
               {buttonTranslation}
             </ButtonSticky>
