@@ -38,6 +38,7 @@ exports[`Storyshots Correction Bad answer 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -50,6 +51,7 @@ exports[`Storyshots Correction Bad answer 1`] = `
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -956,6 +958,7 @@ exports[`Storyshots Correction Bad answer 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -3285,6 +3288,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed (cards order
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -3297,6 +3301,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed (cards order
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -4203,6 +4208,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed (cards order
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -6499,6 +6505,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed but extralif
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -6511,6 +6518,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed but extralif
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -7417,6 +7425,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed but extralif
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -9713,6 +9722,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -9725,6 +9735,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -10988,6 +10999,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
                               }
                             >
                               <Text
+                                numberOfLines={Infinity}
                                 style={
                                   Object {
                                     "color": "#FFFFFF",
@@ -10999,6 +11011,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
                                 Bonus!
                               </Text>
                               <Text
+                                numberOfLines={Infinity}
                                 style={
                                   Array [
                                     Object {
@@ -11908,6 +11921,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
                               }
                             >
                               <Text
+                                numberOfLines={Infinity}
                                 style={
                                   Object {
                                     "color": "#FFFFFF",
@@ -11919,6 +11933,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
                                 Bonus!
                               </Text>
                               <Text
+                                numberOfLines={Infinity}
                                 style={
                                   Array [
                                     Object {
@@ -12471,6 +12486,7 @@ exports[`Storyshots Correction Bad answer and lesson was not viewed, extralife i
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -13473,6 +13489,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed (cards order 4) 
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -13485,6 +13502,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed (cards order 4) 
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -14391,6 +14409,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed (cards order 4) 
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -16687,6 +16706,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed: extralife is co
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -16699,6 +16719,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed: extralife is co
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -18890,6 +18911,7 @@ exports[`Storyshots Correction Bad answer and lesson was viewed: extralife is co
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -19890,6 +19912,7 @@ exports[`Storyshots Correction Bad answer and subtitles from resource with subti
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -19902,6 +19925,7 @@ exports[`Storyshots Correction Bad answer and subtitles from resource with subti
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -20808,6 +20832,7 @@ exports[`Storyshots Correction Bad answer and subtitles from resource with subti
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -23137,6 +23162,7 @@ exports[`Storyshots Correction Bad answer without lives 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -23149,6 +23175,7 @@ exports[`Storyshots Correction Bad answer without lives 1`] = `
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -23655,6 +23682,7 @@ exports[`Storyshots Correction Bad answer without lives 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -25984,6 +26012,7 @@ exports[`Storyshots Correction Default 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -25996,6 +26025,7 @@ exports[`Storyshots Correction Default 1`] = `
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -26534,6 +26564,7 @@ exports[`Storyshots Correction Good answer 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -26546,6 +26577,7 @@ exports[`Storyshots Correction Good answer 1`] = `
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -29489,6 +29521,7 @@ exports[`Storyshots Correction Good answer 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -29754,6 +29787,7 @@ exports[`Storyshots Correction Good answer and lesson was not viewed (cards orde
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -29766,6 +29800,7 @@ exports[`Storyshots Correction Good answer and lesson was not viewed (cards orde
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -32709,6 +32744,7 @@ exports[`Storyshots Correction Good answer and lesson was not viewed (cards orde
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -32968,6 +33004,7 @@ exports[`Storyshots Correction Good answer and lesson was viewed (cards order 1)
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -32980,6 +33017,7 @@ exports[`Storyshots Correction Good answer and lesson was viewed (cards order 1)
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -34627,6 +34665,7 @@ exports[`Storyshots Correction Good answer and lesson was viewed (cards order 1)
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -36182,6 +36221,7 @@ exports[`Storyshots Correction Good answer without lives 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -36194,6 +36234,7 @@ exports[`Storyshots Correction Good answer without lives 1`] = `
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -38737,6 +38778,7 @@ exports[`Storyshots Correction Good answer without lives 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -39002,6 +39044,7 @@ exports[`Storyshots Correction Last bad answer 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -39014,6 +39057,7 @@ exports[`Storyshots Correction Last bad answer 1`] = `
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -39920,6 +39964,7 @@ exports[`Storyshots Correction Last bad answer 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -42249,6 +42294,7 @@ exports[`Storyshots Correction Last good answer 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -42261,6 +42307,7 @@ exports[`Storyshots Correction Last good answer 1`] = `
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -45204,6 +45251,7 @@ exports[`Storyshots Correction Last good answer 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -45469,6 +45517,7 @@ exports[`Storyshots Correction Last good answer without lives 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -45481,6 +45530,7 @@ exports[`Storyshots Correction Last good answer without lives 1`] = `
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -48024,6 +48074,7 @@ exports[`Storyshots Correction Last good answer without lives 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -48289,6 +48340,7 @@ exports[`Storyshots Correction Next button was pressed, should be set in loading
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -48301,6 +48353,7 @@ exports[`Storyshots Correction Next button was pressed, should be set in loading
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -50844,6 +50897,7 @@ exports[`Storyshots Correction Next button was pressed, should be set in loading
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -51103,6 +51157,7 @@ exports[`Storyshots Correction With only one answer 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -51115,6 +51170,7 @@ exports[`Storyshots Correction With only one answer 1`] = `
           Good job!
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -54004,6 +54060,7 @@ exports[`Storyshots Correction With only one answer 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {
@@ -54215,6 +54272,7 @@ exports[`Storyshots Correction With plenty of user answers and questions 1`] = `
     >
       <View>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -54227,6 +54285,7 @@ exports[`Storyshots Correction With plenty of user answers and questions 1`] = `
           Ouch...
         </Text>
         <Text
+          numberOfLines={Infinity}
           style={
             Object {
               "color": "#FFFFFF",
@@ -55133,6 +55192,7 @@ exports[`Storyshots Correction With plenty of user answers and questions 1`] = `
                       }
                     />
                     <Text
+                      numberOfLines={Infinity}
                       style={
                         Array [
                           Object {

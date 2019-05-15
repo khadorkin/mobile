@@ -85,6 +85,7 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
     />
   </RNSVGSvgView>
   <Text
+    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -94,6 +95,9 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
         },
         Object {
           "fontSize": 15,
+        },
+        Object {
+          "color": "#FFFFFF",
         },
       ]
     }
@@ -110,6 +114,7 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
     }
   >
     <Text
+      numberOfLines={Infinity}
       style={
         Array [
           Object {
@@ -121,6 +126,9 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
           },
           Object {
             "fontSize": 12,
+          },
+          Object {
+            "color": "#FFFFFF",
           },
         ]
       }

@@ -1,18 +1,12 @@
 // @flow strict
 
 import {AsyncStorage} from 'react-native';
-import disciplinesBundle from '../../__fixtures__/discipline-bundle';
-import {
-  createDisciplinesCards,
-  createDisciplineCard,
-  createCardLevel,
-  createChapterCard
-} from '../../__fixtures__/cards';
-
+import {createDisciplineCard, createCardLevel, createChapterCard} from '../../__fixtures__/cards';
 import createCompletion from '../../__fixtures__/completion';
 
 import {
   cardsToKeys,
+  createE2ECards,
   updateDisciplineCardDependingOnCompletion,
   updateChapterCardAccordingToCompletion,
   refreshCard
@@ -21,6 +15,8 @@ import {
 const HOST = 'https://host.coorpacademy.com';
 const TOKEN = '__TOKEN__';
 const LANGUAGE = 'en';
+
+const cards = createE2ECards();
 
 describe('cards', () => {
   describe('fetchCards', () => {
@@ -47,15 +43,9 @@ describe('cards', () => {
       }));
       const {fetchCards} = require('./cards');
       const result = fetchCards(TOKEN, HOST, LANGUAGE);
-      const expected = createDisciplinesCards(
-        Object.keys(disciplinesBundle.disciplines).map(key => disciplinesBundle.disciplines[key])
-      );
+      const expected = cards;
       return expect(result).resolves.toEqual(expected);
     });
-
-    const cards = createDisciplinesCards(
-      Object.keys(disciplinesBundle.disciplines).map(key => disciplinesBundle.disciplines[key])
-    );
 
     it('should fetch favorites and recommendations to populate dashboard cards', async () => {
       jest.mock('../../modules/environment', () => ({

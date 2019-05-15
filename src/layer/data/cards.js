@@ -13,6 +13,23 @@ import {CARD_TYPE} from './_const';
 import {buildCompletionKey, mergeCompletion} from './progressions';
 
 const SLIDE_TO_COMPLETE = 4; // @TODO; MAKE it dynamic
+
+export const createE2ECards = () => {
+  const disciplines = Object.keys(disciplinesBundle.disciplines).map(
+    key => disciplinesBundle.disciplines[key]
+  );
+
+  const chapters = Object.keys(disciplinesBundle.chapters).map(
+    key => disciplinesBundle.chapters[key]
+  );
+
+  const disciplineCards = createDisciplinesCards(disciplines);
+  const chapterCards = createChaptersCards(chapters);
+
+  const cards = [...disciplineCards, ...chapterCards];
+  return cards;
+};
+
 // @TODO; Adaptive support
 const computeLevelCompletionRate = (completion: Completion, nbChapters: number): number => {
   return Math.min(completion.current / (SLIDE_TO_COMPLETE * nbChapters), 1);
@@ -115,7 +132,7 @@ const cardsToPairs = (cards: {[key: string]: DisciplineCard | ChapterCard}) => {
   }, []);
 };
 
-const createDisiciplineCardForModules = (card: DisciplineCard, language: SupportedLanguage) => {
+const createDisciplineCardForModules = (card: DisciplineCard, language: SupportedLanguage) => {
   return card.modules.reduce((acc, mod) => {
     const key = `card:${language}:${mod.universalRef || mod.ref}`;
     const moduleCard = {
@@ -141,7 +158,7 @@ export const cardsToKeys = (
       };
       modulesCards = {
         // $FlowFixMe
-        ...createDisiciplineCardForModules(card, language)
+        ...createDisciplineCardForModules(card, language)
       };
     }
     if (cardType === CARD_TYPE.CHAPTER) {
@@ -206,18 +223,7 @@ export const fetchCards = async (
   language: SupportedLanguage
 ): Promise<Cards> => {
   if (__E2E__) {
-    const disciplines = Object.keys(disciplinesBundle.disciplines).map(
-      key => disciplinesBundle.disciplines[key]
-    );
-
-    const chapters = Object.keys(disciplinesBundle.chapters).map(
-      key => disciplinesBundle.chapters[key]
-    );
-
-    const disciplineCards = createDisciplinesCards(disciplines);
-    const chapterCards = createChaptersCards(chapters);
-
-    const cards = [...disciplineCards, ...chapterCards];
+    const cards = createE2ECards();
     await saveDashboardCardsInAsyncStorage(cards, language);
 
     return Promise.all(cards.map(refreshCard));
