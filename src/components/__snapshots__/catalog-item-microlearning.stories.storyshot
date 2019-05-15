@@ -141,9 +141,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive 1`] = `
       Object {
         "flexGrow": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
-        "paddingVertical": 16,
+        "padding": 16,
       }
     }
   >
@@ -185,7 +183,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive 1`] = `
         }
       >
         <Text
-          numberOfLines={Infinity}
+          numberOfLines={2}
           style={
             Array [
               Object {
@@ -464,9 +462,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive/New/Certified/Coorp 1`] 
       Object {
         "flexGrow": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
-        "paddingVertical": 16,
+        "padding": 16,
       }
     }
   >
@@ -508,7 +504,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive/New/Certified/Coorp 1`] 
         }
       >
         <Text
-          numberOfLines={Infinity}
+          numberOfLines={2}
           style={
             Array [
               Object {
@@ -922,9 +918,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive/New/Certified/Custom 1`]
       Object {
         "flexGrow": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
-        "paddingVertical": 16,
+        "padding": 16,
       }
     }
   >
@@ -966,7 +960,7 @@ exports[`Storyshots Catalog Item Microlearning Adaptive/New/Certified/Custom 1`]
         }
       >
         <Text
-          numberOfLines={Infinity}
+          numberOfLines={2}
           style={
             Array [
               Object {
@@ -1292,9 +1286,7 @@ exports[`Storyshots Catalog Item Microlearning New 1`] = `
       Object {
         "flexGrow": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
-        "paddingVertical": 16,
+        "padding": 16,
       }
     }
   >
@@ -1336,7 +1328,7 @@ exports[`Storyshots Catalog Item Microlearning New 1`] = `
         }
       >
         <Text
-          numberOfLines={Infinity}
+          numberOfLines={2}
           style={
             Array [
               Object {

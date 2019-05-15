@@ -558,9 +558,7 @@ exports[`Storyshots Catalog Items 1`] = `
                   Object {
                     "flexGrow": 1,
                     "justifyContent": "center",
-                    "paddingHorizontal": 24,
-                    "paddingTop": 24,
-                    "paddingVertical": 16,
+                    "padding": 16,
                   }
                 }
               >
@@ -602,7 +600,7 @@ exports[`Storyshots Catalog Items 1`] = `
                     }
                   >
                     <Text
-                      numberOfLines={Infinity}
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -935,9 +933,7 @@ exports[`Storyshots Catalog Items 1`] = `
                   Object {
                     "flexGrow": 1,
                     "justifyContent": "center",
-                    "paddingHorizontal": 24,
-                    "paddingTop": 24,
-                    "paddingVertical": 16,
+                    "padding": 16,
                   }
                 }
               >
@@ -979,7 +975,7 @@ exports[`Storyshots Catalog Items 1`] = `
                     }
                   >
                     <Text
-                      numberOfLines={Infinity}
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -1370,9 +1366,7 @@ exports[`Storyshots Catalog Items 1`] = `
                   Object {
                     "flexGrow": 1,
                     "justifyContent": "center",
-                    "paddingHorizontal": 24,
-                    "paddingTop": 24,
-                    "paddingVertical": 16,
+                    "padding": 16,
                   }
                 }
               >
@@ -1414,7 +1408,7 @@ exports[`Storyshots Catalog Items 1`] = `
                     }
                   >
                     <Text
-                      numberOfLines={Infinity}
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -1670,9 +1664,7 @@ exports[`Storyshots Catalog Items 1`] = `
                   Object {
                     "flexGrow": 1,
                     "justifyContent": "center",
-                    "paddingHorizontal": 24,
-                    "paddingTop": 24,
-                    "paddingVertical": 16,
+                    "padding": 16,
                   }
                 }
               >
@@ -1714,7 +1706,7 @@ exports[`Storyshots Catalog Items 1`] = `
                     }
                   >
                     <Text
-                      numberOfLines={Infinity}
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
