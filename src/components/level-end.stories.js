@@ -183,6 +183,8 @@ if (__TEST__) {
       );
       const item = component.root.find(el => el.props.testID === 'button-retry-level');
       item.props.onPress();
+
+      expect(item.props.analyticsID).toBe('button-end-retry-level');
       expect(handlePress.mock.calls.length).toBe(1);
     });
   });

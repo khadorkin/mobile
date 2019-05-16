@@ -192,6 +192,11 @@ class LevelEnd extends React.PureComponent<Props> {
       (isSuccess && nextLabel) ||
       retryLabel;
 
+    const buttonAnalyticsID =
+      (isSuccess && hasFinishedCourse && `button-end-${contentType}-back-to-home`) ||
+      (isSuccess && `button-end-next-${contentType}`) ||
+      `button-end-retry-${contentType}`;
+
     return (
       <BrandThemeContext.Consumer>
         {brandTheme => (
@@ -291,9 +296,7 @@ class LevelEnd extends React.PureComponent<Props> {
             <ButtonSticky
               onPress={this.handleButtonPress}
               testID={`button-${isSuccess ? 'next' : 'retry'}-level`}
-              analyticsID={`button-${contentType}-end-${
-                isSuccess ? 'next' : 'retry'
-              }-${contentType}`}
+              analyticsID={buttonAnalyticsID}
             >
               {buttonTranslation}
             </ButtonSticky>
