@@ -13,7 +13,7 @@ export const findById = (userLanguage: SupportedLanguage) => async (
 ): Promise<LevelAPI> => {
   // $FlowFixMe union type
   const item: Level = await getItem(CONTENT_TYPE.LEVEL, ref, userLanguage);
-  return mapToLevelAPI(item);
+  return item && mapToLevelAPI(item);
 };
 
 export default findById;

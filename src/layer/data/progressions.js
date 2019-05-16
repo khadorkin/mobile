@@ -27,12 +27,12 @@ export const mapProgressionToCompletion = (progression: Progression): Completion
 };
 
 export const mergeCompletion = (
-  asyncStorageCompletion: Completion,
-  progressionCompletion: Completion
+  previousCompletion: Completion,
+  latestCompletion: Completion
 ): Completion => {
   return {
-    current: progressionCompletion.current,
-    stars: Math.max(asyncStorageCompletion.stars, progressionCompletion.stars)
+    current: latestCompletion.current,
+    stars: Math.max(previousCompletion.stars, latestCompletion.stars)
   };
 };
 

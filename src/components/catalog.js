@@ -17,7 +17,7 @@ import CatalogItem from './catalog-item';
 import Card from './card';
 import {STYLE as BOX_STYLE} from './box';
 import Text from './text';
-import Touchable from './touchable'; 
+import Touchable from './touchable';
 
 type Props = {|
   titleCover: string,

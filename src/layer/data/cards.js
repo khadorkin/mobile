@@ -2,6 +2,7 @@
 
 import {AsyncStorage} from 'react-native';
 import fetch from 'cross-fetch';
+import {getConfig} from '@coorpacademy/progression-engine';
 import {__E2E__} from '../../modules/environment';
 import {createDisciplinesCards, createChaptersCards} from '../../__fixtures__/cards';
 import disciplinesBundle from '../../__fixtures__/discipline-bundle';
@@ -11,8 +12,6 @@ import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
 import {buildCompletionKey, mergeCompletion} from './progressions';
-
-const SLIDE_TO_COMPLETE = 4; // @TODO; MAKE it dynamic
 
 export const createE2ECards = () => {
   const disciplines = Object.keys(disciplinesBundle.disciplines).map(
@@ -31,8 +30,12 @@ export const createE2ECards = () => {
 };
 
 // @TODO; Adaptive support
-const computeLevelCompletionRate = (completion: Completion, nbChapters: number): number => {
-  return Math.min(completion.current / (SLIDE_TO_COMPLETE * nbChapters), 1);
+const computeLevelCompletionRate = (
+  completion: Completion,
+  nbChapters: number,
+  slidesToComplete: number
+): number => {
+  return Math.min(completion.current / (slidesToComplete * nbChapters), 1);
 };
 
 const computeCardCompletionRate = (levels: Array<CardLevel>): number =>
@@ -45,18 +48,29 @@ const cardToCompletion = (card: DisciplineCard | ChapterCard | CardLevel): Compl
 });
 
 export const updateDisciplineCardDependingOnCompletion = (
-  completions: Array<Completion | null>,
+  latestCompletions: Array<Completion | null>,
   card: DisciplineCard
 ): DisciplineCard => {
-  const levelCards = card.modules.map((levelCard, index) => {
-    const completion = completions[index];
-    if (!completion) return levelCard;
+  const config = getConfig({
+    ref: 'learner',
+    version: '1'
+  });
 
-    const levelCompletion = mergeCompletion(cardToCompletion(levelCard), completion);
-    const levelStars = Math.max(levelCard.stars, completion.stars);
+  const levelCards = card.modules.map((levelCard, index) => {
+    const latestCompletion = latestCompletions[index];
+    if (!latestCompletion) return levelCard;
+
+    const cardCompletion = cardToCompletion(levelCard);
+
+    const levelCompletion = mergeCompletion(cardCompletion, latestCompletion);
+    const levelStars = Math.max(levelCard.stars, latestCompletion.stars);
     return {
       ...levelCard,
-      completion: computeLevelCompletionRate(levelCompletion, levelCard.nbChapters),
+      completion: computeLevelCompletionRate(
+        levelCompletion,
+        levelCard.nbChapters,
+        config.slidesToComplete
+      ),
       stars: levelStars
     };
   });
@@ -75,15 +89,20 @@ export const updateChapterCardAccordingToCompletion = (
   completion: Completion,
   chapterCard: ChapterCard
 ): ChapterCard => {
+  const config = getConfig({
+    ref: 'microlearning',
+    version: '1'
+  });
+
   return {
     ...chapterCard,
     stars: Math.max(completion.stars, chapterCard.stars),
-    completion: completion.current
+    completion: completion.current / config.slidesToComplete
   };
 };
 
 const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<DisciplineCard> => {
-  const levelCompletions = await Promise.all(
+  const latestCompletions = await Promise.all(
     disciplineCard.modules.map(
       async (level): Promise<Completion | null> => {
         const completionKey = buildCompletionKey('learner', level.universalRef || level.ref);
@@ -94,18 +113,19 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
     )
   );
 
-  return updateDisciplineCardDependingOnCompletion(levelCompletions, disciplineCard);
+  return updateDisciplineCardDependingOnCompletion(latestCompletions, disciplineCard);
 };
 
 const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard> => {
-  const completion: Completion = {stars: chapterCard.stars, current: chapterCard.completion};
-  const completionKey = buildCompletionKey('learner', chapterCard.moduleRef);
-  const storedCompletion = await AsyncStorage.getItem(completionKey);
+  const cardCompletion: Completion = {stars: chapterCard.stars, current: chapterCard.completion};
+  const completionKey = buildCompletionKey('microlearning', chapterCard.ref);
+  const latestCompletion = await AsyncStorage.getItem(completionKey);
 
-  if (!storedCompletion) {
+  if (!latestCompletion) {
     return chapterCard;
   }
-  const mergedCompletion = mergeCompletion(JSON.parse(storedCompletion), completion);
+
+  const mergedCompletion = mergeCompletion(cardCompletion, JSON.parse(latestCompletion));
   return updateChapterCardAccordingToCompletion(mergedCompletion, chapterCard);
 };
 

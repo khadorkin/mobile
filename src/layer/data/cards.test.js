@@ -611,6 +611,7 @@ describe('cards', () => {
     it('should refresh the chapter Card', async () => {
       const maxStars = 666;
       const nbChapters = 1;
+      const slidesToComplete = 4;
       const chapterCard = createChapterCard({
         ref: 'lol',
         nbChapters,
@@ -620,7 +621,7 @@ describe('cards', () => {
         stars: 0
       });
 
-      const completion = createCompletion({stars: maxStars, current: 0});
+      const completion = createCompletion({stars: maxStars, current: 2});
 
       AsyncStorage.getItem = jest
         .fn()
@@ -630,6 +631,7 @@ describe('cards', () => {
 
       const expectedResult = {
         ...chapterCard,
+        completion: completion.current / slidesToComplete,
         stars: maxStars
       };
 

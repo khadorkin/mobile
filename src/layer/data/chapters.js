@@ -13,7 +13,7 @@ export const findById = (userLanguage: SupportedLanguage) => async (
 ): Promise<ChapterAPI> => {
   // $FlowFixMe union type
   const item: Chapter = await getItem(CONTENT_TYPE.CHAPTER, universalRef, userLanguage);
-  return mapToChapterAPI(item);
+  return item && mapToChapterAPI(item);
 };
 
 export const find = (userLanguage: SupportedLanguage) => async (): Promise<Array<ChapterAPI>> => {
