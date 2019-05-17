@@ -1,4 +1,17 @@
 {
-  "presets": ["react-native"],
-  "plugins": ["transform-inline-environment-variables", "jest-hoist"]
+  "presets": [
+    "react-native"
+  ],
+  "plugins": [
+    "transform-inline-environment-variables",
+    "jest-hoist",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "^react-native$": "react-native-web"
+        }
+      }
+    ]
+  ]
 }

@@ -1,7 +1,7 @@
 // @flow
 
 module.exports = {
-  preset: 'react-native',
+  preset: 'react-native-web',
   moduleFileExtensions: ['unit.js', 'unit.json', 'ios.js', 'android.js', 'js', 'json'],
   moduleNameMapper: {
     '^[./a-zA-Z0-9$_-]+.png$': 'RelativeImageStub'

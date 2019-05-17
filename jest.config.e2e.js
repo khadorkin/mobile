@@ -1,7 +1,7 @@
 // @flow
 
 module.exports = {
-  preset: 'react-native',
+  preset: 'react-native-web',
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js'
   },

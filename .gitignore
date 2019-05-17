@@ -91,3 +91,6 @@ src/modules/version.json
 # Firebase
 android/app/google-services.json
 ios/GoogleService-Info.plist
+
+# Web
+dist
