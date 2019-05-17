@@ -2,9 +2,11 @@
 
 import {AsyncStorage} from 'react-native';
 import disciplinesBundle from '../../__fixtures__/discipline-bundle';
+import chaptersBundle from '../../__fixtures__/chapter-bundle';
 import {
   createDisciplinesCards,
   createDisciplineCard,
+  createChaptersCards,
   createCardLevel,
   createChapterCard
 } from '../../__fixtures__/cards';
@@ -47,9 +49,14 @@ describe('cards', () => {
       }));
       const {fetchCards} = require('./cards');
       const result = fetchCards(TOKEN, HOST, LANGUAGE);
-      const expected = createDisciplinesCards(
+      const disciplinesCards = createDisciplinesCards(
         Object.keys(disciplinesBundle.disciplines).map(key => disciplinesBundle.disciplines[key])
       );
+      const chaptersCards = createChaptersCards(
+        Object.keys(chaptersBundle.chapters).map(key => chaptersBundle.chapters[key])
+      );
+      const expected = disciplinesCards.concat(chaptersCards);
+
       return expect(result).resolves.toEqual(expected);
     });
 
