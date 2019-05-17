@@ -20,6 +20,7 @@ const translations: Translations = {
   authenticationQRCodeStepThreeDescription:
     '<b>Voilà!</b></br>Naskenujte svůj kód QR pomocí tlačítka níže',
   authenticationQRCodeTitle: 'Kód QR',
+  askForHelp: 'Požádejte o pomoc',
   backToHome: 'Zpět domů',
   bonus: 'Bonus!',
   cancel: 'Zrušit',
@@ -29,6 +30,7 @@ const translations: Translations = {
   congratulations: 'Blahopřejeme!',
   context: 'Kontext',
   correction: 'Oprava',
+  dataLost: 'Zdá se, že se vaše údaje ztratily',
   didYouKnowThat: 'Věděli jste to?',
   finishLearning: 'Nejdřív pokračujte tady',
   forYou: 'Naše nejlepší tipy pro vás',
@@ -39,6 +41,7 @@ const translations: Translations = {
   goToQuestion: 'Přejděte k otázce',
   highscore: 'Máte nové nejvyšší skóre,<br><b>právě jste vyhráli {{score}} hvězdiček</b>',
   howToSignIn: 'Jakým způsobem se chcete přihlásit? ',
+  iWantIt: 'To chci!',
   keyPoint: 'Klíčový bod',
   lesson: 'Lekce',
   logOut: 'Odhlásit se',
@@ -57,8 +60,15 @@ const translations: Translations = {
   permission: 'Povolení',
   permissionCamera:
     'Abychom mohli naskenovat váš kód QR a ověřit vás, potřebujeme přístup k vašemu fotoaparátu. ',
+  platformHasBeenDisabled: 'Aplikace byla pro vaši platformu deaktivována',
   question: 'Otázka',
   quit: 'Opustit',
+  reactivatePlatform:
+    'pokud ji chcete znovu aktivovat, kontaktujte prosím svého správce nebo klikněte na odkaz níže a my předáme zprávu dále ',
+  refresh: 'Obnovit',
+  refreshEnjoyLearning:
+    'v síti mezi Saturnem a Zemí. Abyste si mohli vychutnat učení, proveďte prosím obnovení',
+  refreshNotWorking: 'Obnovení nefunguje? ',
   relatedSubjects: 'Doporučeno pro vás:',
   retryChapter: 'Zkuste kapitolu znovu',
   retryLevel: 'Zkuste úroveň znovu',

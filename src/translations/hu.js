@@ -18,6 +18,7 @@ const translations: Translations = {
   authenticationQRCodeStepThreeDescription:
     '<b>Voilà!</b></br>Az alábbi gombbal olvasd be QR-kódodat',
   authenticationQRCodeTitle: 'QR-kód',
+  askForHelp: 'Kérj segítséget',
   backToHome: 'Vissza a főoldalra',
   bonus: 'Bónusz!',
   cancel: 'Visszavonás',
@@ -27,6 +28,7 @@ const translations: Translations = {
   congratulations: 'Gratulálunk!',
   context: 'Kontextus',
   correction: 'Javítás',
+  dataLost: 'Úgy tűnik, hogy az adataid elvesztek',
   didYouKnowThat: 'Tudta?',
   finishLearning: 'Folytasd ezt előtte',
   forYou: 'Legjobb ajánlataink számodra',
@@ -37,6 +39,7 @@ const translations: Translations = {
   goToQuestion: 'Menjen a kérdéshez',
   highscore: 'Új rekordot értél el<br> <b>{{score}} csillagot nyertél</b>',
   howToSignIn: 'Hogyan szeretnél bejelentkezni?',
+  iWantIt: 'Akarom!',
   keyPoint: 'Kulcspont',
   lesson: 'Lecke',
   logOut: 'Kijelentkezés',
@@ -55,8 +58,15 @@ const translations: Translations = {
   permission: 'Engedély',
   permissionCamera:
     'A QR-kód beolvasásához és hitelesítésedhez hozzáféréssel kell rendelkeznünk kamerádhoz.',
+  platformHasBeenDisabled: 'Az alkalmazás le van tiltva a platformodon',
   question: 'Kérdés',
   quit: 'Kilépés',
+  reactivatePlatform:
+    'ha újra szeretnéd aktiválni, lépj kapcsolatba a feletteseddel, vagy kattints az alábbi linkre, és továbbítsuk az üzenetet',
+  refresh: 'Frissítés',
+  refreshEnjoyLearning:
+    'a Szaturnusz és a Föld közötti hálózatban kérjük, frissíts, hogy élvezni tudd a tanulást',
+  refreshNotWorking: 'A frissítést nem működik?',
   relatedSubjects: 'Önnek ajánljuk:',
   retryChapter: 'Fejezet újrapróbálása',
   retryLevel: 'Szint  újrajátszása',

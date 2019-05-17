@@ -5,6 +5,7 @@ import {createChapter} from '../../__fixtures__/chapters';
 import {createDisciplineCard, createChapterCard, createCardLevel} from '../../__fixtures__/cards';
 import {createProgression} from '../../__fixtures__/progression';
 import {CARD_STATUS} from '../../layer/data/_const';
+import {ERROR_TYPE} from '../../const';
 import {
   fetchRequest,
   fetchSuccess,
@@ -14,6 +15,8 @@ import {
   selectCardFailure,
   getAndRefreshCard
 } from './cards';
+
+import {SHOW} from './ui/modal';
 
 jest.mock('./progression', () => ({
   createLevelProgression: jest.fn(() =>
@@ -96,7 +99,7 @@ describe('Cards', () => {
         return action;
       });
       dispatch.mockImplementationOnce(action => {
-        expect(action).toEqual(fetchError('TypeError: Token not defined'));
+        expect(action).toEqual(fetchError(new TypeError('Token not defined')));
         return action;
       });
       getState.mockReturnValue({
@@ -107,7 +110,7 @@ describe('Cards', () => {
       const actual = await fetchCards(language)(dispatch, getState, options);
 
       expect(options.services.Cards.find).not.toHaveBeenCalled();
-      return expect(actual).toEqual(fetchError('TypeError: Token not defined'));
+      return expect(actual).toEqual(fetchError(new TypeError('Token not defined')));
     });
     it('brand is missing', async () => {
       const dispatch = jest.fn();
@@ -125,7 +128,7 @@ describe('Cards', () => {
         return action;
       });
       dispatch.mockImplementationOnce(action => {
-        expect(action).toEqual(fetchError('TypeError: Brand not defined'));
+        expect(action).toEqual(fetchError(new TypeError('Brand not defined')));
         return action;
       });
       getState.mockReturnValue({
@@ -136,7 +139,7 @@ describe('Cards', () => {
       const actual = await fetchCards(language)(dispatch, getState, options);
 
       expect(options.services.Cards.find).not.toHaveBeenCalled();
-      return expect(actual).toEqual(fetchError('TypeError: Brand not defined'));
+      return expect(actual).toEqual(fetchError(new TypeError('Brand not defined')));
     });
     it('error on fetch failure', async () => {
       const dispatch = jest.fn();
@@ -154,7 +157,7 @@ describe('Cards', () => {
         return action;
       });
       dispatch.mockImplementationOnce(action => {
-        expect(action).toEqual(fetchError('Error'));
+        expect(action).toEqual(fetchError(new Error()));
         return action;
       });
       getState.mockReturnValue({
@@ -165,7 +168,57 @@ describe('Cards', () => {
       // $FlowFixMe
       const actual = await fetchCards(language)(dispatch, getState, options);
 
-      return expect(actual).toEqual(fetchError('Error'));
+      return expect(actual).toEqual(fetchError(new Error()));
+    });
+    it('no cards found', async () => {
+      const dispatch = jest.fn();
+      const getState = jest.fn();
+      const options = {
+        services: {
+          Cards: {
+            find: jest.fn()
+          }
+        }
+      };
+
+      dispatch.mockImplementationOnce(action => {
+        expect(action).toEqual(fetchRequest(language));
+        return Promise.resolve(action);
+      });
+
+      dispatch.mockImplementationOnce(action => {
+        return action;
+      });
+
+      getState.mockReturnValue({
+        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand}
+      });
+      options.services.Cards.find.mockReturnValue(Promise.resolve([]));
+
+      // $FlowFixMe
+      const result = await fetchCards(language)(dispatch, getState, options);
+
+      const expectedResult = {
+        type: SHOW,
+        payload: {
+          errorType: ERROR_TYPE.NO_CONTENT_FOUND,
+          lastAction: expect.any(Function)
+        }
+      };
+      expect(result).toEqual(expectedResult);
+
+      dispatch.mockImplementationOnce(action => {
+        expect(action).toEqual(fetchRequest(language));
+        return Promise.resolve(action);
+      });
+
+      dispatch.mockImplementationOnce(action => {
+        return action;
+      });
+
+      const newResult = await result.payload.lastAction()(dispatch, getState, options);
+
+      expect(newResult).toEqual(expectedResult);
     });
   });
 

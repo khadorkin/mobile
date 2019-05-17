@@ -2,14 +2,16 @@
 
 import type {DisciplineCard, ChapterCard} from '../../layer/data/_types';
 import type {SupportedLanguage} from '../../translations/_types';
-import type {StoreAction} from '../_types';
-import {ENGINE} from '../../const';
+import type {StoreAction, ErrorAction} from '../_types';
+import {ENGINE, ERROR_TYPE} from '../../const';
 import {getToken, getBrand} from '../utils/state-extract';
 import {pickNextLevel} from '../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
+import {showModal} from './ui/modal';
 import {createLevelProgression, createChapterProgression, selectProgression} from './progression';
 import type {Action as BundleAction} from './discipline-bundle';
 import {fetchBundles} from './discipline-bundle';
+import type {Action as ModalAction} from './ui/modal';
 
 export const FETCH_REQUEST = '@@cards/FETCH_REQUEST';
 export const FETCH_SUCCESS = '@@cards/FETCH_SUCCESS';
@@ -54,10 +56,9 @@ export type Action =
       type: '@@cards/FETCH_SUCCESS',
       payload: FetchSuccessPayload
     |}
-  | {|
-      type: '@@cards/FETCH_ERROR',
-      payload: FetchErrorPayload
-    |}
+  | ErrorAction<{|
+      type: '@@cards/FETCH_ERROR'
+    |}>
   | {|
       type: '@@cards/SELECT_CARD',
       payload: SelectCardPayload
@@ -89,11 +90,10 @@ export const fetchSuccess = (
   }
 });
 
-export const fetchError = (error: string): Action => ({
+export const fetchError = (error: Error): Action => ({
   type: FETCH_ERROR,
-  payload: {
-    error
-  }
+  payload: error,
+  error: true
 });
 
 export const refreshCard = (
@@ -107,7 +107,9 @@ export const refreshCard = (
   }
 });
 
-export const fetchCards = (language: SupportedLanguage): StoreAction<Action | BundleAction> => {
+export const fetchCards = (
+  language: SupportedLanguage
+): StoreAction<Action | BundleAction | ModalAction<StoreAction<Action | BundleAction>>> => {
   return async (dispatch, getState, options) => {
     await dispatch(fetchRequest(language));
 
@@ -122,12 +124,22 @@ export const fetchCards = (language: SupportedLanguage): StoreAction<Action | Bu
       if (brand === null) throw new TypeError('Brand not defined');
 
       const cards = await services.Cards.find(token, brand.host, language);
+
+      if (cards.length === 0) {
+        return dispatch(
+          showModal({
+            errorType: ERROR_TYPE.NO_CONTENT_FOUND,
+            lastAction: () => fetchCards(language)
+          })
+        );
+      }
+
       // $FlowFixMe
       await dispatch(fetchBundles(cards, [language]));
 
       return dispatch(fetchSuccess(cards, language));
     } catch (err) {
-      return dispatch(fetchError(err.toString()));
+      return dispatch(fetchError(err));
     }
   };
 };

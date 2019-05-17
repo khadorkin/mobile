@@ -22,6 +22,7 @@ const translations: Translations = {
   authenticationQRCodeStepThreeDescription:
     '<b>Ecco fatto!</b></br>Leggi il codice QR usando il pulsante qui sotto',
   authenticationQRCodeTitle: 'Codice QR',
+  askForHelp: 'Richiedi assistenza',
   backToHome: 'Torna alla pagina principale',
   bonus: 'Bonus!',
   cancel: 'Annulla',
@@ -31,6 +32,7 @@ const translations: Translations = {
   congratulations: 'Congratulazioni!',
   context: 'Contesto',
   correction: 'Correzione',
+  dataLost: 'Sembra che i tuoi dati siano andati perduti',
   didYouKnowThat: 'Lo sapevi?',
   finishLearning: 'Continua prima con questo',
   forYou: 'Le nostre migliori scelte per te',
@@ -41,6 +43,7 @@ const translations: Translations = {
   goToQuestion: 'Vai alla domanda',
   highscore: 'Hai stabilito un nuovo record<br><b>hai appena vinto {{score}} stelle</b>',
   howToSignIn: 'In che modo preferisci autenticarti?',
+  iWantIt: 'Lo voglio!',
   keyPoint: 'Punto chiave',
   lesson: 'Lezione',
   logOut: 'Esci',
@@ -59,8 +62,15 @@ const translations: Translations = {
   permission: 'Permessi',
   permissionCamera:
     'Per leggere il codice QR e autenticarti abbiamo bisogno di accedere alla fotocamera.',
+  platformHasBeenDisabled: "L'app è stata disabilitata per la tua piattaforma",
   question: 'Indizio',
   quit: 'Abbandona',
+  reactivatePlatform:
+    'se desideri riattivarlo, contatta il tuo amministratore o clicca sul link qui sotto e noi inoltreremo la richiesta',
+  refresh: 'Ricarica',
+  refreshEnjoyLearning:
+    'nella rete tra Saturno e la Terra, ricarica la schermata per continuare a imparare',
+  refreshNotWorking: 'Il refresh non funziona?',
   relatedSubjects: 'Consigliato per te:',
   retryChapter: 'Ritenta capitolo',
   retryLevel: 'Ritenta il livello',

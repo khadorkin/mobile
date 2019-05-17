@@ -21,6 +21,7 @@ const translations: Translations = {
   authenticationQRCodeStepThreeDescription:
     '<b>¡Listo!</b></br>Escanea el código QR con el botón que está a continuación',
   authenticationQRCodeTitle: 'Código QR',
+  askForHelp: 'Pedir ayuda',
   backToHome: 'Volver al inicio',
   bonus: '¡Bonus!',
   cancel: 'Cancelar',
@@ -30,6 +31,7 @@ const translations: Translations = {
   congratulations: '¡Felicidades!',
   context: 'Contexto',
   correction: 'Corrección',
+  dataLost: 'Parece que se han perdido tus datos',
   didYouKnowThat: '¿Lo sabías?',
   finishLearning: 'Primero sigue con este',
   forYou: 'Nuestras mejores opciones para ti',
@@ -40,6 +42,7 @@ const translations: Translations = {
   goToQuestion: 'Ir a la pregunta',
   highscore: 'Tienes una nueva máxima puntuación<br><b>acabas de conseguir {{score}} estrellas</b>',
   howToSignIn: '¿Cómo quieres iniciar sesión?',
+  iWantIt: '¡Lo quiero!',
   keyPoint: 'Dato clave',
   lesson: 'Lección',
   logOut: 'Cerrar sesión',
@@ -58,8 +61,15 @@ const translations: Translations = {
   permission: 'Permiso',
   permissionCamera:
     'Tenemos que acceder a la cámara para escanear el código QR y poder autentificarte.',
+  platformHasBeenDisabled: 'La aplicación se ha desactivado para tu plataforma',
   question: 'Pregunta',
   quit: 'Salir',
+  reactivatePlatform:
+    'si quieres volver a activarlo, ponte en contacto con tu gerente o pincha sobre el enlace a continuación y haremos llegar el mensaje',
+  refresh: 'Actualizar',
+  refreshEnjoyLearning:
+    'en la red entre Saturno y la Tierra, actualiza para disfrutar del aprendizaje',
+  refreshNotWorking: '¿No funciona actualizar?',
   relatedSubjects: 'Recomendado para ti:',
   retryChapter: 'Reintentar capítulo',
   retryLevel: 'Reintentar nivel',

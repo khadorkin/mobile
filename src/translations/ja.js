@@ -21,6 +21,7 @@ const translations: Translations = {
   authenticationQRCodeStepThreeDescription:
     '<b>ほら！</b></br>下のボタンを使ってあなたのQRコードをスキャンしてください',
   authenticationQRCodeTitle: 'QRコード',
+  askForHelp: 'ヘルプをリクエストしてください。',
   backToHome: 'ホームへ戻る',
   bonus: 'ボーナスポイント',
   cancel: 'キャンセルする',
@@ -29,6 +30,7 @@ const translations: Translations = {
   congratulations: 'おめでとうございます!',
   context: 'コンテキスト',
   correction: '解答',
+  dataLost: 'データが失われたようです。',
   didYouKnowThat: 'ご存知でしたか。',
   finishLearning: 'まずはこれを続ける',
   forYou: 'おすすめ厳選情報',
@@ -39,6 +41,7 @@ const translations: Translations = {
   goToQuestion: '質問に行く',
   highscore: 'ハイスコアを更新<br><b>{{score}}の星を獲得しました</b>',
   howToSignIn: 'どういう方法でログインしたいですか？',
+  iWantIt: '有効化したい！',
   keyPoint: '重要なポイント',
   lesson: 'レッスン',
   logOut: 'ログアウト',
@@ -57,8 +60,15 @@ const translations: Translations = {
   permission: '許可',
   permissionCamera:
     'QRコードをスキャンして認証するためには、あなたのカメラにアクセスする必要があります。',
+  platformHasBeenDisabled: 'このアプリは、あなたのプラットフォームでは無効化されています。',
   question: '質問',
   quit: '終了する',
+  reactivatePlatform:
+    '再び有効化させたい場合、マネージャーへ連絡するか、以下のリンクをクリックしていただければ、メッセージを転送します。',
+  refresh: 'リフレッシュ',
+  refreshEnjoyLearning:
+    '土星と地球間のネットワークのどこかに消えてしまいました。続けて学習を楽しむには、リフレッシュしてください。',
+  refreshNotWorking: 'リフレッシュが機能していませんか？',
   relatedSubjects: 'あなたへおすすめのコース',
   retryChapter: '章を再試行します。',
   retryLevel: 'リトライする',
