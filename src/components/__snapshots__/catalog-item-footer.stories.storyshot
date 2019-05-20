@@ -96,9 +96,6 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
         Object {
           "fontSize": 15,
         },
-        Object {
-          "color": "#FFFFFF",
-        },
       ]
     }
     testID="title-catalog-item-footer"
@@ -126,9 +123,6 @@ exports[`Storyshots Catalog Item Footer Default 1`] = `
           },
           Object {
             "fontSize": 12,
-          },
-          Object {
-            "color": "#FFFFFF",
           },
         ]
       }

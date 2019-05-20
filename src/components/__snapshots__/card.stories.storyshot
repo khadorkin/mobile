@@ -270,9 +270,6 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                     Object {
                       "fontSize": 15,
                     },
-                    Object {
-                      "color": "#FFFFFF",
-                    },
                   ]
                 }
                 testID="title-catalog2"
@@ -300,9 +297,6 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                       },
                       Object {
                         "fontSize": 12,
-                      },
-                      Object {
-                        "color": "#FFFFFF",
                       },
                     ]
                   }
@@ -781,9 +775,6 @@ exports[`Storyshots Card Catalog Item Cover 1`] = `
                     Object {
                       "fontSize": 22,
                     },
-                    Object {
-                      "color": "#FFFFFF",
-                    },
                   ]
                 }
                 testID="title-catalog1"
@@ -811,9 +802,6 @@ exports[`Storyshots Card Catalog Item Cover 1`] = `
                       },
                       Object {
                         "fontSize": 15,
-                      },
-                      Object {
-                        "color": "#FFFFFF",
                       },
                     ]
                   }

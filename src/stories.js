@@ -19,8 +19,6 @@ require('./components/carousel.stories.js');
 require('./components/catalog-item-author.stories.js');
 require('./components/catalog-item-badge.stories.js');
 require('./components/catalog-item-footer.stories.js');
-require('./components/catalog-item-learner.stories.js');
-require('./components/catalog-item-microlearning.stories.js');
 require('./components/catalog-item.stories.js');
 require('./components/catalog.stories.js');
 require('./components/clue-front-item.stories.js');

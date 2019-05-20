@@ -4,6 +4,7 @@ import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   NovaCompositionCoorpacademyAdaptive,
+  NovaCompositionCoorpacademyTimer,
   NovaSolidStatusCheckCircle2
 } from '@coorpacademy/nova-icons';
 import type {Progression} from '../types';
@@ -21,7 +22,7 @@ type Props = {|
   testID: string,
   titleStyle?: GenericStyleProp,
   subtitleStyle?: GenericStyleProp,
-  iconAdaptiveSize?: number,
+  topIconSize?: number,
   iconCertifiedSize?: number
 |};
 
@@ -69,28 +70,35 @@ const CatalogItemFooter = ({
   subtitleStyle = {
     fontSize: theme.fontSize.small
   },
-  iconAdaptiveSize = 16,
+  topIconSize = 16,
   iconCertifiedSize = 14
 }: Props) => {
-  const color = (isCourse && theme.colors.white) || theme.colors.gray.dark;
   const progressionBarBgColor = (isCourse && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
-  const titleNumberOfLines = !isCourse ? 1 : Infinity;
-  const subtitleNumberOfLines = !isCourse ? 2 : Infinity;
+  const titleNumberOfLines = !isCourse ? 2 : Infinity;
+  const subtitleNumberOfLines = !isCourse ? 1 : Infinity;
 
   return (
     <View style={styles.container}>
       {isAdaptive && (
         <NovaCompositionCoorpacademyAdaptive
           testID={`infinite-${testID}`}
-          color={color}
-          height={iconAdaptiveSize}
-          width={iconAdaptiveSize}
+          color={theme.colors.white}
+          height={topIconSize}
+          width={topIconSize}
+        />
+      )}
+      {!isCourse && (
+        <NovaCompositionCoorpacademyTimer
+          testID={`infinite-${testID}`}
+          color={theme.colors.white}
+          height={topIconSize}
+          width={topIconSize}
         />
       )}
       <Text
         testID={`title-${testID}`}
-        style={[styles.title, titleStyle, {color}]}
+        style={[styles.title, titleStyle]}
         numberOfLines={titleNumberOfLines}
       >
         {title}
@@ -99,7 +107,7 @@ const CatalogItemFooter = ({
       <View style={styles.subtitleContainer}>
         <Text
           testID={`subtitle-${testID}`}
-          style={[styles.subtitle, subtitleStyle, {color}]}
+          style={[styles.subtitle, subtitleStyle]}
           numberOfLines={subtitleNumberOfLines}
         >
           {subtitle}
@@ -108,7 +116,7 @@ const CatalogItemFooter = ({
           <View style={[styles.certified, {marginTop: iconCertifiedMargin}]}>
             <NovaSolidStatusCheckCircle2
               testID={`certified-${testID}`}
-              color={color}
+              color={theme.colors.white}
               height={iconCertifiedSize}
               width={iconCertifiedSize}
             />
