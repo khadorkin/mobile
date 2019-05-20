@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
 const {width: screenWidth} = Dimensions.get('window');
 
 class LevelEnd extends React.PureComponent<Props> {
-
   handleCardPress = (item: DisciplineCard | ChapterCard) => () => this.props.onCardPress(item);
 
   handleButtonPress = () => this.props.onButtonPress();
