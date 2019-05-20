@@ -199,4 +199,5 @@ const Video = ({
   );
 };
 
+export {VideoPlayer};
 export default Video;

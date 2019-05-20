@@ -1,10 +1,16 @@
 // @flow
 
-import * as React from 'react';
-import {hydrate} from 'react-dom';
+import {AppRegistry} from 'react-native';
 
 import StorybookUI from './storybook';
 import App from './src';
 import {__STORYBOOK__} from './src/modules/environment';
 
-hydrate(__STORYBOOK__ ? <StorybookUI /> : <App />, document.getElementById('root'));
+/* eslint-disable import/extensions */
+import {name} from './app.json';
+
+// @todo RN upgrade 0.57 reminder: Remove this and change the yarn:storybook command following Storybook documentation
+AppRegistry.registerComponent(name, () => (__STORYBOOK__ ? StorybookUI : App));
+AppRegistry.runApplication(name, {
+  rootTag: window.document.getElementById('root')
+});

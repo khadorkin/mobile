@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import {PortalProvider} from 'react-native-portal';
 // @@todo wait for support tablet landscape orientation
 // import DeviceInfo from 'react-native-device-info';
-import orientation from 'react-native-orientation-locker';
 
 import translations from './translations';
 import Navigator from './navigator';
@@ -18,6 +17,7 @@ import createDataLayer from './layer/data';
 import createServices from './services';
 import createStore from './redux';
 import type {ReduxDevTools} from './redux/_types';
+import orientation from './modules/orientation';
 
 const reduxDevTools: ReduxDevTools | void =
   // eslint-disable-next-line no-undef

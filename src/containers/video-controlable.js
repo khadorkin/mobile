@@ -3,16 +3,16 @@
 import * as React from 'react';
 import {Platform} from 'react-native';
 import {connect} from 'react-redux';
-import {NavigationEvents} from 'react-navigation';
-import VideoPlayer from '@coorpacademy/react-native-video-controls';
-import orientation from 'react-native-orientation-locker';
 // @@todo wait for support tablet landscape orientation
 // import DeviceInfo from 'react-native-device-info';
 
-import Video, {STEP} from '../components/video';
+import Video, {STEP, VideoPlayer} from '../components/video';
 import type {Step} from '../components/video';
 import {toggleFullscreen} from '../redux/actions/video';
 import {__STORYBOOK__} from '../modules/environment';
+import orientation from '../modules/orientation';
+// @todo move into components
+import {NavigationEvents} from '../navigator/components';
 
 type ConnectedStateProps = {|
   isFullScreen: boolean

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 import {NovaCompositionCoorpacademyTarget as TargetIcon} from '@coorpacademy/nova-icons';
 
 import {AUTHENTICATION_TYPE} from '../const';
@@ -10,6 +9,8 @@ import type {AuthenticationType} from '../types';
 import theme, {BLUE_COORP_DARK, BLUE_COORP_LIGHT} from '../modules/theme';
 import translations from '../translations';
 import AuthenticationSteps from '../containers/authentication-steps';
+// @todo move into components
+import {SafeAreaView} from '../navigator/components';
 import AuthenticationFooter from './authentication-footer';
 import type {Props as AuthenticationFooterProps} from './authentication-footer';
 import Button from './button';

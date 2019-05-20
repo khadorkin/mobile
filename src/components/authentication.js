@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react';
 import {ScrollView, View, StyleSheet, ImageBackground} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 
 import background from '../assets/images/authentication.png';
 import logo from '../assets/images/logo.png';
 import theme, {BLUE_COORP_DARK, BLUE_COORP_LIGHT} from '../modules/theme';
 import translations from '../translations';
+// @todo move into components
+import {SafeAreaView} from '../navigator/components';
 import AuthenticationFooter from './authentication-footer';
 import type {Props as AuthenticationFooterProps} from './authentication-footer';
 import Gradient from './gradient';

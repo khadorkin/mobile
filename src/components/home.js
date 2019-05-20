@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import Catalog from '../containers/catalog';
 import RoundedFooterAnimated from '../containers/rounded-footer-animated';
 import {ANIMATION_TYPE} from '../const';
 import theme from '../modules/theme';
+// @todo move to components
+import {SafeAreaView} from '../navigator/components';
 import {BrandThemeContext} from './brand-theme-provider';
 import Version from './version';
 import Space from './space';
