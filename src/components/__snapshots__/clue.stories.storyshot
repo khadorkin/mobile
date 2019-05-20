@@ -137,7 +137,6 @@ exports[`Storyshots Clue Default 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",

@@ -133,7 +133,6 @@ exports[`Storyshots CardCorrection Correct answer 1`] = `
     }
   />
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -374,7 +373,6 @@ exports[`Storyshots CardCorrection Default 1`] = `
     }
   />
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -561,7 +559,6 @@ exports[`Storyshots CardCorrection With one expected answer 1`] = `
     }
   />
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -748,7 +745,6 @@ exports[`Storyshots CardCorrection With plenty of users answers  1`] = `
     }
   />
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {

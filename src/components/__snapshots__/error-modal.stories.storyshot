@@ -183,7 +183,6 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
       }
     >
       <Text
-        numberOfLines={Infinity}
         style={
           Array [
             Object {
@@ -208,7 +207,6 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
         }
       />
       <Text
-        numberOfLines={Infinity}
         style={
           Object {
             "color": "#546E7A",
@@ -424,7 +422,6 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
               }
             />
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -455,7 +452,6 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
         }
       >
         <Text
-          numberOfLines={Infinity}
           style={
             Array [
               Object {
@@ -495,7 +491,6 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Array [
                 Object {
@@ -922,7 +917,6 @@ exports[`Storyshots ErrorModal Platform not activated case 1`] = `
       }
     >
       <Text
-        numberOfLines={Infinity}
         style={
           Array [
             Object {
@@ -947,7 +941,6 @@ exports[`Storyshots ErrorModal Platform not activated case 1`] = `
         }
       />
       <Text
-        numberOfLines={Infinity}
         style={
           Object {
             "color": "#546E7A",
@@ -999,7 +992,6 @@ exports[`Storyshots ErrorModal Platform not activated case 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",

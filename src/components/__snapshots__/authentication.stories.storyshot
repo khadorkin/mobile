@@ -130,7 +130,6 @@ Array [
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -152,7 +151,6 @@ Array [
             }
           />
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -173,7 +171,6 @@ Array [
             }
           />
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -1071,7 +1068,6 @@ Array [
                 }
               />
               <Text
-                numberOfLines={Infinity}
                 style={
                   Object {
                     "color": "#FFFFFF",

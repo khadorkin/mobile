@@ -2,7 +2,6 @@
 
 exports[`Storyshots Text Default 1`] = `
 <Text
-  numberOfLines={Infinity}
   testID="basic-text"
 >
   foo

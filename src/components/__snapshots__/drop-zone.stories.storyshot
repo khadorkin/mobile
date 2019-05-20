@@ -391,7 +391,6 @@ exports[`Storyshots DropZone With No SelectedChoics 1`] = `
   }
 >
   <Text
-    numberOfLines={Infinity}
     style={
       Object {
         "color": "#90A4AE",

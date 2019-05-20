@@ -73,10 +73,7 @@ const CatalogItemFooter = ({
   topIconSize = 16,
   iconCertifiedSize = 14
 }: Props) => {
-  const progressionBarBgColor = (isCourse && theme.colors.white) || theme.colors.gray.light;
   const iconCertifiedMargin: number = -iconCertifiedSize / 2;
-  const titleNumberOfLines = !isCourse ? 2 : Infinity;
-  const subtitleNumberOfLines = !isCourse ? 1 : Infinity;
 
   return (
     <View style={styles.container}>
@@ -96,20 +93,12 @@ const CatalogItemFooter = ({
           width={topIconSize}
         />
       )}
-      <Text
-        testID={`title-${testID}`}
-        style={[styles.title, titleStyle]}
-        numberOfLines={titleNumberOfLines}
-      >
+      <Text testID={`title-${testID}`} style={[styles.title, titleStyle]}>
         {title}
       </Text>
 
       <View style={styles.subtitleContainer}>
-        <Text
-          testID={`subtitle-${testID}`}
-          style={[styles.subtitle, subtitleStyle]}
-          numberOfLines={subtitleNumberOfLines}
-        >
+        <Text testID={`subtitle-${testID}`} style={[styles.subtitle, subtitleStyle]}>
           {subtitle}
         </Text>
         {isCertified && (
@@ -129,7 +118,7 @@ const CatalogItemFooter = ({
             current={progression.current}
             count={progression.count}
             height={2}
-            backgroundColor={progressionBarBgColor}
+            backgroundColor={theme.colors.white}
             isInnerRounded
           />
         </View>

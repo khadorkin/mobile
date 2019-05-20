@@ -152,7 +152,6 @@ exports[`Storyshots Home Default 1`] = `
       }
     />
     <Text
-      numberOfLines={Infinity}
       style={
         Array [
           Object {

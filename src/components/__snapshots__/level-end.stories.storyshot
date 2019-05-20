@@ -626,7 +626,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -640,7 +639,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
             Ooops...
           </Text>
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -893,7 +891,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -1049,7 +1046,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={Infinity}
                               style={
                                 Array [
                                   "New",
@@ -1077,7 +1073,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
                           }
                         >
                           <Text
-                            numberOfLines={Infinity}
                             style={
                               Array [
                                 Object {
@@ -1103,7 +1098,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={Infinity}
                               style={
                                 Array [
                                   Object {
@@ -1169,7 +1163,6 @@ exports[`Storyshots LevelEnd Failure 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -1947,7 +1940,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -1961,7 +1953,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
             Ooops...
           </Text>
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -2214,7 +2205,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -2370,7 +2360,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={Infinity}
                               style={
                                 Array [
                                   "New",
@@ -2398,7 +2387,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
                           }
                         >
                           <Text
-                            numberOfLines={Infinity}
                             style={
                               Array [
                                 Object {
@@ -2424,7 +2412,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={Infinity}
                               style={
                                 Array [
                                   Object {
@@ -2490,7 +2477,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -2509,7 +2495,6 @@ exports[`Storyshots LevelEnd Failure Author Coorp 1`] = `
                       >
                         COORP 
                         <Text
-                          numberOfLines={Infinity}
                           style={
                             Object {
                               "fontWeight": "700",
@@ -3277,7 +3262,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -4429,7 +4413,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -4772,7 +4755,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
                             </RNSVGGroup>
                           </RNSVGSvgView>
                           <Text
-                            numberOfLines={2}
                             style={
                               Array [
                                 Object {
@@ -4798,7 +4780,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={1}
                               style={
                                 Array [
                                   Object {
@@ -4830,7 +4811,7 @@ exports[`Storyshots LevelEnd Finished 1`] = `
                             <View
                               style={
                                 Object {
-                                  "backgroundColor": "#ECEFF1",
+                                  "backgroundColor": "#FFFFFF",
                                 }
                               }
                               testID="progression-bar"
@@ -4864,7 +4845,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -4883,7 +4863,6 @@ exports[`Storyshots LevelEnd Finished 1`] = `
                       >
                         COORP 
                         <Text
-                          numberOfLines={Infinity}
                           style={
                             Object {
                               "fontWeight": "700",
@@ -5651,7 +5630,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -6803,7 +6781,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -7146,7 +7123,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
                             </RNSVGGroup>
                           </RNSVGSvgView>
                           <Text
-                            numberOfLines={2}
                             style={
                               Array [
                                 Object {
@@ -7172,7 +7148,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={1}
                               style={
                                 Array [
                                   Object {
@@ -7204,7 +7179,7 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
                             <View
                               style={
                                 Object {
-                                  "backgroundColor": "#ECEFF1",
+                                  "backgroundColor": "#FFFFFF",
                                 }
                               }
                               testID="progression-bar"
@@ -7238,7 +7213,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -7257,7 +7231,6 @@ exports[`Storyshots LevelEnd Microlearning 1`] = `
                       >
                         COORP 
                         <Text
-                          numberOfLines={Infinity}
                           style={
                             Object {
                               "fontWeight": "700",
@@ -8025,7 +7998,6 @@ exports[`Storyshots LevelEnd Success 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -9389,7 +9361,6 @@ exports[`Storyshots LevelEnd Success 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -9732,7 +9703,6 @@ exports[`Storyshots LevelEnd Success 1`] = `
                             </RNSVGGroup>
                           </RNSVGSvgView>
                           <Text
-                            numberOfLines={2}
                             style={
                               Array [
                                 Object {
@@ -9758,7 +9728,6 @@ exports[`Storyshots LevelEnd Success 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={1}
                               style={
                                 Array [
                                   Object {
@@ -9790,7 +9759,7 @@ exports[`Storyshots LevelEnd Success 1`] = `
                             <View
                               style={
                                 Object {
-                                  "backgroundColor": "#ECEFF1",
+                                  "backgroundColor": "#FFFFFF",
                                 }
                               }
                               testID="progression-bar"
@@ -9824,7 +9793,6 @@ exports[`Storyshots LevelEnd Success 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -10624,7 +10592,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
           }
         >
           <Text
-            numberOfLines={Infinity}
             style={
               Object {
                 "color": "#FFFFFF",
@@ -11776,7 +11743,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
             }
           >
             <Text
-              numberOfLines={Infinity}
               style={
                 Object {
                   "color": "#FFFFFF",
@@ -12119,7 +12085,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
                             </RNSVGGroup>
                           </RNSVGSvgView>
                           <Text
-                            numberOfLines={2}
                             style={
                               Array [
                                 Object {
@@ -12145,7 +12110,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
                             }
                           >
                             <Text
-                              numberOfLines={1}
                               style={
                                 Array [
                                   Object {
@@ -12177,7 +12141,7 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
                             <View
                               style={
                                 Object {
-                                  "backgroundColor": "#ECEFF1",
+                                  "backgroundColor": "#FFFFFF",
                                 }
                               }
                               testID="progression-bar"
@@ -12211,7 +12175,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
                       }
                     >
                       <Text
-                        numberOfLines={Infinity}
                         style={
                           Array [
                             Object {
@@ -12230,7 +12193,6 @@ exports[`Storyshots LevelEnd Success Author Coorp 1`] = `
                       >
                         COORP 
                         <Text
-                          numberOfLines={Infinity}
                           style={
                             Object {
                               "fontWeight": "700",

@@ -741,7 +741,6 @@ exports[`Storyshots AuthenticationFooter Default 1`] = `
       }
     />
     <Text
-      numberOfLines={Infinity}
       style={
         Object {
           "color": "#FFFFFF",

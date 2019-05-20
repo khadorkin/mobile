@@ -13,7 +13,6 @@ exports[`Storyshots Catalog Item Author Coorp 1`] = `
   }
 >
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -29,7 +28,6 @@ exports[`Storyshots Catalog Item Author Coorp 1`] = `
   >
     COORP 
     <Text
-      numberOfLines={Infinity}
       style={
         Object {
           "fontWeight": "700",
@@ -55,7 +53,6 @@ exports[`Storyshots Catalog Item Author Custom 1`] = `
   }
 >
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -88,7 +85,6 @@ exports[`Storyshots Catalog Item Author Marketplace 1`] = `
   }
 >
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {
@@ -120,7 +116,6 @@ exports[`Storyshots Catalog Item Author Verified 1`] = `
   }
 >
   <Text
-    numberOfLines={Infinity}
     style={
       Array [
         Object {

@@ -46,7 +46,6 @@ exports[`Storyshots Progression Default 1`] = `
       testID="progression-label"
     >
       <Text
-        numberOfLines={Infinity}
         style={
           Array [
             Object {
@@ -62,7 +61,6 @@ exports[`Storyshots Progression Default 1`] = `
         1
       </Text>
       <Text
-        numberOfLines={Infinity}
         style={
           Object {
             "color": "#90A4AE",
