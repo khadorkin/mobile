@@ -32,11 +32,11 @@ const lessons = [
 
 const bundledChapter: BundledChapter = {
   chapters: {
-    basic_cha_1: createChapter({
+    microlearning_basic_cha_1: createChapter({
       ref: 'microlearning_basic_cha_1',
       name: 'Microlearning basic: QCM chapter'
     }),
-    basic_cha_2: createChapter({
+    microlearning_basic_cha_2: createChapter({
       ref: 'microlearning_basic_cha_2',
       name: 'Microlearning basic: QCM Graphic chapter'
     })

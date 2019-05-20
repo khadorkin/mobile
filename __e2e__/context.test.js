@@ -35,7 +35,7 @@ describe('Context', () => {
 
   describe('With video', () => {
     beforeAll(async () => {
-      await element(by.id('home-screen')).swipe('up');
+      await device.launchApp({newInstance: true});
       await waitFor(element(by.id('catalog-item-with-video-context-dis-2'))).toBeVisible();
       await element(by.id('catalog-item-with-video-context-dis-2')).tap();
     });
