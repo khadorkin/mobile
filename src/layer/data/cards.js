@@ -6,28 +6,13 @@ import fetch from '../../modules/fetch';
 import {__E2E__} from '../../modules/environment';
 import {createDisciplinesCards, createChaptersCards} from '../../__fixtures__/cards';
 import disciplinesBundle from '../../__fixtures__/discipline-bundle';
+import chaptersBundle from '../../__fixtures__/chapter-bundle';
 import type {SupportedLanguage} from '../../translations/_types';
 import {uniqBy} from '../../utils';
 import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
 import {buildCompletionKey, mergeCompletion} from './progressions';
-
-export const createE2ECards = () => {
-  const disciplines = Object.keys(disciplinesBundle.disciplines).map(
-    key => disciplinesBundle.disciplines[key]
-  );
-
-  const chapters = Object.keys(disciplinesBundle.chapters).map(
-    key => disciplinesBundle.chapters[key]
-  );
-
-  const disciplineCards = createDisciplinesCards(disciplines);
-  const chapterCards = createChaptersCards(chapters);
-
-  const cards = [...disciplineCards, ...chapterCards];
-  return cards;
-};
 
 // @TODO; Adaptive support
 const computeLevelCompletionRate = (
@@ -141,7 +126,7 @@ export const getCardFromLocalStorage = async (
   language: SupportedLanguage
 ): Promise<DisciplineCard | ChapterCard> => {
   // $FlowFixMe
-  const card = await getItem('card', ref, language);
+  const card = await getItem('card', language, ref);
   return refreshCard(card);
 };
 
@@ -260,7 +245,11 @@ export const fetchCards = async (
   language: SupportedLanguage
 ): Promise<Cards> => {
   if (__E2E__) {
-    const cards = createE2ECards();
+    const disciplines = Object.keys(disciplinesBundle.disciplines).map(
+      key => disciplinesBundle.disciplines[key]
+    );
+    const chapters = Object.keys(chaptersBundle.chapters).map(key => chaptersBundle.chapters[key]);
+    const cards = createDisciplinesCards(disciplines).concat(createChaptersCards(chapters));
     await saveDashboardCardsInAsyncStorage(cards, language);
 
     return Promise.all(cards.map(refreshCard));

@@ -1,12 +1,19 @@
 // @flow strict
 
 import {AsyncStorage} from 'react-native';
-import {createDisciplineCard, createCardLevel, createChapterCard} from '../../__fixtures__/cards';
-import createCompletion from '../../__fixtures__/completion';
+import disciplinesBundle from '../../__fixtures__/discipline-bundle';
+import chaptersBundle from '../../__fixtures__/chapter-bundle';
+import {
+  createDisciplinesCards,
+  createDisciplineCard,
+  createChaptersCards,
+  createCardLevel,
+  createChapterCard
+} from '../../__fixtures__/cards';
 
+import createCompletion from '../../__fixtures__/completion';
 import {
   cardsToKeys,
-  createE2ECards,
   updateDisciplineCardDependingOnCompletion,
   updateChapterCardAccordingToCompletion,
   refreshCard
@@ -16,7 +23,13 @@ const HOST = 'https://host.coorpacademy.com';
 const TOKEN = '__TOKEN__';
 const LANGUAGE = 'en';
 
-const cards = createE2ECards();
+const disciplinesCards = createDisciplinesCards(
+  Object.keys(disciplinesBundle.disciplines).map(key => disciplinesBundle.disciplines[key])
+);
+const chaptersCards = createChaptersCards(
+  Object.keys(chaptersBundle.chapters).map(key => chaptersBundle.chapters[key])
+);
+const cards = disciplinesCards.concat(chaptersCards);
 
 describe('cards', () => {
   describe('fetchCards', () => {
@@ -44,6 +57,7 @@ describe('cards', () => {
       const {fetchCards} = require('./cards');
       const result = fetchCards(TOKEN, HOST, LANGUAGE);
       const expected = cards;
+
       return expect(result).resolves.toEqual(expected);
     });
 

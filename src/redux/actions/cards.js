@@ -9,8 +9,8 @@ import {pickNextLevel} from '../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
 import {showModal} from './ui/modal';
 import {createLevelProgression, createChapterProgression, selectProgression} from './progression';
-import type {Action as BundleAction} from './discipline-bundle';
-import {fetchBundles} from './discipline-bundle';
+import type {Action as BundleAction} from './bundle';
+import {fetchBundles} from './bundle';
 import type {Action as ModalAction} from './ui/modal';
 
 export const FETCH_REQUEST = '@@cards/FETCH_REQUEST';

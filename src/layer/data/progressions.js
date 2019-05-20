@@ -178,7 +178,7 @@ const findBestOf = (language: SupportedLanguage) => async (
   progressionId: string
 ): Promise<number> => {
   // $FlowFixMe
-  const card = await getItem('card', contentRef, language);
+  const card = await getItem('card', language, contentRef);
   return card && card.stars;
 };
 export {save, getAll, findById, findLast, findBestOf, synchronize};
