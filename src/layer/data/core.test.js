@@ -297,7 +297,6 @@ describe('Data Layer Core', () => {
       const {fetchBundle} = require('./core');
       const keys = Object.keys(chaptersBundle.chapters);
       const result = fetchBundle(CONTENT_TYPE.CHAPTER, keys[0], 'en', token, host);
-      // @todo should be mocked
       return expect(result).resolves.toEqual(chaptersBundle);
     });
 

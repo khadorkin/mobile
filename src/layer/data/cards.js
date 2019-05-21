@@ -9,6 +9,7 @@ import disciplinesBundle from '../../__fixtures__/discipline-bundle';
 import chaptersBundle from '../../__fixtures__/chapter-bundle';
 import type {SupportedLanguage} from '../../translations/_types';
 import {uniqBy} from '../../utils';
+import {ENGINE} from '../../const';
 import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
@@ -37,7 +38,7 @@ export const updateDisciplineCardDependingOnCompletion = (
   card: DisciplineCard
 ): DisciplineCard => {
   const config = getConfig({
-    ref: 'learner',
+    ref: ENGINE.LEARNER,
     version: '1'
   });
 
@@ -75,7 +76,7 @@ export const updateChapterCardAccordingToCompletion = (
   chapterCard: ChapterCard
 ): ChapterCard => {
   const config = getConfig({
-    ref: 'microlearning',
+    ref: ENGINE.MICROLEARNING,
     version: '1'
   });
 
@@ -90,7 +91,7 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
   const latestCompletions = await Promise.all(
     disciplineCard.modules.map(
       async (level): Promise<Completion | null> => {
-        const completionKey = buildCompletionKey('learner', level.universalRef || level.ref);
+        const completionKey = buildCompletionKey(ENGINE.LEARNER, level.universalRef || level.ref);
         const completionString = await AsyncStorage.getItem(completionKey);
         if (!completionString) return null;
         return JSON.parse(completionString);
@@ -103,7 +104,7 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
 
 const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard> => {
   const cardCompletion: Completion = {stars: chapterCard.stars, current: chapterCard.completion};
-  const completionKey = buildCompletionKey('microlearning', chapterCard.ref);
+  const completionKey = buildCompletionKey(ENGINE.MICROLEARNING, chapterCard.ref);
   const latestCompletion = await AsyncStorage.getItem(completionKey);
 
   if (!latestCompletion) {

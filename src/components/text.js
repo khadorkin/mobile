@@ -10,12 +10,10 @@ type Props = {|
   testID?: string
 |};
 
-const Text = ({testID, children, style}: Props) => {
-  return (
-    <TextBase style={style} testID={testID}>
-      {children}
-    </TextBase>
-  );
-};
+const Text = ({testID, children, style}: Props) => (
+  <TextBase style={style} testID={testID}>
+    {children}
+  </TextBase>
+);
 
 export default Text;

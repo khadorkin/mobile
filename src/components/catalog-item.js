@@ -4,7 +4,7 @@ import * as React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 
 import type {Progression, CardDisplayMode, AuthorType, Engine} from '../types';
-import {CARD_DISPLAY_MODE} from '../const';
+import {CARD_DISPLAY_MODE, ENGINE} from '../const';
 import theme from '../modules/theme';
 import type {Chapter, Discipline} from '../layer/data/_types';
 import CatalogItemFooter from './catalog-item-footer';
@@ -112,7 +112,7 @@ const CatalogItem = ({
   section
 }: Props) => {
   const mode: CardDisplayMode = displayMode ? displayMode : CARD_DISPLAY_MODE.COVER;
-  const isCourse = type === 'learner';
+  const isCourse = type === ENGINE.LEARNER;
   const badgeLabel =
     badge && badge !== '' ? badge.charAt(0).toUpperCase() + badge.slice(1) : undefined;
 

@@ -8,7 +8,7 @@ import type {ContentType} from '@coorpacademy/progression-engine';
 
 import translations from '../translations';
 import {getCleanUri} from '../modules/uri';
-import {CARD_DISPLAY_MODE, AUTHOR_TYPE, ENGINE} from '../const';
+import {CARD_DISPLAY_MODE, AUTHOR_TYPE, ENGINE, CONTENT_TYPE} from '../const';
 import theme from '../modules/theme';
 import {getStatusBarHeight} from '../modules/status-bar';
 import type {ChapterCard, DisciplineCard} from '../layer/data/_types';
@@ -181,9 +181,10 @@ class LevelEnd extends React.PureComponent<Props> {
       levelUnlockedName
     );
 
-    const nextLabel = contentType === 'level' ? translations.nextLevel : translations.nextChapter;
+    const nextLabel =
+      contentType === CONTENT_TYPE.LEVEL ? translations.nextLevel : translations.nextChapter;
     const retryLabel =
-      contentType === 'level' ? translations.retryLevel : translations.retryChapter;
+      contentType === CONTENT_TYPE.LEVEL ? translations.retryLevel : translations.retryChapter;
 
     const buttonTranslation =
       (isSuccess && hasFinishedCourse && translations.backToHome) ||
