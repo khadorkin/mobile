@@ -134,9 +134,6 @@ export const fetchCards = (
         );
       }
 
-      // $FlowFixMe
-      await dispatch(fetchBundles(cards, [language]));
-
       return dispatch(fetchSuccess(cards, language));
     } catch (err) {
       return dispatch(fetchError(err));
