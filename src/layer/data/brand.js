@@ -7,11 +7,19 @@ import {__E2E__} from '../../modules/environment';
 import type {Brand, JWT} from '../../types';
 import {createBrand} from '../../__fixtures__/brands';
 
-export type Config = {
+export type Config = {|
   brand: {
     name: string,
     baseUrl: string,
     contentCategoryName: string
+  },
+  dashboardSections: {
+    [string]: {|
+      display: boolean,
+      order: number,
+      type: 'theme' | 'default' | 'skill',
+      contentType?: 'course' | 'chapter' | 'all'
+    |}
   },
   themes: [
     {
@@ -23,7 +31,7 @@ export type Config = {
       }
     }
   ]
-};
+|};
 
 export const fetchBrand = async (token: string): Promise<Brand> => {
   if (__E2E__) {
@@ -39,6 +47,7 @@ export const fetchBrand = async (token: string): Promise<Brand> => {
   });
 
   const body: Config = await response.json();
+
   return {
     name: body.brand.name,
     host: body.brand.baseUrl || 'https://mobile-staging.coorpacademy.com',
@@ -48,7 +57,8 @@ export const fetchBrand = async (token: string): Promise<Brand> => {
     },
     images: {
       'logo-mobile': body.themes[0].images['logo-mobile']
-    }
+    },
+    dashboardSections: body.dashboardSections
   };
 };
 

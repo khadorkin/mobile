@@ -26,7 +26,8 @@ const initialState: State = {
   images: {
     'logo-mobile':
       'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png'
-  }
+  },
+  dashboardSections: {}
 };
 
 export const BrandThemeContext = React.createContext(initialState);

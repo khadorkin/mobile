@@ -3,14 +3,13 @@
 import type {DisciplineCard, ChapterCard} from '../../layer/data/_types';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {StoreAction, ErrorAction} from '../_types';
-import {ENGINE, ERROR_TYPE} from '../../const';
+import {ENGINE, ERROR_TYPE, CONTENT_TYPE} from '../../const';
 import {getToken, getBrand} from '../utils/state-extract';
 import {pickNextLevel} from '../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
 import {showModal} from './ui/modal';
 import {createLevelProgression, createChapterProgression, selectProgression} from './progression';
 import type {Action as BundleAction} from './bundle';
-import {fetchBundles} from './bundle';
 import type {Action as ModalAction} from './ui/modal';
 
 export const FETCH_REQUEST = '@@cards/FETCH_REQUEST';
@@ -20,56 +19,38 @@ export const SELECT_CARD = '@@cards/SELECT_CARD';
 export const SELECT_CARD_FAILURE = '@@cards/SELECT_CARD_FAILURE';
 export const REFRESH_CARD = '@@cards/REFRESH_CARD';
 
-export type FetchRequestPayload = {|
-  language: SupportedLanguage
-|};
-
-export type FetchSuccessPayload = {|
-  items: Array<DisciplineCard | ChapterCard>,
-  language: SupportedLanguage
-|};
-
-export type FetchErrorPayload = {|
-  error: string
-|};
-
-export type SelectCardPayload = {|
-  item: DisciplineCard | ChapterCard
-|};
-
-export type RefreshCard = {|
-  item: DisciplineCard | ChapterCard,
-  language: SupportedLanguage
-|};
-
-export type SelectCardFailurePayload = {|
-  item?: DisciplineCard | ChapterCard,
-  error: string
-|};
-
 export type Action =
   | {|
       type: '@@cards/FETCH_REQUEST',
-      payload: FetchRequestPayload
+      payload: {
+        language: SupportedLanguage
+      }
     |}
   | {|
       type: '@@cards/FETCH_SUCCESS',
-      payload: FetchSuccessPayload
+      payload: {
+        items: Array<DisciplineCard | ChapterCard>,
+        language: SupportedLanguage
+      }
     |}
   | ErrorAction<{|
       type: '@@cards/FETCH_ERROR'
     |}>
   | {|
       type: '@@cards/SELECT_CARD',
-      payload: SelectCardPayload
+      payload: {
+        item: DisciplineCard | ChapterCard
+      }
     |}
-  | {|
-      type: '@@cards/SELECT_CARD_FAILURE',
-      payload: SelectCardFailurePayload
-    |}
+  | ErrorAction<{|
+      type: '@@cards/SELECT_CARD_FAILURE'
+    |}>
   | {|
       type: '@@cards/REFRESH_CARD',
-      payload: RefreshCard
+      payload: {
+        item: DisciplineCard | ChapterCard,
+        language: SupportedLanguage
+      }
     |};
 
 export const fetchRequest = (language: SupportedLanguage): Action => ({
@@ -141,12 +122,10 @@ export const fetchCards = (
   };
 };
 
-export const selectCardFailure = (item?: DisciplineCard | ChapterCard, error: string): Action => ({
+export const selectCardFailure = (item?: DisciplineCard | ChapterCard, error: Error): Action => ({
   type: SELECT_CARD_FAILURE,
-  payload: {
-    item,
-    error
-  }
+  payload: error,
+  error: true
 });
 
 export const selectCard = (item: DisciplineCard | ChapterCard): StoreAction<Action> => {
@@ -176,13 +155,13 @@ export const selectCard = (item: DisciplineCard | ChapterCard): StoreAction<Acti
           // $FlowFixMe union type
           return dispatch(selectProgression(progression._id));
         } catch (e) {
-          return dispatch(selectCardFailure(item, 'Chapter progression not created'));
+          return dispatch(selectCardFailure(item, new Error('Chapter progression not created')));
         }
       }
       case CARD_TYPE.COURSE: {
         const nextModule = pickNextLevel(item);
         if (!nextModule) {
-          return dispatch(selectCardFailure(item, 'Course has no level'));
+          return dispatch(selectCardFailure(item, new Error('Course has no level')));
         }
         try {
           // Resume progression
@@ -206,7 +185,7 @@ export const selectCard = (item: DisciplineCard | ChapterCard): StoreAction<Acti
           // $FlowFixMe union type
           return dispatch(selectProgression(progression._id));
         } catch (e) {
-          return dispatch(selectCardFailure(item, 'Level progression not created'));
+          return dispatch(selectCardFailure(item, new Error('Level progression not created')));
         }
       }
     }
@@ -233,7 +212,8 @@ export const getAndRefreshCard = (
   const progression = await services.Progressions.findById(progressionId);
   if (
     progression &&
-    (progression.content.type === 'chapter' || progression.content.type === 'level')
+    (progression.content.type === CONTENT_TYPE.CHAPTER ||
+      progression.content.type === CONTENT_TYPE.LEVEL)
   ) {
     const card = await services.Cards.getCardFromLocalStorage(progression.content.ref, language);
     if (card) {

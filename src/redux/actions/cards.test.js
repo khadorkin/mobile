@@ -283,7 +283,10 @@ describe('Cards', () => {
           title: 'Discipline'
         });
 
-        const expected = selectCardFailure(disciplineCardWihoutLevel, 'Course has no level');
+        const expected = selectCardFailure(
+          disciplineCardWihoutLevel,
+          new Error('Course has no level')
+        );
 
         options.services.Content.find.mockReturnValueOnce(Promise.reject(new Error()));
 
@@ -310,7 +313,10 @@ describe('Cards', () => {
           }
         };
 
-        const expected = selectCardFailure(disciplineCard, 'Level progression not created');
+        const expected = selectCardFailure(
+          disciplineCard,
+          new Error('Level progression not created')
+        );
 
         options.services.Content.find.mockReturnValueOnce(Promise.reject(new Error()));
 
@@ -413,7 +419,10 @@ describe('Cards', () => {
           }
         };
 
-        const expected = selectCardFailure(chapterCard, 'Chapter progression not created');
+        const expected = selectCardFailure(
+          chapterCard,
+          new Error('Chapter progression not created')
+        );
 
         options.services.Content.find.mockReturnValueOnce(Promise.reject(new Error()));
 

@@ -1,7 +1,7 @@
 // @flow strict
 
 import {toJWT} from '../../utils/tests';
-import {createBrand} from '../../__fixtures__/brands';
+import {createBrand, createDashboardSections} from '../../__fixtures__/brands';
 import type {JWT} from '../../types';
 import type {Config} from './brand';
 
@@ -70,7 +70,8 @@ describe('brand', () => {
                         'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png'
                     }
                   }
-                ]
+                ],
+                dashboardSections: createDashboardSections()
               })
           });
         }

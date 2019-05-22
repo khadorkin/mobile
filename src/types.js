@@ -59,6 +59,17 @@ export type Progression = {|
   count: number
 |};
 
+export type DashboardSectionType = 'theme' | 'default' | 'skill';
+
+export type DashboardSectionContentType = 'course' | 'chapter' | 'all';
+
+export type DashboardSection = {|
+  display: boolean,
+  order: number,
+  type: DashboardSectionType,
+  contentType?: DashboardSectionContentType
+|};
+
 export type Brand = {|
   name: string,
   host: string,
@@ -68,6 +79,9 @@ export type Brand = {|
   },
   images: {
     'logo-mobile': string
+  },
+  dashboardSections: {
+    [string]: DashboardSection
   }
 |};
 
