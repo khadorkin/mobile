@@ -51,10 +51,6 @@ storiesOf('Catalog', module)
     <Catalog
       titleCover="Title Cover"
       titleCards="Title Cards"
-      logo={{
-        uri:
-          'https://mobile-staging.coorpacademy.com/assets/css/skin/logos/logo_coorpacademy-mobile-theme3.58ba909c8d6.png'
-      }}
       items={[discipline, chapter, discipline, chapterNew, disciplineNew]}
       onPress={handleFakePress}
     />
@@ -63,10 +59,6 @@ storiesOf('Catalog', module)
     <Catalog
       titleCover="Title Cover"
       titleCards="Title Cards"
-      logo={{
-        uri:
-          'https://mobile-staging.coorpacademy.com/assets/css/skin/logos/logo_coorpacademy-mobile-theme3.58ba909c8d6.png'
-      }}
       items={[]}
       onPress={handleFakePress}
     />
@@ -80,9 +72,6 @@ if (__TEST__) {
         <Catalog
           titleCover="Title Cover"
           titleCards="Title Cards"
-          logo={{
-            uri: 'https://www.totec.travel/wp-content/uploads/2018/07/cooropacademy.png'
-          }}
           items={[chapterNew, discipline, chapter]}
           onPress={handlePress}
         />
@@ -98,9 +87,6 @@ if (__TEST__) {
         <Catalog
           titleCover="Title Cover"
           titleCards="Title Cards"
-          logo={{
-            uri: 'https://www.totec.travel/wp-content/uploads/2018/07/cooropacademy.png'
-          }}
           items={[discipline, chapter]}
           onPress={handlePress}
         />
@@ -117,9 +103,6 @@ if (__TEST__) {
         <Catalog
           titleCover="Title Cover"
           titleCards="Title Cards"
-          logo={{
-            uri: 'https://www.totec.travel/wp-content/uploads/2018/07/cooropacademy.png'
-          }}
           items={[discipline, chapter]}
           onPress={handlePress}
         />
@@ -128,26 +111,6 @@ if (__TEST__) {
       catalogItem.props.onPress();
       expect(handlePress.mock.calls.length).toBe(1);
       expect(handlePress.mock.calls[0]).toEqual([chapter]);
-    });
-
-    it('should handle onLogoLongPress callback', () => {
-      const handleLongPress = jest.fn();
-      const component = renderer.create(
-        <Catalog
-          titleCover="Title Cover"
-          titleCards="Title Cards"
-          logo={{
-            uri: 'https://www.totec.travel/wp-content/uploads/2018/07/cooropacademy.png'
-          }}
-          items={[discipline, chapter]}
-          onPress={handleFakePress}
-          onLogoLongPress={handleLongPress}
-        />
-      );
-      const catalogLogo = component.root.find(el => el.props.testID === 'catalog-logo');
-      catalogLogo.props.onLongPress();
-      expect(handleLongPress.mock.calls.length).toBe(1);
-      expect(handleLongPress.mock.calls[0]).toEqual([]);
     });
   });
 }

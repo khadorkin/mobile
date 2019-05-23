@@ -15,6 +15,7 @@ import type {Slide} from '@coorpacademy/progression-engine';
 import type {Lives} from '@coorpacademy/player-store';
 
 import {CONTENT_TYPE, PERMISSION_STATUS} from '../../const';
+import type {DashboardSection} from '../../types';
 import type {StoreState} from '../store';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {OfflineContents, OfflineStatus} from '../reducers/bundle';

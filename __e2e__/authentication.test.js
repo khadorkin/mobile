@@ -4,7 +4,7 @@ import translations from '../src/translations/en';
 import {reloadApp} from './utils';
 
 const signOut = async (el: DetoxElement) => {
-  await el(by.id('catalog-logo')).longPress();
+  await el(by.id('home-logo')).longPress();
   await el(by.text('OK')).tap();
   await waitFor(el(by.id('authentication'))).toBeVisible();
   await weExpect(el(by.id('authentication'))).toBeVisible();

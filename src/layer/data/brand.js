@@ -4,7 +4,7 @@ import decode from 'jwt-decode';
 
 import fetch from '../../modules/fetch';
 import {__E2E__} from '../../modules/environment';
-import type {Brand, JWT} from '../../types';
+import type {Brand, DashboardSection, JWT} from '../../types';
 import {createBrand} from '../../__fixtures__/brands';
 
 export type Config = {|
@@ -14,12 +14,7 @@ export type Config = {|
     contentCategoryName: string
   },
   dashboardSections: {
-    [string]: {|
-      display: boolean,
-      order: number,
-      type: 'theme' | 'default' | 'skill',
-      contentType?: 'course' | 'chapter' | 'all'
-    |}
+    [string]: DashboardSection
   },
   themes: [
     {
@@ -46,19 +41,19 @@ export const fetchBrand = async (token: string): Promise<Brand> => {
     }
   });
 
-  const body: Config = await response.json();
+  const {brand, themes, dashboardSections}: Config = await response.json();
 
   return {
-    name: body.brand.name,
-    host: body.brand.baseUrl || 'https://mobile-staging.coorpacademy.com',
-    contentCategoryName: body.brand.contentCategoryName,
+    name: brand.name,
+    host: brand.baseUrl || 'https://mobile-staging.coorpacademy.com',
+    contentCategoryName: brand.contentCategoryName,
     colors: {
-      primary: body.themes[0].common.primary
+      primary: themes[0].common.primary
     },
     images: {
-      'logo-mobile': body.themes[0].images['logo-mobile']
+      'logo-mobile': themes[0].images['logo-mobile']
     },
-    dashboardSections: body.dashboardSections
+    dashboardSections
   };
 };
 

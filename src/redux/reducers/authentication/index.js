@@ -1,6 +1,7 @@
 // @flow strict
 
 import {combineReducers} from 'redux';
+
 import tokenReducer from './token';
 import type {State as TokenState} from './token';
 import brandReducer from './brand';
