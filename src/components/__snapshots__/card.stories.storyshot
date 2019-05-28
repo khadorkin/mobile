@@ -119,8 +119,9 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                     "flex": 1,
                   },
                   Object {
-                    "minHeight": 205,
+                    "height": 205,
                     "padding": 16,
+                    "width": 168,
                   },
                 ],
                 undefined,

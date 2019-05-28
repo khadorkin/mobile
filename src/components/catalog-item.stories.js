@@ -102,20 +102,4 @@ storiesOf('Catalog Item', module)
       type="microlearning"
       section="finishLearning"
     />
-  ))
-  .add('Placeholder', () => (
-    <CatalogItem
-      progression={progression}
-      image={image}
-      authorType={AUTHOR_TYPE.VERIFIED}
-      badge={translations.new}
-      displayMode={CARD_DISPLAY_MODE.CARD}
-      isCertified
-      isAdaptive={false}
-      onPress={handleFakePress}
-      testID="catalog4"
-      universalRef="foobar"
-      type="microlearning"
-      section="finishLearning"
-    />
   ));

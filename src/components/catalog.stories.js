@@ -47,19 +47,6 @@ const disciplineNew = createDisciplineCard({
 });
 
 storiesOf('Catalog', module)
-  .add('Items Placeholder', () => (
-    <Catalog
-      onRefresh={handleFakePress}
-      titleCards="Title Cards"
-      items={[
-        {...discipline, title: undefined},
-        chapterNew,
-        disciplineNew,
-        {...chapter, title: undefined}
-      ]}
-      onPress={handleFakePress}
-    />
-  ))
   .add('Items', () => (
     <Catalog
       titleCover="Title Cover"

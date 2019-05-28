@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 0.5,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      noMargin={true}
+      style={
+        Object {
+          "backgroundColor": "#ECEFF1",
+          "height": 205,
+          "padding": 16,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": "48%",
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#efefef",
+              "borderRadius": 3,
+              "height": 12,
+              "marginBottom": 12,
+              "width": "70%",
+            },
+            Array [
+              Object {
+                "height": 10,
+              },
+              Object {
+                "backgroundColor": "#CFD8DC",
+              },
+            ],
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#efefef",
+              "borderRadius": 3,
+              "height": 12,
+              "marginBottom": 12,
+              "width": "80%",
+            },
+            Array [
+              Object {
+                "height": 10,
+              },
+              Object {
+                "backgroundColor": "#CFD8DC",
+              },
+            ],
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "height": 24,
+            "width": 24,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#efefef",
+              "borderRadius": 3,
+              "height": 12,
+              "marginBottom": 12,
+              "width": "40%",
+            },
+            Array [
+              Object {
+                "height": 5,
+              },
+              Object {
+                "backgroundColor": "#CFD8DC",
+              },
+            ],
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#efefef",
+              "borderRadius": 3,
+              "height": 12,
+              "marginBottom": 12,
+              "width": "100%",
+            },
+            Array [
+              Object {
+                "height": 2,
+              },
+              Object {
+                "backgroundColor": "#CFD8DC",
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
