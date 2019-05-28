@@ -47,9 +47,23 @@ const disciplineNew = createDisciplineCard({
 });
 
 storiesOf('Catalog', module)
+  .add('Items Placeholder', () => (
+    <Catalog
+      onRefresh={handleFakePress}
+      titleCards="Title Cards"
+      items={[
+        {...discipline, title: undefined},
+        chapterNew,
+        disciplineNew,
+        {...chapter, title: undefined}
+      ]}
+      onPress={handleFakePress}
+    />
+  ))
   .add('Items', () => (
     <Catalog
       titleCover="Title Cover"
+      onRefresh={handleFakePress}
       titleCards="Title Cards"
       items={[discipline, chapter, discipline, chapterNew, disciplineNew]}
       onPress={handleFakePress}
@@ -58,6 +72,7 @@ storiesOf('Catalog', module)
   .add('Loading', () => (
     <Catalog
       titleCover="Title Cover"
+      onRefresh={handleFakePress}
       titleCards="Title Cards"
       items={[]}
       onPress={handleFakePress}
@@ -70,6 +85,7 @@ if (__TEST__) {
       const handlePress = jest.fn();
       const component = renderer.create(
         <Catalog
+          onRefresh={handleFakePress}
           titleCover="Title Cover"
           titleCards="Title Cards"
           items={[chapterNew, discipline, chapter]}
@@ -86,6 +102,7 @@ if (__TEST__) {
       const component = renderer.create(
         <Catalog
           titleCover="Title Cover"
+          onRefresh={handleFakePress}
           titleCards="Title Cards"
           items={[discipline, chapter]}
           onPress={handlePress}
@@ -102,6 +119,7 @@ if (__TEST__) {
       const component = renderer.create(
         <Catalog
           titleCover="Title Cover"
+          onRefresh={handleFakePress}
           titleCards="Title Cards"
           items={[discipline, chapter]}
           onPress={handlePress}

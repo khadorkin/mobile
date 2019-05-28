@@ -5,6 +5,7 @@ exports[`Storyshots Home Default 1`] = `
   style={
     Object {
       "flex": 1,
+      "paddingTop": 67,
     }
   }
   testID="home"
@@ -28,10 +29,12 @@ exports[`Storyshots Home Default 1`] = `
     }
     testID="home-footer"
   />
-  <Mock$ReactNavigation$SafeAreaView
+  <View
     style={
       Object {
+        "alignItems": "center",
         "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
@@ -39,137 +42,191 @@ exports[`Storyshots Home Default 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "height": 60,
           "justifyContent": "center",
+          "transform": Array [
+            Object {
+              "scaleX": 0.5,
+            },
+            Object {
+              "scaleY": 0.5,
+            },
+            Object {
+              "rotateZ": "0deg",
+            },
+          ],
+          "width": 60,
         }
       }
     >
       <View
         style={
           Object {
-            "alignItems": "center",
-            "height": 60,
-            "justifyContent": "center",
+            "backgroundColor": "#F73F52",
+            "borderRadius": 5,
+            "height": 10,
+            "position": "absolute",
             "transform": Array [
               Object {
-                "scaleX": 0.5,
+                "rotateZ": "45deg",
               },
               Object {
-                "scaleY": 0.5,
-              },
-              Object {
-                "rotateZ": "0deg",
+                "translateX": -25,
               },
             ],
-            "width": 60,
+            "width": 30,
           }
         }
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "#F73F52",
-              "borderRadius": 5,
-              "height": 10,
-              "position": "absolute",
-              "transform": Array [
-                Object {
-                  "rotateZ": "45deg",
-                },
-                Object {
-                  "translateX": -25,
-                },
-              ],
-              "width": 30,
-            }
+      />
+      <View
+        style={
+          Object {
+            "backgroundColor": "#3EC483",
+            "borderRadius": 5,
+            "height": 10,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotateZ": "135deg",
+              },
+              Object {
+                "translateX": -25,
+              },
+            ],
+            "width": 30,
           }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#3EC483",
-              "borderRadius": 5,
-              "height": 10,
-              "position": "absolute",
-              "transform": Array [
-                Object {
-                  "rotateZ": "135deg",
-                },
-                Object {
-                  "translateX": -25,
-                },
-              ],
-              "width": 30,
-            }
+        }
+      />
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFE100",
+            "borderRadius": 5,
+            "height": 10,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotateZ": "225deg",
+              },
+              Object {
+                "translateX": -25,
+              },
+            ],
+            "width": 30,
           }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFE100",
-              "borderRadius": 5,
-              "height": 10,
-              "position": "absolute",
-              "transform": Array [
-                Object {
-                  "rotateZ": "225deg",
-                },
-                Object {
-                  "translateX": -25,
-                },
-              ],
-              "width": 30,
-            }
+        }
+      />
+      <View
+        style={
+          Object {
+            "backgroundColor": "#00B0FF",
+            "borderRadius": 5,
+            "height": 10,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotateZ": "315deg",
+              },
+              Object {
+                "translateX": -25,
+              },
+            ],
+            "width": 30,
           }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#00B0FF",
-              "borderRadius": 5,
-              "height": 10,
-              "position": "absolute",
-              "transform": Array [
-                Object {
-                  "rotateZ": "315deg",
-                },
-                Object {
-                  "translateX": -25,
-                },
-              ],
-              "width": 30,
-            }
-          }
-        />
-      </View>
+        }
+      />
     </View>
+  </View>
+  <BVLinearGradient
+    colors={
+      Array [
+        4294967295,
+        4294967295,
+        16777215,
+      ]
+    }
+    endPoint={
+      Object {
+        "x": 0.5,
+        "y": 1,
+      }
+    }
+    locations={null}
+    startPoint={
+      Object {
+        "x": 0.5,
+        "y": 0,
+      }
+    }
+    style={
+      Array [
+        Object {
+          "left": 0,
+          "paddingTop": 67,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 83,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "height": 67,
+        "left": 0,
+        "paddingVertical": 16,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
     <View
       style={
         Object {
-          "height": 8,
-          "width": 8,
+          "height": 35,
+          "width": "100%",
         }
       }
-    />
-    <Text
-      style={
-        Array [
-          Object {},
+    >
+      <Image
+        accessible={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png",
+          }
+        }
+        style={
           Array [
             Object {
-              "fontSize": 10,
-              "textAlign": "center",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             },
             Object {
-              "color": "#FFFFFF",
-              "paddingBottom": 32,
+              "height": 35,
+              "width": "100%",
             },
-          ],
-        ]
-      }
-    >
-      Version: 0.0.0.test
-    </Text>
-  </Mock$ReactNavigation$SafeAreaView>
+            undefined,
+          ]
+        }
+        testID="home-logo"
+      />
+    </View>
+  </View>
 </View>
 `;

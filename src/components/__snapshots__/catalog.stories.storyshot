@@ -1,921 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Catalog Items 1`] = `
-<View
-  style={
-    Object {
-      "margin": 16,
-    }
+<RCTScrollView
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
   }
 >
-  <Image
-    accessible={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    source={
-      Object {
-        "uri": "https://mobile-staging.coorpacademy.com/assets/css/skin/logos/logo_coorpacademy-mobile-theme3.58ba909c8d6.png",
-      }
-    }
-    style={
-      Object {
-        "height": 36,
-        "resizeMode": "contain",
-        "width": "100%",
-      }
-    }
-    testID="catalog-logo"
-  />
-  <Text
-    style={
-      Array [
-        Object {},
-        Object {
-          "fontSize": 17,
-          "fontWeight": "700",
-          "paddingBottom": 16,
-          "paddingTop": 24,
-        },
-      ]
-    }
-  >
-    Title Cover
-  </Text>
-  <View
-    style={
-      Array [
-        Object {
-          "borderRadius": 5,
-          "flex": 1,
-        },
-        Object {
-          "elevation": 4,
-          "shadowColor": "#14171A",
-          "shadowOffset": Object {
-            "height": 0,
-            "width": 0,
-          },
-          "shadowOpacity": 0.15,
-          "shadowRadius": 8,
-        },
-      ]
-    }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "borderRadius": 5,
-            "flex": 1,
-          },
-          Object {
-            "overflow": "hidden",
-          },
-        ]
-      }
-    >
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={null}
-        testID="catalog-item-dis-1"
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                },
-                Object {
-                  "minHeight": 205,
-                },
-              ]
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_cours_hatier_accords-1527071992067.jpg",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "height": undefined,
-                    "width": undefined,
-                  },
-                  undefined,
-                ]
-              }
-              testID="background-image-catalog-item-dis-1"
-            />
-            <BVLinearGradient
-              colors={
-                Array [
-                  0,
-                  1711276032,
-                  3003121664,
-                  4278190080,
-                ]
-              }
-              endPoint={
-                Object {
-                  "x": 0.5,
-                  "y": 1,
-                }
-              }
-              locations={null}
-              startPoint={
-                Object {
-                  "x": 0.5,
-                  "y": 0,
-                }
-              }
-              style={
-                Array [
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "height": 400.2,
-                      "minHeight": 215,
-                      "padding": 24,
-                    },
-                  ],
-                  undefined,
-                ]
-              }
-              testID="gradient-catalog-item-dis-1"
-            >
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {},
-                      Array [
-                        Object {
-                          "color": "#FFFFFF",
-                          "fontWeight": "700",
-                          "paddingTop": 8,
-                        },
-                        Object {
-                          "fontSize": 22,
-                        },
-                      ],
-                    ]
-                  }
-                  testID="title-catalog-item-dis-1"
-                >
-                  Fake discipline
-                </Text>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {},
-                        Array [
-                          Object {
-                            "color": "#FFFFFF",
-                            "flex": 1,
-                            "fontWeight": "400",
-                            "paddingBottom": 16,
-                            "paddingTop": 8,
-                          },
-                          Object {
-                            "fontSize": 15,
-                          },
-                        ],
-                      ]
-                    }
-                    testID="subtitle-catalog-item-dis-1"
-                  >
-                    A good guy with blue eyes
-                  </Text>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "paddingLeft": 8,
-                        },
-                        Object {
-                          "marginTop": -8,
-                        },
-                      ]
-                    }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="16"
-                      bbWidth="16"
-                      color="#FFFFFF"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                          },
-                          undefined,
-                          false,
-                          Object {
-                            "flex": 0,
-                            "height": 16,
-                            "width": 16,
-                          },
-                        ]
-                      }
-                      testID="certified-catalog-item-dis-1"
-                      vbHeight={24}
-                      vbWidth={24}
-                    >
-                      <RNSVGPath
-                        d="M0 .001h24v24H0z"
-                        fill={null}
-                        fillOpacity={1}
-                        fillRule={1}
-                        matrix={
-                          Array [
-                            1,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                          ]
-                        }
-                        opacity={1}
-                        originX={0}
-                        originY={0}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                        rotation={0}
-                        scaleX={1}
-                        scaleY={1}
-                        skewX={0}
-                        skewY={0}
-                        stroke={null}
-                        strokeDasharray={null}
-                        strokeDashoffset={null}
-                        strokeLinecap={0}
-                        strokeLinejoin={0}
-                        strokeMiterlimit={4}
-                        strokeOpacity={1}
-                        strokeWidth="1"
-                        x={0}
-                        y={0}
-                      />
-                      <RNSVGPath
-                        d="M12.042 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.478-10-10-10zm-.75 15.75l-5-3.75 1.5-2 3 2.25 5.25-7 2 1.5-6.75 9z"
-                        fill={
-                          Array [
-                            0,
-                            1,
-                            1,
-                            1,
-                            1,
-                          ]
-                        }
-                        fillOpacity={1}
-                        fillRule={1}
-                        matrix={
-                          Array [
-                            1,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                          ]
-                        }
-                        opacity={1}
-                        originX={0}
-                        originY={0}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                        rotation={0}
-                        scaleX={1}
-                        scaleY={1}
-                        skewX={0}
-                        skewY={0}
-                        stroke={null}
-                        strokeDasharray={null}
-                        strokeDashoffset={null}
-                        strokeLinecap={0}
-                        strokeLinejoin={0}
-                        strokeMiterlimit={4}
-                        strokeOpacity={1}
-                        strokeWidth="1"
-                        x={0}
-                        y={0}
-                      />
-                    </RNSVGSvgView>
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "borderRadius": 3,
-                      "overflow": "hidden",
-                    }
-                  }
-                  testID="progressBar-catalog-item-dis-1"
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": "#FFFFFF",
-                      }
-                    }
-                    testID="progression-bar"
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#00B0FF",
-                          "borderBottomRightRadius": 1,
-                          "borderTopRightRadius": 1,
-                          "height": 2,
-                          "width": "0%",
-                        }
-                      }
-                      testID="progression-bar-0"
-                    />
-                  </View>
-                </View>
-              </View>
-            </BVLinearGradient>
-          </View>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "justifyContent": "center",
-                "marginVertical": 24,
-                "position": "absolute",
-                "width": "100%",
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {},
-                  Array [
-                    Object {
-                      "color": "#FFFFFF",
-                      "textAlign": "center",
-                      "textShadowColor": "rgba(0, 0, 0, 1)",
-                      "textShadowRadius": 2,
-                    },
-                    Object {
-                      "fontSize": 12,
-                      "letterSpacing": 2.25,
-                    },
-                  ],
-                ]
-              }
-              testID="author-catalog-item-dis-1"
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-  <Text
-    style={
-      Array [
-        Object {},
-        Object {
-          "fontSize": 17,
-          "fontWeight": "700",
-          "paddingBottom": 16,
-          "paddingTop": 24,
-        },
-      ]
-    }
-  >
-    Title Cards
-  </Text>
+  <RCTRefreshControl />
   <View>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
+          "margin": 16,
         }
       }
     >
-      <View
+      <Text
         style={
           Array [
-            Object {
-              "borderRadius": 5,
-              "flex": 1,
-            },
-            Object {
-              "elevation": 4,
-              "shadowColor": "#14171A",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+            Object {},
+            Array [
+              Object {
+                "fontSize": 17,
+                "fontWeight": "700",
+                "paddingBottom": 16,
+                "paddingTop": 24,
               },
-              "shadowOpacity": 0.15,
-              "shadowRadius": 8,
-            },
+              Object {
+                "paddingTop": 0,
+              },
+            ],
           ]
         }
       >
-        <View
-          style={
-            Array [
-              Object {
-                "borderRadius": 5,
-                "flex": 1,
-              },
-              Object {
-                "overflow": "hidden",
-              },
-            ]
-          }
-        >
-          <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={null}
-            testID="catalog-item-cha-1"
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#FFFFFF",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "minHeight": 205,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "bottom": 0,
-                        "left": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                      },
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="background-image-catalog-item-cha-1"
-                />
-                <BVLinearGradient
-                  colors={
-                    Array [
-                      0,
-                      1711276032,
-                      3003121664,
-                      4278190080,
-                    ]
-                  }
-                  endPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 1,
-                    }
-                  }
-                  locations={null}
-                  startPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 0,
-                    }
-                  }
-                  style={
-                    Array [
-                      Array [
-                        Object {
-                          "flex": 1,
-                        },
-                        Object {
-                          "minHeight": 205,
-                          "padding": 16,
-                        },
-                      ],
-                      undefined,
-                    ]
-                  }
-                  testID="gradient-catalog-item-cha-1"
-                >
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "justifyContent": "flex-end",
-                      }
-                    }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="16"
-                      bbWidth="16"
-                      color="#FFFFFF"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                          },
-                          undefined,
-                          false,
-                          Object {
-                            "flex": 0,
-                            "height": 16,
-                            "width": 16,
-                          },
-                        ]
-                      }
-                      testID="infinite-catalog-item-cha-1"
-                      vbHeight={26}
-                      vbWidth={26}
-                    >
-                      <RNSVGPath
-                        d="M13 26C5.8 26 0 20.2 0 13S5.8 0 13 0s13 5.8 13 13-5.8 13-13 13zm6.2-16.8c.1-.1.2-.3.3-.5.1-.5-.4-1-.9-.9-.2 0-.4.1-.5.3l-.7.7c-.9-.7-2-1.1-3.2-1.3v-.6h.6c.4 0 .8-.3.9-.7 0-.5-.3-.9-.8-.9h-3c-.4 0-.8.3-.9.7 0 .5.3.9.8.9h.7v.6c-1.1.1-2.1.5-3 1.2-.8.6.1 1.9 1 1.3 1.5-1 3.4-1.2 5-.4 1.6.8 2.7 2.3 2.8 4 .1 1.7-.9 3.4-2.4 4.2-1.6.9-3.5.8-5-.1-.4-.2-.8-.2-1.1.2-.3.4-.2.9.2 1.2 1.3.8 2.9 1.1 4.5.9 3.2-.5 5.5-3.1 5.6-6.2 0-1.4-.5-2.8-1.3-3.9l.4-.7zm-4.6 4.3l1.5-1.8c.4-.5-.3-1.1-.7-.7l-1.9 1.4c-.6-.1-1.1.2-1.4.7-.3.5-.2 1.1.2 1.5.4.4 1 .5 1.5.2.6-.2.9-.8.8-1.3zm-3.9 2.6c0-.4-.3-.6-.7-.6H7.2c-.9 0-.9 1.3 0 1.3H10c.4 0 .7-.3.7-.7zm-.7-2.9H6.1c-.9 0-.9 1.3 0 1.3H10c.9 0 .9-1.3 0-1.3zm0-1c.9 0 .9-1.3 0-1.3H4.8c-.9 0-.9 1.3 0 1.3H10z"
-                        fill={
-                          Array [
-                            0,
-                            1,
-                            1,
-                            1,
-                            1,
-                          ]
-                        }
-                        fillOpacity={1}
-                        fillRule={0}
-                        matrix={
-                          Array [
-                            1,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                          ]
-                        }
-                        opacity={1}
-                        originX={0}
-                        originY={0}
-                        propList={
-                          Array [
-                            "fill",
-                            "fillRule",
-                          ]
-                        }
-                        rotation={0}
-                        scaleX={1}
-                        scaleY={1}
-                        skewX={0}
-                        skewY={0}
-                        stroke={null}
-                        strokeDasharray={null}
-                        strokeDashoffset={null}
-                        strokeLinecap={0}
-                        strokeLinejoin={0}
-                        strokeMiterlimit={4}
-                        strokeOpacity={1}
-                        strokeWidth="1"
-                        x={0}
-                        y={0}
-                      />
-                    </RNSVGSvgView>
-                    <Text
-                      style={
-                        Array [
-                          Object {},
-                          Array [
-                            Object {
-                              "color": "#FFFFFF",
-                              "fontWeight": "700",
-                              "paddingTop": 8,
-                            },
-                            Object {
-                              "fontSize": 15,
-                            },
-                          ],
-                        ]
-                      }
-                      testID="title-catalog-item-cha-1"
-                    >
-                      Fake chapter
-                    </Text>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {},
-                            Array [
-                              Object {
-                                "color": "#FFFFFF",
-                                "flex": 1,
-                                "fontWeight": "400",
-                                "paddingBottom": 16,
-                                "paddingTop": 8,
-                              },
-                              Object {
-                                "fontSize": 12,
-                              },
-                            ],
-                          ]
-                        }
-                        testID="subtitle-catalog-item-cha-1"
-                      >
-                        A good guy
-                      </Text>
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "paddingLeft": 8,
-                            },
-                            Object {
-                              "marginTop": -7,
-                            },
-                          ]
-                        }
-                      >
-                        <RNSVGSvgView
-                          align="xMidYMid"
-                          bbHeight="14"
-                          bbWidth="14"
-                          color="#FFFFFF"
-                          meetOrSlice={0}
-                          minX={0}
-                          minY={0}
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                              },
-                              undefined,
-                              false,
-                              Object {
-                                "flex": 0,
-                                "height": 14,
-                                "width": 14,
-                              },
-                            ]
-                          }
-                          testID="certified-catalog-item-cha-1"
-                          vbHeight={24}
-                          vbWidth={24}
-                        >
-                          <RNSVGPath
-                            d="M0 .001h24v24H0z"
-                            fill={null}
-                            fillOpacity={1}
-                            fillRule={1}
-                            matrix={
-                              Array [
-                                1,
-                                0,
-                                0,
-                                1,
-                                0,
-                                0,
-                              ]
-                            }
-                            opacity={1}
-                            originX={0}
-                            originY={0}
-                            propList={
-                              Array [
-                                "fill",
-                              ]
-                            }
-                            rotation={0}
-                            scaleX={1}
-                            scaleY={1}
-                            skewX={0}
-                            skewY={0}
-                            stroke={null}
-                            strokeDasharray={null}
-                            strokeDashoffset={null}
-                            strokeLinecap={0}
-                            strokeLinejoin={0}
-                            strokeMiterlimit={4}
-                            strokeOpacity={1}
-                            strokeWidth="1"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M12.042 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.478-10-10-10zm-.75 15.75l-5-3.75 1.5-2 3 2.25 5.25-7 2 1.5-6.75 9z"
-                            fill={
-                              Array [
-                                0,
-                                1,
-                                1,
-                                1,
-                                1,
-                              ]
-                            }
-                            fillOpacity={1}
-                            fillRule={1}
-                            matrix={
-                              Array [
-                                1,
-                                0,
-                                0,
-                                1,
-                                0,
-                                0,
-                              ]
-                            }
-                            opacity={1}
-                            originX={0}
-                            originY={0}
-                            propList={
-                              Array [
-                                "fill",
-                              ]
-                            }
-                            rotation={0}
-                            scaleX={1}
-                            scaleY={1}
-                            skewX={0}
-                            skewY={0}
-                            stroke={null}
-                            strokeDasharray={null}
-                            strokeDashoffset={null}
-                            strokeLinecap={0}
-                            strokeLinejoin={0}
-                            strokeMiterlimit={4}
-                            strokeOpacity={1}
-                            strokeWidth="1"
-                            x={0}
-                            y={0}
-                          />
-                        </RNSVGSvgView>
-                      </View>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "borderRadius": 3,
-                          "overflow": "hidden",
-                        }
-                      }
-                      testID="progressBar-catalog-item-cha-1"
-                    >
-                      <View
-                        style={
-                          Object {
-                            "backgroundColor": "#FFFFFF",
-                          }
-                        }
-                        testID="progression-bar"
-                      >
-                        <View
-                          style={
-                            Object {
-                              "backgroundColor": "#00B0FF",
-                              "borderBottomRightRadius": 1,
-                              "borderTopRightRadius": 1,
-                              "height": 2,
-                              "width": "0%",
-                            }
-                          }
-                          testID="progression-bar-0"
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </BVLinearGradient>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "marginVertical": 24,
-                    "position": "absolute",
-                    "width": "100%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {},
-                      Array [
-                        Object {
-                          "color": "#FFFFFF",
-                          "textAlign": "center",
-                          "textShadowColor": "rgba(0, 0, 0, 1)",
-                          "textShadowRadius": 2,
-                        },
-                        Object {
-                          "fontSize": 10,
-                          "letterSpacing": 1.88,
-                        },
-                      ],
-                    ]
-                  }
-                  testID="author-catalog-item-cha-1"
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "height": 8,
-            "width": 8,
-          }
-        }
-      />
+        Title Cover
+      </Text>
       <View
         style={
           Array [
@@ -1033,8 +155,9 @@ exports[`Storyshots Catalog Items 1`] = `
                           "flex": 1,
                         },
                         Object {
-                          "minHeight": 205,
-                          "padding": 16,
+                          "height": 400.2,
+                          "minHeight": 215,
+                          "padding": 24,
                         },
                       ],
                       undefined,
@@ -1061,7 +184,7 @@ exports[`Storyshots Catalog Items 1`] = `
                               "paddingTop": 8,
                             },
                             Object {
-                              "fontSize": 15,
+                              "fontSize": 22,
                             },
                           ],
                         ]
@@ -1091,7 +214,7 @@ exports[`Storyshots Catalog Items 1`] = `
                                 "paddingTop": 8,
                               },
                               Object {
-                                "fontSize": 12,
+                                "fontSize": 15,
                               },
                             ],
                           ]
@@ -1107,15 +230,15 @@ exports[`Storyshots Catalog Items 1`] = `
                               "paddingLeft": 8,
                             },
                             Object {
-                              "marginTop": -7,
+                              "marginTop": -8,
                             },
                           ]
                         }
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="14"
-                          bbWidth="14"
+                          bbHeight="16"
+                          bbWidth="16"
                           color="#FFFFFF"
                           meetOrSlice={0}
                           minX={0}
@@ -1129,8 +252,8 @@ exports[`Storyshots Catalog Items 1`] = `
                               false,
                               Object {
                                 "flex": 0,
-                                "height": 14,
-                                "width": 14,
+                                "height": 16,
+                                "width": 16,
                               },
                             ]
                           }
@@ -1284,8 +407,8 @@ exports[`Storyshots Catalog Items 1`] = `
                           "textShadowRadius": 2,
                         },
                         Object {
-                          "fontSize": 10,
-                          "letterSpacing": 1.88,
+                          "fontSize": 12,
+                          "letterSpacing": 2.25,
                         },
                       ],
                     ]
@@ -1297,417 +420,1664 @@ exports[`Storyshots Catalog Items 1`] = `
           </View>
         </View>
       </View>
+      <Text
+        style={
+          Array [
+            Object {},
+            Object {
+              "fontSize": 17,
+              "fontWeight": "700",
+              "paddingBottom": 16,
+              "paddingTop": 24,
+            },
+          ]
+        }
+      >
+        Title Cards
+      </Text>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-cha-1"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "minHeight": 205,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          Object {
+                            "height": undefined,
+                            "width": undefined,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="background-image-catalog-item-cha-1"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
+                        }
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
+                      }
+                      testID="gradient-catalog-item-cha-1"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight="16"
+                          bbWidth="16"
+                          color="#FFFFFF"
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              undefined,
+                              false,
+                              Object {
+                                "flex": 0,
+                                "height": 16,
+                                "width": 16,
+                              },
+                            ]
+                          }
+                          testID="infinite-catalog-item-cha-1"
+                          vbHeight={26}
+                          vbWidth={26}
+                        >
+                          <RNSVGPath
+                            d="M13 26C5.8 26 0 20.2 0 13S5.8 0 13 0s13 5.8 13 13-5.8 13-13 13zm6.2-16.8c.1-.1.2-.3.3-.5.1-.5-.4-1-.9-.9-.2 0-.4.1-.5.3l-.7.7c-.9-.7-2-1.1-3.2-1.3v-.6h.6c.4 0 .8-.3.9-.7 0-.5-.3-.9-.8-.9h-3c-.4 0-.8.3-.9.7 0 .5.3.9.8.9h.7v.6c-1.1.1-2.1.5-3 1.2-.8.6.1 1.9 1 1.3 1.5-1 3.4-1.2 5-.4 1.6.8 2.7 2.3 2.8 4 .1 1.7-.9 3.4-2.4 4.2-1.6.9-3.5.8-5-.1-.4-.2-.8-.2-1.1.2-.3.4-.2.9.2 1.2 1.3.8 2.9 1.1 4.5.9 3.2-.5 5.5-3.1 5.6-6.2 0-1.4-.5-2.8-1.3-3.9l.4-.7zm-4.6 4.3l1.5-1.8c.4-.5-.3-1.1-.7-.7l-1.9 1.4c-.6-.1-1.1.2-1.4.7-.3.5-.2 1.1.2 1.5.4.4 1 .5 1.5.2.6-.2.9-.8.8-1.3zm-3.9 2.6c0-.4-.3-.6-.7-.6H7.2c-.9 0-.9 1.3 0 1.3H10c.4 0 .7-.3.7-.7zm-.7-2.9H6.1c-.9 0-.9 1.3 0 1.3H10c.9 0 .9-1.3 0-1.3zm0-1c.9 0 .9-1.3 0-1.3H4.8c-.9 0-.9 1.3 0 1.3H10z"
+                            fill={
+                              Array [
+                                0,
+                                1,
+                                1,
+                                1,
+                                1,
+                              ]
+                            }
+                            fillOpacity={1}
+                            fillRule={0}
+                            matrix={
+                              Array [
+                                1,
+                                0,
+                                0,
+                                1,
+                                0,
+                                0,
+                              ]
+                            }
+                            opacity={1}
+                            originX={0}
+                            originY={0}
+                            propList={
+                              Array [
+                                "fill",
+                                "fillRule",
+                              ]
+                            }
+                            rotation={0}
+                            scaleX={1}
+                            scaleY={1}
+                            skewX={0}
+                            skewY={0}
+                            stroke={null}
+                            strokeDasharray={null}
+                            strokeDashoffset={null}
+                            strokeLinecap={0}
+                            strokeLinejoin={0}
+                            strokeMiterlimit={4}
+                            strokeOpacity={1}
+                            strokeWidth="1"
+                            x={0}
+                            y={0}
+                          />
+                        </RNSVGSvgView>
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-cha-1"
+                        >
+                          Fake chapter
+                        </Text>
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                            }
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-cha-1"
+                          >
+                            A good guy
+                          </Text>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "paddingLeft": 8,
+                                },
+                                Object {
+                                  "marginTop": -7,
+                                },
+                              ]
+                            }
+                          >
+                            <RNSVGSvgView
+                              align="xMidYMid"
+                              bbHeight="14"
+                              bbWidth="14"
+                              color="#FFFFFF"
+                              meetOrSlice={0}
+                              minX={0}
+                              minY={0}
+                              style={
+                                Array [
+                                  Object {
+                                    "backgroundColor": "transparent",
+                                  },
+                                  undefined,
+                                  false,
+                                  Object {
+                                    "flex": 0,
+                                    "height": 14,
+                                    "width": 14,
+                                  },
+                                ]
+                              }
+                              testID="certified-catalog-item-cha-1"
+                              vbHeight={24}
+                              vbWidth={24}
+                            >
+                              <RNSVGPath
+                                d="M0 .001h24v24H0z"
+                                fill={null}
+                                fillOpacity={1}
+                                fillRule={1}
+                                matrix={
+                                  Array [
+                                    1,
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    0,
+                                  ]
+                                }
+                                opacity={1}
+                                originX={0}
+                                originY={0}
+                                propList={
+                                  Array [
+                                    "fill",
+                                  ]
+                                }
+                                rotation={0}
+                                scaleX={1}
+                                scaleY={1}
+                                skewX={0}
+                                skewY={0}
+                                stroke={null}
+                                strokeDasharray={null}
+                                strokeDashoffset={null}
+                                strokeLinecap={0}
+                                strokeLinejoin={0}
+                                strokeMiterlimit={4}
+                                strokeOpacity={1}
+                                strokeWidth="1"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M12.042 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.478-10-10-10zm-.75 15.75l-5-3.75 1.5-2 3 2.25 5.25-7 2 1.5-6.75 9z"
+                                fill={
+                                  Array [
+                                    0,
+                                    1,
+                                    1,
+                                    1,
+                                    1,
+                                  ]
+                                }
+                                fillOpacity={1}
+                                fillRule={1}
+                                matrix={
+                                  Array [
+                                    1,
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    0,
+                                  ]
+                                }
+                                opacity={1}
+                                originX={0}
+                                originY={0}
+                                propList={
+                                  Array [
+                                    "fill",
+                                  ]
+                                }
+                                rotation={0}
+                                scaleX={1}
+                                scaleY={1}
+                                skewX={0}
+                                skewY={0}
+                                stroke={null}
+                                strokeDasharray={null}
+                                strokeDashoffset={null}
+                                strokeLinecap={0}
+                                strokeLinejoin={0}
+                                strokeMiterlimit={4}
+                                strokeOpacity={1}
+                                strokeWidth="1"
+                                x={0}
+                                y={0}
+                              />
+                            </RNSVGSvgView>
+                          </View>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-cha-1"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </BVLinearGradient>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {},
+                          Array [
+                            Object {
+                              "color": "#FFFFFF",
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
+                            },
+                            Object {
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
+                            },
+                          ],
+                        ]
+                      }
+                      testID="author-catalog-item-cha-1"
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 8,
+                "width": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-dis-1"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "minHeight": 205,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_cours_hatier_accords-1527071992067.jpg",
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          Object {
+                            "height": undefined,
+                            "width": undefined,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="background-image-catalog-item-dis-1"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
+                        }
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
+                      }
+                      testID="gradient-catalog-item-dis-1"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-dis-1"
+                        >
+                          Fake discipline
+                        </Text>
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                            }
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-dis-1"
+                          >
+                            A good guy with blue eyes
+                          </Text>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "paddingLeft": 8,
+                                },
+                                Object {
+                                  "marginTop": -7,
+                                },
+                              ]
+                            }
+                          >
+                            <RNSVGSvgView
+                              align="xMidYMid"
+                              bbHeight="14"
+                              bbWidth="14"
+                              color="#FFFFFF"
+                              meetOrSlice={0}
+                              minX={0}
+                              minY={0}
+                              style={
+                                Array [
+                                  Object {
+                                    "backgroundColor": "transparent",
+                                  },
+                                  undefined,
+                                  false,
+                                  Object {
+                                    "flex": 0,
+                                    "height": 14,
+                                    "width": 14,
+                                  },
+                                ]
+                              }
+                              testID="certified-catalog-item-dis-1"
+                              vbHeight={24}
+                              vbWidth={24}
+                            >
+                              <RNSVGPath
+                                d="M0 .001h24v24H0z"
+                                fill={null}
+                                fillOpacity={1}
+                                fillRule={1}
+                                matrix={
+                                  Array [
+                                    1,
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    0,
+                                  ]
+                                }
+                                opacity={1}
+                                originX={0}
+                                originY={0}
+                                propList={
+                                  Array [
+                                    "fill",
+                                  ]
+                                }
+                                rotation={0}
+                                scaleX={1}
+                                scaleY={1}
+                                skewX={0}
+                                skewY={0}
+                                stroke={null}
+                                strokeDasharray={null}
+                                strokeDashoffset={null}
+                                strokeLinecap={0}
+                                strokeLinejoin={0}
+                                strokeMiterlimit={4}
+                                strokeOpacity={1}
+                                strokeWidth="1"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M12.042 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.478-10-10-10zm-.75 15.75l-5-3.75 1.5-2 3 2.25 5.25-7 2 1.5-6.75 9z"
+                                fill={
+                                  Array [
+                                    0,
+                                    1,
+                                    1,
+                                    1,
+                                    1,
+                                  ]
+                                }
+                                fillOpacity={1}
+                                fillRule={1}
+                                matrix={
+                                  Array [
+                                    1,
+                                    0,
+                                    0,
+                                    1,
+                                    0,
+                                    0,
+                                  ]
+                                }
+                                opacity={1}
+                                originX={0}
+                                originY={0}
+                                propList={
+                                  Array [
+                                    "fill",
+                                  ]
+                                }
+                                rotation={0}
+                                scaleX={1}
+                                scaleY={1}
+                                skewX={0}
+                                skewY={0}
+                                stroke={null}
+                                strokeDasharray={null}
+                                strokeDashoffset={null}
+                                strokeLinecap={0}
+                                strokeLinejoin={0}
+                                strokeMiterlimit={4}
+                                strokeOpacity={1}
+                                strokeWidth="1"
+                                x={0}
+                                y={0}
+                              />
+                            </RNSVGSvgView>
+                          </View>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-dis-1"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </BVLinearGradient>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {},
+                          Array [
+                            Object {
+                              "color": "#FFFFFF",
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
+                            },
+                            Object {
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
+                            },
+                          ],
+                        ]
+                      }
+                      testID="author-catalog-item-dis-1"
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View>
+        <View
+          style={
+            Object {
+              "height": 8,
+              "width": 8,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-cha-2"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "minHeight": 205,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          Object {
+                            "height": undefined,
+                            "width": undefined,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="background-image-catalog-item-cha-2"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
+                        }
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
+                      }
+                      testID="gradient-catalog-item-cha-2"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "position": "absolute",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "#FFFFFF",
+                                "borderBottomEndRadius": 12,
+                                "flex": 1,
+                                "justifyContent": "center",
+                                "paddingLeft": 8,
+                                "paddingRight": 12,
+                              },
+                              Object {
+                                "minHeight": 17,
+                                "minWidth": 40,
+                              },
+                            ]
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  "New",
+                                  Object {
+                                    "fontSize": 10,
+                                    "fontWeight": "700",
+                                  },
+                                  Object {
+                                    "color": "#00B0FF",
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="badge-catalog-item-cha-2"
+                          >
+                            New
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight="16"
+                          bbWidth="16"
+                          color="#FFFFFF"
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              undefined,
+                              false,
+                              Object {
+                                "flex": 0,
+                                "height": 16,
+                                "width": 16,
+                              },
+                            ]
+                          }
+                          testID="infinite-catalog-item-cha-2"
+                          vbHeight={26}
+                          vbWidth={26}
+                        >
+                          <RNSVGPath
+                            d="M13 26C5.8 26 0 20.2 0 13S5.8 0 13 0s13 5.8 13 13-5.8 13-13 13zm6.2-16.8c.1-.1.2-.3.3-.5.1-.5-.4-1-.9-.9-.2 0-.4.1-.5.3l-.7.7c-.9-.7-2-1.1-3.2-1.3v-.6h.6c.4 0 .8-.3.9-.7 0-.5-.3-.9-.8-.9h-3c-.4 0-.8.3-.9.7 0 .5.3.9.8.9h.7v.6c-1.1.1-2.1.5-3 1.2-.8.6.1 1.9 1 1.3 1.5-1 3.4-1.2 5-.4 1.6.8 2.7 2.3 2.8 4 .1 1.7-.9 3.4-2.4 4.2-1.6.9-3.5.8-5-.1-.4-.2-.8-.2-1.1.2-.3.4-.2.9.2 1.2 1.3.8 2.9 1.1 4.5.9 3.2-.5 5.5-3.1 5.6-6.2 0-1.4-.5-2.8-1.3-3.9l.4-.7zm-4.6 4.3l1.5-1.8c.4-.5-.3-1.1-.7-.7l-1.9 1.4c-.6-.1-1.1.2-1.4.7-.3.5-.2 1.1.2 1.5.4.4 1 .5 1.5.2.6-.2.9-.8.8-1.3zm-3.9 2.6c0-.4-.3-.6-.7-.6H7.2c-.9 0-.9 1.3 0 1.3H10c.4 0 .7-.3.7-.7zm-.7-2.9H6.1c-.9 0-.9 1.3 0 1.3H10c.9 0 .9-1.3 0-1.3zm0-1c.9 0 .9-1.3 0-1.3H4.8c-.9 0-.9 1.3 0 1.3H10z"
+                            fill={
+                              Array [
+                                0,
+                                1,
+                                1,
+                                1,
+                                1,
+                              ]
+                            }
+                            fillOpacity={1}
+                            fillRule={0}
+                            matrix={
+                              Array [
+                                1,
+                                0,
+                                0,
+                                1,
+                                0,
+                                0,
+                              ]
+                            }
+                            opacity={1}
+                            originX={0}
+                            originY={0}
+                            propList={
+                              Array [
+                                "fill",
+                                "fillRule",
+                              ]
+                            }
+                            rotation={0}
+                            scaleX={1}
+                            scaleY={1}
+                            skewX={0}
+                            skewY={0}
+                            stroke={null}
+                            strokeDasharray={null}
+                            strokeDashoffset={null}
+                            strokeLinecap={0}
+                            strokeLinejoin={0}
+                            strokeMiterlimit={4}
+                            strokeOpacity={1}
+                            strokeWidth="1"
+                            x={0}
+                            y={0}
+                          />
+                        </RNSVGSvgView>
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-cha-2"
+                        >
+                          Fake chapter
+                        </Text>
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                            }
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-cha-2"
+                          >
+                            custom
+                          </Text>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-cha-2"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </BVLinearGradient>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {},
+                          Array [
+                            Object {
+                              "color": "#FFFFFF",
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
+                            },
+                            Object {
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
+                            },
+                          ],
+                        ]
+                      }
+                      testID="author-catalog-item-cha-2"
+                    >
+                      ONBOARDING
+                       CREATION
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 8,
+                "width": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-dis-2"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "minHeight": 205,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_cours_hatier_accords-1527071992067.jpg",
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          Object {
+                            "height": undefined,
+                            "width": undefined,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="background-image-catalog-item-dis-2"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
+                        }
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
+                      }
+                      testID="gradient-catalog-item-dis-2"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "position": "absolute",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "#FFFFFF",
+                                "borderBottomEndRadius": 12,
+                                "flex": 1,
+                                "justifyContent": "center",
+                                "paddingLeft": 8,
+                                "paddingRight": 12,
+                              },
+                              Object {
+                                "minHeight": 17,
+                                "minWidth": 40,
+                              },
+                            ]
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  "New",
+                                  Object {
+                                    "fontSize": 10,
+                                    "fontWeight": "700",
+                                  },
+                                  Object {
+                                    "color": "#00B0FF",
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="badge-catalog-item-dis-2"
+                          >
+                            New
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-dis-2"
+                        >
+                          Fake discipline
+                        </Text>
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                            }
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-dis-2"
+                          >
+                            custom
+                          </Text>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-dis-2"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </BVLinearGradient>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {},
+                          Array [
+                            Object {
+                              "color": "#FFFFFF",
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
+                            },
+                            Object {
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
+                            },
+                          ],
+                        ]
+                      }
+                      testID="author-catalog-item-dis-2"
+                    >
+                      ONBOARDING
+                       CREATION
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   </View>
+</RCTScrollView>
+`;
+
+exports[`Storyshots Catalog Items Placeholder 1`] = `
+<RCTScrollView
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+>
+  <RCTRefreshControl />
   <View>
     <View
       style={
         Object {
-          "height": 8,
-          "width": 8,
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "alignItems": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
+          "margin": 16,
         }
       }
     >
       <View
         style={
-          Array [
-            Object {
-              "borderRadius": 5,
-              "flex": 1,
-            },
-            Object {
-              "elevation": 4,
-              "shadowColor": "#14171A",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 0.15,
-              "shadowRadius": 8,
-            },
-          ]
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "width": "100%",
+          }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "borderRadius": 5,
-                "flex": 1,
-              },
-              Object {
-                "overflow": "hidden",
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         >
           <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={null}
-            testID="catalog-item-cha-2"
+            noMargin={true}
+            style={
+              Object {
+                "paddingBottom": 12,
+              }
+            }
           >
             <View
               style={
-                Object {
-                  "backgroundColor": "#FFFFFF",
-                }
-              }
-            >
-              <View
-                style={
+                Array [
+                  Object {
+                    "alignSelf": "stretch",
+                    "backgroundColor": "#efefef",
+                    "borderRadius": 3,
+                    "height": 12,
+                    "marginBottom": 12,
+                    "width": "70%",
+                  },
                   Array [
                     Object {
-                      "flex": 1,
+                      "backgroundColor": "#CFD8DC",
                     },
-                    Object {
-                      "minHeight": 205,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "bottom": 0,
-                        "left": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                      },
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="background-image-catalog-item-cha-2"
-                />
-                <BVLinearGradient
-                  colors={
-                    Array [
-                      0,
-                      1711276032,
-                      3003121664,
-                      4278190080,
-                    ]
-                  }
-                  endPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 1,
-                    }
-                  }
-                  locations={null}
-                  startPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 0,
-                    }
-                  }
-                  style={
-                    Array [
-                      Array [
-                        Object {
-                          "flex": 1,
-                        },
-                        Object {
-                          "minHeight": 205,
-                          "padding": 16,
-                        },
-                      ],
-                      undefined,
-                    ]
-                  }
-                  testID="gradient-catalog-item-cha-2"
-                >
-                  <View
-                    style={
-                      Object {
-                        "position": "absolute",
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "#FFFFFF",
-                            "borderBottomEndRadius": 12,
-                            "flex": 1,
-                            "justifyContent": "center",
-                            "paddingLeft": 8,
-                            "paddingRight": 12,
-                          },
-                          Object {
-                            "minHeight": 17,
-                            "minWidth": 40,
-                          },
-                        ]
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {},
-                            Array [
-                              "New",
-                              Object {
-                                "fontSize": 10,
-                                "fontWeight": "700",
-                              },
-                              Object {
-                                "color": "#00B0FF",
-                              },
-                            ],
-                          ]
-                        }
-                        testID="badge-catalog-item-cha-2"
-                      >
-                        New
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "justifyContent": "flex-end",
-                      }
-                    }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="16"
-                      bbWidth="16"
-                      color="#FFFFFF"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                          },
-                          undefined,
-                          false,
-                          Object {
-                            "flex": 0,
-                            "height": 16,
-                            "width": 16,
-                          },
-                        ]
-                      }
-                      testID="infinite-catalog-item-cha-2"
-                      vbHeight={26}
-                      vbWidth={26}
-                    >
-                      <RNSVGPath
-                        d="M13 26C5.8 26 0 20.2 0 13S5.8 0 13 0s13 5.8 13 13-5.8 13-13 13zm6.2-16.8c.1-.1.2-.3.3-.5.1-.5-.4-1-.9-.9-.2 0-.4.1-.5.3l-.7.7c-.9-.7-2-1.1-3.2-1.3v-.6h.6c.4 0 .8-.3.9-.7 0-.5-.3-.9-.8-.9h-3c-.4 0-.8.3-.9.7 0 .5.3.9.8.9h.7v.6c-1.1.1-2.1.5-3 1.2-.8.6.1 1.9 1 1.3 1.5-1 3.4-1.2 5-.4 1.6.8 2.7 2.3 2.8 4 .1 1.7-.9 3.4-2.4 4.2-1.6.9-3.5.8-5-.1-.4-.2-.8-.2-1.1.2-.3.4-.2.9.2 1.2 1.3.8 2.9 1.1 4.5.9 3.2-.5 5.5-3.1 5.6-6.2 0-1.4-.5-2.8-1.3-3.9l.4-.7zm-4.6 4.3l1.5-1.8c.4-.5-.3-1.1-.7-.7l-1.9 1.4c-.6-.1-1.1.2-1.4.7-.3.5-.2 1.1.2 1.5.4.4 1 .5 1.5.2.6-.2.9-.8.8-1.3zm-3.9 2.6c0-.4-.3-.6-.7-.6H7.2c-.9 0-.9 1.3 0 1.3H10c.4 0 .7-.3.7-.7zm-.7-2.9H6.1c-.9 0-.9 1.3 0 1.3H10c.9 0 .9-1.3 0-1.3zm0-1c.9 0 .9-1.3 0-1.3H4.8c-.9 0-.9 1.3 0 1.3H10z"
-                        fill={
-                          Array [
-                            0,
-                            1,
-                            1,
-                            1,
-                            1,
-                          ]
-                        }
-                        fillOpacity={1}
-                        fillRule={0}
-                        matrix={
-                          Array [
-                            1,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                          ]
-                        }
-                        opacity={1}
-                        originX={0}
-                        originY={0}
-                        propList={
-                          Array [
-                            "fill",
-                            "fillRule",
-                          ]
-                        }
-                        rotation={0}
-                        scaleX={1}
-                        scaleY={1}
-                        skewX={0}
-                        skewY={0}
-                        stroke={null}
-                        strokeDasharray={null}
-                        strokeDashoffset={null}
-                        strokeLinecap={0}
-                        strokeLinejoin={0}
-                        strokeMiterlimit={4}
-                        strokeOpacity={1}
-                        strokeWidth="1"
-                        x={0}
-                        y={0}
-                      />
-                    </RNSVGSvgView>
-                    <Text
-                      style={
-                        Array [
-                          Object {},
-                          Array [
-                            Object {
-                              "color": "#FFFFFF",
-                              "fontWeight": "700",
-                              "paddingTop": 8,
-                            },
-                            Object {
-                              "fontSize": 15,
-                            },
-                          ],
-                        ]
-                      }
-                      testID="title-catalog-item-cha-2"
-                    >
-                      Fake chapter
-                    </Text>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {},
-                            Array [
-                              Object {
-                                "color": "#FFFFFF",
-                                "flex": 1,
-                                "fontWeight": "400",
-                                "paddingBottom": 16,
-                                "paddingTop": 8,
-                              },
-                              Object {
-                                "fontSize": 12,
-                              },
-                            ],
-                          ]
-                        }
-                        testID="subtitle-catalog-item-cha-2"
-                      >
-                        custom
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "borderRadius": 3,
-                          "overflow": "hidden",
-                        }
-                      }
-                      testID="progressBar-catalog-item-cha-2"
-                    >
-                      <View
-                        style={
-                          Object {
-                            "backgroundColor": "#FFFFFF",
-                          }
-                        }
-                        testID="progression-bar"
-                      >
-                        <View
-                          style={
-                            Object {
-                              "backgroundColor": "#00B0FF",
-                              "borderBottomRightRadius": 1,
-                              "borderTopRightRadius": 1,
-                              "height": 2,
-                              "width": "0%",
-                            }
-                          }
-                          testID="progression-bar-0"
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </BVLinearGradient>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "marginVertical": 24,
-                    "position": "absolute",
-                    "width": "100%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {},
-                      Array [
-                        Object {
-                          "color": "#FFFFFF",
-                          "textAlign": "center",
-                          "textShadowColor": "rgba(0, 0, 0, 1)",
-                          "textShadowRadius": 2,
-                        },
-                        Object {
-                          "fontSize": 10,
-                          "letterSpacing": 1.88,
-                        },
-                      ],
-                    ]
-                  }
-                  testID="author-catalog-item-cha-2"
-                >
-                  ONBOARDING
-                   CREATION
-                </Text>
-              </View>
-            </View>
+                  ],
+                ]
+              }
+            />
           </View>
         </View>
       </View>
       <View
         style={
-          Object {
-            "height": 8,
-            "width": 8,
-          }
-        }
-      />
-      <View
-        style={
           Array [
             Object {
               "borderRadius": 5,
@@ -1740,151 +2110,515 @@ exports[`Storyshots Catalog Items 1`] = `
           }
         >
           <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={null}
-            testID="catalog-item-dis-2"
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "opacity": 0.5,
+                "width": "100%",
+              }
+            }
           >
             <View
               style={
                 Object {
-                  "backgroundColor": "#FFFFFF",
+                  "flex": 1,
                 }
               }
             >
               <View
+                noMargin={true}
                 style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "minHeight": 205,
-                    },
-                  ]
+                  Object {
+                    "backgroundColor": "#ECEFF1",
+                    "height": 205,
+                    "padding": 12,
+                  }
                 }
               >
-                <Image
-                  source={
+                <View
+                  style={
                     Object {
-                      "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_cours_hatier_accords-1527071992067.jpg",
+                      "height": "48%",
                     }
                   }
-                  style={
-                    Array [
-                      Object {
-                        "bottom": 0,
-                        "left": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                      },
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="background-image-catalog-item-dis-2"
                 />
-                <BVLinearGradient
-                  colors={
-                    Array [
-                      0,
-                      1711276032,
-                      3003121664,
-                      4278190080,
-                    ]
-                  }
-                  endPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 1,
-                    }
-                  }
-                  locations={null}
-                  startPoint={
-                    Object {
-                      "x": 0.5,
-                      "y": 0,
-                    }
-                  }
+                <View
                   style={
                     Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#efefef",
+                        "borderRadius": 3,
+                        "height": 12,
+                        "marginBottom": 12,
+                        "width": "70%",
+                      },
+                      Array [
+                        Object {
+                          "backgroundColor": "#CFD8DC",
+                        },
+                        Object {
+                          "height": 8,
+                        },
+                      ],
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#efefef",
+                        "borderRadius": 3,
+                        "height": 12,
+                        "marginBottom": 12,
+                        "width": "80%",
+                      },
+                      Array [
+                        Object {
+                          "backgroundColor": "#CFD8DC",
+                        },
+                        Object {
+                          "height": 8,
+                        },
+                      ],
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "height": 24,
+                      "width": 24,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#efefef",
+                        "borderRadius": 3,
+                        "height": 12,
+                        "marginBottom": 12,
+                        "width": "40%",
+                      },
+                      Array [
+                        Object {
+                          "backgroundColor": "#CFD8DC",
+                        },
+                        Object {
+                          "height": 5,
+                        },
+                      ],
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#efefef",
+                        "borderRadius": 3,
+                        "height": 12,
+                        "marginBottom": 12,
+                        "width": "100%",
+                      },
+                      Array [
+                        Object {
+                          "backgroundColor": "#CFD8DC",
+                        },
+                        Object {
+                          "height": 2,
+                        },
+                      ],
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={
+          Array [
+            Object {},
+            Object {
+              "fontSize": 17,
+              "fontWeight": "700",
+              "paddingBottom": 16,
+              "paddingTop": 24,
+            },
+          ]
+        }
+      >
+        Title Cards
+      </Text>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-cha-2"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
                       Array [
                         Object {
                           "flex": 1,
                         },
                         Object {
                           "minHeight": 205,
-                          "padding": 16,
                         },
-                      ],
-                      undefined,
-                    ]
-                  }
-                  testID="gradient-catalog-item-dis-2"
-                >
-                  <View
-                    style={
-                      Object {
-                        "position": "absolute",
-                      }
+                      ]
                     }
                   >
-                    <View
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
+                        }
+                      }
                       style={
                         Array [
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "#FFFFFF",
-                            "borderBottomEndRadius": 12,
-                            "flex": 1,
-                            "justifyContent": "center",
-                            "paddingLeft": 8,
-                            "paddingRight": 12,
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
                           },
                           Object {
-                            "minHeight": 17,
-                            "minWidth": 40,
+                            "height": undefined,
+                            "width": undefined,
                           },
+                          undefined,
                         ]
                       }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {},
-                            Array [
-                              "New",
-                              Object {
-                                "fontSize": 10,
-                                "fontWeight": "700",
-                              },
-                              Object {
-                                "color": "#00B0FF",
-                              },
-                            ],
-                          ]
+                      testID="background-image-catalog-item-cha-2"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
                         }
-                        testID="badge-catalog-item-dis-2"
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
+                      }
+                      testID="gradient-catalog-item-cha-2"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "position": "absolute",
+                          }
+                        }
                       >
-                        New
-                      </Text>
-                    </View>
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "#FFFFFF",
+                                "borderBottomEndRadius": 12,
+                                "flex": 1,
+                                "justifyContent": "center",
+                                "paddingLeft": 8,
+                                "paddingRight": 12,
+                              },
+                              Object {
+                                "minHeight": 17,
+                                "minWidth": 40,
+                              },
+                            ]
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  "New",
+                                  Object {
+                                    "fontSize": 10,
+                                    "fontWeight": "700",
+                                  },
+                                  Object {
+                                    "color": "#00B0FF",
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="badge-catalog-item-cha-2"
+                          >
+                            New
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight="16"
+                          bbWidth="16"
+                          color="#FFFFFF"
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              undefined,
+                              false,
+                              Object {
+                                "flex": 0,
+                                "height": 16,
+                                "width": 16,
+                              },
+                            ]
+                          }
+                          testID="infinite-catalog-item-cha-2"
+                          vbHeight={26}
+                          vbWidth={26}
+                        >
+                          <RNSVGPath
+                            d="M13 26C5.8 26 0 20.2 0 13S5.8 0 13 0s13 5.8 13 13-5.8 13-13 13zm6.2-16.8c.1-.1.2-.3.3-.5.1-.5-.4-1-.9-.9-.2 0-.4.1-.5.3l-.7.7c-.9-.7-2-1.1-3.2-1.3v-.6h.6c.4 0 .8-.3.9-.7 0-.5-.3-.9-.8-.9h-3c-.4 0-.8.3-.9.7 0 .5.3.9.8.9h.7v.6c-1.1.1-2.1.5-3 1.2-.8.6.1 1.9 1 1.3 1.5-1 3.4-1.2 5-.4 1.6.8 2.7 2.3 2.8 4 .1 1.7-.9 3.4-2.4 4.2-1.6.9-3.5.8-5-.1-.4-.2-.8-.2-1.1.2-.3.4-.2.9.2 1.2 1.3.8 2.9 1.1 4.5.9 3.2-.5 5.5-3.1 5.6-6.2 0-1.4-.5-2.8-1.3-3.9l.4-.7zm-4.6 4.3l1.5-1.8c.4-.5-.3-1.1-.7-.7l-1.9 1.4c-.6-.1-1.1.2-1.4.7-.3.5-.2 1.1.2 1.5.4.4 1 .5 1.5.2.6-.2.9-.8.8-1.3zm-3.9 2.6c0-.4-.3-.6-.7-.6H7.2c-.9 0-.9 1.3 0 1.3H10c.4 0 .7-.3.7-.7zm-.7-2.9H6.1c-.9 0-.9 1.3 0 1.3H10c.9 0 .9-1.3 0-1.3zm0-1c.9 0 .9-1.3 0-1.3H4.8c-.9 0-.9 1.3 0 1.3H10z"
+                            fill={
+                              Array [
+                                0,
+                                1,
+                                1,
+                                1,
+                                1,
+                              ]
+                            }
+                            fillOpacity={1}
+                            fillRule={0}
+                            matrix={
+                              Array [
+                                1,
+                                0,
+                                0,
+                                1,
+                                0,
+                                0,
+                              ]
+                            }
+                            opacity={1}
+                            originX={0}
+                            originY={0}
+                            propList={
+                              Array [
+                                "fill",
+                                "fillRule",
+                              ]
+                            }
+                            rotation={0}
+                            scaleX={1}
+                            scaleY={1}
+                            skewX={0}
+                            skewY={0}
+                            stroke={null}
+                            strokeDasharray={null}
+                            strokeDashoffset={null}
+                            strokeLinecap={0}
+                            strokeLinejoin={0}
+                            strokeMiterlimit={4}
+                            strokeOpacity={1}
+                            strokeWidth="1"
+                            x={0}
+                            y={0}
+                          />
+                        </RNSVGSvgView>
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-cha-2"
+                        >
+                          Fake chapter
+                        </Text>
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                            }
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-cha-2"
+                          >
+                            custom
+                          </Text>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-cha-2"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </BVLinearGradient>
                   </View>
                   <View
                     style={
                       Object {
-                        "flex": 1,
-                        "justifyContent": "flex-end",
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
                       }
                     }
                   >
@@ -1895,126 +2629,550 @@ exports[`Storyshots Catalog Items 1`] = `
                           Array [
                             Object {
                               "color": "#FFFFFF",
-                              "fontWeight": "700",
-                              "paddingTop": 8,
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
                             },
                             Object {
-                              "fontSize": 15,
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
                             },
                           ],
                         ]
                       }
-                      testID="title-catalog-item-dis-2"
+                      testID="author-catalog-item-cha-2"
                     >
-                      Fake discipline
+                      ONBOARDING
+                       CREATION
                     </Text>
-                    <View
-                      style={
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 8,
+                "width": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={null}
+                testID="catalog-item-dis-2"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Array [
                         Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
+                          "flex": 1,
+                        },
+                        Object {
+                          "minHeight": 205,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_cours_hatier_accords-1527071992067.jpg",
                         }
                       }
-                    >
-                      <Text
-                        style={
+                      style={
+                        Array [
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          Object {
+                            "height": undefined,
+                            "width": undefined,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="background-image-catalog-item-dis-2"
+                    />
+                    <BVLinearGradient
+                      colors={
+                        Array [
+                          0,
+                          1711276032,
+                          3003121664,
+                          4278190080,
+                        ]
+                      }
+                      endPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 1,
+                        }
+                      }
+                      locations={null}
+                      startPoint={
+                        Object {
+                          "x": 0.5,
+                          "y": 0,
+                        }
+                      }
+                      style={
+                        Array [
                           Array [
-                            Object {},
-                            Array [
-                              Object {
-                                "color": "#FFFFFF",
-                                "flex": 1,
-                                "fontWeight": "400",
-                                "paddingBottom": 16,
-                                "paddingTop": 8,
-                              },
-                              Object {
-                                "fontSize": 12,
-                              },
-                            ],
-                          ]
-                        }
-                        testID="subtitle-catalog-item-dis-2"
-                      >
-                        custom
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "borderRadius": 3,
-                          "overflow": "hidden",
-                        }
+                            Object {
+                              "flex": 1,
+                            },
+                            Object {
+                              "minHeight": 205,
+                              "padding": 16,
+                            },
+                          ],
+                          undefined,
+                        ]
                       }
-                      testID="progressBar-catalog-item-dis-2"
+                      testID="gradient-catalog-item-dis-2"
                     >
                       <View
                         style={
                           Object {
-                            "backgroundColor": "#FFFFFF",
+                            "position": "absolute",
                           }
                         }
-                        testID="progression-bar"
                       >
                         <View
                           style={
+                            Array [
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "#FFFFFF",
+                                "borderBottomEndRadius": 12,
+                                "flex": 1,
+                                "justifyContent": "center",
+                                "paddingLeft": 8,
+                                "paddingRight": 12,
+                              },
+                              Object {
+                                "minHeight": 17,
+                                "minWidth": 40,
+                              },
+                            ]
+                          }
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  "New",
+                                  Object {
+                                    "fontSize": 10,
+                                    "fontWeight": "700",
+                                  },
+                                  Object {
+                                    "color": "#00B0FF",
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="badge-catalog-item-dis-2"
+                          >
+                            New
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "flex": 1,
+                            "justifyContent": "flex-end",
+                          }
+                        }
+                      >
+                        <Text
+                          style={
+                            Array [
+                              Object {},
+                              Array [
+                                Object {
+                                  "color": "#FFFFFF",
+                                  "fontWeight": "700",
+                                  "paddingTop": 8,
+                                },
+                                Object {
+                                  "fontSize": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          testID="title-catalog-item-dis-2"
+                        >
+                          Fake discipline
+                        </Text>
+                        <View
+                          style={
                             Object {
-                              "backgroundColor": "#00B0FF",
-                              "borderBottomRightRadius": 1,
-                              "borderTopRightRadius": 1,
-                              "height": 2,
-                              "width": "0%",
+                              "alignItems": "center",
+                              "flexDirection": "row",
                             }
                           }
-                          testID="progression-bar-0"
-                        />
+                        >
+                          <Text
+                            style={
+                              Array [
+                                Object {},
+                                Array [
+                                  Object {
+                                    "color": "#FFFFFF",
+                                    "flex": 1,
+                                    "fontWeight": "400",
+                                    "paddingBottom": 16,
+                                    "paddingTop": 8,
+                                  },
+                                  Object {
+                                    "fontSize": 12,
+                                  },
+                                ],
+                              ]
+                            }
+                            testID="subtitle-catalog-item-dis-2"
+                          >
+                            custom
+                          </Text>
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderRadius": 3,
+                              "overflow": "hidden",
+                            }
+                          }
+                          testID="progressBar-catalog-item-dis-2"
+                        >
+                          <View
+                            style={
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              }
+                            }
+                            testID="progression-bar"
+                          >
+                            <View
+                              style={
+                                Object {
+                                  "backgroundColor": "#00B0FF",
+                                  "borderBottomRightRadius": 1,
+                                  "borderTopRightRadius": 1,
+                                  "height": 2,
+                                  "width": "0%",
+                                }
+                              }
+                              testID="progression-bar-0"
+                            />
+                          </View>
+                        </View>
                       </View>
-                    </View>
+                    </BVLinearGradient>
                   </View>
-                </BVLinearGradient>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginVertical": 24,
+                        "position": "absolute",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {},
+                          Array [
+                            Object {
+                              "color": "#FFFFFF",
+                              "textAlign": "center",
+                              "textShadowColor": "rgba(0, 0, 0, 1)",
+                              "textShadowRadius": 2,
+                            },
+                            Object {
+                              "fontSize": 10,
+                              "letterSpacing": 1.88,
+                            },
+                          ],
+                        ]
+                      }
+                      testID="author-catalog-item-dis-2"
+                    >
+                      ONBOARDING
+                       CREATION
+                    </Text>
+                  </View>
+                </View>
               </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View>
+        <View
+          style={
+            Object {
+              "height": 8,
+              "width": 8,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 5,
+                  "flex": 1,
+                },
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 5,
+                    "flex": 1,
+                  },
+                  Object {
+                    "overflow": "hidden",
+                  },
+                ]
+              }
+            >
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "marginVertical": 24,
-                    "position": "absolute",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "opacity": 0.5,
                     "width": "100%",
                   }
                 }
               >
-                <Text
+                <View
                   style={
-                    Array [
-                      Object {},
-                      Array [
-                        Object {
-                          "color": "#FFFFFF",
-                          "textAlign": "center",
-                          "textShadowColor": "rgba(0, 0, 0, 1)",
-                          "textShadowRadius": 2,
-                        },
-                        Object {
-                          "fontSize": 10,
-                          "letterSpacing": 1.88,
-                        },
-                      ],
-                    ]
+                    Object {
+                      "flex": 1,
+                    }
                   }
-                  testID="author-catalog-item-dis-2"
                 >
-                  ONBOARDING
-                   CREATION
-                </Text>
+                  <View
+                    noMargin={true}
+                    style={
+                      Object {
+                        "backgroundColor": "#ECEFF1",
+                        "height": 205,
+                        "padding": 12,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": "48%",
+                        }
+                      }
+                    />
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignSelf": "stretch",
+                            "backgroundColor": "#efefef",
+                            "borderRadius": 3,
+                            "height": 12,
+                            "marginBottom": 12,
+                            "width": "70%",
+                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#CFD8DC",
+                            },
+                            Object {
+                              "height": 8,
+                            },
+                          ],
+                        ]
+                      }
+                    />
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignSelf": "stretch",
+                            "backgroundColor": "#efefef",
+                            "borderRadius": 3,
+                            "height": 12,
+                            "marginBottom": 12,
+                            "width": "80%",
+                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#CFD8DC",
+                            },
+                            Object {
+                              "height": 8,
+                            },
+                          ],
+                        ]
+                      }
+                    />
+                    <View
+                      style={
+                        Object {
+                          "height": 24,
+                          "width": 24,
+                        }
+                      }
+                    />
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignSelf": "stretch",
+                            "backgroundColor": "#efefef",
+                            "borderRadius": 3,
+                            "height": 12,
+                            "marginBottom": 12,
+                            "width": "40%",
+                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#CFD8DC",
+                            },
+                            Object {
+                              "height": 5,
+                            },
+                          ],
+                        ]
+                      }
+                    />
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignSelf": "stretch",
+                            "backgroundColor": "#efefef",
+                            "borderRadius": 3,
+                            "height": 12,
+                            "marginBottom": 12,
+                            "width": "100%",
+                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#CFD8DC",
+                            },
+                            Object {
+                              "height": 2,
+                            },
+                          ],
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
               </View>
             </View>
           </View>
+          <View
+            style={
+              Object {
+                "height": 8,
+                "width": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "borderRadius": 5,
+                "flex": 1,
+              }
+            }
+          />
         </View>
       </View>
     </View>
   </View>
-</View>
+</RCTScrollView>
 `;
 
 exports[`Storyshots Catalog Loading 1`] = `

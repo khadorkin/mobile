@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots PlaceHolder Default 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      noMargin={true}
+      style={
+        Object {
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#efefef",
+              "borderRadius": 3,
+              "height": 12,
+              "marginBottom": 12,
+              "width": "70%",
+            },
+            Object {
+              "backgroundColor": "#cccccc",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

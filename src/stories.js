@@ -44,6 +44,7 @@ require('./components/lives.stories.js');
 require('./components/loader.stories.js');
 require('./components/notification.stories.js');
 require('./components/pdf.stories.js');
+require('./components/placeholder.stories.js');
 require('./components/preview.stories.js');
 require('./components/progression-bar.stories.js');
 require('./components/progression.stories.js');

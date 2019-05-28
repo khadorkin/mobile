@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import {View, StyleSheet, ScrollView, RefreshControl} from 'react-native';
+import {Line} from 'rn-placeholder';
 
 import type {ChapterCard, DisciplineCard} from '../layer/data/_types';
 import {CARD_TYPE} from '../layer/data/_const';
@@ -17,10 +18,11 @@ import CatalogItem from './catalog-item';
 import Card from './card';
 import {STYLE as BOX_STYLE} from './box';
 import Text from './text';
+import Placeholder from './placeholder';
 
 export type Props = {|
-  titleCover: string,
-  titleCards: string,
+  titleCover?: string,
+  titleCards?: string,
   items: Array<DisciplineCard | ChapterCard>,
   onPress: (item: DisciplineCard | ChapterCard) => void,
   onRefresh: () => void,
@@ -29,6 +31,10 @@ export type Props = {|
 |};
 
 const styles = StyleSheet.create({
+  titleContainer: {paddingBottom: 12},
+  line: {
+    backgroundColor: theme.colors.gray.lightMedium
+  },
   loaderContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -72,6 +78,12 @@ class Catalog extends React.PureComponent<Props> {
 
   handlePress = (item: DisciplineCard | ChapterCard) => () => this.props.onPress(item);
 
+  handleLoading = () => (
+    <View style={styles.titleContainer}>
+      <Line style={[styles.line]} width="70%" />
+    </View>
+  );
+
   render() {
     const {items, titleCover, titleCards, children, onRefresh, isRefreshing = false} = this.props;
 
@@ -88,8 +100,9 @@ class Catalog extends React.PureComponent<Props> {
           <BrandThemeContext.Consumer>
             {brandTheme => (
               <View style={styles.container}>
-                <Text style={[styles.title, styles.coverTitle]}>{titleCover}</Text>
-
+                <Placeholder onLoading={this.handleLoading} isReady={!!titleCover}>
+                  <Text style={[styles.title, styles.coverTitle]}>{titleCover}</Text>
+                </Placeholder>
                 <Card style={styles.card} shadowStyle={BOX_STYLE}>
                   <CatalogItem
                     title={cover.title}
@@ -116,7 +129,11 @@ class Catalog extends React.PureComponent<Props> {
                     section="finishLearning"
                   />
                 </Card>
-                <Text style={styles.title}>{titleCards}</Text>
+
+                <Placeholder onLoading={this.handleLoading} isReady={!!titleCards}>
+                  <Text style={styles.title}>{titleCards}</Text>
+                </Placeholder>
+
                 {items.map((item, index) => {
                   nextItem = items[index + 1];
 
