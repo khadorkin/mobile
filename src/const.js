@@ -3,20 +3,21 @@
 import type {LessonType, QuestionType, MediaType} from '@coorpacademy/progression-engine';
 
 import type {
-  SpaceType,
-  CardType,
-  Engine,
-  ContentType,
-  CardDisplayMode,
-  TooltipType,
-  AuthorType,
-  QuestionChoiceInputType,
-  AnimationType,
-  PermissionStatus,
-  AppState,
   AnalyticsEventType,
+  AnimationType,
+  AppState,
+  AuthenticationType,
+  AuthorType,
+  CardDisplayMode,
+  CardType,
+  ContentType,
+  DashboardSectionContentType,
+  Engine,
   ErrorType,
-  AuthenticationType
+  PermissionStatus,
+  QuestionChoiceInputType,
+  SpaceType,
+  TooltipType
 } from './types';
 
 export const RESOURCE_TYPE: {
@@ -80,6 +81,14 @@ export const CARD_TYPE: {
   TIP: 'tip',
   KEY_POINT: 'keyPoint',
   CORRECTION: 'correction'
+};
+
+export const DASHBOARD_SECTION_CONTENT_TYPE: {
+  [string]: DashboardSectionContentType
+} = {
+  COURSE: 'course',
+  CHAPTER: 'chapter',
+  ALL: 'all'
 };
 
 export const TOOLTIP_TYPE: {

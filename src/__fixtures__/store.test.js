@@ -122,8 +122,11 @@ describe('storeFixture', () => {
       disciplines: {}
     };
 
-    const cardsState = {
-      entities: {}
+    const catalogState = {
+      entities: {
+        cards: {},
+        sections: {}
+      }
     };
 
     const authenticationState = {
@@ -222,7 +225,7 @@ describe('storeFixture', () => {
         currentTabName: 'dummyScreenName'
       },
       bundle: bundleState,
-      cards: cardsState,
+      catalog: catalogState,
       permissions: permissionsState,
       authentication: authenticationState,
       godmode: godModeState,

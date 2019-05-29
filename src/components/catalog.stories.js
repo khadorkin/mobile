@@ -50,20 +50,31 @@ storiesOf('Catalog', module)
   .add('Items', () => (
     <Catalog
       titleCover="Title Cover"
-      onRefresh={handleFakePress}
       titleCards="Title Cards"
       items={[discipline, chapter, discipline, chapterNew, disciplineNew]}
       onPress={handleFakePress}
+      onRefresh={handleFakePress}
     />
   ))
   .add('Loading', () => (
     <Catalog
       titleCover="Title Cover"
-      onRefresh={handleFakePress}
       titleCards="Title Cards"
       items={[]}
       onPress={handleFakePress}
+      onRefresh={handleFakePress}
     />
+  ))
+  .add('With children', () => (
+    <Catalog
+      titleCover="Title Cover"
+      titleCards="Title Cards"
+      items={[discipline, chapter, discipline, chapterNew, disciplineNew]}
+      onPress={handleFakePress}
+      onRefresh={handleFakePress}
+    >
+      <span>plop</span>
+    </Catalog>
   ));
 
 if (__TEST__) {
@@ -72,11 +83,11 @@ if (__TEST__) {
       const handlePress = jest.fn();
       const component = renderer.create(
         <Catalog
-          onRefresh={handleFakePress}
           titleCover="Title Cover"
           titleCards="Title Cards"
           items={[chapterNew, discipline, chapter]}
           onPress={handlePress}
+          onRefresh={handleFakePress}
         />
       );
       const catalogItem = component.root.find(el => el.props.testID === 'catalog-item-dis-1');
@@ -89,10 +100,10 @@ if (__TEST__) {
       const component = renderer.create(
         <Catalog
           titleCover="Title Cover"
-          onRefresh={handleFakePress}
           titleCards="Title Cards"
           items={[discipline, chapter]}
           onPress={handlePress}
+          onRefresh={handleFakePress}
         />
       );
       const catalogItem = component.root.find(el => el.props.testID === 'catalog-item-dis-1');
@@ -106,10 +117,10 @@ if (__TEST__) {
       const component = renderer.create(
         <Catalog
           titleCover="Title Cover"
-          onRefresh={handleFakePress}
           titleCards="Title Cards"
           items={[discipline, chapter]}
           onPress={handlePress}
+          onRefresh={handleFakePress}
         />
       );
       const catalogItem = component.root.find(el => el.props.testID === 'catalog-item-cha-1');

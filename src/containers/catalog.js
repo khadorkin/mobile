@@ -7,11 +7,13 @@ import CatalogComponent from '../components/catalog';
 import type {Props as ComponentProps} from '../components/catalog';
 import {BrandThemeContext} from '../components/brand-theme-provider';
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
-import {fetchCards} from '../redux/actions/cards';
+import {fetchCards} from '../redux/actions/catalog';
 import translations from '../translations';
 import {compareCards} from '../utils/content';
+import type {DashboardSection} from '../types';
 
 type ConnectedStateProps = {|
+  dashboardSections: Array<DashboardSection>,
   items: Array<DisciplineCard | ChapterCard>,
   children?: React.Node
 |};
@@ -42,8 +44,13 @@ class Catalog extends React.PureComponent<Props, State> {
     this.fetchContent();
   }
 
+  getVisibleSections = () => {
+    return this.props.dashboardSections;
+  };
+
   fetchContent = async () => {
-    await this.props.fetchCards(translations.getLanguage());
+    const visibleSections = this.getVisibleSections();
+    await this.props.fetchCards(visibleSections, translations.getLanguage());
   };
 
   handleRefresh = () => {
@@ -81,12 +88,14 @@ class Catalog extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = ({cards, brands, ...state}: StoreState): ConnectedStateProps => {
+const mapStateToProps = ({catalog, authentication, ...state}: StoreState): ConnectedStateProps => {
   const language = translations.getLanguage();
+  const {brand} = authentication;
 
   return {
-    items: Object.keys(cards.entities)
-      .map(key => cards.entities[key][language])
+    dashboardSections: brand && brand.dashboardSections,
+    items: Object.keys(catalog.entities.cards)
+      .map(key => catalog.entities.cards[key][language])
       .filter(item => item !== undefined)
       .sort(compareCards)
   };

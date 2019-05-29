@@ -7,7 +7,7 @@ import type {Options, StoreAction} from '../_types';
 import type {StoreState} from '../store';
 import translationUtil from '../../translations';
 
-import {getAndRefreshCard} from '../actions/cards';
+import {getAndRefreshCard} from '../actions/catalog';
 
 type Action = {||};
 type State = StoreState;

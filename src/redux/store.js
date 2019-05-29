@@ -7,7 +7,7 @@ import type {ReduxState} from '@coorpacademy/player-store';
 import type {State as NavigationState} from './reducers/navigation';
 import navigation from './reducers/navigation';
 import type {State as BundleState} from './reducers/bundle';
-import type {State as CardsState} from './reducers/cards';
+import type {State as CatalogState} from './reducers/catalog';
 import resetOnLogout from './utils/reset-on-logout';
 
 import type {State as PermissionsState} from './reducers/permissions';
@@ -16,7 +16,7 @@ import type {State as VideoState} from './reducers/video';
 import type {State as GodModeState} from './reducers/godmode';
 import type {State as ErrorState} from './reducers/ui/error';
 import bundle from './reducers/bundle';
-import cards from './reducers/cards';
+import catalog from './reducers/catalog';
 import authentication from './reducers/authentication';
 import permissions from './reducers/permissions';
 import video from './reducers/video';
@@ -33,7 +33,7 @@ export type StoreState = $Exact<{|
   ...$Exact<ReduxState>,
   navigation: NavigationState,
   bundle: BundleState,
-  cards: CardsState,
+  catalog: CatalogState,
   authentication: AuthenticationState,
   permissions: PermissionsState,
   video: VideoState,
@@ -50,7 +50,7 @@ const reducers = combineReducers({
   error,
   navigation,
   bundle: resetOnLogout(bundle),
-  cards: resetOnLogout(cards),
+  catalog: resetOnLogout(catalog),
   authentication: resetOnLogout(authentication),
   permissions,
   video,

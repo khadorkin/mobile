@@ -6,6 +6,7 @@ import {createDisciplineCard, createChapterCard, createCardLevel} from '../../__
 import {createProgression} from '../../__fixtures__/progression';
 import {CARD_STATUS} from '../../layer/data/_const';
 import {ERROR_TYPE} from '../../const';
+import type {DashboardSection} from '../../types';
 import {
   fetchRequest,
   fetchSuccess,
@@ -14,7 +15,7 @@ import {
   selectCard,
   selectCardFailure,
   getAndRefreshCard
-} from './cards';
+} from './catalog';
 
 import {SHOW} from './ui/modal';
 
@@ -49,6 +50,21 @@ const chapterCard = createChapterCard({
 const chapter = createChapter({ref: 'cha1', name: 'chapter'});
 const items = [disciplineCard, chapterCard];
 
+const visibleSections: Array<DashboardSection> = [
+  {
+    display: true,
+    order: 1,
+    type: 'theme',
+    contentType: 'all'
+  },
+  {
+    display: true,
+    order: 2,
+    type: 'theme',
+    contentType: 'chapter'
+  }
+];
+
 describe('Cards', () => {
   describe('fetchCards', () => {
     it('success', async () => {
@@ -67,10 +83,6 @@ describe('Cards', () => {
         return Promise.resolve(action);
       });
       dispatch.mockImplementationOnce(action => {
-        expect(action).toBeInstanceOf(Function);
-        return Promise.resolve(action);
-      });
-      dispatch.mockImplementationOnce(action => {
         expect(action).toEqual(fetchSuccess(items, language));
         return Promise.resolve(action);
       });
@@ -80,7 +92,7 @@ describe('Cards', () => {
       options.services.Cards.find.mockReturnValueOnce(Promise.resolve(items));
 
       // $FlowFixMe
-      const actual = await fetchCards(language)(dispatch, getState, options);
+      const actual = await fetchCards(visibleSections, language)(dispatch, getState, options);
       return expect(actual).toEqual(fetchSuccess(items, language));
     });
     it('token is missing', async () => {
@@ -107,7 +119,7 @@ describe('Cards', () => {
       });
 
       // $FlowFixMe
-      const actual = await fetchCards(language)(dispatch, getState, options);
+      const actual = await fetchCards(visibleSections, language)(dispatch, getState, options);
 
       expect(options.services.Cards.find).not.toHaveBeenCalled();
       return expect(actual).toEqual(fetchError(new TypeError('Token not defined')));
@@ -136,7 +148,7 @@ describe('Cards', () => {
       });
 
       // $FlowFixMe
-      const actual = await fetchCards(language)(dispatch, getState, options);
+      const actual = await fetchCards(visibleSections, language)(dispatch, getState, options);
 
       expect(options.services.Cards.find).not.toHaveBeenCalled();
       return expect(actual).toEqual(fetchError(new TypeError('Brand not defined')));
@@ -166,7 +178,7 @@ describe('Cards', () => {
       options.services.Cards.find.mockRejectedValueOnce(new Error());
 
       // $FlowFixMe
-      const actual = await fetchCards(language)(dispatch, getState, options);
+      const actual = await fetchCards(visibleSections, language)(dispatch, getState, options);
 
       return expect(actual).toEqual(fetchError(new Error()));
     });
@@ -196,7 +208,7 @@ describe('Cards', () => {
       options.services.Cards.find.mockReturnValue(Promise.resolve([]));
 
       // $FlowFixMe
-      const result = await fetchCards(language)(dispatch, getState, options);
+      const result = await fetchCards(visibleSections, language)(dispatch, getState, options);
 
       const expectedResult = {
         type: SHOW,

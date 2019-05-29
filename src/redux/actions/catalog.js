@@ -7,8 +7,10 @@ import {ENGINE, ERROR_TYPE, CONTENT_TYPE} from '../../const';
 import {getToken, getBrand} from '../utils/state-extract';
 import {pickNextLevel} from '../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
+import type {DashboardSection} from '../../types';
 import {showModal} from './ui/modal';
 import {createLevelProgression, createChapterProgression, selectProgression} from './progression';
+// import type {Action as BrandAction} from './brands';
 import type {Action as BundleAction} from './bundle';
 import type {Action as ModalAction} from './ui/modal';
 
@@ -89,6 +91,7 @@ export const refreshCard = (
 });
 
 export const fetchCards = (
+  visibleSections: Array<DashboardSection>,
   language: SupportedLanguage
 ): StoreAction<Action | BundleAction | ModalAction<StoreAction<Action | BundleAction>>> => {
   return async (dispatch, getState, options) => {
@@ -110,7 +113,7 @@ export const fetchCards = (
         return dispatch(
           showModal({
             errorType: ERROR_TYPE.NO_CONTENT_FOUND,
-            lastAction: () => fetchCards(language)
+            lastAction: () => fetchCards(visibleSections, language)
           })
         );
       }

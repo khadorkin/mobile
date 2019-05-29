@@ -1,5 +1,6 @@
 // @flow strict
 
+import {DASHBOARD_SECTION_CONTENT_TYPE} from '../const';
 import type {
   Brand,
   DashboardSection,
@@ -11,7 +12,7 @@ export const createDashboardSection = ({
   order,
   display = true,
   type = 'default',
-  contentType
+  contentType = DASHBOARD_SECTION_CONTENT_TYPE.ALL
 }: {
   order: number,
   display?: boolean,
