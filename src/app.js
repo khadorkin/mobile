@@ -18,6 +18,7 @@ import createDataLayer from './layer/data';
 import createServices from './services';
 import createStore from './redux';
 import type {ReduxDevTools} from './redux/_types';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const reduxDevTools: ReduxDevTools | void =
   // eslint-disable-next-line no-undef
@@ -25,7 +26,7 @@ const reduxDevTools: ReduxDevTools | void =
 
 const dataLayer = createDataLayer(translations.getLanguage());
 const services = createServices(dataLayer);
-const store = createStore(services, reduxDevTools);
+const {store, persistor} = createStore(services, reduxDevTools);
 
 type Props = {||};
 
@@ -49,17 +50,19 @@ class App extends React.PureComponent<Props> {
   render() {
     return (
       <Provider store={store}>
-        <AnalyticsProvider>
-          <PortalProvider>
-            <VersionListener />
-            <BrandThemeProvider>
-              <View style={styles.container}>
-                <Navigator />
-              </View>
-            </BrandThemeProvider>
-            {Platform.OS === 'android' && <VideoFullscreenListener />}
-          </PortalProvider>
-        </AnalyticsProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <AnalyticsProvider>
+            <PortalProvider>
+              <VersionListener />
+              <BrandThemeProvider>
+                <View style={styles.container}>
+                  <Navigator />
+                </View>
+              </BrandThemeProvider>
+              {Platform.OS === 'android' && <VideoFullscreenListener />}
+            </PortalProvider>
+          </AnalyticsProvider>
+        </PersistGate>
       </Provider>
     );
   }

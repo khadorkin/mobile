@@ -8,7 +8,6 @@ const create = (services: Services, reduxDevTools?: ReduxDevTools) => {
   const options: Options = {
     services
   };
-
   return createStore(options, reduxDevTools);
 };
 
