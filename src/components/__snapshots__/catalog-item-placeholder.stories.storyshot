@@ -4,37 +4,30 @@ exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
 <View
   style={
     Object {
-      "flex": 1,
-      "flexDirection": "row",
-      "opacity": 0.5,
-      "width": "100%",
+      "backgroundColor": "#ECEFF1",
+      "height": 205,
+      "justifyContent": "flex-end",
+      "padding": 16,
+      "width": 168,
     }
   }
+  testID="catalog-item-placeholder"
 >
   <View
     style={
       Object {
-        "flex": 1,
+        "height": 75,
+        "opacity": 0.5,
       }
     }
   >
     <View
-      noMargin={true}
       style={
         Object {
-          "backgroundColor": "#ECEFF1",
-          "height": 205,
-          "padding": 16,
+          "flex": 1,
         }
       }
     >
-      <View
-        style={
-          Object {
-            "height": "48%",
-          }
-        }
-      />
       <View
         style={
           Array [
@@ -43,10 +36,13 @@ exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
               "backgroundColor": "#efefef",
               "borderRadius": 3,
               "height": 12,
-              "marginBottom": 12,
+              "marginBottom": 0,
               "width": "70%",
             },
             Array [
+              Object {
+                "borderRadius": 0,
+              },
               Object {
                 "height": 10,
               },
@@ -59,16 +55,27 @@ exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
       />
       <View
         style={
+          Object {
+            "height": 8,
+            "width": 8,
+          }
+        }
+      />
+      <View
+        style={
           Array [
             Object {
               "alignSelf": "stretch",
               "backgroundColor": "#efefef",
               "borderRadius": 3,
               "height": 12,
-              "marginBottom": 12,
+              "marginBottom": 0,
               "width": "80%",
             },
             Array [
+              Object {
+                "borderRadius": 0,
+              },
               Object {
                 "height": 10,
               },
@@ -95,10 +102,13 @@ exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
               "backgroundColor": "#efefef",
               "borderRadius": 3,
               "height": 12,
-              "marginBottom": 12,
+              "marginBottom": 0,
               "width": "40%",
             },
             Array [
+              Object {
+                "borderRadius": 0,
+              },
               Object {
                 "height": 5,
               },
@@ -111,16 +121,27 @@ exports[`Storyshots CatalogItemPlaceholder Default 1`] = `
       />
       <View
         style={
+          Object {
+            "height": 16,
+            "width": 16,
+          }
+        }
+      />
+      <View
+        style={
           Array [
             Object {
               "alignSelf": "stretch",
               "backgroundColor": "#efefef",
               "borderRadius": 3,
               "height": 12,
-              "marginBottom": 12,
+              "marginBottom": 0,
               "width": "100%",
             },
             Array [
+              Object {
+                "borderRadius": 0,
+              },
               Object {
                 "height": 2,
               },

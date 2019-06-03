@@ -21,6 +21,7 @@ require('./components/catalog-item-badge.stories.js');
 require('./components/catalog-item-footer.stories.js');
 require('./components/catalog-item-placeholder.stories.js');
 require('./components/catalog-item.stories.js');
+require('./components/catalog-section.stories.js');
 require('./components/catalog.stories.js');
 require('./components/clue-front-item.stories.js');
 require('./components/clue.stories.js');

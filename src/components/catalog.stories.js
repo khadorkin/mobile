@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import {Text} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
 
@@ -68,12 +69,12 @@ storiesOf('Catalog', module)
   .add('With children', () => (
     <Catalog
       titleCover="Title Cover"
+      onRefresh={handleFakePress}
       titleCards="Title Cards"
       items={[discipline, chapter, discipline, chapterNew, disciplineNew]}
       onPress={handleFakePress}
-      onRefresh={handleFakePress}
     >
-      <span>plop</span>
+      <Text>I am a child</Text>
     </Catalog>
   ));
 

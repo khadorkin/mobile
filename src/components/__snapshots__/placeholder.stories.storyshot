@@ -1,56 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Placeholder Animated 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "flexDirection": "row",
-      "opacity": 0.5,
-      "width": "100%",
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "alignSelf": "stretch",
-            "backgroundColor": "#efefef",
-            "borderRadius": 3,
-            "height": 12,
-            "marginBottom": 12,
-            "width": "70%",
-          },
-          Array [
-            Object {
-              "height": 10,
-            },
-            Object {
-              "backgroundColor": "#CFD8DC",
-            },
-          ],
-        ]
-      }
-    />
-  </View>
-</View>
-`;
-
 exports[`Storyshots Placeholder Default 1`] = `
 <View
   style={
     Object {
-      "flex": 1,
-      "flexDirection": "row",
-      "width": "100%",
+      "opacity": 0.5,
     }
   }
 >
@@ -69,15 +23,18 @@ exports[`Storyshots Placeholder Default 1`] = `
             "backgroundColor": "#efefef",
             "borderRadius": 3,
             "height": 12,
-            "marginBottom": 12,
-            "width": "70%",
+            "marginBottom": 0,
+            "width": "100%",
           },
           Array [
+            Object {
+              "borderRadius": 0,
+            },
             Object {
               "height": 10,
             },
             Object {
-              "backgroundColor": "#CFD8DC",
+              "backgroundColor": "#ECEFF1",
             },
           ],
         ]

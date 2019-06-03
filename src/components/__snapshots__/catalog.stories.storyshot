@@ -124,7 +124,7 @@ exports[`Storyshots Catalog Items 1`] = `
                       undefined,
                     ]
                   }
-                  testID="background-image-catalog-item-dis-1"
+                  testID="background-image-catalog-item-dis-1-image"
                 />
                 <BVLinearGradient
                   colors={
@@ -163,7 +163,7 @@ exports[`Storyshots Catalog Items 1`] = `
                       undefined,
                     ]
                   }
-                  testID="gradient-catalog-item-dis-1"
+                  testID="gradient-catalog-item-dis-1-image"
                 >
                   <View
                     style={
@@ -531,7 +531,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-cha-1"
+                      testID="background-image-catalog-item-cha-1-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -570,7 +570,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-cha-1"
+                      testID="gradient-catalog-item-cha-1-image"
                     >
                       <View
                         style={
@@ -703,7 +703,7 @@ exports[`Storyshots Catalog Items 1`] = `
                             }
                             testID="subtitle-catalog-item-cha-1"
                           >
-                            A good guy
+                            A good guy with blue eyes
                           </Text>
                           <View
                             style={
@@ -996,7 +996,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-dis-1"
+                      testID="background-image-catalog-item-dis-1-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -1035,7 +1035,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-dis-1"
+                      testID="gradient-catalog-item-dis-1-image"
                     >
                       <View
                         style={
@@ -1398,7 +1398,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-cha-2"
+                      testID="background-image-catalog-item-cha-2-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -1437,7 +1437,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-cha-2"
+                      testID="gradient-catalog-item-cha-2-image"
                     >
                       <View
                         style={
@@ -1481,7 +1481,7 @@ exports[`Storyshots Catalog Items 1`] = `
                                 ],
                               ]
                             }
-                            testID="badge-catalog-item-cha-2"
+                            testID="catalog-item-cha-2-badge"
                           >
                             New
                           </Text>
@@ -1788,7 +1788,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-dis-2"
+                      testID="background-image-catalog-item-dis-2-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -1827,7 +1827,7 @@ exports[`Storyshots Catalog Items 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-dis-2"
+                      testID="gradient-catalog-item-dis-2-image"
                     >
                       <View
                         style={
@@ -1871,7 +1871,7 @@ exports[`Storyshots Catalog Items 1`] = `
                                 ],
                               ]
                             }
-                            testID="badge-catalog-item-dis-2"
+                            testID="catalog-item-dis-2-badge"
                           >
                             New
                           </Text>
@@ -2251,7 +2251,7 @@ exports[`Storyshots Catalog With children 1`] = `
                       undefined,
                     ]
                   }
-                  testID="background-image-catalog-item-dis-1"
+                  testID="background-image-catalog-item-dis-1-image"
                 />
                 <BVLinearGradient
                   colors={
@@ -2290,7 +2290,7 @@ exports[`Storyshots Catalog With children 1`] = `
                       undefined,
                     ]
                   }
-                  testID="gradient-catalog-item-dis-1"
+                  testID="gradient-catalog-item-dis-1-image"
                 >
                   <View
                     style={
@@ -2658,7 +2658,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-cha-1"
+                      testID="background-image-catalog-item-cha-1-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -2697,7 +2697,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-cha-1"
+                      testID="gradient-catalog-item-cha-1-image"
                     >
                       <View
                         style={
@@ -2830,7 +2830,7 @@ exports[`Storyshots Catalog With children 1`] = `
                             }
                             testID="subtitle-catalog-item-cha-1"
                           >
-                            A good guy
+                            A good guy with blue eyes
                           </Text>
                           <View
                             style={
@@ -3123,7 +3123,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-dis-1"
+                      testID="background-image-catalog-item-dis-1-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -3162,7 +3162,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-dis-1"
+                      testID="gradient-catalog-item-dis-1-image"
                     >
                       <View
                         style={
@@ -3525,7 +3525,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-cha-2"
+                      testID="background-image-catalog-item-cha-2-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -3564,7 +3564,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-cha-2"
+                      testID="gradient-catalog-item-cha-2-image"
                     >
                       <View
                         style={
@@ -3608,7 +3608,7 @@ exports[`Storyshots Catalog With children 1`] = `
                                 ],
                               ]
                             }
-                            testID="badge-catalog-item-cha-2"
+                            testID="catalog-item-cha-2-badge"
                           >
                             New
                           </Text>
@@ -3915,7 +3915,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="background-image-catalog-item-dis-2"
+                      testID="background-image-catalog-item-dis-2-image"
                     />
                     <BVLinearGradient
                       colors={
@@ -3954,7 +3954,7 @@ exports[`Storyshots Catalog With children 1`] = `
                           undefined,
                         ]
                       }
-                      testID="gradient-catalog-item-dis-2"
+                      testID="gradient-catalog-item-dis-2-image"
                     >
                       <View
                         style={
@@ -3998,7 +3998,7 @@ exports[`Storyshots Catalog With children 1`] = `
                                 ],
                               ]
                             }
-                            testID="badge-catalog-item-dis-2"
+                            testID="catalog-item-dis-2-badge"
                           >
                             New
                           </Text>
@@ -4147,9 +4147,9 @@ exports[`Storyshots Catalog With children 1`] = `
         }
       }
     />
-    <span>
-      plop
-    </span>
+    <Text>
+      I am a child
+    </Text>
   </View>
 </RCTScrollView>
 `;

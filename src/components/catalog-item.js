@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 
@@ -36,7 +37,7 @@ type AnalyticsParams = {|
 type Props = $Exact<{|
   ...CourseInfo,
   ...AnalyticsParams,
-  onPress: (item: Item) => void,
+  onPress: () => void,
   displayMode?: CardDisplayMode,
   testID: string
 |}>;
@@ -130,7 +131,7 @@ const CatalogItem = ({
     >
       <View style={styles.container}>
         <ImageGradient
-          testID={testID}
+          testID={`${testID}-image`}
           image={image}
           style={mode === CARD_DISPLAY_MODE.CARD ? styles.image : styles.imageCover}
         >
@@ -141,7 +142,7 @@ const CatalogItem = ({
               labelStyle={
                 mode === CARD_DISPLAY_MODE.CARD ? styles.badgeLabel : styles.badgeLabelCover
               }
-              testID={`badge-${testID}`}
+              testID={`${testID}-badge`}
             />
           )}
           <CatalogItemFooter

@@ -5,11 +5,13 @@ import PlaceholderBase from 'rn-placeholder';
 
 type Props = {|
   children: React.Node,
-  isAnimated?: boolean
+  style?: GenericStyleProp
 |};
 
-const Placeholder = ({children, isAnimated, style}: Props) => (
-  <PlaceholderBase animation={isAnimated && 'fade'}>{children}</PlaceholderBase>
+const Placeholder = ({children, style}: Props) => (
+  <PlaceholderBase animation="fade" style={style}>
+    {children}
+  </PlaceholderBase>
 );
 
 export default Placeholder;

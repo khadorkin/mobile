@@ -9,10 +9,13 @@ exports[`Storyshots PlaceholderLine Custom color 1`] = `
         "backgroundColor": "#efefef",
         "borderRadius": 3,
         "height": 12,
-        "marginBottom": 12,
+        "marginBottom": 0,
         "width": "100%",
       },
       Array [
+        Object {
+          "borderRadius": 0,
+        },
         Object {
           "height": 10,
         },
@@ -34,15 +37,18 @@ exports[`Storyshots PlaceholderLine Custom width 1`] = `
         "backgroundColor": "#efefef",
         "borderRadius": 3,
         "height": 12,
-        "marginBottom": 12,
+        "marginBottom": 0,
         "width": "30%",
       },
       Array [
         Object {
+          "borderRadius": 0,
+        },
+        Object {
           "height": 10,
         },
         Object {
-          "backgroundColor": "#CFD8DC",
+          "backgroundColor": "#ECEFF1",
         },
       ],
     ]
@@ -59,15 +65,18 @@ exports[`Storyshots PlaceholderLine Default 1`] = `
         "backgroundColor": "#efefef",
         "borderRadius": 3,
         "height": 12,
-        "marginBottom": 12,
+        "marginBottom": 0,
         "width": "100%",
       },
       Array [
         Object {
+          "borderRadius": 0,
+        },
+        Object {
           "height": 10,
         },
         Object {
-          "backgroundColor": "#CFD8DC",
+          "backgroundColor": "#ECEFF1",
         },
       ],
     ]
@@ -84,15 +93,18 @@ exports[`Storyshots PlaceholderLine Small 1`] = `
         "backgroundColor": "#efefef",
         "borderRadius": 3,
         "height": 12,
-        "marginBottom": 12,
+        "marginBottom": 0,
         "width": "100%",
       },
       Array [
         Object {
+          "borderRadius": 0,
+        },
+        Object {
           "height": 5,
         },
         Object {
-          "backgroundColor": "#CFD8DC",
+          "backgroundColor": "#ECEFF1",
         },
       ],
     ]
@@ -109,15 +121,18 @@ exports[`Storyshots PlaceholderLine Tiny 1`] = `
         "backgroundColor": "#efefef",
         "borderRadius": 3,
         "height": 12,
-        "marginBottom": 12,
+        "marginBottom": 0,
         "width": "100%",
       },
       Array [
         Object {
+          "borderRadius": 0,
+        },
+        Object {
           "height": 2,
         },
         Object {
-          "backgroundColor": "#CFD8DC",
+          "backgroundColor": "#ECEFF1",
         },
       ],
     ]

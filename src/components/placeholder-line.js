@@ -13,6 +13,9 @@ type Props = {|
 |};
 
 const styles = StyleSheet.create({
+  line: {
+    borderRadius: 0
+  },
   base: {
     height: 10
   },
@@ -26,8 +29,10 @@ const styles = StyleSheet.create({
 
 const PlaceholderLine = ({
   size = 'base',
-  color = theme.colors.gray.lightMedium,
+  color = theme.colors.gray.light,
   width = '100%'
-}: Props) => <LineBase style={[styles[size], {backgroundColor: color}]} width={width} />;
+}: Props) => (
+  <LineBase style={[styles.line, styles[size], {backgroundColor: color}]} width={width} noMargin />
+);
 
 export default PlaceholderLine;

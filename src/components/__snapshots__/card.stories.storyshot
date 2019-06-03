@@ -88,7 +88,7 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                 undefined,
               ]
             }
-            testID="background-image-catalog2"
+            testID="background-image-catalog2-image"
           />
           <BVLinearGradient
             colors={
@@ -127,7 +127,7 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                 undefined,
               ]
             }
-            testID="gradient-catalog2"
+            testID="gradient-catalog2-image"
           >
             <View
               style={
@@ -171,7 +171,7 @@ exports[`Storyshots Card Catalog Item Card 1`] = `
                       ],
                     ]
                   }
-                  testID="badge-catalog2"
+                  testID="catalog2-badge"
                 >
                   New
                 </Text>
@@ -600,7 +600,7 @@ exports[`Storyshots Card Catalog Item Cover 1`] = `
                 undefined,
               ]
             }
-            testID="background-image-catalog1"
+            testID="background-image-catalog1-image"
           />
           <BVLinearGradient
             colors={
@@ -639,7 +639,7 @@ exports[`Storyshots Card Catalog Item Cover 1`] = `
                 undefined,
               ]
             }
-            testID="gradient-catalog1"
+            testID="gradient-catalog1-image"
           >
             <View
               style={
@@ -683,7 +683,7 @@ exports[`Storyshots Card Catalog Item Cover 1`] = `
                       ],
                     ]
                   }
-                  testID="badge-catalog1"
+                  testID="catalog1-badge"
                 >
                   New
                 </Text>
