@@ -127,3 +127,10 @@ jest.mock('react-native-status-bar-height', () => ({
 // ./src/containers/with-layout
 
 jest.mock('./src/containers/with-layout');
+
+// redux-persist
+
+jest.mock('redux-persist', () => ({
+  persistReducer: (config, rootReducer) => rootReducer,
+  persistStore: store => store
+}));

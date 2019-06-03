@@ -10,7 +10,7 @@ import {__TEST__} from '../modules/environment';
 import type {Layout} from '../containers/with-layout';
 import type {State as AnalyticsState} from '../components/analytics-provider';
 
-export const store = createStore(createServices(createDataLayer('en')));
+export const {store} = createStore(createServices(createDataLayer('en')));
 
 // eslint-disable-next-line no-console
 export const handleFakePress = () => console.log('Fake press');
