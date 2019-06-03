@@ -1,6 +1,8 @@
 // @flow strict
 
+import {AsyncStorage} from 'react-native';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {persistStore, persistReducer} from 'redux-persist';
 import {middlewares, reducers as storeReducers} from '@coorpacademy/player-store';
 import type {ReduxState} from '@coorpacademy/player-store';
 
@@ -73,8 +75,15 @@ const createMiddlewares = (options: Options, reduxDevTools?: ReduxDevTools) => {
     reduxDevTools || (f => f)
   );
 };
-const create = (options: Options, reduxDevTools?: ReduxDevTools) =>
+const create = (options: Options, reduxDevTools?: ReduxDevTools) => {
   // $FlowFixMe
-  createStore(reducers, {}, createMiddlewares(options, reduxDevTools));
+  const store = createStore(reducers, {}, createMiddlewares(options, reduxDevTools));
+  const persistedStore = persistStore(store, {
+    storage: AsyncStorage,
+    whitelist: ['bundle']
+  });
+
+  return persistedStore;
+};
 
 export default create;
