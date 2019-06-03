@@ -38,3 +38,5 @@ declare type ReactNavigation$WithNavigationProps = $Exact<
 
 declare type Dispatch = Redux$Dispatch<*>;
 declare type GetState = () => StoreState;
+type _Return<R, Fn: (...args: Array<any>) => R> = R;
+declare type $ReturnType<T> = _Return<*, T>;
