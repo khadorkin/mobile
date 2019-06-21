@@ -82,6 +82,7 @@
     "hoist-non-react-statics": "^3.2.1",
     "jsc-android": "^241213.2.0",
     "jwt-decode": "^2.2.0",
+    "lottie-react-native": "^2.6.1",
     "p-map": "^2.1.0",
     "react": "16.8.3",
     "react-native": "0.59.9",
@@ -110,8 +111,8 @@
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rn-placeholder": "^2.0.0",
     "rn-fetch-blob": "0.10.15",
+    "rn-placeholder": "^2.0.0",
     "semver": "^6.1.1"
   },
   "devDependencies": {
