@@ -24,7 +24,7 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.soloader.SoLoader;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-
+import com.airbnb.android.react.lottie.LottiePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -55,7 +55,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
             new RNDeviceInfo(),
             new RNFirebasePackage(),
             new RNFirebaseAnalyticsPackage(),
-            new SplashScreenReactPackage()
+            new SplashScreenReactPackage(),
+            new LottiePackage()
       );
     }
 

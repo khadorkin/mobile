@@ -151,11 +151,14 @@ dependencies {
     // androidTestImplementation(project(path: ":detox"))
     // androidTestImplementation 'junit:junit:4.12+'
 
-      // Firebase dependencies
+    // Firebase dependencies
     implementation project(':react-native-firebase')
     implementation "com.google.android.gms:play-services-base:16.1.0"
     implementation "com.google.firebase:firebase-core:16.0.9"
     implementation 'com.android.support:multidex:1.0.3'
+
+    // Lottie
+    implementation project(':lottie-react-native')
 }
 
 configurations {
