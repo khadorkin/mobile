@@ -31,6 +31,16 @@ export type Props = {|
   testID: string
 |};
 
+const buildArray = num => {
+  let acc = [];
+
+  for (let i = num; i > 0; i--) {
+    acc = [...acc, {num: i}];
+  }
+
+  return acc;
+};
+
 const ITEM_VERTICAL_OFFSET = theme.spacing.small;
 const ITEM_HORIZONTAL_OFFSET = theme.spacing.tiny;
 export const ITEM_WIDTH = CATALOG_ITEM_WIDTH + ITEM_HORIZONTAL_OFFSET * 2;
@@ -78,13 +88,14 @@ class CatalogSection extends React.PureComponent<Props> {
     const {sectionRef = ''} = this.props;
     const testID = this.keyExtractor(item, index);
 
-    if (!item) {
-      return (
-        <Card style={styles.card} shadowStyle={BOX_STYLE}>
-          <CatalogItemPlaceholder testID={testID} />
-        </Card>
-      );
-    }
+    // if (!item) {
+    return (
+      <Card style={styles.card} shadowStyle={BOX_STYLE}>
+        <Text>{item.num}</Text>
+        <CatalogItemPlaceholder testID={testID} />
+      </Card>
+    );
+    // }
 
     const authorType = getAuthorType(item);
     const authorName = getAuthorName(item);
@@ -137,11 +148,14 @@ class CatalogSection extends React.PureComponent<Props> {
 
   render() {
     const {sectionRef, cards, onScroll, testID} = this.props;
+
+    const _cards = buildArray(1000);
     return (
       <View>
-        {this.renderTitle()}
+        <Text style={styles.title}>{_cards.length}</Text>
         <FlatList
-          data={cards && cards.length > 0 ? cards : new Array(PLACEHOLDER_LENGTH).fill()}
+          // data={cards && cards.length > 0 ? cards : new Array(PLACEHOLDER_LENGTH).fill()}
+          data={_cards}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
           contentContainerStyle={styles.list}
