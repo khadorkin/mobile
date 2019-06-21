@@ -30,38 +30,42 @@ const styles = StyleSheet.create({
   }
 });
 
-const Card = ({children, style, testID, type = LAYOUT.DEFAULT, shadowStyle}: Props) => {
-  switch (type) {
-    case LAYOUT.DECK_SWIPE:
-      /* istanbul ignore next */
-      return (
-        (Platform.OS === 'ios' && (
-          <View style={[style, styles.container, styles.overflowHidden]}>
-            <View style={[styles.container]} testID={testID}>
+class Card extends React.PureComponent<Props> {
+  render() {
+    const {children, style, testID, type = LAYOUT.DEFAULT, shadowStyle} = this.props;
+
+    switch (type) {
+      case LAYOUT.DECK_SWIPE:
+        /* istanbul ignore next */
+        return (
+          (Platform.OS === 'ios' && (
+            <View style={[style, styles.container, styles.overflowHidden]}>
+              <View style={[styles.container]} testID={testID}>
+                {children}
+              </View>
+            </View>
+          )) || (
+            <View style={[style, styles.container]} testID={testID}>
               {children}
             </View>
+          )
+        );
+      case LAYOUT.CONTAIN:
+        return (
+          <View style={shadowStyle} testID={testID}>
+            <View style={style}>{children}</View>
           </View>
-        )) || (
-          <View style={[style, styles.container]} testID={testID}>
-            {children}
+        );
+      case LAYOUT.DEFAULT:
+        return (
+          <View style={styles.container} testID={testID}>
+            <View style={[style, shadowStyle, styles.overflowHidden]}>{children}</View>
           </View>
-        )
-      );
-    case LAYOUT.CONTAIN:
-      return (
-        <View style={shadowStyle} testID={testID}>
-          <View style={style}>{children}</View>
-        </View>
-      );
-    case LAYOUT.DEFAULT:
-      return (
-        <View style={styles.container} testID={testID}>
-          <View style={[style, shadowStyle, styles.overflowHidden]}>{children}</View>
-        </View>
-      );
-    default:
-      return null;
+        );
+      default:
+        return null;
+    }
   }
-};
+}
 
 export default Card;
