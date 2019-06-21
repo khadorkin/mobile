@@ -44,6 +44,7 @@ require('./components/lesson.stories.js');
 require('./components/level-end.stories.js');
 require('./components/lives.stories.js');
 require('./components/loader.stories.js');
+require('./components/lock.stories.js');
 require('./components/notification.stories.js');
 require('./components/pdf.stories.js');
 require('./components/placeholder-circle.stories.js');
