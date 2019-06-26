@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, View, Platform} from 'react-native';
+import {Linking, StyleSheet, View, Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import {PortalProvider} from 'react-native-portal';
 // @@todo wait for support tablet landscape orientation
@@ -44,6 +44,14 @@ class App extends React.PureComponent<Props> {
     // if (DeviceInfo.isTablet()) {
     //   orientation.unlockAllOrientations();
     // }
+
+    Linking.getInitialURL()
+      .then(url => {
+        if (url) {
+          console.log('Initial url is: ' + url);
+        }
+      })
+      .catch(err => console.error('An error occurred', err));
   }
 
   render() {
