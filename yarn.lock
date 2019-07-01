@@ -11287,6 +11287,11 @@ react-native-device-info@^2.1.0:
   resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-2.1.0.tgz#55eb82c1ba14c550cef6b71efc368d88b96b826a"
   integrity sha512-FdHFi0DtISiytXzE2KM16Qd4GPEGnbA8DjTP1vHjcUPFJCLBtm1P0/10Xn5x/kISjEvsz17grdtJxGrd83c6Pw==
 
+react-native-email-link@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/react-native-email-link/-/react-native-email-link-1.4.0.tgz#cee0a03b0f6bccf1446bbf1fe5a90e0704f1da45"
+  integrity sha512-kCckvSrtZqkIaxZFel2W7ecT/yOVDIdnQfukV+/CpUZNorRu1Hf1Oe4w2h30lhZoMS1G/QOii6hocEgkSADagw==
+
 react-native-firebase@^5.4.2:
   version "5.4.2"
   resolved "https://registry.npmjs.org/react-native-firebase/-/react-native-firebase-5.4.2.tgz#6a66fea38724a7e76d9486b87e02129fda266290"
