@@ -1076,10 +1076,10 @@
     prettier "1.16.4"
     requireindex "^1.2.0"
 
-"@coorpacademy/nova-icons@3.1.8":
-  version "3.1.8"
-  resolved "https://registry.npmjs.org/@coorpacademy/nova-icons/-/nova-icons-3.1.8.tgz#8e0e4d1d2ed3351a5831c9e52eeaa1413cb13834"
-  integrity sha512-VFl3XGND37ObTAYbQs55cvZ9tshC5cfqTvBXBMc/y16LhM2mKWUeQihQnPOI9ZB5MNRCghHnTohknqVI1eiIzw==
+"@coorpacademy/nova-icons@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.npmjs.org/@coorpacademy/nova-icons/-/nova-icons-3.1.9.tgz#f948034333b030f588a97dab284210b2ffd56f93"
+  integrity sha512-Cfo/hKV8RvICbZ2lcuRzCVxtByexMVtFWVKoYnnYRN6yYXgRbx4npU9UidRLhSK6tM/EMwStoahZ0J6KdVdQIg==
   dependencies:
     "@babel/cli" "^7.4.3"
     async "^2.6.2"
