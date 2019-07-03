@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, Linking} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 
-import {openInbox} from '../modules/inbox';
 import {AUTHENTICATION_TYPE} from '../const';
 import type {AuthenticationType} from '../types';
 import AuthenticationDetails, {TOP_COLOR} from '../components/authentication-details';
@@ -43,7 +42,7 @@ class AuthenticationDetailsScreen extends React.PureComponent<Props> {
     }
 
     if (type === AUTHENTICATION_TYPE.MAGIC_LINK) {
-      openInbox();
+      Linking.openURL(`https://`);
     }
   };
 

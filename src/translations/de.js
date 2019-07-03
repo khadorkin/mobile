@@ -5,16 +5,15 @@ import type {Translations} from './_types';
 const translations: Translations = {
   accessTheLesson: 'Zur Lektion',
   authenticationMagicLinkHeader:
-    'Klicken Sie auf den Link, den Sie per E-Mail erhalten haben, um eine Verbindung zu Ihrer Plattform herzustellen',
+    'Verwenden Sie dieses Gerät, um Ihre Identität auf der Web-Plattform zu bestätigen',
   authenticationMagicLinkStepOneDescription:
-    'Gehen Sie mit diesem Telefon zu Ihrem <b>professionellen Posteingang</b>',
-  authenticationMagicLinkStepTwoDescription:
-    '<b>Öffnen Sie die E-Mail<b> mit der Einladung zum Herunterladen der Coorpacademy App',
+    'Verbinden Sie sich <b>mit diesem Gerät</b> mit Ihrer Lernplattform.',
+  authenticationMagicLinkStepTwoDescription: 'Rufen Sie oben links <b>Ihr Konto</b> </br>auf.',
   authenticationMagicLinkStepThreeDescription:
-    'Klicken Sie auf die Schaltfläche <b>"Mit der App verbinden"</b>',
+    '<b>Voilà!</b></br>Ihr Magic Link wird genau dort sein',
   authenticationMagicLinkTitle: 'Magic Link',
   authenticationQRCodeHeader:
-    'Sie haben keine E-Mail erhalten? Kein Problem! Wir werden einen Computer verwenden, um Ihre Identität auf der Webplattform zu überprüfen.',
+    'Verwenden Sie einen Computer, um Ihre Identität auf der Web-Plattform zu bestätigen',
   authenticationQRCodeStepOneDescription:
     'Verbinden Sie Ihre Lernplattform <b>mit einem Computer</b>',
   authenticationQRCodeStepTwoDescription:
@@ -42,7 +41,7 @@ const translations: Translations = {
   goodJob: 'Gut gemacht!',
   goToQuestion: 'Zur Frage',
   highscore: 'Du hast eine neue Highscore<br><b>, du hast gerade {{score}} Sterne gewonnen</b>',
-  howToSignIn: 'Haben Sie eine E-Mail zum Herunterladen der App erhalten?',
+  howToSignIn: 'Wie möchten Sie sich gerne anmelden?',
   iWantIt: 'Ich möchte es !',
   keyPoint: 'Hauptpunkt',
   lesson: 'Lektion',
@@ -55,7 +54,7 @@ const translations: Translations = {
   ok: 'OK',
   ooops: 'Oje...',
   open: 'Öffnen',
-  openBrowser: 'Öffnen Sie <b>meinen Posteingang</b>',
+  openBrowser: '<b>Meinen Browser</b> öffnen',
   openSettings: 'Einstellungen öffnen',
   ouch: 'Autsch...',
   outOfLives: 'Sie haben alle Leben verbraucht!',
@@ -80,21 +79,21 @@ const translations: Translations = {
   startDemo: 'Kein Konto? <a href="/"><b><u>Test beginnen!</u></b></a>',
   startLearning: 'Sie sollten hiermit anfangen',
   selectAnAnswer: 'Wählen Sie eine Antwort',
-  signInDesktop: 'Nein',
-  signInMobile: 'Ja',
+  signInDesktop: 'Über einen Computer anmelden',
+  signInMobile: 'Mit diesem Gerät anmelden',
   step: 'Schritt',
   typeHere: 'Hier einfügen',
   validate: 'Bestätigen',
   version: 'Version',
   unlockNextLevel: 'Du hast gerade die Ebene<br><b>{{levelName}} freigeschaltet.</b>',
-  upgrade: 'Nachrüsten',
+  upgrade: 'Upgrade',
   upgradeDescription:
     'Ihre Anwendung wurde aktualisiert! Bitte laden Sie die neueste Version herunter und genießen Sie sie.',
   winAdditionalStars:
     'Gewinnen Sie {{count}} zusätzliche Sterne in diesem Kapitel, wenn Sie die Lektion das erste Mal ansehen!',
-  welcome: 'Willkommen auf der Plattform.',
+  welcome: 'Willkommen',
   welcomeDescription:
-    'Diese App ist mit Ihrem Konto auf der Lernplattform Ihres Unternehmens verknüpft.',
+    'Diese App ist auf der Lernplattform Ihres Unternehmens mit Ihrem persönlichen Konto verbunden.',
   wrongAnswer: 'Falsche Antwort',
   yourAnswer: 'Ihre Antwort:',
   yourAnswers: 'Ihre Antworten:'

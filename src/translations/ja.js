@@ -4,14 +4,16 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'レッスンを受ける',
-  authenticationMagicLinkHeader: 'メールで受け取ったリンクをクリックし、プラットフォームに接続する',
-  authenticationMagicLinkStepOneDescription: 'この電話で<b>仕事のメールボックス</b>にアクセスする',
-  authenticationMagicLinkStepTwoDescription:
-    'Coorpacademyアプリをダウンロードする招待を受け取り、<b>メールを開く</b>',
-  authenticationMagicLinkStepThreeDescription: '<b>"アプリに接続する"</b>ボタンをクリック',
+  authenticationMagicLinkHeader:
+    'このデバイスを使って、ウェブプラットフォーム上であなたの身元を確認する',
+  authenticationMagicLinkStepOneDescription:
+    '<b>この端末で</b>自分の学習プラットフォームに接続する',
+  authenticationMagicLinkStepTwoDescription: '左上隅の<b>アカウント</b></br>に移動して',
+  authenticationMagicLinkStepThreeDescription:
+    '<b>ほら！</b></br>あなたのマジックリンクはすぐそこにあります',
   authenticationMagicLinkTitle: 'マジックリンク',
   authenticationQRCodeHeader:
-    'メールが届かなかった？ 大丈夫です！ コンピューターがWebプラットフォームであなたの身元を確認します。',
+    'コンピューターを使って、ウェブプラットフォーム上であなたの身元を確認する',
   authenticationQRCodeStepOneDescription:
     '<b>コンピューターで</b>あなたの学習プラットフォームに接続する',
   authenticationQRCodeStepTwoDescription:
@@ -38,7 +40,7 @@ const translations: Translations = {
   goodJob: 'よく出来ました！',
   goToQuestion: '質問に行く',
   highscore: 'ハイスコアを更新<br><b>{{score}}の星を獲得しました</b>',
-  howToSignIn: 'アプリをダウンロードするメールを受け取りましたか？',
+  howToSignIn: 'どういう方法でログインしたいですか？',
   iWantIt: '有効化したい！',
   keyPoint: '重要なポイント',
   lesson: 'レッスン',
@@ -51,7 +53,7 @@ const translations: Translations = {
   ok: 'OK',
   ooops: 'ゲームオーバー! ',
   open: 'オープン',
-  openBrowser: '<b>自分のメールボックス</b>を開く',
+  openBrowser: '<b>自分のブラウザー</b>を開く',
   openSettings: '設定を開く',
   ouch: '残念 !',
   outOfLives: 'ライフがなくなりました。',
@@ -76,8 +78,8 @@ const translations: Translations = {
   startDemo: 'アカウントがない場合、<a href="/"><b><u>トライアルを始めてみましょう！</u></b></a>',
   startLearning: 'こちらで始めてください',
   selectAnAnswer: '答えを選択します',
-  signInDesktop: 'いいえ',
-  signInMobile: 'はい',
+  signInDesktop: 'コンピューターでサインインする',
+  signInMobile: 'この端末でサインインする',
   step: 'ステップ',
   typeHere: 'ここに入力します',
   validate: '回答',
@@ -89,7 +91,8 @@ const translations: Translations = {
   winAdditionalStars:
     'もし、はじめてこのレッスンを受けた場合は{{count}}個のスターが追加で獲得できます。',
   welcome: 'ようこそ',
-  welcomeDescription: '会社のLearning Platformのマイアカウントにアプリがリンクされる。',
+  welcomeDescription:
+    'このアプリは、あなたの会社のラーニングプラットフォーム上にある、あなた個人のアカウントにリンクされています。',
   wrongAnswer: '不正解',
   yourAnswer: 'あなたの答え：',
   yourAnswers: 'あなたの答え：'

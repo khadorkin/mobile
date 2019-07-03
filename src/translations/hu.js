@@ -5,16 +5,13 @@ import type {Translations} from './_types';
 const translations: Translations = {
   accessTheLesson: 'Hozzáférés a leckéhez',
   authenticationMagicLinkHeader:
-    'Kattintson az e-mailben kapott linkre a platformhoz történő csatlakozáshoz',
+    'Használd ezt a készüléket identitásod ellenőrzésére a webes platformon',
   authenticationMagicLinkStepOneDescription:
-    'Lépjen ezzel a telefonnal a  <b>szakmai postafiókjába</b>',
-  authenticationMagicLinkStepTwoDescription:
-    '<b>Nyissa meg a meghívót tartalmazó e-mailt</b> a Coorpacademy App letöltéséhez',
-  authenticationMagicLinkStepThreeDescription:
-    'Kattintson a <b>„Csatlakozás az alkalmazáshoz"</b> gombra',
+    'Kapcsolódj tanulási platformodhoz <b>ezzel a készülékkel</b>',
+  authenticationMagicLinkStepTwoDescription: 'Menj a <b>Fiókodba</b> </br>a bal felső sarokban',
+  authenticationMagicLinkStepThreeDescription: '<b>Voilà!</b></br>Varázshivatkozásod itt is lesz',
   authenticationMagicLinkTitle: 'Varázshivatkozás',
-  authenticationQRCodeHeader:
-    'Nem kapott e-mailt? Nem gond! Egy számítógéppel fogjuk a személyazonosságát ellenőrizni a webes platformon',
+  authenticationQRCodeHeader: 'Számítógép segítségével ellenőrizd identitásodat a webes platformon',
   authenticationQRCodeStepOneDescription:
     'Kapcsolódj tanulási platformodhoz  <b>egy számítógéppel</b>',
   authenticationQRCodeStepTwoDescription: 'Lépjen be a <b>Fiókjába</b> </br>a jobb felső sarokban',
@@ -41,7 +38,7 @@ const translations: Translations = {
   goodJob: 'Remek munka!',
   goToQuestion: 'Menjen a kérdéshez',
   highscore: 'Új rekordot értél el<br> <b>{{score}} csillagot nyertél</b>',
-  howToSignIn: 'Kapott e-mailt az alkalmazás letöltéséhez?',
+  howToSignIn: 'Hogyan szeretnél bejelentkezni?',
   iWantIt: 'Akarom!',
   keyPoint: 'Kulcspont',
   lesson: 'Lecke',
@@ -54,7 +51,7 @@ const translations: Translations = {
   ok: 'OK',
   ooops: 'Hoppá...',
   open: 'Megnyitás',
-  openBrowser: 'Nyissa meg a <b>postafiókom</b> menüpontot',
+  openBrowser: 'Nyisd meg <b>böngészőmet</b>',
   openSettings: 'Nyisd meg a beállításokat',
   ouch: 'Jajj...',
   outOfLives: 'Önnek nincs több élete!',
@@ -79,8 +76,8 @@ const translations: Translations = {
   startDemo: 'Nincs fiókja? <a href="/"><b><u>Próbálja ki!</u></b></a>',
   startLearning: 'Javasoljuk, hogy ezzel kezdd',
   selectAnAnswer: 'Válasszon ki egy választ',
-  signInDesktop: 'Nem',
-  signInMobile: 'Igen',
+  signInDesktop: 'Jelentkezz be egy számítógéppel',
+  signInMobile: 'Jelentkezz be ezzel a készülékkel',
   step: 'Lépés',
   typeHere: 'Írjon ide',
   validate: 'Érvényesít',
@@ -93,7 +90,7 @@ const translations: Translations = {
     'Nyerjen további {{count}} csillagot ebben a fejezetben egy lecke először történő megtekintésével!',
   welcome: 'Üdvözlünk',
   welcomeDescription:
-    'Ez az alkalmazás a vállalati tanulási platformon található fiókjához kapcsolódik.',
+    'Ez az alkalmazás kapcsolódik személyes fiókodhoz vállalatod tanulási platformján.',
   wrongAnswer: 'Rossz válasz',
   yourAnswer: 'Az ön válasza:',
   yourAnswers: 'Az ön válaszai:'
