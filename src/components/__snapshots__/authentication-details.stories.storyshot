@@ -165,7 +165,7 @@ Array [
                       }
                     }
                   >
-                    Use this device to verify your identity on the web platform
+                    Click on the link you received by email to connect to your platform
                   </Text>
                 </Text>
               </Text>
@@ -238,15 +238,15 @@ Array [
                 data={
                   Array [
                     Object {
-                      "description": "Connect to your learning platform <b>with this device</b>",
+                      "description": "Go to your <b>professional mailbox</b> with this phone",
                       "icon": [Function],
                     },
                     Object {
-                      "description": "Go to <b>your Account</b> </br>in the upper left-hand corner",
+                      "description": "<b>Open the email</b> with the invitation to download the Coorpacademy App",
                       "icon": [Function],
                     },
                     Object {
-                      "description": "<b>Voilà!</b></br>Your Magic Link will be right there",
+                      "description": "Click on the button <b>\\"Connect to the App\\"</b>",
                       "icon": [Function],
                     },
                   ]
@@ -615,7 +615,7 @@ Array [
                                         }
                                       }
                                     >
-                                      Connect to your learning platform 
+                                      Go to your 
                                     </Text>
                                   </Text>
                                   <Text
@@ -656,8 +656,35 @@ Array [
                                           }
                                         }
                                       >
-                                        with this device
+                                        professional mailbox
                                       </Text>
+                                    </Text>
+                                  </Text>
+                                  <Text
+                                    allowFontScaling={true}
+                                    selectable={false}
+                                    style={
+                                      Array [
+                                        Object {},
+                                        Object {},
+                                      ]
+                                    }
+                                  >
+                                    <Text
+                                      allowFontScaling={true}
+                                      style={
+                                        Object {
+                                          "alignSelf": "center",
+                                          "color": "#546E7A",
+                                          "fontSize": 15,
+                                          "marginBottom": 15,
+                                          "marginTop": 15,
+                                          "marginVertical": 0,
+                                          "textAlign": "center",
+                                        }
+                                      }
+                                    >
+                                       with this phone
                                     </Text>
                                   </Text>
                                 </Text>
@@ -981,33 +1008,6 @@ Array [
                                     selectable={false}
                                     style={
                                       Array [
-                                        Object {},
-                                        Object {},
-                                      ]
-                                    }
-                                  >
-                                    <Text
-                                      allowFontScaling={true}
-                                      style={
-                                        Object {
-                                          "alignSelf": "center",
-                                          "color": "#546E7A",
-                                          "fontSize": 15,
-                                          "marginBottom": 15,
-                                          "marginTop": 15,
-                                          "marginVertical": 0,
-                                          "textAlign": "center",
-                                        }
-                                      }
-                                    >
-                                      Go to 
-                                    </Text>
-                                  </Text>
-                                  <Text
-                                    allowFontScaling={true}
-                                    selectable={false}
-                                    style={
-                                      Array [
                                         Object {
                                           "fontWeight": "700",
                                         },
@@ -1041,21 +1041,9 @@ Array [
                                           }
                                         }
                                       >
-                                        your Account
+                                        Open the email
                                       </Text>
                                     </Text>
-                                  </Text>
-                                  <Text
-                                    allowFontScaling={true}
-                                    style={
-                                      Object {
-                                        "flex": 1,
-                                        "height": 16.8,
-                                      }
-                                    }
-                                  >
-                                    
-
                                   </Text>
                                   <Text
                                     allowFontScaling={true}
@@ -1081,7 +1069,7 @@ Array [
                                         }
                                       }
                                     >
-                                      in the upper left-hand corner
+                                       with the invitation to download the Coorpacademy App
                                     </Text>
                                   </Text>
                                 </Text>
@@ -1454,6 +1442,33 @@ Array [
                                     selectable={false}
                                     style={
                                       Array [
+                                        Object {},
+                                        Object {},
+                                      ]
+                                    }
+                                  >
+                                    <Text
+                                      allowFontScaling={true}
+                                      style={
+                                        Object {
+                                          "alignSelf": "center",
+                                          "color": "#546E7A",
+                                          "fontSize": 15,
+                                          "marginBottom": 15,
+                                          "marginTop": 15,
+                                          "marginVertical": 0,
+                                          "textAlign": "center",
+                                        }
+                                      }
+                                    >
+                                      Click on the button 
+                                    </Text>
+                                  </Text>
+                                  <Text
+                                    allowFontScaling={true}
+                                    selectable={false}
+                                    style={
+                                      Array [
                                         Object {
                                           "fontWeight": "700",
                                         },
@@ -1487,47 +1502,8 @@ Array [
                                           }
                                         }
                                       >
-                                        Voilà!
+                                        "Connect to the App"
                                       </Text>
-                                    </Text>
-                                  </Text>
-                                  <Text
-                                    allowFontScaling={true}
-                                    style={
-                                      Object {
-                                        "flex": 1,
-                                        "height": 16.8,
-                                      }
-                                    }
-                                  >
-                                    
-
-                                  </Text>
-                                  <Text
-                                    allowFontScaling={true}
-                                    selectable={false}
-                                    style={
-                                      Array [
-                                        Object {},
-                                        Object {},
-                                      ]
-                                    }
-                                  >
-                                    <Text
-                                      allowFontScaling={true}
-                                      style={
-                                        Object {
-                                          "alignSelf": "center",
-                                          "color": "#546E7A",
-                                          "fontSize": 15,
-                                          "marginBottom": 15,
-                                          "marginTop": 15,
-                                          "marginVertical": 0,
-                                          "textAlign": "center",
-                                        }
-                                      }
-                                    >
-                                      Your Magic Link will be right there
                                     </Text>
                                   </Text>
                                 </Text>
@@ -1691,7 +1667,7 @@ Array [
                             }
                           }
                         >
-                          my browser
+                          my mailbox
                         </Text>
                       </Text>
                     </Text>
@@ -2894,7 +2870,7 @@ Array [
                       }
                     }
                   >
-                    Use a computer to verify your identity on the web platform
+                    Didn't receive an email? That's fine! We'll use a computer to verify your identity on the web platform
                   </Text>
                 </Text>
               </Text>

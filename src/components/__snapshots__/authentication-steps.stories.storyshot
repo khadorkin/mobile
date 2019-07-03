@@ -50,15 +50,15 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
       data={
         Array [
           Object {
-            "description": "Connect to your learning platform <b>with this device</b>",
+            "description": "Go to your <b>professional mailbox</b> with this phone",
             "icon": [Function],
           },
           Object {
-            "description": "Go to <b>your Account</b> </br>in the upper left-hand corner",
+            "description": "<b>Open the email</b> with the invitation to download the Coorpacademy App",
             "icon": [Function],
           },
           Object {
-            "description": "<b>Voilà!</b></br>Your Magic Link will be right there",
+            "description": "Click on the button <b>\\"Connect to the App\\"</b>",
             "icon": [Function],
           },
         ]
@@ -429,7 +429,7 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                               }
                             }
                           >
-                            Connect to your learning platform 
+                            Go to your 
                           </Text>
                         </Text>
                         <Text
@@ -470,8 +470,35 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                                 }
                               }
                             >
-                              with this device
+                              professional mailbox
                             </Text>
+                          </Text>
+                        </Text>
+                        <Text
+                          allowFontScaling={true}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {},
+                              Object {},
+                            ]
+                          }
+                        >
+                          <Text
+                            allowFontScaling={true}
+                            style={
+                              Object {
+                                "alignSelf": "center",
+                                "color": "#546E7A",
+                                "fontSize": 15,
+                                "marginBottom": 15,
+                                "marginTop": 15,
+                                "marginVertical": 0,
+                                "textAlign": "center",
+                              }
+                            }
+                          >
+                             with this phone
                           </Text>
                         </Text>
                       </Text>
@@ -793,33 +820,6 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                           selectable={false}
                           style={
                             Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            allowFontScaling={true}
-                            style={
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#546E7A",
-                                "fontSize": 15,
-                                "marginBottom": 15,
-                                "marginTop": 15,
-                                "marginVertical": 0,
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            Go to 
-                          </Text>
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          selectable={false}
-                          style={
-                            Array [
                               Object {
                                 "fontWeight": "700",
                               },
@@ -853,21 +853,9 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                                 }
                               }
                             >
-                              your Account
+                              Open the email
                             </Text>
                           </Text>
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          style={
-                            Object {
-                              "flex": 1,
-                              "height": 16.8,
-                            }
-                          }
-                        >
-                          
-
                         </Text>
                         <Text
                           allowFontScaling={true}
@@ -893,7 +881,7 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                               }
                             }
                           >
-                            in the upper left-hand corner
+                             with the invitation to download the Coorpacademy App
                           </Text>
                         </Text>
                       </Text>
@@ -1266,6 +1254,33 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                           selectable={false}
                           style={
                             Array [
+                              Object {},
+                              Object {},
+                            ]
+                          }
+                        >
+                          <Text
+                            allowFontScaling={true}
+                            style={
+                              Object {
+                                "alignSelf": "center",
+                                "color": "#546E7A",
+                                "fontSize": 15,
+                                "marginBottom": 15,
+                                "marginTop": 15,
+                                "marginVertical": 0,
+                                "textAlign": "center",
+                              }
+                            }
+                          >
+                            Click on the button 
+                          </Text>
+                        </Text>
+                        <Text
+                          allowFontScaling={true}
+                          selectable={false}
+                          style={
+                            Array [
                               Object {
                                 "fontWeight": "700",
                               },
@@ -1299,47 +1314,8 @@ exports[`Storyshots AuthenticationSteps Magic link 1`] = `
                                 }
                               }
                             >
-                              Voilà!
+                              "Connect to the App"
                             </Text>
-                          </Text>
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          style={
-                            Object {
-                              "flex": 1,
-                              "height": 16.8,
-                            }
-                          }
-                        >
-                          
-
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          selectable={false}
-                          style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            allowFontScaling={true}
-                            style={
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#546E7A",
-                                "fontSize": 15,
-                                "marginBottom": 15,
-                                "marginTop": 15,
-                                "marginVertical": 0,
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            Your Magic Link will be right there
                           </Text>
                         </Text>
                       </Text>
