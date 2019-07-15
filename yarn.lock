@@ -1087,10 +1087,10 @@
     globby "^9.1.0"
     mkdirp-promise "^5.0.1"
 
-"@coorpacademy/player-services@5.0.7":
-  version "5.0.7"
-  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-5.0.7.tgz#fb10f9c1595f805ce069af2ba0e74162accfcd70"
-  integrity sha512-M8EKFYasjsYHsSfpP0ulguu2Ewdq9+o4anKSTuxI6z1XH7opU7md9L8QGiiW7y4+aWf9aP1w5VG6DqqTXTgoHw==
+"@coorpacademy/player-services@5.0.11":
+  version "5.0.11"
+  resolved "https://registry.npmjs.org/@coorpacademy/player-services/-/player-services-5.0.11.tgz#dd7a4e55fca1f8ea7569f803b1916037e8dce459"
+  integrity sha512-xMFHvbR6eiWA0uUFDKUYd22L6hP7c2HlkoiW+5IzuU2B271CeAoh6xCabs1wTKPIuvJlH5WAFuflxeoRrdMiRA==
   dependencies:
     "@coorpacademy/progression-engine" "11.0.2"
     lodash "^4.17.4"

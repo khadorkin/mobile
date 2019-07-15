@@ -1,6 +1,6 @@
 // @flow
 
-import type {DataLayer as DataLayerBase} from '@coorpacademy/player-services';
+import type {DataLayer as DataLayerBase, LevelAPI} from '@coorpacademy/player-services';
 import type {Progression} from '@coorpacademy/progression-engine';
 import type {SupportedLanguage} from '../../translations/_types';
 import {
@@ -23,7 +23,6 @@ import {findById as findLevelById} from './levels';
 import {getCorrectAnswer} from './answers';
 import {getClue} from './clues';
 import {logEvent} from './analytics';
-import type {DisciplineCard} from './_types';
 import {fetchSections} from './sections';
 
 export type DataLayer = {
@@ -38,8 +37,8 @@ export type DataLayer = {
   findLast: (engineRef: string, contentRef: string) => Promise<Progression | null>,
   synchronizeProgression: typeof synchronizeProgression,
   getAllProgressions: typeof getAllProgressions,
-  findBestOf: (language: SupportedLanguage) => Promise<number>,
-  getNextLevel: (language: SupportedLanguage) => Promise<DisciplineCard | void>,
+  findBestOf: () => Promise<number>,
+  getNextLevel: (ref: string) => Promise<LevelAPI | void>,
   logEvent: typeof logEvent
 };
 

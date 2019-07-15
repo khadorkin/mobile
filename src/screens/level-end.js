@@ -6,16 +6,18 @@ import {connect} from 'react-redux';
 import {NavigationActions, NavigationEvents} from 'react-navigation';
 import type {ContentType} from '@coorpacademy/progression-engine';
 import {getNextContent, getCurrentProgression} from '@coorpacademy/player-store';
+import type {LevelAPI} from '@coorpacademy/player-services';
 import get from 'lodash/fp/get';
+
 import {selectCard} from '../redux/actions/catalog/cards';
 import LevelEnd, {POSITIVE_COLOR, NEGATIVE_COLOR} from '../components/level-end';
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import Screen from '../components/screen';
 import {compareCards} from '../utils/content';
 import {getCurrentContent, didUnlockLevel} from '../utils';
-import {getBestScore} from '../redux/utils/state-extract';
+import {getBestScore, getCard} from '../redux/utils/state-extract';
 import type {UnlockedLevelInfo} from '../types';
-import translationUtil from '../translations';
+import translations from '../translations';
 import playSound, {AUDIO_FILE} from '../modules/audio-player';
 
 type ConnectedDispatchProps = {|
@@ -25,9 +27,9 @@ type ConnectedDispatchProps = {|
 type ConnectedStateProps = {|
   contentType: ContentType | void,
   recommendation: DisciplineCard | ChapterCard,
-  currentContent: DisciplineCard | ChapterCard | void,
+  currentContent?: DisciplineCard | ChapterCard,
   bestScore?: string,
-  nextContent: DisciplineCard | ChapterCard | void,
+  nextContent?: DisciplineCard | ChapterCard,
   unlockedLevelInfo?: UnlockedLevelInfo,
   hasFinishedCourse?: boolean
 |};
@@ -62,6 +64,7 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     const {isCorrect} = this.props.navigation.state.params;
+
     if (isCorrect) {
       return playSound(AUDIO_FILE.SUCCESS_LEVEL);
     }
@@ -78,22 +81,28 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
   };
 
   handleCardPress = (item: DisciplineCard | ChapterCard) => {
-    this.props.selectCard(this.props.recommendation);
-    this.props.navigation.navigate('Slide');
+    const {navigation, recommendation} = this.props;
+
+    this.props.selectCard(recommendation);
+    navigation.navigate('Slide');
   };
 
   handleButtonPress = () => {
-    const {isCorrect} = this.props.navigation.state.params;
-    if (this.props.currentContent) {
-      if (this.props.hasFinishedCourse) {
-        return this.props.navigation.navigate('Home');
+    const {navigation, currentContent, hasFinishedCourse, nextContent} = this.props;
+    const {isCorrect} = navigation.state.params;
+
+    if (currentContent) {
+      if (hasFinishedCourse) {
+        return navigation.navigate('Home');
       }
-      if (this.props.nextContent && isCorrect) {
-        this.props.selectCard(this.props.nextContent);
-        return this.props.navigation.navigate('Slide');
+
+      if (nextContent && isCorrect) {
+        this.props.selectCard(nextContent);
+      } else {
+        this.props.selectCard(currentContent);
       }
-      this.props.selectCard(this.props.currentContent);
-      return this.props.navigation.navigate('Slide');
+
+      return navigation.navigate('Slide');
     }
   };
 
@@ -137,7 +146,7 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
 }
 
 export const mapStateToProps = (state: StoreState, {navigation}: Props): ConnectedStateProps => {
-  const language = translationUtil.getLanguage();
+  const language = translations.getLanguage();
   const currentProgressionId = navigation.state.params.progressionId;
   const currentContentInfo = get(
     `data.progressions.entities.${currentProgressionId}.content`,
@@ -148,8 +157,12 @@ export const mapStateToProps = (state: StoreState, {navigation}: Props): Connect
   const progression = getCurrentProgression(state);
   const contentType = progression && progression.content.type;
 
-  // $FlowFixMe
-  const nextContent: DisciplineCard | ChapterCard | void = getNextContent(state);
+  // $FlowFixMe union type
+  const nextLevel: LevelAPI | void = getNextContent(state);
+  const nextContent =
+    nextLevel && nextLevel.disciplineRef
+      ? getCard(state, nextLevel.disciplineRef, language)
+      : undefined;
   const currentContent: DisciplineCard | ChapterCard | void =
     currentContentInfo && getCurrentContent(state.catalog, currentContentInfo, language);
 

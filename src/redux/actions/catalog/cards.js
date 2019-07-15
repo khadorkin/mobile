@@ -5,7 +5,7 @@ import type {SupportedLanguage} from '../../../translations/_types';
 import type {StoreAction, ErrorAction} from '../../_types';
 import {ENGINE, CONTENT_TYPE, ERROR_TYPE} from '../../../const';
 import {getToken, getBrand, getSection} from '../../utils/state-extract';
-import {pickNextLevel} from '../../../utils/content';
+import {pickNextCardLevel} from '../../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../../layer/data/_const';
 import {createLevelProgression, createChapterProgression, selectProgression} from '../progression';
 import type {Action as ModalAction} from '../ui/modal';
@@ -262,7 +262,7 @@ export const selectCard = (
         }
       }
       case CARD_TYPE.COURSE: {
-        const nextModule = pickNextLevel(item);
+        const nextModule = pickNextCardLevel(item);
         if (!nextModule) {
           return dispatch(selectCardFailure(item, new Error('Course has no level')));
         }

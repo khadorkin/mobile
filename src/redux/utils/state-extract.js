@@ -21,6 +21,7 @@ import type {State as PermissionsState} from '../reducers/permissions';
 import type {PermissionType} from '../actions/permissions';
 import translations from '../../translations';
 import type {SupportedLanguage} from '../../translations/_types';
+import type {DisciplineCard, ChapterCard} from '../../layer/data/_types';
 
 export const checkIsExitNode = (state: StoreState): boolean => {
   const nextContent = getStepContent(state);
@@ -120,3 +121,10 @@ export const getSection = (
   language?: SupportedLanguage = translations.getLanguage()
 ): Section | void =>
   state.catalog.entities.sections[key] && state.catalog.entities.sections[key][language];
+
+export const getCard = (
+  state: StoreState,
+  ref: string,
+  language: SupportedLanguage
+): DisciplineCard | ChapterCard | void =>
+  state.catalog.entities.cards[ref] && state.catalog.entities.cards[ref][language];

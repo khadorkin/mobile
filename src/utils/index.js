@@ -4,7 +4,7 @@ import type {SupportedLanguage} from '../translations/_types';
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../layer/data/_const';
 import type {UnlockedLevelInfo} from '../types';
-import {pickNextLevel} from './content';
+import {pickNextCardLevel} from './content';
 
 type ContentInfo = {|
   type: string,
@@ -53,7 +53,7 @@ export const didUnlockLevel = (
 ): UnlockedLevelInfo | void => {
   if (type === RESTRICTED_RESOURCE_TYPE.LEVEL) {
     // $FlowFixMe
-    const nextModule = pickNextLevel(currentContent);
+    const nextModule = pickNextCardLevel(currentContent);
     if (nextModule && nextModule.ref !== ref) {
       return {
         isUnlocked: true,

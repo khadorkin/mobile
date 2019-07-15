@@ -1,44 +1,50 @@
 // @flow
 
-// @todo remove lodash
-import get from 'lodash/fp/get';
-// @todo remove lodash
-import map from 'lodash/fp/map';
+import type {ChapterAPI, LevelAPI, RecommendationAPI} from '@coorpacademy/player-services';
 
 import translations from '../../translations';
 import type {SupportedLanguage} from '../../translations/_types';
-import {pickNextLevel} from '../../utils/content';
+import {pickNextCardLevel} from '../../utils/content';
+import {CONTENT_TYPE} from '../../const';
 import type {DisciplineCard} from './_types';
 import {getCardFromLocalStorage} from './cards';
 import {find as findChapters} from './chapters';
+import {findById as findLevelById} from './levels';
 
-const find = async (type: string, ref: string) => {
-  const recommendations = map(chapter => ({
+const find = async (type: string, ref: string): Promise<Array<RecommendationAPI>> => {
+  const chapters: Array<ChapterAPI> = await findChapters(translations.getLanguage())();
+
+  // $FlowFixMe this type is totally fucked up
+  const recommendations: Array<RecommendationAPI> = chapters.map(chapter => ({
     view: 'grid',
-    image: get('poster.mediaUrl', chapter),
+    image: chapter && chapter.poster && chapter.poster.mediaUrl,
     time: '8m',
-    type: 'chapter',
+    type: CONTENT_TYPE.CHAPTER,
     progress: 1,
     title: chapter.name,
     ref: chapter._id
-  }))(await findChapters(translations.getLanguage())());
+  }));
 
   return Promise.resolve(recommendations);
 };
 
 const getNextLevel = (language: SupportedLanguage) => async (
   ref: string
-): Promise<DisciplineCard | void> => {
+): Promise<LevelAPI | void> => {
   // $FlowFixMe
   const disciplineCard: DisciplineCard | void = await getCardFromLocalStorage(ref, language);
 
-  if (!disciplineCard) return;
+  if (!disciplineCard) {
+    return;
+  }
 
-  const nextLevel = pickNextLevel(disciplineCard);
+  const nextCardLevel = pickNextCardLevel(disciplineCard);
 
-  if (!nextLevel || nextLevel.ref === ref || nextLevel.universalRef === ref) return;
+  if (!nextCardLevel || nextCardLevel.ref === ref || nextCardLevel.universalRef === ref) {
+    return;
+  }
 
-  return disciplineCard;
+  return findLevelById(language)(nextCardLevel.universalRef);
 };
 
 export {find, getNextLevel};
