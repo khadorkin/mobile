@@ -1,12 +1,17 @@
 // @flow strict
 
-import {createProgression, CONTENT_TYPE, selectProgression} from '@coorpacademy/player-store';
+import {
+  createProgression,
+  CONTENT_TYPE,
+  selectProgression,
+  getCurrentProgressionId
+} from '@coorpacademy/player-store';
 import type {Level, Chapter} from '@coorpacademy/player-store';
 import type {Engine, EngineConfig, GenericContent} from '@coorpacademy/progression-engine';
 import {ObjectId} from 'bson';
 import pMap from 'p-map';
-import {getMostAccurateRef} from '../../modules/reference';
 
+import {getMostAccurateRef} from '../../modules/reference';
 import type {StoreAction, ErrorAction} from '../_types';
 import {getToken, getBrand} from '../utils/state-extract';
 import {isDone} from '../../utils/progressions';
@@ -16,6 +21,15 @@ const ENGINE_VERSION = '1';
 const ENGINE_CONFIG_VERSION = '1';
 
 export {selectProgression};
+
+export const selectCurrentProgression = () => (dispatch: Dispatch, getState: GetState) => {
+  const state = getState();
+  const progressionId = getCurrentProgressionId(state);
+
+  if (progressionId) {
+    dispatch(selectProgression(progressionId));
+  }
+};
 
 export const createLevelProgression = (level: Level) => {
   const ref = getMostAccurateRef(level);

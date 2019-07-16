@@ -14,8 +14,14 @@ jest.mock('./core', () => {
 });
 
 describe('levels', () => {
-  it('should return all the levels', async () => {
-    const result = await findById('en')('yolo');
-    expect(result).toEqual(mapToLevelAPIExpectedResult);
+  describe('findById', () => {
+    it('should return all the levels', async () => {
+      const result = await findById('en')('yolo');
+      expect(result).toEqual(mapToLevelAPIExpectedResult);
+    });
+  });
+
+  describe('getNextLevel', () => {
+    // @todo add tests
   });
 });

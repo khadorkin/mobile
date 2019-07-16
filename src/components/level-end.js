@@ -39,7 +39,7 @@ type Props = {|
   bestScore: string,
   isLevelUnlocked: boolean,
   levelUnlockedName: string,
-  hasFinishedCourse: boolean,
+  hasNextLevel: boolean,
   recommendation: DisciplineCard | ChapterCard
 |};
 
@@ -156,6 +156,8 @@ const styles = StyleSheet.create({
 const {width: screenWidth} = Dimensions.get('window');
 
 class LevelEnd extends React.PureComponent<Props> {
+  props: Props;
+
   handleCardPress = (item: DisciplineCard | ChapterCard) => () => this.props.onCardPress(item);
 
   handleButtonPress = () => this.props.onButtonPress();
@@ -168,7 +170,7 @@ class LevelEnd extends React.PureComponent<Props> {
       onClose,
       isLevelUnlocked,
       levelUnlockedName,
-      hasFinishedCourse,
+      hasNextLevel,
       recommendation,
       isFocused
     } = this.props;
@@ -187,12 +189,12 @@ class LevelEnd extends React.PureComponent<Props> {
       contentType === CONTENT_TYPE.LEVEL ? translations.retryLevel : translations.retryChapter;
 
     const buttonTranslation =
-      (isSuccess && hasFinishedCourse && translations.backToHome) ||
+      (isSuccess && !hasNextLevel && translations.backToHome) ||
       (isSuccess && nextLabel) ||
       retryLabel;
 
     const buttonAnalyticsID =
-      (isSuccess && hasFinishedCourse && `button-end-${contentType}-back-to-home`) ||
+      (isSuccess && !hasNextLevel && `button-end-${contentType}-back-to-home`) ||
       (isSuccess && `button-end-next-${contentType}`) ||
       `button-end-retry-${contentType}`;
 

@@ -15,7 +15,7 @@ import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import Screen from '../components/screen';
 import {compareCards} from '../utils/content';
 import {getCurrentContent, didUnlockLevel} from '../utils';
-import {getBestScore, getCard} from '../redux/utils/state-extract';
+import {getBestScore} from '../redux/utils/state-extract';
 import type {UnlockedLevelInfo} from '../types';
 import translations from '../translations';
 import playSound, {AUDIO_FILE} from '../modules/audio-player';
@@ -27,11 +27,9 @@ type ConnectedDispatchProps = {|
 type ConnectedStateProps = {|
   contentType: ContentType | void,
   recommendation: DisciplineCard | ChapterCard,
-  currentContent?: DisciplineCard | ChapterCard,
   bestScore?: string,
-  nextContent?: DisciplineCard | ChapterCard,
-  unlockedLevelInfo?: UnlockedLevelInfo,
-  hasFinishedCourse?: boolean
+  nextLevel?: LevelAPI,
+  unlockedLevelInfo?: UnlockedLevelInfo
 |};
 
 export type Params = {|
@@ -88,22 +86,31 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
   };
 
   handleButtonPress = () => {
-    const {navigation, currentContent, hasFinishedCourse, nextContent} = this.props;
+    const {navigation, nextLevel} = this.props;
     const {isCorrect} = navigation.state.params;
 
-    if (currentContent) {
-      if (hasFinishedCourse) {
-        return navigation.navigate('Home');
-      }
+    const level = isCorrect ? currentLevel() : nextLevel;
 
-      if (nextContent && isCorrect) {
-        this.props.selectCard(nextContent);
-      } else {
-        this.props.selectCard(currentContent);
-      }
-
+    if (level) {
+      // @todo selectProgression
       return navigation.navigate('Slide');
     }
+
+    return navigation.navigate('Home');
+
+    // if (currentContent) {
+    //   if (hasFinishedCourse) {
+    //     return navigation.navigate('Home');
+    //   }
+    //
+    //   if (nextContent && isCorrect) {
+    //     this.props.selectCard(nextContent);
+    //   } else {
+    //     this.props.selectCard(currentContent);
+    //   }
+    //
+    //   return navigation.navigate('Slide');
+    // }
   };
 
   handleDidFocus = () => this.setState({isFocused: true});
@@ -115,7 +122,7 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
       recommendation,
       unlockedLevelInfo,
       bestScore = '',
-      hasFinishedCourse = false
+      nextLevel
     } = this.props;
     const {isCorrect} = navigation.state.params;
 
@@ -138,7 +145,7 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
           onClose={this.handleClosePress}
           onCardPress={this.handleCardPress}
           onButtonPress={this.handleButtonPress}
-          hasFinishedCourse={hasFinishedCourse}
+          hasNextLevel={Boolean(nextLevel)}
         />
       </Screen>
     );
@@ -159,25 +166,17 @@ export const mapStateToProps = (state: StoreState, {navigation}: Props): Connect
 
   // $FlowFixMe union type
   const nextLevel: LevelAPI | void = getNextContent(state);
-  const nextContent =
-    nextLevel && nextLevel.disciplineRef
-      ? getCard(state, nextLevel.disciplineRef, language)
-      : undefined;
   const currentContent: DisciplineCard | ChapterCard | void =
     currentContentInfo && getCurrentContent(state.catalog, currentContentInfo, language);
 
   const unlockedLevelInfo =
     currentContentInfo && currentContent && didUnlockLevel(currentContentInfo, currentContent);
 
-  const hasFinishedCourse = currentContent && currentContent.completion === 1;
-
   return {
     contentType,
-    currentContent,
-    nextContent,
+    nextLevel,
     bestScore,
     unlockedLevelInfo,
-    hasFinishedCourse,
     recommendation: Object.keys(state.catalog.entities.cards)
       .map(key => state.catalog.entities.cards[key][language])
       .filter(item => item !== undefined)
