@@ -9,7 +9,7 @@ import {getCurrentContent, getNextContent, getCurrentProgression} from '@coorpac
 import type {LevelAPI, ChapterAPI} from '@coorpacademy/player-services';
 
 import {createNextProgression} from '../redux/actions/progression';
-import {selectCard} from '../redux/actions/catalog/cards';
+import {selectCard} from '../redux/actions/catalog/cards/select';
 import LevelEnd, {POSITIVE_COLOR, NEGATIVE_COLOR} from '../components/level-end';
 import type {DisciplineCard, ChapterCard, Level, Chapter} from '../layer/data/_types';
 import Screen from '../components/screen';
