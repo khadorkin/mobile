@@ -7,19 +7,33 @@ import {
   getCurrentProgressionId
 } from '@coorpacademy/player-store';
 import type {Level, Chapter} from '@coorpacademy/player-store';
-import type {Engine, EngineConfig, GenericContent} from '@coorpacademy/progression-engine';
+import type {LevelAPI, ChapterAPI} from '@coorpacademy/player-services';
+import type {
+  Engine,
+  EngineConfig,
+  GenericContent,
+  Progression
+} from '@coorpacademy/progression-engine';
 import {ObjectId} from 'bson';
 import pMap from 'p-map';
 
 import {getMostAccurateRef} from '../../modules/reference';
 import type {StoreAction, ErrorAction} from '../_types';
 import {getToken, getBrand} from '../utils/state-extract';
-import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
 import {isDone} from '../../utils/progressions';
 import {ENGINE} from '../../const';
+import type {RestrictedResourceType} from '../../layer/data/_types';
+import {RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
 
 const ENGINE_VERSION = '1';
 const ENGINE_CONFIG_VERSION = '1';
+
+export const SYNCHRONIZE_REQUEST = '@@progression/SYNCHRONIZE_REQUEST';
+export const SYNCHRONIZE_SUCCESS = '@@progression/SYNCHRONIZE_SUCCESS';
+export const SYNCHRONIZE_FAILURE = '@@progression/SYNCHRONIZE_FAILURE';
+export const CREATE_NEXT_REQUEST = '@@progression/CREATE_NEXT_REQUEST';
+export const CREATE_NEXT_SUCCESS = '@@progression/CREATE_NEXT_SUCCESS';
+export const CREATE_NEXT_FAILURE = '@@progression/CREATE_NEXT_FAILURE';
 
 export {selectProgression};
 
@@ -56,22 +70,22 @@ export const createChapterProgression = (chapter: Chapter) => {
 
 export type Action =
   | {|
-      type: '@@progression/SYNCHRONIZE_REQUEST',
+      type: typeof SYNCHRONIZE_REQUEST,
       meta: {|id: string|}
     |}
   | {|
-      type: '@@progression/SYNCHRONIZE_SUCCESS',
+      type: typeof SYNCHRONIZE_SUCCESS,
       meta: {|id: string|}
     |}
   | ErrorAction<{|
-      type: '@@progression/SYNCHRONIZE_FAILURE',
+      type: typeof SYNCHRONIZE_FAILURE,
       meta: {|id: string|}
     |}>;
 
 export const synchronizeProgression = (progressionId: string): StoreAction<Action> => {
   return async (dispatch, getState, options) => {
     await dispatch({
-      type: '@@progression/SYNCHRONIZE_REQUEST',
+      type: SYNCHRONIZE_REQUEST,
       meta: {id: progressionId}
     });
 
@@ -89,12 +103,12 @@ export const synchronizeProgression = (progressionId: string): StoreAction<Actio
       if (progression) await services.Progressions.synchronize(token, brand.host, progression);
 
       return dispatch({
-        type: '@@progression/SYNCHRONIZE_SUCCESS',
+        type: SYNCHRONIZE_SUCCESS,
         meta: {id: progressionId}
       });
     } catch (err) {
       return dispatch({
-        type: '@@progression/SYNCHRONIZE_FAILURE',
+        type: SYNCHRONIZE_FAILURE,
         error: true,
         payload: err,
         meta: {id: progressionId}
@@ -102,78 +116,82 @@ export const synchronizeProgression = (progressionId: string): StoreAction<Actio
     }
   };
 };
+
 export type NextProgressionAction =
   | {|
-      type: '@@progression/CREATE_NEXT_REQUEST',
-      meta: {|type: string, ref: string|}
+      type: typeof CREATE_NEXT_REQUEST,
+      meta: {|type: RestrictedResourceType, ref: string|}
     |}
   | {|
-      type: '@@progression/CREATE_NEXT_SUCCESS',
-      meta: {|type: string, ref: string|}
+      type: typeof CREATE_NEXT_SUCCESS,
+      meta: {|type: RestrictedResourceType, ref: string|}
     |}
   | ErrorAction<{|
-      type: '@@progression/CREATE_NEXT_FAILURE',
-      meta: {|type: string, ref: string|}
+      type: typeof CREATE_NEXT_FAILURE,
+      meta: {|type: RestrictedResourceType, ref: string|}
     |}>;
 
 export const createNextProgression = (
-  type: string,
+  type: RestrictedResourceType,
   ref: string
 ): StoreAction<NextProgressionAction> => async (dispatch, getState, options) => {
   const {services} = options;
 
   await dispatch({
-    type: '@@progression/CREATE_NEXT_REQUEST',
+    type: CREATE_NEXT_REQUEST,
     meta: {type, ref}
   });
 
+  if (![CONTENT_TYPE.CHAPTER, CONTENT_TYPE.LEVEL].includes(type)) {
+    return dispatch({
+      type: CREATE_NEXT_FAILURE,
+      payload: new Error(`content type ${type} is not handled`),
+      error: true,
+      meta: {type, ref}
+    });
+  }
+
+  const lastProgression: Progression | null = await services.Progressions.findLast(
+    type === RESTRICTED_RESOURCE_TYPE.CHAPTER ? ENGINE.MICROLEARNING : ENGINE.LEARNER,
+    ref
+  );
+
+  if (lastProgression && lastProgression._id) {
+    // $FlowFixMe wrong action
+    return dispatch(selectProgression(lastProgression._id));
+  }
+
   switch (type) {
-    case CARD_TYPE.CHAPTER: {
-      // Resume progression
-      const lastProgression = await services.Progressions.findLast(ENGINE.MICROLEARNING, ref);
-
-      if (lastProgression) {
-        // $FlowFixMe union type
-        return dispatch(selectProgression(lastProgression._id));
-      }
-
-      const chapter = await services.Content.find(RESTRICTED_RESOURCE_TYPE.CHAPTER, ref);
-
+    case RESTRICTED_RESOURCE_TYPE.CHAPTER: {
       // $FlowFixMe union type
-      const {payload: progression} = await dispatch(createChapterProgression(chapter));
-      // $FlowFixMe union type
+      const chapter: ChapterAPI = await services.Content.find(type, ref);
+
+      // $FlowFixMe await on dispatched action
+      const {payload: progression}: {payload: Progression} = await dispatch(
+        // $FlowFixMe wrong action
+        createChapterProgression(chapter)
+      );
+      // $FlowFixMe wrong thunk action
       await dispatch(selectProgression(progression._id));
       break;
     }
-    case CARD_TYPE.COURSE: {
-      const lastProgression = await services.Progressions.findLast(ENGINE.LEARNER, ref);
-      if (lastProgression) {
-        // $FlowFixMe union type
-        return dispatch(selectProgression(lastProgression._id));
-      }
-
-      const level = await services.Content.find(RESTRICTED_RESOURCE_TYPE.LEVEL, ref);
-      debugger;
-
+    case RESTRICTED_RESOURCE_TYPE.LEVEL: {
       // $FlowFixMe union type
-      const {payload: progression} = await dispatch(createLevelProgression(level));
-      // $FlowFixMe union type
+      const level: LevelAPI = await services.Content.find(type, ref);
+
+      // $FlowFixMe await on dispatched action
+      const {payload: progression}: {payload: Progression} = await dispatch(
+        // $FlowFixMe wrong action
+        createLevelProgression(level)
+      );
+      // $FlowFixMe wrong thunk action
       await dispatch(selectProgression(progression._id));
       break;
-    }
-
-    default: {
-      return dispatch({
-        type: '@@progression/CREATE_NEXT_FAILURE',
-        payoad: new Error(`content type ${type} is not handled`),
-        error: true,
-        meta: {type, ref}
-      });
     }
   }
 
   return dispatch({
-    type: '@@progression/CREATE_NEXT_SUCCESS',
+    type: CREATE_NEXT_SUCCESS,
     meta: {type, ref}
   });
 };

@@ -7,7 +7,6 @@ import {NavigationActions, NavigationEvents} from 'react-navigation';
 import type {ContentType} from '@coorpacademy/progression-engine';
 import {getCurrentContent, getNextContent, getCurrentProgression} from '@coorpacademy/player-store';
 import type {LevelAPI, ChapterAPI} from '@coorpacademy/player-services';
-// import get from 'lodash/fp/get';
 
 import {createNextProgression} from '../redux/actions/progression';
 import {selectCard} from '../redux/actions/catalog/cards';
@@ -85,14 +84,14 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
     navigation.navigate('Slide');
   };
 
-  handleButtonPress = async () => {
+  handleButtonPress = () => {
     const {navigation, currentContent, nextContent} = this.props;
     const {isCorrect} = navigation.state.params;
 
     const content = isCorrect ? nextContent : currentContent;
 
     if (content) {
-      await this.props.createNextProgression(content.type, content.ref);
+      this.props.createNextProgression(content.type, content.ref);
       return navigation.navigate('Slide');
     }
 

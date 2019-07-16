@@ -234,7 +234,10 @@ export const selectCard = (
             chapter = await attemptToRetrieveContent(item, state, services);
           }
 
-          return dispatch(createNextProgression(item.type, item.universalRef));
+          return dispatch(
+            // $FlowFixMe dispatched action
+            createNextProgression(RESTRICTED_RESOURCE_TYPE.CHAPTER, item.universalRef)
+          );
         } catch (e) {
           if (e instanceof NoContentFoundError) {
             return dispatch(
@@ -263,7 +266,10 @@ export const selectCard = (
           if (!level) {
             level = await attemptToRetrieveContent(item, state, services, nextModule.universalRef);
           }
-          return dispatch(createNextProgression(item.type, nextModule.universalRef));
+          return dispatch(
+            // $FlowFixMe dispatched action
+            createNextProgression(RESTRICTED_RESOURCE_TYPE.LEVEL, level.universalRef)
+          );
         } catch (e) {
           if (e instanceof NoContentFoundError) {
             return dispatch(
