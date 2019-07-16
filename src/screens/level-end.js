@@ -5,10 +5,11 @@ import {StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationActions, NavigationEvents} from 'react-navigation';
 import type {ContentType} from '@coorpacademy/progression-engine';
-import {getNextContent, getCurrentProgression, getCurrentContent} from '@coorpacademy/player-store';
+import {getNextContent, getCurrentProgression} from '@coorpacademy/player-store';
 import type {LevelAPI, ChapterAPI} from '@coorpacademy/player-services';
 // import get from 'lodash/fp/get';
 
+import {createNextProgression} from '../redux/actions/progression';
 import {selectCard} from '../redux/actions/catalog/cards';
 import LevelEnd, {POSITIVE_COLOR, NEGATIVE_COLOR} from '../components/level-end';
 import type {DisciplineCard, ChapterCard, Level, Chapter} from '../layer/data/_types';
@@ -83,15 +84,14 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
     navigation.navigate('Slide');
   };
 
-  handleButtonPress = () => {
+  handleButtonPress = async () => {
     const {navigation, currentContent, nextContent} = this.props;
     const {isCorrect} = navigation.state.params;
 
-    const content = !isCorrect ? currentContent : nextContent;
+    const content = isCorrect ? nextContent : currentContent;
 
     if (content) {
-      throw new Error('should be implemented');
-      // @todo selectProgression
+      await this.props.createNextProgression(content.type, content.ref);
       return navigation.navigate('Slide');
     }
 
@@ -153,6 +153,7 @@ export const mapStateToProps = (state: StoreState, {navigation}: Props): Connect
 };
 
 const mapDispatchToProps: ConnectedDispatchProps = {
+  createNextProgression,
   selectCard
 };
 

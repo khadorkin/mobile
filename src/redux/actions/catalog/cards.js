@@ -3,11 +3,11 @@
 import type {DisciplineCard, ChapterCard} from '../../../layer/data/_types';
 import type {SupportedLanguage} from '../../../translations/_types';
 import type {StoreAction, ErrorAction} from '../../_types';
-import {ENGINE, CONTENT_TYPE, ERROR_TYPE} from '../../../const';
+import {CONTENT_TYPE, ERROR_TYPE} from '../../../const';
 import {getToken, getBrand, getSection} from '../../utils/state-extract';
 import {pickNextCardLevel} from '../../../utils/content';
 import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../../layer/data/_const';
-import {createLevelProgression, createChapterProgression, selectProgression} from '../progression';
+import {createNextProgression} from '../progression';
 import type {Action as ModalAction} from '../ui/modal';
 import {showModal} from '../ui/modal';
 
@@ -220,20 +220,10 @@ export const selectCard = (
     // fetch bundle
     const {services} = options;
     const state = getState();
+
     switch (item.type) {
       case CARD_TYPE.CHAPTER: {
         try {
-          // Resume progression
-          const lastProgression = await services.Progressions.findLast(
-            ENGINE.MICROLEARNING,
-            item.universalRef
-          );
-
-          if (lastProgression) {
-            // $FlowFixMe union type
-            return dispatch(selectProgression(lastProgression._id));
-          }
-
           let chapter = await services.Content.find(
             // $FlowFixMe union type
             RESTRICTED_RESOURCE_TYPE.CHAPTER,
@@ -244,10 +234,7 @@ export const selectCard = (
             chapter = await attemptToRetrieveContent(item, state, services);
           }
 
-          // $FlowFixMe union type
-          const {payload: progression} = await dispatch(createChapterProgression(chapter));
-          // $FlowFixMe union type
-          return dispatch(selectProgression(progression._id));
+          return dispatch(createNextProgression(item.type, item.universalRef));
         } catch (e) {
           if (e instanceof NoContentFoundError) {
             return dispatch(
@@ -268,18 +255,6 @@ export const selectCard = (
         }
 
         try {
-          // Resume progression
-
-          const lastProgression = await services.Progressions.findLast(
-            ENGINE.LEARNER,
-            nextModule.universalRef
-          );
-          if (lastProgression) {
-            // $FlowFixMe union type
-            return dispatch(selectProgression(lastProgression._id));
-          }
-
-          // $FlowFixMe union type
           let level = await services.Content.find(
             RESTRICTED_RESOURCE_TYPE.LEVEL,
             nextModule.universalRef
@@ -288,10 +263,7 @@ export const selectCard = (
           if (!level) {
             level = await attemptToRetrieveContent(item, state, services, nextModule.universalRef);
           }
-          // $FlowFixMe union type
-          const {payload: progression} = await dispatch(createLevelProgression(level));
-          // $FlowFixMe union type
-          return dispatch(selectProgression(progression._id));
+          return dispatch(createNextProgression(item.type, item.universalRef));
         } catch (e) {
           if (e instanceof NoContentFoundError) {
             return dispatch(

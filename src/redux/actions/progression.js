@@ -14,6 +14,7 @@ import pMap from 'p-map';
 import {getMostAccurateRef} from '../../modules/reference';
 import type {StoreAction, ErrorAction} from '../_types';
 import {getToken, getBrand} from '../utils/state-extract';
+import {CARD_TYPE, RESTRICTED_RESOURCE_TYPE} from '../../layer/data/_const';
 import {isDone} from '../../utils/progressions';
 import {ENGINE} from '../../const';
 
@@ -100,6 +101,72 @@ export const synchronizeProgression = (progressionId: string): StoreAction<Actio
       });
     }
   };
+};
+export type NextProgressionAction =
+  | {|
+      type: '@@progression/CREATE_NEXT_REQUEST',
+      meta: {|type: string, ref: string|}
+    |}
+  | {|
+      type: '@@progression/CREATE_NEXT_SUCCESS',
+      meta: {|id: string|}
+    |}
+  | ErrorAction<{|
+      type: '@@progression/CREATE_NEXT_FAILURE',
+      meta: {|id: string|}
+    |}>;
+
+export const createNextProgression = (
+  type: string,
+  ref: string
+): StoreAction<NextProgressionAction> => async (dispatch, getState, options) => {
+  const {services} = options;
+
+  await dispatch({
+    type: '@@progression/CREATE_NEXT_REQUEST',
+    meta: {type, ref}
+  });
+
+  switch (type) {
+    case CARD_TYPE.CHAPTER: {
+      // Resume progression
+      const lastProgression = await services.Progressions.findLast(ENGINE.MICROLEARNING, ref);
+
+      if (lastProgression) {
+        // $FlowFixMe union type
+        return dispatch(selectProgression(lastProgression._id));
+      }
+
+      const chapter = await services.Content.find(
+        // $FlowFixMe union type
+        RESTRICTED_RESOURCE_TYPE.CHAPTER,
+        ref
+      );
+
+      // $FlowFixMe union type
+      const {payload: progression} = await dispatch(createChapterProgression(chapter));
+      // $FlowFixMe union type
+      return dispatch(selectProgression(progression._id));
+    }
+    case CARD_TYPE.COURSE: {
+      const lastProgression = await services.Progressions.findLast(ENGINE.LEARNER, ref);
+      if (lastProgression) {
+        // $FlowFixMe union type
+        return dispatch(selectProgression(lastProgression._id));
+      }
+
+      // $FlowFixMe union type
+      let level = await services.Content.find(RESTRICTED_RESOURCE_TYPE.LEVEL, ref);
+
+      // $FlowFixMe union type
+      const {payload: progression} = await dispatch(createLevelProgression(level));
+      // $FlowFixMe union type
+      return dispatch(selectProgression(progression._id));
+    }
+
+    default:
+      throw new Error(`content type ${type} not handled`);
+  }
 };
 
 export const synchronizeProgressions: StoreAction<Action> = async (dispatch, getState, options) => {
