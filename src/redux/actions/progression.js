@@ -142,27 +142,22 @@ export const createNextProgression = (
     meta: {type, ref}
   });
 
-  if (![CONTENT_TYPE.CHAPTER, CONTENT_TYPE.LEVEL].includes(type)) {
-    return dispatch({
-      type: CREATE_NEXT_FAILURE,
-      payload: new Error(`content type ${type} is not handled`),
-      error: true,
-      meta: {type, ref}
-    });
-  }
+  try {
+    if (![CONTENT_TYPE.CHAPTER, CONTENT_TYPE.LEVEL].includes(type)) {
+      throw new Error(`content type ${type} is not handled`);
+    }
 
-  const lastProgression: Progression | null = await services.Progressions.findLast(
-    type === RESTRICTED_RESOURCE_TYPE.CHAPTER ? ENGINE.MICROLEARNING : ENGINE.LEARNER,
-    ref
-  );
+    const lastProgression: Progression | null = await services.Progressions.findLast(
+      type === RESTRICTED_RESOURCE_TYPE.CHAPTER ? ENGINE.MICROLEARNING : ENGINE.LEARNER,
+      ref
+    );
 
-  if (lastProgression && lastProgression._id) {
-    // $FlowFixMe wrong action
-    return dispatch(selectProgression(lastProgression._id));
-  }
+    if (lastProgression && lastProgression._id) {
+      // $FlowFixMe wrong action
+      return dispatch(selectProgression(lastProgression._id));
+    }
 
-  switch (type) {
-    case RESTRICTED_RESOURCE_TYPE.CHAPTER: {
+    if (type === RESTRICTED_RESOURCE_TYPE.CHAPTER) {
       // $FlowFixMe union type
       const chapter: ChapterAPI = await services.Content.find(type, ref);
 
@@ -173,9 +168,9 @@ export const createNextProgression = (
       );
       // $FlowFixMe wrong thunk action
       await dispatch(selectProgression(progression._id));
-      break;
     }
-    case RESTRICTED_RESOURCE_TYPE.LEVEL: {
+
+    if (type === RESTRICTED_RESOURCE_TYPE.LEVEL) {
       // $FlowFixMe union type
       const level: LevelAPI = await services.Content.find(type, ref);
 
@@ -186,14 +181,20 @@ export const createNextProgression = (
       );
       // $FlowFixMe wrong thunk action
       await dispatch(selectProgression(progression._id));
-      break;
     }
-  }
 
-  return dispatch({
-    type: CREATE_NEXT_SUCCESS,
-    meta: {type, ref}
-  });
+    return dispatch({
+      type: CREATE_NEXT_SUCCESS,
+      meta: {type, ref}
+    });
+  } catch (e) {
+    return dispatch({
+      type: CREATE_NEXT_FAILURE,
+      payload: e,
+      error: true,
+      meta: {type, ref}
+    });
+  }
 };
 
 export const synchronizeProgressions: StoreAction<Action> = async (dispatch, getState, options) => {
