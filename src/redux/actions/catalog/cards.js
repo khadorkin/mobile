@@ -263,7 +263,7 @@ export const selectCard = (
           if (!level) {
             level = await attemptToRetrieveContent(item, state, services, nextModule.universalRef);
           }
-          return dispatch(createNextProgression(item.type, item.universalRef));
+          return dispatch(createNextProgression(item.type, nextModule.universalRef));
         } catch (e) {
           if (e instanceof NoContentFoundError) {
             return dispatch(

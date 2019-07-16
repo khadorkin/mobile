@@ -5,7 +5,7 @@ import {StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationActions, NavigationEvents} from 'react-navigation';
 import type {ContentType} from '@coorpacademy/progression-engine';
-import {getNextContent, getCurrentProgression} from '@coorpacademy/player-store';
+import {getCurrentContent, getNextContent, getCurrentProgression} from '@coorpacademy/player-store';
 import type {LevelAPI, ChapterAPI} from '@coorpacademy/player-services';
 // import get from 'lodash/fp/get';
 
@@ -20,6 +20,7 @@ import translations from '../translations';
 import playSound, {AUDIO_FILE} from '../modules/audio-player';
 
 type ConnectedDispatchProps = {|
+  createNextProgression: typeof createNextProgression,
   selectCard: typeof selectCard
 |};
 

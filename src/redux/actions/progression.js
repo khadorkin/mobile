@@ -109,11 +109,11 @@ export type NextProgressionAction =
     |}
   | {|
       type: '@@progression/CREATE_NEXT_SUCCESS',
-      meta: {|id: string|}
+      meta: {|type: string, ref: string|}
     |}
   | ErrorAction<{|
       type: '@@progression/CREATE_NEXT_FAILURE',
-      meta: {|id: string|}
+      meta: {|type: string, ref: string|}
     |}>;
 
 export const createNextProgression = (
@@ -137,16 +137,13 @@ export const createNextProgression = (
         return dispatch(selectProgression(lastProgression._id));
       }
 
-      const chapter = await services.Content.find(
-        // $FlowFixMe union type
-        RESTRICTED_RESOURCE_TYPE.CHAPTER,
-        ref
-      );
+      const chapter = await services.Content.find(RESTRICTED_RESOURCE_TYPE.CHAPTER, ref);
 
       // $FlowFixMe union type
       const {payload: progression} = await dispatch(createChapterProgression(chapter));
       // $FlowFixMe union type
-      return dispatch(selectProgression(progression._id));
+      await dispatch(selectProgression(progression._id));
+      break;
     }
     case CARD_TYPE.COURSE: {
       const lastProgression = await services.Progressions.findLast(ENGINE.LEARNER, ref);
@@ -155,18 +152,30 @@ export const createNextProgression = (
         return dispatch(selectProgression(lastProgression._id));
       }
 
-      // $FlowFixMe union type
-      let level = await services.Content.find(RESTRICTED_RESOURCE_TYPE.LEVEL, ref);
+      const level = await services.Content.find(RESTRICTED_RESOURCE_TYPE.LEVEL, ref);
+      debugger;
 
       // $FlowFixMe union type
       const {payload: progression} = await dispatch(createLevelProgression(level));
       // $FlowFixMe union type
-      return dispatch(selectProgression(progression._id));
+      await dispatch(selectProgression(progression._id));
+      break;
     }
 
-    default:
-      throw new Error(`content type ${type} not handled`);
+    default: {
+      return dispatch({
+        type: '@@progression/CREATE_NEXT_FAILURE',
+        payoad: new Error(`content type ${type} is not handled`),
+        error: true,
+        meta: {type, ref}
+      });
+    }
   }
+
+  return dispatch({
+    type: '@@progression/CREATE_NEXT_SUCCESS',
+    meta: {type, ref}
+  });
 };
 
 export const synchronizeProgressions: StoreAction<Action> = async (dispatch, getState, options) => {
