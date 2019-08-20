@@ -7,6 +7,7 @@ import fetch from '../../modules/fetch';
 import {isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
+import {time} from '../../modules/time';
 import type {Completion} from './_types';
 import {getItem} from './core';
 
@@ -60,8 +61,11 @@ export const buildLastProgressionKey = (engineRef: string, contentRef: string) =
 export const buildProgressionKey = (progressionId: string) => `progression_${progressionId}`;
 
 const findById = async (id: string) => {
+  console.log('dataLayer progression.findById | getItem | 1/2', time());
+
   const progression = await AsyncStorage.getItem(buildProgressionKey(id));
   if (!progression) throw new Error('Progression not found');
+  console.log('dataLayer progression.findById | done | 2/2', time());
   return JSON.parse(progression);
 };
 
@@ -146,10 +150,13 @@ const save = (progression: Progression): Promise<Progression> =>
   persist(addCreatedAtToAction(progression));
 
 const findLast = async (engineRef: string, contentRef: string) => {
+  console.log('dataLayer progression.findLast | 1/5', time());
   const key = buildLastProgressionKey(engineRef, contentRef);
+  console.log('dataLayer progression.findLast | 2/5', time());
   const progressionId = await AsyncStorage.getItem(key);
   if (!progressionId) return null;
 
+  console.log('dataLayer progression.findLast | 3/5', time());
   const stringifiedProgression = await AsyncStorage.getItem(buildProgressionKey(progressionId));
 
   if (!stringifiedProgression) return null;
@@ -157,6 +164,7 @@ const findLast = async (engineRef: string, contentRef: string) => {
   // if Progression is on successNode, failureNode or extraLifeNode
   // then skip resuming
 
+  console.log('dataLayer progression.findLast | 4/5', time());
   const progression = JSON.parse(stringifiedProgression);
 
   if (!progression.state) return null;
@@ -168,6 +176,7 @@ const findLast = async (engineRef: string, contentRef: string) => {
     return null;
   }
 
+  console.log('dataLayer progression.findLast | 5/5', time());
   return progression;
 };
 
@@ -177,8 +186,10 @@ const findBestOf = (language: SupportedLanguage) => async (
   contentRef: string,
   progressionId: string
 ): Promise<number> => {
+  console.log('dataLayer progression.findBestOf | 1/2', time());
   // $FlowFixMe
   const card = await getItem('card', language, contentRef);
+  console.log('dataLayer progression.findBestOf | 2/2', time());
   return card && card.stars;
 };
 export {save, getAll, findById, findLast, findBestOf, synchronize};

@@ -8,6 +8,7 @@ import type {StoreAction, ErrorAction} from '../../_types';
 import {ENGINE} from '../../../const';
 import type {RestrictedResourceType} from '../../../layer/data/_types';
 import {RESTRICTED_RESOURCE_TYPE} from '../../../layer/data/_const';
+import {time} from '../../../modules/time';
 import {createChapterProgression} from './create-chapter-progression';
 import {createLevelProgression} from './create-level-progression';
 
@@ -35,6 +36,8 @@ export const createNextProgression = (
 ): StoreAction<NextProgressionAction> => async (dispatch, getState, options) => {
   const {services} = options;
 
+  console.log('createNextProgression | CREATE_NEXT_REQUEST | 1/4', time());
+
   await dispatch({
     type: CREATE_NEXT_REQUEST,
     meta: {type, ref}
@@ -51,6 +54,10 @@ export const createNextProgression = (
     );
 
     if (lastProgression && lastProgression._id) {
+      console.log(
+        'createNextProgression | selectProgression | got lastProgression ==> 4/4',
+        time()
+      );
       // $FlowFixMe wrong action
       return dispatch(selectProgression(lastProgression._id));
     }
@@ -70,15 +77,19 @@ export const createNextProgression = (
     }
 
     if (type === RESTRICTED_RESOURCE_TYPE.LEVEL) {
+      console.log('createNextProgression | Content.find | 2/4', time());
+
       // $FlowFixMe union type
       const level: LevelAPI = await services.Content.find(type, ref);
 
+      console.log('createNextProgression | createLevelProgression | 3/4', time());
       // $FlowFixMe await on dispatched action
       const {payload: progression}: {payload: Progression} = await dispatch(
         // $FlowFixMe wrong action
         createLevelProgression(level)
       );
 
+      console.log('createNextProgression | selectProgression | 4/4', time());
       // $FlowFixMe wrong thunk action
       await dispatch(selectProgression(progression._id));
     }

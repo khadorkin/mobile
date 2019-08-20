@@ -202,6 +202,8 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     value: undefined
   };
 
+  console.log('screen question | mapstatetoprops');
+
   const nextContent = getStepContent(state);
   const progression = getCurrentProgression(state);
 

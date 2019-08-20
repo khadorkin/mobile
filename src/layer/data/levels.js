@@ -3,6 +3,7 @@
 import type {LevelAPI} from '@coorpacademy/player-services';
 
 import translations from '../../translations';
+import {time} from '../../modules/time';
 import {getItem} from './core';
 import {CONTENT_TYPE} from './_const';
 import type {Level, Discipline} from './_types';
@@ -11,8 +12,12 @@ import {findByLevel as findDisciplineByLevel} from './disciplines';
 
 export const findById = async (ref: string): Promise<LevelAPI> => {
   const language = translations.getLanguage();
+
+  console.log('dataLayer level.findById | getItem | 1/2', time());
+
   // $FlowFixMe union type
   const item: Level = await getItem(CONTENT_TYPE.LEVEL, language, ref);
+  console.log('dataLayer level.findById | map result | 2/2', time());
   return item && mapToLevelAPI(item);
 };
 

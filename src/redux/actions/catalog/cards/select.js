@@ -12,6 +12,7 @@ import {showModal} from '../../ui/modal';
 import type {StoreState} from '../../../store';
 import type {Services} from '../../../../services';
 import {NoContentFoundError} from '../../../../models/error';
+import {time} from '../../../../modules/time';
 
 export const SELECT_REQUEST = '@@cards/SELECT_REQUEST';
 export const SELECT_SUCCESS = '@@cards/SELECT_SUCCESS';
@@ -103,6 +104,9 @@ export const selectCard = (
 ) => {
   const {services} = options;
   const state = getState();
+
+  console.log('select card | selectRequest | 1/4', time());
+
   dispatch(selectRequest(item));
 
   try {
@@ -134,6 +138,8 @@ export const selectCard = (
         throw new Error('Course has no level');
       }
 
+      console.log('select card | Content.find | 2/4', time());
+
       let level = await services.Content.find(
         RESTRICTED_RESOURCE_TYPE.LEVEL,
         nextLevel.universalRef
@@ -143,12 +149,14 @@ export const selectCard = (
         level = await attemptToRetrieveContent(item, state, services, nextLevel.universalRef);
       }
 
+      console.log('select card | createNextProgression | 3/4', time());
       await dispatch(
         // $FlowFixMe dispatched action
         createNextProgression(RESTRICTED_RESOURCE_TYPE.LEVEL, level.universalRef)
       );
     }
 
+    console.log('select card | selectSuccess | 4/4', time());
     return dispatch(selectSuccess(item));
   } catch (e) {
     if (e instanceof NoContentFoundError) {
