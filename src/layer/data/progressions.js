@@ -63,10 +63,13 @@ export const buildProgressionKey = (progressionId: string) => `progression_${pro
 const findById = async (id: string) => {
   console.log('dataLayer progression.findById | getItem | 1/2', time());
 
-  const progression = await AsyncStorage.getItem(buildProgressionKey(id));
-  if (!progression) throw new Error('Progression not found');
-  console.log('dataLayer progression.findById | done | 2/2', time());
-  return JSON.parse(progression);
+  return new Promise(function(resolve, reject) {
+    AsyncStorage.getItem(buildProgressionKey(id), (error, progression) => {
+      if (!progression) throw new Error('Progression not found');
+      console.log('dataLayer progression.findById | done | 2/2', time());
+      resolve(JSON.parse(progression));
+    });
+  });
 };
 
 const getAll = async () => {
@@ -188,8 +191,12 @@ const findBestOf = (language: SupportedLanguage) => async (
 ): Promise<number> => {
   console.log('dataLayer progression.findBestOf | 1/2', time());
   // $FlowFixMe
-  const card = await getItem('card', language, contentRef);
-  console.log('dataLayer progression.findBestOf | 2/2', time());
-  return card && card.stars;
+
+  return new Promise(function(resolve, reject) {
+    getItem('card', language, contentRef, (error, card) => {
+      console.log('dataLayer progression.findBestOf | 2/2', time());
+      resolve(card && card.stars);
+    });
+  });
 };
 export {save, getAll, findById, findLast, findBestOf, synchronize};

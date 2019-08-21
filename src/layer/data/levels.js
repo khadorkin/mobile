@@ -15,10 +15,12 @@ export const findById = async (ref: string): Promise<LevelAPI> => {
 
   console.log('dataLayer level.findById | getItem | 1/2', time());
 
-  // $FlowFixMe union type
-  const item: Level = await getItem(CONTENT_TYPE.LEVEL, language, ref);
-  console.log('dataLayer level.findById | map result | 2/2', time());
-  return item && mapToLevelAPI(item);
+  return new Promise(function(resolve, reject) {
+    getItem(CONTENT_TYPE.LEVEL, language, ref, (error, item) => {
+      console.log('dataLayer level.findById | map result | 2/2', time());
+      resolve(item && mapToLevelAPI(item));
+    });
+  });
 };
 
 export const getNextLevel = async (ref: string): Promise<LevelAPI | void> => {

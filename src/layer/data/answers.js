@@ -7,9 +7,13 @@ import type {Slide} from './_types';
 
 export const getCorrectAnswer = async (slideId: string): Promise<Array<Array<string>>> => {
   const language = await translations.getLanguage();
-  // $FlowFixMe union type
-  const slide: Slide = await getItem(CONTENT_TYPE.SLIDE, language, slideId);
-  return slide.question.content.answers;
+  // $FlowFixMe resolve reject
+  return new Promise(function(resolve, reject) {
+    // $FlowFixMe union type
+    getItem(CONTENT_TYPE.SLIDE, language, slideId, (error, slide: Slide) =>
+      resolve(slide.question.content.answers)
+    );
+  });
 };
 
 export default getCorrectAnswer;

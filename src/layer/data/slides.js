@@ -10,9 +10,12 @@ import type {Slide} from './_types';
 
 export const findById = async (universalRef: string): Promise<SlideAPI> => {
   const language = translations.getLanguage();
-  // $FlowFixMe union type
-  const item: Slide = await getItem(CONTENT_TYPE.SLIDE, language, universalRef);
-  return mapToSlideAPI(item);
+
+  return new Promise(function(resolve, reject) {
+    getItem(CONTENT_TYPE.SLIDE, language, universalRef, (error, item) => {
+      resolve(mapToSlideAPI(item));
+    });
+  });
 };
 
 export const findByChapter = async (chapterId: string): Promise<Array<SlideAPI>> => {

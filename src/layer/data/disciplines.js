@@ -8,9 +8,12 @@ import {getItem, getItemsPerResourceType} from './core';
 export const find = async (ref: string): Promise<Discipline | void> => {
   const language = translations.getLanguage();
   // $FlowFixMe union type
-  const discipline: Discipline = await getItem(CONTENT_TYPE.DISCIPLINE, language, ref);
 
-  return discipline;
+  return new Promise(function(resolve, reject) {
+    getItem(CONTENT_TYPE.DISCIPLINE, language, ref, (error, discipline) => {
+      resolve(discipline);
+    });
+  });
 };
 
 export const findByChapter = async (ref: string): Promise<Discipline | void> => {

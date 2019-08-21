@@ -11,9 +11,12 @@ import {findByChapter as findDisciplineByChapter} from './disciplines';
 
 export const findById = async (universalRef: string): Promise<ChapterAPI> => {
   const language = translations.getLanguage();
-  // $FlowFixMe union type
-  const item: Chapter = await getItem(CONTENT_TYPE.CHAPTER, language, universalRef);
-  return item && mapToChapterAPI(item);
+
+  return new Promise(function(resolve, reject) {
+    getItem(CONTENT_TYPE.CHAPTER, language, universalRef, (error, item: Chapter) => {
+      resolve(item && mapToChapterAPI(item));
+    });
+  });
 };
 
 export const find = async (): Promise<Array<ChapterAPI>> => {

@@ -97,9 +97,12 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
     disciplineCard.modules.map(
       async (level): Promise<Completion | null> => {
         const completionKey = buildCompletionKey(ENGINE.LEARNER, level.universalRef || level.ref);
-        const completionString = await AsyncStorage.getItem(completionKey);
-        if (!completionString) return null;
-        return JSON.parse(completionString);
+        return new Promise(function(resolve, reject) {
+          AsyncStorage.getItem(completionKey, (error, completionString) => {
+            if (!completionString) return null;
+            resolve(JSON.parse(completionString));
+          });
+        });
       }
     )
   );
@@ -130,13 +133,14 @@ export const refreshCard = (card: Card): Promise<Card> => {
   return refreshChapterCard(card);
 };
 
-export const getCardFromLocalStorage = async (
-  ref: string
-): Promise<DisciplineCard | ChapterCard> => {
+export const getCardFromLocalStorage = (ref: string): Promise<DisciplineCard | ChapterCard> => {
   const language = translations.getLanguage();
-  // $FlowFixMe
-  const card = await getItem('card', language, ref);
-  return refreshCard(card);
+
+  return new Promise(function(resolve, reject) {
+    getItem('card', language, ref, (error, card) => {
+      resolve(refreshCard(card));
+    });
+  });
 };
 
 const cardsToPairs = (cards: {[key: string]: DisciplineCard | ChapterCard}) => {

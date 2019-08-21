@@ -9,17 +9,19 @@ import type {Resource, ResourceType} from './_types';
 export const buildKey = (resourceType: ResourceType, language: SupportedLanguage, ref: string) =>
   `${resourceType}:${language}:${ref}`;
 
-export const getItem = async (
+export const getItem = (
   resourceType: ResourceType,
   language: SupportedLanguage,
-  ref: string
+  ref: string,
+  next: (error: ?Error, result: ?string) => void
 ): Promise<Resource> => {
   const key = buildKey(resourceType, language, ref);
   try {
     console.log(`  AsyncStorage getItem | ${key} |  1/2`, time());
-    const item = await AsyncStorage.getItem(key);
-    console.log(`  AsyncStorage getItem | ${key} |  2/2`, time());
-    return JSON.parse(item);
+    AsyncStorage.getItem(key, (error, item) => {
+      console.log(`  AsyncStorage getItem | ${key} |  2/2`, time());
+      return next(error, JSON.parse(item));
+    });
   } catch (e) {
     throw new Error(`Resource not found with ref: ${ref}`);
   }
