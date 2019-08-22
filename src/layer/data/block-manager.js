@@ -33,6 +33,7 @@ const getDuration = t => {
 // ----------------------------------------------------------
 
 const queue = {};
+const NB_ITEMS_PER_BLOCKS = 20;
 
 // ----------------------------------------------------------
 
@@ -43,15 +44,60 @@ export const getItem = async key => {
   return item;
 };
 
-const storeBlock = async blockKey => {
+export const increaseBlockCursor = async blockType => {
+  let metadata = await getItem('metadata');
+
+  metadata = {
+    [blockType]: {
+      currentNum: metadata ? metadata[blockType].currentNum + 1 : 1
+    }
+  };
+
+  await AsyncStorage.setItem('metadata', metadata);
+  console.log(`[block-manager] increaseB '${blockType}'`, metadata);
+  return metadata;
+};
+
+export const getWritingBlockData = async blockType => {
+  let metadata = await getItem('metadata');
+
+  if (!metadata) {
+    metadata = await increaseBlockCursor(blockType);
+  }
+
+  const blockData = metadata[blockType];
+
+  return {
+    blockKey: `${blockType}-${blockData.currentNum}`
+  };
+};
+
+const length = items => Object.keys(items).length;
+
+const storeBlock = async blockType => {
   const t = startTime();
-  console.log(`[block-manager] storeBlock '${blockKey}'`);
-  const newItems = queue[blockKey][0];
+  console.log(`[block-manager] storeBlock '${blockType}'`);
+  let newItems = queue[blockType][0];
+  const {blockKey} = await getWritingBlockData(blockType);
 
   console.log(`[block-manager] storeBlock items queued: `, newItems);
 
   const currentBlock = await getItem(blockKey);
   const currentItems = currentBlock ? JSON.parse(currentBlock) : {};
+  const remainingSpace = NB_ITEMS_PER_BLOCKS - Object.keys(currentItems).length;
+
+  if (length(newItems) > remainingSpace) {
+    const newItemsRemaining = newItems.slice(remainingSpace);
+    console.log(
+      `[block-manager] not enough room in this block, queueing on top ${length(
+        newItemsRemaining
+      )} items`,
+      newItemsRemaining
+    );
+    newItems = newItems.slice(0, remainingSpace);
+    queue[blockType].splice(1, 0, newItemsRemaining);
+    await increaseBlockCursor(blockType);
+  }
 
   const mergedItems = {
     ...currentItems,
@@ -82,9 +128,9 @@ const storeBlock = async blockKey => {
     console.log(`[block-manager] nothing to store! block is already containing these items`);
   }
 
-  queue[blockKey].shift();
+  queue[blockType].shift();
 
-  if (queue[blockKey].length > 0) {
+  if (queue[blockType].length > 0) {
     console.log(`[block-manager] next storing in queue for block '${blockKey}'`);
     storeBlock(blockKey);
     return;
@@ -97,19 +143,19 @@ const storeBlock = async blockKey => {
   );
 };
 
-export const store = async (blockKey, items) => {
+export const store = async (blockType, items) => {
   console.log('[block-manager] store');
 
-  if (queue[blockKey] && queue[blockKey].length > 0) {
-    console.log(`[block-manager] queueing for block '${blockKey}'`, items);
-    queue[blockKey].push(items);
+  if (queue[blockType] && queue[blockType].length > 0) {
+    console.log(`[block-manager] queueing for block type '${blockType}'`, items);
+    queue[blockType].push(items);
     return;
   }
 
-  console.log(`[block-manager] starting queue for block '${blockKey}'`);
-  queue[blockKey] = [items];
+  console.log(`[block-manager] starting queue for block type '${blockType}'`);
+  queue[blockType] = [items];
 
-  storeBlock(blockKey);
+  storeBlock(blockType);
 };
 
 export const storeOne = async (key, value) => {
