@@ -82,6 +82,7 @@
     "hoist-non-react-statics": "^3.2.1",
     "jsc-android": "^241213.2.0",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
     "p-map": "^2.1.0",
     "react": "16.8.3",
     "react-native": "0.59.9",
