@@ -1,5 +1,4 @@
 // @flow
-import AsyncStorage from '@react-native-community/async-storage';
 
 import fetch from '../../modules/fetch';
 import {__E2E__} from '../../modules/environment';
@@ -8,6 +7,7 @@ import disciplinesBundle from '../../__fixtures__/discipline-bundle';
 import chaptersBundle from '../../__fixtures__/chapter-bundle';
 import type {SupportedLanguage} from '../../translations/_types';
 import translations from '../../translations';
+import {store} from './block-manager';
 import {buildKey} from './core';
 import type {
   BundledDiscipline,
@@ -95,8 +95,8 @@ export const storeBundle = async (
   const normalizedBundle = normalizeBundle(bundledResource, language);
   try {
     // eslint-disable-next-line no-console
-    console.debug('Storing:', normalizedBundle.map(item => item[0]));
-    await AsyncStorage.multiSet(normalizedBundle);
+    console.log('Storing:', normalizedBundle.map(item => item[0]));
+    await store(normalizedBundle);
   } catch (e) {
     throw new Error('Could not store the provided resource');
   }

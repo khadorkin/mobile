@@ -9,6 +9,7 @@ import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {Completion} from './_types';
 import {getItem} from './core';
+import {getItem as getItemFromBlocks, remove, storeOne, updateItem} from './block-manager';
 
 export const buildCompletionKey = (engineRef: string, contentRef: string) =>
   `completion_${engineRef}_${contentRef}`;
@@ -38,19 +39,19 @@ export const mergeCompletion = (
 
 export const storeOrReplaceCompletion = async (progression: Progression): Promise<Completion> => {
   const completionKey = buildCompletionKey(progression.engine.ref, progression.content.ref);
-  const stringifiedCompletion = await AsyncStorage.getItem(completionKey);
+  const stringifiedCompletion = await getItemFromBlocks(completionKey);
 
   if (stringifiedCompletion) {
     const mergedCompletion = mergeCompletion(
       JSON.parse(stringifiedCompletion),
       mapProgressionToCompletion(progression)
     );
-    await AsyncStorage.mergeItem(completionKey, JSON.stringify(mergedCompletion));
+    await updateItem(completionKey, mergedCompletion);
     return mergedCompletion;
   }
 
   const completion = mapProgressionToCompletion(progression);
-  await AsyncStorage.setItem(completionKey, JSON.stringify(completion));
+  await storeOne(completionKey, completion);
   return completion;
 };
 
@@ -60,7 +61,7 @@ export const buildLastProgressionKey = (engineRef: string, contentRef: string) =
 export const buildProgressionKey = (progressionId: string) => `progression_${progressionId}`;
 
 const findById = async (id: string) => {
-  const progression = await AsyncStorage.getItem(buildProgressionKey(id));
+  const progression = await getItemFromBlocks(buildProgressionKey(id));
   if (!progression) throw new Error('Progression not found');
   return JSON.parse(progression);
 };
@@ -104,7 +105,7 @@ const synchronize = async (
 
   if (response.status >= 400) throw new Error(response.statusText);
 
-  await AsyncStorage.removeItem(buildProgressionKey(_id));
+  await remove(buildProgressionKey(_id));
 
   return;
 };
@@ -131,8 +132,8 @@ const persist = async (progression: Progression): Promise<Progression> => {
   const {_id} = progression;
   if (_id === undefined) throw new TypeError('progression has no property _id');
 
-  await AsyncStorage.setItem(buildProgressionKey(_id), JSON.stringify(progression));
-  await AsyncStorage.setItem(
+  await storeOne(buildProgressionKey(_id), progression);
+  await storeOne(
     buildLastProgressionKey(progression.engine.ref, progression.content.ref),
     progression._id || ''
   );
@@ -147,10 +148,10 @@ const save = (progression: Progression): Promise<Progression> =>
 
 const findLast = async (engineRef: string, contentRef: string) => {
   const key = buildLastProgressionKey(engineRef, contentRef);
-  const progressionId = await AsyncStorage.getItem(key);
+  const progressionId = await getItemFromBlocks(key);
   if (!progressionId) return null;
 
-  const stringifiedProgression = await AsyncStorage.getItem(buildProgressionKey(progressionId));
+  const stringifiedProgression = await getItemFromBlocks(buildProgressionKey(progressionId));
 
   if (!stringifiedProgression) return null;
 

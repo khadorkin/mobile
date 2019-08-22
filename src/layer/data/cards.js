@@ -1,6 +1,5 @@
 // @flow
 
-import AsyncStorage from '@react-native-community/async-storage';
 import {getConfig} from '@coorpacademy/progression-engine';
 
 import fetch from '../../modules/fetch';
@@ -15,6 +14,7 @@ import type {QueryParams} from '../../modules/uri';
 
 import {ENGINE} from '../../const';
 import type {Section} from '../../types';
+import {store, getItem as getItemFromBlocks} from './block-manager';
 import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
@@ -97,7 +97,7 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
     disciplineCard.modules.map(
       async (level): Promise<Completion | null> => {
         const completionKey = buildCompletionKey(ENGINE.LEARNER, level.universalRef || level.ref);
-        const completionString = await AsyncStorage.getItem(completionKey);
+        const completionString = await getItemFromBlocks(completionKey);
         if (!completionString) return null;
         return JSON.parse(completionString);
       }
@@ -113,7 +113,7 @@ const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard
     current: chapterCard && chapterCard.completion
   };
   const completionKey = buildCompletionKey(ENGINE.MICROLEARNING, chapterCard && chapterCard.ref);
-  const latestCompletion = await AsyncStorage.getItem(completionKey);
+  const latestCompletion = await getItemFromBlocks(completionKey);
 
   if (!latestCompletion) {
     return chapterCard;
@@ -196,7 +196,7 @@ const saveDashboardCardsInAsyncStorage = async (
   if (cards.length > 0) {
     try {
       const _cards = cardsToPairs(cardsToKeys(cards, language));
-      await AsyncStorage.multiSet(_cards);
+      await store(_cards);
     } catch (e) {
       throw new Error('could not store the dashboard cards');
     }
