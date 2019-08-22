@@ -142,8 +142,8 @@ export const getCardFromLocalStorage = async (
 const cardsToPairs = (cards: {[key: string]: DisciplineCard | ChapterCard}) => {
   return Object.entries(cards).reduce((acc, card) => {
     const [cardKey, cardContent] = card;
-    return [...acc, [cardKey, JSON.stringify(cardContent)]];
-  }, []);
+    return {...acc, [cardKey]: JSON.stringify(cardContent)};
+  }, {});
 };
 
 const createDisciplineCardForModules = (card: DisciplineCard, language: SupportedLanguage) => {
@@ -196,7 +196,7 @@ const saveDashboardCardsInAsyncStorage = async (
   if (cards.length > 0) {
     try {
       const _cards = cardsToPairs(cardsToKeys(cards, language));
-      await store(_cards);
+      await store('cards', _cards);
     } catch (e) {
       throw new Error('could not store the dashboard cards');
     }
