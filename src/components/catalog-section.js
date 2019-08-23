@@ -4,7 +4,6 @@ import * as React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
 import theme from '../modules/theme';
-import isEqual from '../modules/equal';
 import translations from '../translations';
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import {CARD_TYPE} from '../layer/data/_const';
@@ -64,18 +63,6 @@ class CatalogSection extends React.Component<Props> {
   props: Props;
 
   offsetX: number = 0;
-
-  shouldComponentUpdate({cards: nextCards, ...nextProps}: Props) {
-    const {cards, ...props} = this.props;
-
-    return (
-      typeof cards !== typeof nextCards ||
-      (cards &&
-        nextCards &&
-        cards.filter(card => card).length !== nextCards.filter(card => card).length) ||
-      !isEqual(props, nextProps)
-    );
-  }
 
   keyExtractor = (item: DisciplineCard | ChapterCard | void, index: number) => {
     const {sectionRef, testID} = this.props;
@@ -157,6 +144,7 @@ class CatalogSection extends React.Component<Props> {
 
   render() {
     const {sectionRef, cards, onScroll, testID} = this.props;
+
     return (
       <View>
         {this.renderTitle()}
