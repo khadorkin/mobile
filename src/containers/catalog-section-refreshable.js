@@ -55,7 +55,7 @@ class CatalogSectionRefreshable extends React.Component<Props> {
         cards.filter(card => card).length !== nextCards.filter(card => card).length) ||
       !isEqual(props, nextProps)
     );
-  }
+  };
 
   getOffset = (offsetX: number): number => Math.trunc(offsetX / ITEM_WIDTH);
 
@@ -104,19 +104,22 @@ class CatalogSectionRefreshable extends React.Component<Props> {
   }
 }
 
-const getCardsRef = (state: StoreState, {sectionRef}: Props) =>
-  (sectionRef &&
-    state.catalog.entities.sections[sectionRef] &&
-    state.catalog.entities.sections[sectionRef][translations.getLanguage()] &&
-    state.catalog.entities.sections[sectionRef][translations.getLanguage()].cardsRef) ||
-  [];
+const getCardsRef = (state: StoreState, {sectionRef}: Props) => {
+  const cardsRef =
+    (sectionRef &&
+      state.catalog.entities.sections[sectionRef] &&
+      state.catalog.entities.sections[sectionRef][translations.getLanguage()] &&
+      state.catalog.entities.sections[sectionRef][translations.getLanguage()].cardsRef) ||
+    [];
+  return cardsRef;
+};
 
 const getCards = (state: StoreState) => state.catalog.entities.cards;
 
 const getCardsState = createArraySelector(
   [getCardsRef, getCards],
-  // @todo type
-  (cardRef: string | void, cards) => cards[cardRef] && cards[cardRef][translations.getLanguage()]
+  (cardRef: string | void, cards: $ExtractReturn<typeof getCards>) =>
+    cardRef && cards[cardRef] && cards[cardRef][translations.getLanguage()]
 );
 
 const mapStateToProps = (state: StoreState, props: Props): ConnectedStateProps => ({
