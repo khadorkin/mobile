@@ -16,14 +16,14 @@ import Button from './button';
 import Space from './space';
 import HeaderBackButton from './header-back-button';
 import Touchable from './touchable';
-
 import Text from './text';
 
 export type Props = {|
-  onClose: () => void,
   type: ErrorType,
-  onPress: () => void,
-  onAssistancePress: () => void
+  onClose: () => void,
+  onRefresh: () => void,
+  onAssistancePress: () => void,
+  testID?: string
 |};
 
 const HEADER_HEIGHT = 75;
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ErrorModal = ({onPress, onClose, onAssistancePress, type}: Props) => {
+const ErrorModal = ({onClose, onRefresh, onAssistancePress, type, testID}: Props) => {
   const headerText =
     type === ERROR_TYPE.NO_CONTENT_FOUND
       ? translations.dataLost
@@ -122,7 +122,7 @@ const ErrorModal = ({onPress, onClose, onAssistancePress, type}: Props) => {
       <View style={styles.contentFooter}>
         <Text style={[styles.text, styles.smallText]}>{translations.refreshNotWorking}</Text>
         <Space type="tiny" />
-        <Touchable onPress={onAssistancePress} analyticsID="ask-for-help">
+        <Touchable onPress={onAssistancePress} testID="ask-for-help" analyticsID="ask-for-help">
           <Text style={[styles.text, styles.smallText, styles.underlineText]}>
             {translations.askForHelp}
           </Text>
@@ -132,19 +132,23 @@ const ErrorModal = ({onPress, onClose, onAssistancePress, type}: Props) => {
 
   const button =
     type === ERROR_TYPE.NO_CONTENT_FOUND ? (
-      <Button onPress={onPress} analyticsID="button-retry-action">
+      <Button onPress={onRefresh} testID="button-retry-action" analyticsID="button-retry-action">
         <RedoIcon color={theme.colors.white} height={25} width={25} />
         <Space />
         <Text style={styles.buttonText}>{translations.refresh}</Text>
       </Button>
     ) : (
-      <Button onPress={onPress} analyticsID="button-retry-action">
+      <Button
+        onPress={onAssistancePress}
+        testID="button-retry-action"
+        analyticsID="button-retry-action"
+      >
         <Text style={styles.buttonText}>{translations.iWantIt}</Text>
       </Button>
     );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={testID}>
       <View style={styles.header}>
         <HeaderBackButton
           color={theme.colors.gray.dark}

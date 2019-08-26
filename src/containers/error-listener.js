@@ -4,16 +4,16 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import {Linking} from 'react-native';
 import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
 
 import ErrorModalComponent from '../components/error-modal';
 import type {ErrorType} from '../types';
-import {ERROR_TYPE} from '../const';
 import {hideModal, refresh} from '../redux/actions/ui/modal';
 import {signOut} from '../redux/actions/authentication';
+import type {StoreState} from '../redux/store';
 import {assistanceEmail} from '../../app';
 
-type ConnectedStateToProps = {|
-  ...ReactNavigation$WithNavigationProps,
+export type ConnectedStateProps = {|
   isVisible: boolean,
   errorType: ErrorType,
   lastAction?: () => void
@@ -25,13 +25,17 @@ type ConnectedDispatchProps = {|
   signOut: typeof signOut
 |};
 
-export type Props = {|
-  ...ConnectedStateToProps,
-  ...ConnectedDispatchProps,
+export type OwnProps = {|
   onClose: () => void
 |};
 
-class ErrorModal extends React.PureComponent<Props> {
+type Props = {|
+  ...ConnectedStateProps,
+  ...ConnectedDispatchProps,
+  ...OwnProps
+|};
+
+class ErrorListener extends React.PureComponent<Props> {
   props: Props;
 
   handleAssistancePress = () => {
@@ -44,12 +48,8 @@ class ErrorModal extends React.PureComponent<Props> {
     this.props.onClose();
   };
 
-  handlePress = () => {
-    if (this.props.errorType === ERROR_TYPE.PLATFORM_NOT_ACTIVATED) {
-      this.handleAssistancePress();
-    } else {
-      this.props.refresh();
-    }
+  handleRefresh = () => {
+    this.props.refresh();
   };
 
   render() {
@@ -60,23 +60,27 @@ class ErrorModal extends React.PureComponent<Props> {
         isVisible={this.props.isVisible}
         onSwipeComplete={this.handleClose}
         onBackdropPress={this.handleClose}
+        testID="modal"
       >
         <ErrorModalComponent
           onClose={this.handleClose}
-          onPress={this.handlePress}
+          onRefresh={this.handleRefresh}
           onAssistancePress={this.handleAssistancePress}
           type={errorType}
+          testID="error-modal"
         />
       </Modal>
     );
   }
 }
 
-const mapStateToProps = ({error}: StoreState): ConnectedStateToProps => ({
-  isVisible: error.isVisible,
-  errorType: error.errorType,
-  lastAction: error.lastAction
-});
+const getError = (state: StoreState) => state.error;
+const getErrorState = createSelector(
+  [getError],
+  error => error
+);
+
+export const mapStateToProps = (state: StoreState): ConnectedStateProps => getErrorState(state);
 
 const mapDispatchToProps: ConnectedDispatchProps = {
   hideModal,
@@ -84,7 +88,8 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   signOut
 };
 
+export {ErrorListener as Component};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ErrorModal);
+)(ErrorListener);

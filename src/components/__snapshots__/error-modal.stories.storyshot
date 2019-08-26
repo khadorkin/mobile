@@ -283,7 +283,9 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
           }
         }
       >
-        <View>
+        <View
+          testID="button-retry-action"
+        >
           <View
             accessible={true}
             isTVSelectable={true}
@@ -307,6 +309,7 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
                 "opacity": 1,
               }
             }
+            testID="button-retry-action-native"
           >
             <RNSVGSvgView
               align="xMidYMid"
@@ -589,6 +592,7 @@ exports[`Storyshots ErrorModal No Content Found case 1`] = `
               "opacity": 1,
             }
           }
+          testID="ask-for-help"
         >
           <Text
             style={
@@ -1161,7 +1165,9 @@ exports[`Storyshots ErrorModal Platform not activated case 1`] = `
           }
         }
       >
-        <View>
+        <View
+          testID="button-retry-action"
+        >
           <View
             accessible={true}
             isTVSelectable={true}
@@ -1185,6 +1191,7 @@ exports[`Storyshots ErrorModal Platform not activated case 1`] = `
                 "opacity": 1,
               }
             }
+            testID="button-retry-action-native"
           >
             <Text
               style={

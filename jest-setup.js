@@ -27,11 +27,11 @@ jest.mock('NativeEventEmitter', () => {
 
 // react-native Linking
 NativeModules.Linking = {
-  addEventListener: () => {},
-  removeEventListener: () => {},
-  openURL: () => {},
-  canOpenURL: () => {},
-  getInitialURL: () => {}
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  openURL: jest.fn(),
+  canOpenURL: jest.fn(),
+  getInitialURL: jest.fn()
 };
 
 // react-native-localization

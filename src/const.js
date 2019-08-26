@@ -29,7 +29,7 @@ export const RESOURCE_TYPE: {
   IMG: 'img'
 };
 
-export const ERROR_TYPE: {[string]: ErrorType} = {
+export const ERROR_TYPE: {['PLATFORM_NOT_ACTIVATED' | 'NO_CONTENT_FOUND']: ErrorType} = {
   PLATFORM_NOT_ACTIVATED: 'PLATFORM_NOT_ACTIVATED',
   NO_CONTENT_FOUND: 'NO_CONTENT_FOUND'
 };

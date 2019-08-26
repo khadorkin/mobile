@@ -18,6 +18,7 @@ import type {
 } from '../layer/data/_types';
 import type {StoreState} from '../redux/store';
 import type {State as CatalogState} from '../redux/reducers/catalog';
+import type {State as ErrorState} from '../redux/reducers/ui/error';
 import {initialState as permissionsState} from '../redux/reducers/permissions';
 import {mapToLevel, mapToSlide, mapToChapter, mapToDiscipline} from './utils/mappers';
 
@@ -82,6 +83,20 @@ export const createCatalogState = (
   }
 });
 
+export const createErrorState = <T>({
+  isVisible,
+  errorType,
+  lastAction
+}: {
+  isVisible?: $PropertyType<ErrorState<T>, 'isVisible'>,
+  errorType?: $PropertyType<ErrorState<T>, 'errorType'>,
+  lastAction?: $PropertyType<ErrorState<T>, 'lastAction'>
+}): ErrorState<T> => ({
+  isVisible: Boolean(isVisible),
+  errorType,
+  lastAction
+});
+
 export const createStoreState = ({
   levels,
   slides,
@@ -94,7 +109,8 @@ export const createStoreState = ({
   data: baseData,
   ui: baseUi,
   authentication: baseAuthentication,
-  nextContent
+  nextContent,
+  error
 }: {
   levels: Array<Level>,
   slides: Array<Slide>,
@@ -111,7 +127,9 @@ export const createStoreState = ({
   // eslint-disable-next-line flowtype/no-weak-types
   authentication?: any,
   catalog?: CatalogState,
-  nextContent?: SlideAPI | ChapterAPI | LevelAPI
+  nextContent?: SlideAPI | ChapterAPI | LevelAPI,
+  // eslint-disable-next-line flowtype/no-weak-types
+  error?: ErrorState<any>
 }): StoreState => {
   const mappedLevel: {[key: string]: LevelStore} = createMapObject(levels.map(mapToLevel));
   const mappedSlide: {[key: string]: SlideEngine} = createMapObject(slides.map(mapToSlide));
@@ -200,9 +218,7 @@ export const createStoreState = ({
   return {
     data: (baseData && {...data, ...baseData}) || data,
     ui: (baseUi && {...ui, ...baseUi}) || ui,
-    error: {
-      isVisible: false
-    },
+    error: error || createErrorState({}),
     navigation: {
       currentNavigatorName: 'dummyNavigatorName',
       currentAppScreenName: 'dummycurrentAppScreenName',
