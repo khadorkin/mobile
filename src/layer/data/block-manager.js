@@ -14,8 +14,6 @@ const startTime = () => {
   return t;
 };
 
-window.getTimes = () => times;
-
 const getDuration = t => {
   const date = new Date();
   const startDate = times[t];
@@ -54,7 +52,7 @@ export const increaseBlockCursor = async blockType => {
   };
 
   await AsyncStorage.setItem('metadata', metadata);
-  console.log(`[block-manager] increaseB '${blockType}'`, metadata);
+  console.log(`[block-manager] increaseBlockCursor '${blockType}'`, metadata);
   return metadata;
 };
 
@@ -131,9 +129,8 @@ const storeBlock = async blockType => {
   queue[blockType].shift();
 
   if (queue[blockType].length > 0) {
-    console.log(`[block-manager] next storing in queue for block '${blockKey}'`);
-    storeBlock(blockKey);
-    return;
+    console.log(`[block-manager] next storing in queue for block '${blockType}'`);
+    return storeBlock(blockType);
   }
 
   console.log(
@@ -143,8 +140,8 @@ const storeBlock = async blockType => {
   );
 };
 
-export const store = async (blockType, items) => {
-  console.log('[block-manager] store');
+export const store = (blockType, items) => {
+  console.log('[block-manager] ==> store');
 
   if (queue[blockType] && queue[blockType].length > 0) {
     console.log(`[block-manager] queueing for block type '${blockType}'`, items);
@@ -155,7 +152,7 @@ export const store = async (blockType, items) => {
   console.log(`[block-manager] starting queue for block type '${blockType}'`);
   queue[blockType] = [items];
 
-  storeBlock(blockType);
+  return storeBlock(blockType);
 };
 
 export const storeOne = async (key, value) => {
