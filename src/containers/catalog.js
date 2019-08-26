@@ -60,11 +60,17 @@ class Catalog extends React.Component<Props, State> {
 
   shouldComponentUpdate({sections: nextSections, ...nextProps}: Props, nextState: State) {
     const {sections, ...props} = this.props;
+    const emptySections = sections.filter(s => s && isEmptySection(s));
+    const nextEmptySections = nextSections.filter(s => s && isEmptySection(s));
+    const placeholderSections = sections.filter(s => s && s.cardsRef === undefined);
+    const nextPlaceholderSections = nextSections.filter(s => s && s.cardsRef === undefined);
 
+    // For performance purpose only (prevent useless render)
     return (
-      !isEqual(this.state, nextState) ||
-      // For performance purpose only (prevent useless render)
       sections.length !== nextSections.length ||
+      emptySections.length !== nextEmptySections.length ||
+      placeholderSections.length !== nextPlaceholderSections.length ||
+      !isEqual(this.state, nextState) ||
       !isEqual(props, nextProps)
     );
   }
@@ -170,11 +176,8 @@ const getSections = (state: StoreState) => state.catalog.entities.sections;
 const getSectionsRef = (state: StoreState) => state.catalog.sectionsRef || [];
 const getSectionsState = createArraySelector(
   [getSectionsRef, getSections],
-  (sectionRef, sections) => {
-    const section =
-      sectionRef && sections[sectionRef] && sections[sectionRef][translations.getLanguage()];
-    return section && section.cardsRef !== null ? section : undefined;
-  }
+  (sectionRef, sections) =>
+    sectionRef && sections[sectionRef] && sections[sectionRef][translations.getLanguage()]
 );
 
 export const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
