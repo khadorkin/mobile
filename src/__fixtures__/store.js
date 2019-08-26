@@ -65,6 +65,7 @@ export const createCatalogState = (
   sections?: Array<Section | void> = [],
   cards?: Array<DisciplineCard | ChapterCard> = []
 ): CatalogState => ({
+  sectionsRef: sections.map(section => (section ? section.key : undefined)),
   entities: {
     sections: sections.reduce((result, section) => {
       if (section) {

@@ -14,7 +14,7 @@ import translations from '../translations';
 import withLayout from './with-layout';
 import type {WithLayoutProps} from './with-layout';
 
-type ConnectedStateProps = {|
+export type ConnectedStateProps = {|
   cards: Array<DisciplineCard | ChapterCard | void>
 |};
 
@@ -22,20 +22,22 @@ type ConnectedDispatchProps = {|
   fetchCards: typeof fetchCards
 |};
 
+export type OwnProps = $Diff<
+  CatalogSectionProps,
+  {|
+    cards: $PropertyType<CatalogSectionProps, 'cards'>,
+    onScroll: $PropertyType<CatalogSectionProps, 'onScroll'>
+  |}
+>;
+
 type Props = {|
   ...ConnectedStateProps,
   ...ConnectedDispatchProps,
   ...WithLayoutProps,
-  ...$Diff<
-    CatalogSectionProps,
-    {|
-      cards: $PropertyType<CatalogSectionProps, 'cards'>,
-      onScroll: $PropertyType<CatalogSectionProps, 'onScroll'>
-    |}
-  >
+  ...OwnProps
 |};
 
-const DEBOUNCE_DURATION = 100;
+export const DEBOUNCE_DURATION = 100;
 
 class CatalogSectionRefreshable extends React.Component<Props> {
   props: Props;
@@ -104,7 +106,7 @@ class CatalogSectionRefreshable extends React.Component<Props> {
   }
 }
 
-const getCardsRef = (state: StoreState, {sectionRef}: Props) => {
+const getCardsRef = (state: StoreState, {sectionRef}: OwnProps) => {
   const cardsRef =
     (sectionRef &&
       state.catalog.entities.sections[sectionRef] &&
@@ -122,7 +124,7 @@ const getCardsState = createArraySelector(
     cardRef && cards[cardRef] && cards[cardRef][translations.getLanguage()]
 );
 
-const mapStateToProps = (state: StoreState, props: Props): ConnectedStateProps => ({
+export const mapStateToProps = (state: StoreState, props: OwnProps): ConnectedStateProps => ({
   cards: getCardsState(state, props)
 });
 
@@ -130,6 +132,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   fetchCards
 };
 
+export {CatalogSectionRefreshable as Component};
 export default withLayout(
   connect(
     mapStateToProps,

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {createSelector} from 'reselect';
+import {createArraySelector} from 'reselect-map';
 
 import CatalogComponent, {SEPARATOR_HEIGHT} from '../components/catalog';
 import type {Props as ComponentProps} from '../components/catalog';
@@ -16,7 +16,7 @@ import type {Section} from '../types';
 import withLayout from './with-layout';
 import type {WithLayoutProps} from './with-layout';
 
-type ConnectedStateProps = {|
+export type ConnectedStateProps = {|
   sections: Array<Section | void>
 |};
 
@@ -24,20 +24,24 @@ type ConnectedDispatchProps = {|
   fetchSections: typeof fetchSections
 |};
 
+export type OwnProps = {|
+  onCardPress: $PropertyType<ComponentProps, 'onCardPress'>,
+  children?: $PropertyType<ComponentProps, 'children'>
+|};
+
 type Props = {|
   ...ConnectedStateProps,
   ...ConnectedDispatchProps,
   ...WithLayoutProps,
-  onCardPress: $PropertyType<ComponentProps, 'onCardPress'>,
-  children?: $PropertyType<ComponentProps, 'children'>
+  ...OwnProps
 |};
 
 type State = {|
   isRefreshing: boolean
 |};
 
-const DEFAULT_LIMIT = 4;
-const DEBOUNCE_DURATION = 100;
+export const DEFAULT_LIMIT = 4;
+export const DEBOUNCE_DURATION = 100;
 
 class Catalog extends React.Component<Props, State> {
   props: Props;
@@ -107,7 +111,7 @@ class Catalog extends React.Component<Props, State> {
 
   getLimit = (offset: number): number => {
     const {layout, sections} = this.props;
-    if (!layout || !sections) {
+    if (!layout || sections.length === 0) {
       return DEFAULT_LIMIT;
     }
 
@@ -164,15 +168,16 @@ class Catalog extends React.Component<Props, State> {
 
 const getSections = (state: StoreState) => state.catalog.entities.sections;
 const getSectionsRef = (state: StoreState) => state.catalog.sectionsRef || [];
-const getSectionsState = createSelector(
+const getSectionsState = createArraySelector(
   [getSectionsRef, getSections],
-  (sectionsRef, sections) =>
-    sectionsRef
-      .map(key => key && sections[key] && sections[key][translations.getLanguage()])
-      .filter(item => item && item.cardsRef !== null)
+  (sectionRef, sections) => {
+    const section =
+      sectionRef && sections[sectionRef] && sections[sectionRef][translations.getLanguage()];
+    return section && section.cardsRef !== null ? section : undefined;
+  }
 );
 
-const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
+export const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
   sections: getSectionsState(state)
 });
 
@@ -180,6 +185,7 @@ const mapDispatchToProps: ConnectedDispatchProps = {
   fetchSections
 };
 
+export {Catalog as Component};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
