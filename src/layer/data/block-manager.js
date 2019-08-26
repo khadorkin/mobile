@@ -33,6 +33,8 @@ const getDuration = t => {
 const queue = {};
 const NB_ITEMS_PER_BLOCKS = 20;
 
+const length = items => Object.keys(items).length;
+
 // ----------------------------------------------------------
 
 export const getItem = async key => {
@@ -56,6 +58,32 @@ export const increaseBlockCursor = async blockType => {
   return metadata;
 };
 
+const splitItems = (newItems, availableSpace) => {
+  const keys = Object.keys(newItems);
+  const keysToStoreNow = keys.slice(0, availableSpace);
+  const keysToQueue = keys.slice(availableSpace);
+  console.log({keysToStoreNow, keysToQueue});
+
+  const pickFromNewItems = (acc, k) => ({...acc, [k]: newItems[k]});
+  const itemsToStoreNow = keysToStoreNow.reduce(pickFromNewItems, {});
+  const itemsToQueue = keysToQueue.reduce(pickFromNewItems, {});
+
+  return {itemsToStoreNow, itemsToQueue};
+};
+
+const createNewBlock = async (blockType, newItems, availableSpace) => {
+  const {itemsToStoreNow, itemsToQueue} = splitItems(newItems, availableSpace);
+  console.log({itemsToStoreNow, itemsToQueue});
+  console.log(
+    `[block-manager] not enough room in this block, queueing on top ${length(itemsToQueue)} items`,
+    itemsToQueue
+  );
+  queue[blockType].splice(1, 0, itemsToQueue);
+  await increaseBlockCursor(blockType);
+
+  return itemsToStoreNow;
+};
+
 export const getWritingBlockData = async blockType => {
   let metadata = await getItem('metadata');
 
@@ -70,8 +98,6 @@ export const getWritingBlockData = async blockType => {
   };
 };
 
-const length = items => Object.keys(items).length;
-
 const storeBlock = async blockType => {
   const t = startTime();
   console.log(`[block-manager] storeBlock '${blockType}'`);
@@ -85,16 +111,8 @@ const storeBlock = async blockType => {
   const remainingSpace = NB_ITEMS_PER_BLOCKS - Object.keys(currentItems).length;
 
   if (length(newItems) > remainingSpace) {
-    const newItemsRemaining = newItems.slice(remainingSpace);
-    console.log(
-      `[block-manager] not enough room in this block, queueing on top ${length(
-        newItemsRemaining
-      )} items`,
-      newItemsRemaining
-    );
-    newItems = newItems.slice(0, remainingSpace);
-    queue[blockType].splice(1, 0, newItemsRemaining);
-    await increaseBlockCursor(blockType);
+    const itemsToStoreNow = await createNewBlock(blockType, newItems, remainingSpace);
+    newItems = itemsToStoreNow;
   }
 
   const mergedItems = {
