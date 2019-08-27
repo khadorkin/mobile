@@ -20,23 +20,33 @@ import type {
 
 import {CONTENT_TYPE} from './_const';
 
-export const buildKeyValuePair = (
+export const buildResourceMap = (
   resourceType: ResourceType,
   language: SupportedLanguage,
   resource: {[key: string]: Resource}
 ): Array<Array<string>> => {
   const keys: Array<string> = Object.keys(resource);
-  return keys.map(key => [buildKey(resourceType, language, key), JSON.stringify(resource[key])]);
+  return keys.reduce(
+    (acc, key) => ({
+      ...acc,
+      [buildKey(resourceType, language, key)]: resource[key]
+    }),
+    {}
+  );
 };
 
 export const buildLevels = (
   levels: Array<Level>,
   language: SupportedLanguage
 ): Array<Array<string>> =>
-  levels.map(item => [
-    `${CONTENT_TYPE.LEVEL}:${language}:${getMostAccurateRef(item)}`,
-    JSON.stringify(item)
-  ]);
+  levels.reduce(
+    (acc, level) => ({
+      ...acc,
+      [`${CONTENT_TYPE.LEVEL}:${language}:${getMostAccurateRef(level)}`]: level
+    }),
+    {}
+  );
+
 export const mapToResourceType = (value: string): ResourceType => {
   switch (value) {
     case 'chapters':
@@ -56,36 +66,24 @@ export const mapToResourceType = (value: string): ResourceType => {
   }
 };
 
-export const createReduceToNormalizedItemFunction = (
-  bundledResource: BundledDiscipline | BundledChapter,
-  language: SupportedLanguage
-) => (accumulator: Array<Array<string>>, currentValue: string): Array<Array<string>> => {
-  let levels = [];
-  if (currentValue === 'disciplines') {
-    // $FlowFixMe bundleResource.discipline is not mixed
-    const disciplines: Array<Discipline> = Object.values(bundledResource.disciplines);
-    levels = buildLevels(
-      disciplines.reduce((result, discipline) => result.concat(discipline.modules), []),
-      language
-    );
-  }
-  return accumulator.concat(
-    buildKeyValuePair(
-      mapToResourceType(currentValue),
-      language,
-      // $FlowFixMe
-      bundledResource[currentValue]
-    ),
-    levels
-  );
-};
-
 export const normalizeBundle = (
   bundledResource: BundledDiscipline | BundledChapter,
   language: SupportedLanguage
-): Array<Array<string>> => {
+) => {
   const keys: Array<string> = Object.keys(bundledResource);
-  return keys.reduce(createReduceToNormalizedItemFunction(bundledResource, language), []);
+  const disciplines: Array<Discipline> = Object.values(bundledResource.disciplines);
+  const levels = buildLevels(
+    disciplines.reduce((result, discipline) => result.concat(discipline.modules), []),
+    language
+  );
+
+  return keys.reduce(
+    (acc, k) => ({
+      ...acc,
+      [k]: buildResourceMap(mapToResourceType(k), language, bundledResource[k])
+    }),
+    {levels}
+  );
 };
 
 export const storeBundle = async (
@@ -93,10 +91,10 @@ export const storeBundle = async (
 ): Promise<void> => {
   const language = translations.getLanguage();
   const normalizedBundle = normalizeBundle(bundledResource, language);
+  const blockTypes: Array<string> = Object.keys(normalizedBundle);
+
   try {
-    // eslint-disable-next-line no-console
-    console.log('Storing:', normalizedBundle.map(item => item[0]));
-    await store(normalizedBundle);
+    return Promise.all(blockTypes.map(blockType => store(blockType, normalizedBundle[blockType])));
   } catch (e) {
     throw new Error('Could not store the provided resource');
   }
