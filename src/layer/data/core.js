@@ -2,7 +2,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import type {SupportedLanguage} from '../../translations/_types';
-import {getItem as getItemFromBlocks} from './block-manager';
+import {getItem as getItemFromBlocks, getBlockType} from './block-manager';
 import type {Resource, ResourceType} from './_types';
 
 export const buildKey = (resourceType: ResourceType, language: SupportedLanguage, ref: string) =>
@@ -15,8 +15,10 @@ export const getItem = async (
 ): Promise<Resource> => {
   const key = buildKey(resourceType, language, ref);
   try {
-    const item = await getItemFromBlocks(key);
-    return JSON.parse(item);
+    console.log('---> getitem');
+    const item = await getItemFromBlocks(getBlockType(resourceType), key);
+    console.log(item);
+    return item;
   } catch (e) {
     throw new Error(`Resource not found with ref: ${ref}`);
   }

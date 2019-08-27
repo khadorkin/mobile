@@ -80,6 +80,43 @@ describe('block-manager', () => {
       );
     });
 
+    it('should not add items if already stored in a previous block', async () => {
+      // $FlowFixMe
+      await mockAsyncStorage.clear();
+      await fillBlock('cards', 15);
+
+      const newItems = {
+        a: {id: 'a'},
+        b: {id: 'b'},
+        c: {id: 'c'},
+        d: {id: 'd'},
+        e: {id: 'e'},
+        '1': {id: 1},
+        '2': {id: 2},
+        '3': {id: 3},
+        '4': {id: 4},
+        f: {id: 'f'}
+      };
+
+      await store(BLOCK_TYPES.CARDS, newItems);
+
+      // $FlowFixMe
+      const cards1 = await mockAsyncStorage.getItem('cards-1');
+      // $FlowFixMe
+      const cards2 = await mockAsyncStorage.getItem('cards-2');
+
+      expect(cards1).toEqual(
+        '{"0":{"id":0},"1":{"id":1},"2":{"id":2},"3":{"id":3},"4":{"id":4},"5":{"id":5},"6":{"id":6},"7":{"id":7},"8":{"id":8},"9":{"id":9},"10":{"id":10},"11":{"id":11},"12":{"id":12},"13":{"id":13},"14":{"id":14},"a":{"id":"a"},"b":{"id":"b"},"c":{"id":"c"},"d":{"id":"d"},"e":{"id":"e"}}'
+      );
+      expect(cards2).toEqual('{"f":{"id":"f"}}');
+
+      // $FlowFixMe
+      const metadata = await mockAsyncStorage.getItem(BLOCK_TYPES.METADATA);
+      expect(metadata).toEqual(
+        '{"cards":{"currentNum":2,"keyMap":{"0":"cards-1","1":"cards-1","2":"cards-1","3":"cards-1","4":"cards-1","5":"cards-1","6":"cards-1","7":"cards-1","8":"cards-1","9":"cards-1","10":"cards-1","11":"cards-1","12":"cards-1","13":"cards-1","14":"cards-1","a":"cards-1","b":"cards-1","c":"cards-1","d":"cards-1","e":"cards-1","f":"cards-2"}}}'
+      );
+    });
+
     it('should create a many blocks when the current one is full and (nb items > limit by block)', async () => {
       // $FlowFixMe
       await mockAsyncStorage.clear();
@@ -93,7 +130,7 @@ describe('block-manager', () => {
         {}
       );
 
-      await store('cards', newItems);
+      await store(BLOCK_TYPES.CARDS, newItems);
 
       // $FlowFixMe
       const cards3 = await mockAsyncStorage.getItem('cards-3');

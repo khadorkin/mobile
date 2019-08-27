@@ -14,8 +14,7 @@ import type {QueryParams} from '../../modules/uri';
 
 import {ENGINE} from '../../const';
 import type {Section} from '../../types';
-import {store, getItem as getItemFromBlocks} from './block-manager';
-import {getItem} from './core';
+import {BLOCK_TYPES, store, getItem as getItemFromBlocks} from './block-manager';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
 import {buildCompletionKey, mergeCompletion} from './progressions';
@@ -97,7 +96,7 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
     disciplineCard.modules.map(
       async (level): Promise<Completion | null> => {
         const completionKey = buildCompletionKey(ENGINE.LEARNER, level.universalRef || level.ref);
-        const completionString = await getItemFromBlocks(completionKey);
+        const completionString = await getItemFromBlocks(BLOCK_TYPES.COMPLETIONS, completionKey);
         if (!completionString) return null;
         return JSON.parse(completionString);
       }
@@ -113,7 +112,7 @@ const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard
     current: chapterCard && chapterCard.completion
   };
   const completionKey = buildCompletionKey(ENGINE.MICROLEARNING, chapterCard && chapterCard.ref);
-  const latestCompletion = await getItemFromBlocks(completionKey);
+  const latestCompletion = await getItemFromBlocks(BLOCK_TYPES.COMPLETIONS, completionKey);
 
   if (!latestCompletion) {
     return chapterCard;
@@ -135,14 +134,14 @@ export const getCardFromLocalStorage = async (
 ): Promise<DisciplineCard | ChapterCard> => {
   const language = translations.getLanguage();
   // $FlowFixMe
-  const card = await getItem('card', language, ref);
+  const card = await getItemFromBlocks(BLOCK_TYPES.CARDS, `card:${language}:${ref}`);
   return refreshCard(card);
 };
 
 const cardsToPairs = (cards: {[key: string]: DisciplineCard | ChapterCard}) => {
   return Object.entries(cards).reduce((acc, card) => {
     const [cardKey, cardContent] = card;
-    return {...acc, [cardKey]: JSON.stringify(cardContent)};
+    return {...acc, [cardKey]: cardContent};
   }, {});
 };
 
@@ -196,7 +195,7 @@ const saveDashboardCardsInAsyncStorage = async (
   if (cards.length > 0) {
     try {
       const _cards = cardsToPairs(cardsToKeys(cards, language));
-      await store('cards', _cards);
+      await store(BLOCK_TYPES.CARDS, _cards);
     } catch (e) {
       throw new Error('could not store the dashboard cards');
     }
