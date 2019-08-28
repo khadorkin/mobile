@@ -31,9 +31,6 @@ const getDuration = t => {
 
 // ----------------------------------------------------------
 
-const queue = {};
-const NB_ITEMS_PER_BLOCKS = 20;
-
 const length = items => Object.keys(items).length;
 
 // ----------------------------------------------------------
@@ -71,6 +68,15 @@ export const getBlockType = (resourceType: ResourceType) => {
   }
 };
 
+const addBlockTypeToMetadata = blockType => {
+  manager.metadata[blockType] = {
+    currentNum: 1,
+    keyMap: {}
+  };
+  console.log(`[block-manager] addBlockTypeToMetadata '${blockType}'`, manager.metadata);
+  // await AsyncStorage.setItem('metadata', JSON.stringify(_metadata));
+};
+
 export const getBlock = async blockKey => {
   const t = startTime();
   const block = await AsyncStorage.getItem(blockKey);
@@ -79,16 +85,38 @@ export const getBlock = async blockKey => {
   return _block;
 };
 
+const restoreMetadata = async manager => {
+  console.log('[block-manager] restoreMetadata');
+  let metadata = await getBlock(BLOCK_TYPES.METADATA);
+  if (!metadata) {
+    metadata = {};
+  }
+
+  console.log('[block-manager] restoreMetadata -->', metadata);
+  manager.metadata = metadata;
+  return metadata;
+};
+
+const manager = {
+  queue: {},
+  metadata: null,
+  NB_ITEMS_PER_BLOCKS: 20,
+  saveMetadata: () => AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(manager.metadata))
+};
+
+console.log({manager});
+export const resetManager = () => (manager.metadata = null);
+
+// ---------------------------------
+
 const getBlockKey = async (blockType, key) => {
   console.log(`[block-manager] getBlockKey | ${blockType} | ${key}`);
-  const metadata = await getBlock(BLOCK_TYPES.METADATA);
-
-  if (!metadata[blockType]) {
+  if (!manager.metadata[blockType]) {
     console.log(`[block-manager] metadata has no block type ${blockType}`);
     return;
   }
 
-  const blockKey = metadata[blockType].keyMap[key];
+  const blockKey = manager.metadata[blockType].keyMap[key];
 
   if (!blockKey) {
     console.log(`[block-manager] metadata has no ${key} for block type ${blockType}`);
@@ -101,6 +129,10 @@ const getBlockKey = async (blockType, key) => {
 
 export const getItem = async (blockType, key) => {
   const t = startTime();
+  if (!manager.metadata) {
+    await restoreMetadata(manager);
+  }
+
   const blockKey = await getBlockKey(blockType, key);
 
   if (!blockKey) {
@@ -115,6 +147,9 @@ export const getItem = async (blockType, key) => {
 
 export const updateItem = async (blockType, key, newValue) => {
   const t = startTime();
+  if (!manager.metadata) {
+    await restoreMetadata(manager);
+  }
 
   console.log('[block-manager] start updateItem', blockType, key);
   const blockKey = await getBlockKey(blockType, key);
@@ -129,33 +164,9 @@ export const updateItem = async (blockType, key, newValue) => {
   console.log('[block-manager] updateItem', getDuration(t));
 };
 
-const addBlockTypeToMetadata = async (metadata, blockType) => {
-  const _metadata = {
-    ...metadata,
-    [blockType]: {
-      currentNum: 1,
-      keyMap: {}
-    }
-  };
-  console.log(`[block-manager] addBlockTypeToMetadata '${blockType}'`, _metadata);
-  await AsyncStorage.setItem('metadata', JSON.stringify(_metadata));
-  return _metadata;
-};
-
 const increaseBlockCursor = async blockType => {
-  let metadata = await getBlock('metadata');
-
-  metadata = {
-    ...metadata,
-    [blockType]: {
-      ...metadata[blockType],
-      currentNum: metadata ? metadata[blockType].currentNum + 1 : 1
-    }
-  };
-
-  await AsyncStorage.setItem('metadata', JSON.stringify(metadata));
-  console.log(`[block-manager] increaseBlockCursor '${blockType}'`, metadata);
-  return metadata;
+  manager.metadata[blockType].currentNum++;
+  console.log(`[block-manager] increaseBlockCursor '${blockType}'`, manager.metadata);
 };
 
 const splitItems = (newItems, availableSpace) => {
@@ -171,13 +182,13 @@ const splitItems = (newItems, availableSpace) => {
   return {itemsToStoreNow, itemsToQueue};
 };
 
-const updateQueue = async (blockType, newItems, availableSpace) => {
+const updateQueue = (blockType, newItems, availableSpace) => {
   const {itemsToStoreNow, itemsToQueue} = splitItems(newItems, availableSpace);
   console.log(
     `[block-manager] not enough room in this block, queueing on top ${length(itemsToQueue)} items`,
     itemsToQueue
   );
-  queue[blockType].splice(1, 0, itemsToQueue);
+  manager.queue[blockType].splice(1, 0, itemsToQueue);
 
   return itemsToStoreNow;
 };
@@ -195,28 +206,23 @@ const filterPreviouslyStoredItems = (keyMap, itemsToFilter) => {
 const storeBlock = async blockType => {
   const t = startTime();
   console.log(`[block-manager] storeBlock '${blockType}'`);
-  let newItems = queue[blockType][0];
-  let metadata = await getBlock('metadata');
+  let newItems = manager.queue[blockType][0];
 
-  if (!metadata) {
-    metadata = await addBlockTypeToMetadata({}, blockType);
+  if (!manager.metadata[blockType]) {
+    addBlockTypeToMetadata(blockType);
   }
 
-  if (!metadata[blockType]) {
-    metadata = await addBlockTypeToMetadata(metadata, blockType);
-  }
+  newItems = filterPreviouslyStoredItems(manager.metadata[blockType].keyMap, newItems);
 
-  newItems = filterPreviouslyStoredItems(metadata[blockType].keyMap, newItems);
-
-  let blockKey = `${blockType}-${metadata[blockType].currentNum}`;
+  let blockKey = `${blockType}-${manager.metadata[blockType].currentNum}`;
 
   console.log(`[block-manager] storeBlock items queued: `, newItems);
 
   const currentBlock = await getBlock(blockKey);
   const currentItems = currentBlock || {};
 
-  let remainingSpace = NB_ITEMS_PER_BLOCKS - Object.keys(currentItems).length;
-  console.log({metadata, remainingSpace, currentBlock});
+  let remainingSpace = manager.NB_ITEMS_PER_BLOCKS - Object.keys(currentItems).length;
+  console.log({metadata: manager.metadata, remainingSpace, currentBlock});
 
   if (remainingSpace === 0) {
     await increaseBlockCursor(blockType);
@@ -250,13 +256,13 @@ const storeBlock = async blockType => {
 
     await AsyncStorage.setItem(blockKey, JSON.stringify(mergedItems));
 
-    metadata[blockType].keyMap = Object.keys(mergedItems).reduce(
+    manager.metadata[blockType].keyMap = Object.keys(mergedItems).reduce(
       (acc, k) => ({...acc, [k]: blockKey}),
-      metadata[blockType].keyMap
+      manager.metadata[blockType].keyMap
     );
 
-    await AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(metadata));
-    console.log('[block-manager] updated metadata', metadata);
+    // await AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(metadata));
+    console.log('[block-manager] updated metadata', manager.metadata);
 
     console.log(
       `[block-manager] store done | ${getDuration(t)} | block: ${blockKey} | nbItems: ${
@@ -267,9 +273,9 @@ const storeBlock = async blockType => {
     console.log(`[block-manager] nothing to store! block is already containing these items`);
   }
 
-  queue[blockType].shift();
+  manager.queue[blockType].shift();
 
-  if (queue[blockType].length > 0) {
+  if (manager.queue[blockType].length > 0) {
     console.log(`[block-manager] next storing in queue for block '${blockType}'`);
     return storeBlock(blockType);
   }
@@ -279,19 +285,25 @@ const storeBlock = async blockType => {
       Object.keys(mergedItems).length
     }`
   );
+  console.log('[block-manager] recording metadata', manager.metadata);
+
+  manager.saveMetadata();
 };
 
-export const store = (blockType, items) => {
+export const store = async (blockType, items) => {
   console.log('[block-manager] ==> store');
+  if (!manager.metadata) {
+    await restoreMetadata(manager);
+  }
 
-  if (queue[blockType] && queue[blockType].length > 0) {
+  if (manager.queue[blockType] && manager.queue[blockType].length > 0) {
     console.log(`[block-manager] queueing for block type '${blockType}'`, items);
-    queue[blockType].push(items);
+    manager.queue[blockType].push(items);
     return;
   }
 
   console.log(`[block-manager] starting queue for block type '${blockType}'`);
-  queue[blockType] = [items];
+  manager.queue[blockType] = [items];
 
   return storeBlock(blockType);
 };

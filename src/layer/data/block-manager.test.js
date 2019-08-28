@@ -1,7 +1,7 @@
-// @flow strict
+// @flow
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
 import _ from 'lodash';
-import {BLOCK_TYPES, getItem, store} from './block-manager';
+import {BLOCK_TYPES, getItem, resetManager, store} from './block-manager';
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
@@ -50,6 +50,7 @@ describe('block-manager', () => {
     it('should create a new block when the current one is full', async () => {
       // $FlowFixMe
       await mockAsyncStorage.clear();
+      resetManager();
       await fillBlock('cards', 15);
 
       const newItems = {
@@ -83,6 +84,7 @@ describe('block-manager', () => {
     it('should not add items if already stored in a previous block', async () => {
       // $FlowFixMe
       await mockAsyncStorage.clear();
+      resetManager();
       await fillBlock('cards', 15);
 
       const newItems = {
@@ -120,6 +122,7 @@ describe('block-manager', () => {
     it('should create a many blocks when the current one is full and (nb items > limit by block)', async () => {
       // $FlowFixMe
       await mockAsyncStorage.clear();
+      resetManager();
       await fillBlock(BLOCK_TYPES.CARDS, 20);
 
       const newItems = _.range(20, 50).reduce(
@@ -151,6 +154,7 @@ describe('block-manager', () => {
     it('should get an item from a block type with its key)', async () => {
       // $FlowFixMe
       await mockAsyncStorage.clear();
+      resetManager();
       await fillBlock(BLOCK_TYPES.CARDS, 20);
       const item = await getItem(BLOCK_TYPES.CARDS, '4');
       expect(item).toEqual({id: 4});
