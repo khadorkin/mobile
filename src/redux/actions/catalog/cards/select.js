@@ -82,7 +82,6 @@ const attemptToRetrieveContent = async (
 
   const bundle = await services.Bundle.findById(bundleType, card.universalRef, token, brand.host);
 
-  console.log('bundle', bundle);
   await services.Bundle.store(bundle);
   const content = await services.Content.find(contentType, contentId);
 

@@ -68,6 +68,20 @@ export const getBlockType = (resourceType: ResourceType) => {
   }
 };
 
+const manager = {
+  queue: {},
+  metadata: null,
+  NB_ITEMS_PER_BLOCKS: 20,
+  saveMetadata: () => AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(manager.metadata))
+};
+
+export const resetManager = () => {
+  manager.metadata = null;
+  manager.metadataP = null;
+};
+
+console.log({manager});
+
 const addBlockTypeToMetadata = blockType => {
   manager.metadata[blockType] = {
     currentNum: 1,
@@ -85,9 +99,10 @@ export const getBlock = async blockKey => {
   return _block;
 };
 
-const restoreMetadata = async manager => {
+const restoreMetadata = async () => {
   console.log('[block-manager] restoreMetadata');
   let metadata = await getBlock(BLOCK_TYPES.METADATA);
+
   if (!metadata) {
     metadata = {};
   }
@@ -97,15 +112,21 @@ const restoreMetadata = async manager => {
   return metadata;
 };
 
-const manager = {
-  queue: {},
-  metadata: null,
-  NB_ITEMS_PER_BLOCKS: 20,
-  saveMetadata: () => AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(manager.metadata))
-};
+const syncMetadata = async () => {
+  if (manager.metadata) {
+    console.log('syncMetadata found metadata', manager.metadata);
+    return Promise.resolve(manager.metadata);
+  }
 
-console.log({manager});
-export const resetManager = () => (manager.metadata = null);
+  if (!manager.metadataP) {
+    console.log('syncMetadata init promise');
+    manager.metadataP = restoreMetadata();
+  }
+
+  manager.metadata = await manager.metadataP;
+  console.log('syncMetadata got metadata', manager.metadata);
+  return manager.metadata;
+};
 
 // ---------------------------------
 
@@ -129,9 +150,7 @@ const getBlockKey = async (blockType, key) => {
 
 export const getItem = async (blockType, key) => {
   const t = startTime();
-  if (!manager.metadata) {
-    await restoreMetadata(manager);
-  }
+  await syncMetadata();
 
   const blockKey = await getBlockKey(blockType, key);
 
@@ -147,9 +166,7 @@ export const getItem = async (blockType, key) => {
 
 export const updateItem = async (blockType, key, newValue) => {
   const t = startTime();
-  if (!manager.metadata) {
-    await restoreMetadata(manager);
-  }
+  await syncMetadata();
 
   console.log('[block-manager] start updateItem', blockType, key);
   const blockKey = await getBlockKey(blockType, key);
@@ -292,9 +309,7 @@ const storeBlock = async blockType => {
 
 export const store = async (blockType, items) => {
   console.log('[block-manager] ==> store');
-  if (!manager.metadata) {
-    await restoreMetadata(manager);
-  }
+  await syncMetadata();
 
   if (manager.queue[blockType] && manager.queue[blockType].length > 0) {
     console.log(`[block-manager] queueing for block type '${blockType}'`, items);
