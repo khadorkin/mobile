@@ -70,7 +70,8 @@ export const getBlockType = (resourceType: ResourceType) => {
 };
 
 const manager = {
-  log: _.noop, // console.log
+  // log: _.noop, // console.log
+  log: console.log,
   queue: {},
   metadata: null,
   NB_ITEMS_PER_BLOCKS: 20,
@@ -90,7 +91,6 @@ const addBlockTypeToMetadata = blockType => {
     keyMap: {}
   };
   manager.log(`[block-manager] addBlockTypeToMetadata '${blockType}'`, manager.metadata);
-  // await AsyncStorage.setItem('metadata', JSON.stringify(_metadata));
 };
 
 export const getBlock = async blockKey => {
@@ -101,6 +101,7 @@ export const getBlock = async blockKey => {
     manager.log(`[block-manager] getBlock | ${blockKey}`, getDuration(t));
     return _block;
   } catch (e) {
+    manager.log(`[block-manager] getBlock failed | ${blockKey}`);
     manager.log(e);
     return null;
   }
@@ -184,11 +185,11 @@ export const updateItem = async (blockType, key, newValue) => {
 
   const block = await getBlock(blockKey);
   block[key] = newValue;
-  await AsyncStorage.setItem(blockKey, block);
-  manager.log('[block-manager] updateItem', getDuration(t));
+  await AsyncStorage.setItem(blockKey, JSON.stringify(block));
+  manager.log('[block-manager] updateItem', getDuration(t), blockKey, block);
 };
 
-const increaseBlockCursor = async blockType => {
+const increaseBlockCursor = blockType => {
   manager.metadata[blockType].currentNum++;
   manager.log(`[block-manager] increaseBlockCursor '${blockType}'`, manager.metadata);
 };
@@ -285,7 +286,6 @@ const storeBlock = async blockType => {
       manager.metadata[blockType].keyMap
     );
 
-    // await AsyncStorage.setItem(BLOCK_TYPES.METADATA, JSON.stringify(metadata));
     manager.log('[block-manager] updated metadata', manager.metadata);
 
     manager.log(
@@ -338,12 +338,12 @@ export const remove = async (blockType, key) => {
 };
 
 export const getAllItemsFromBlockType = async (blockType, filterKeys) => {
+  const t = startTime();
   const currentNum = manager.metadata[blockType].currentNum;
   const keys = _.range(currentNum).map(i => `${blockType}-${i + 1}`);
   manager.log('[block-manager] getAllItemsFromBlockType', blockType, keys);
   const pairs = await AsyncStorage.multiGet(keys);
-  manager.log({pairs});
-  return pairs.reduce((acc, pair) => {
+  const items = pairs.reduce((acc, pair) => {
     const block = JSON.parse(pair[1]);
     let itemKeys = Object.keys(block);
     if (filterKeys) {
@@ -354,7 +354,9 @@ export const getAllItemsFromBlockType = async (blockType, filterKeys) => {
       return _acc.concat(block[itemKey]);
     }, []);
 
-    manager.log({blockArray});
     return acc.concat(blockArray);
   }, []);
+
+  manager.log('[block-manager] getAllItemsFromBlockType', getDuration(t));
+  return items;
 };

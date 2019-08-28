@@ -205,22 +205,16 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
   const nextContent = getStepContent(state);
   const progression = getCurrentProgression(state);
 
-  console.log('     render 1');
   if (!nextContent || progression === undefined || progression.state === undefined) {
     return emptySlide;
   }
 
-  console.log(state);
   const currentRoute = getRoute(state);
-  console.log('     render ', currentRoute);
-
   const showQuestionOrCorrection = currentRoute === 'answer' || currentRoute === 'correction';
   if (!showQuestionOrCorrection) {
-    console.log('     render x1');
     return emptySlide;
   }
 
-  console.log('     render 2');
   const correction = getCurrentCorrection(state);
   const media = getQuestionMedia(state);
 
@@ -238,7 +232,6 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
   const isValidating = checkIsValidating(state);
 
   if (!slide) {
-    console.log('     render x2');
     return {
       type: undefined,
       header: undefined,
@@ -260,7 +253,6 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     };
   }
 
-  console.log('     render 3');
   const type = getQuestionType(slide);
 
   const choices = getChoices(slide);
