@@ -8,8 +8,13 @@ import {isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {Completion} from './_types';
-import {getItem} from './core';
-import {getItem as getItemFromBlocks, remove, storeOne, updateItem} from './block-manager';
+import {
+  BLOCK_TYPES,
+  getItem as getItemFromBlocks,
+  remove,
+  store,
+  updateItem
+} from './block-manager';
 
 export const buildCompletionKey = (engineRef: string, contentRef: string) =>
   `completion_${engineRef}_${contentRef}`;
@@ -39,19 +44,18 @@ export const mergeCompletion = (
 
 export const storeOrReplaceCompletion = async (progression: Progression): Promise<Completion> => {
   const completionKey = buildCompletionKey(progression.engine.ref, progression.content.ref);
-  const stringifiedCompletion = await getItemFromBlocks(completionKey);
+  const previousCompletion = await getItemFromBlocks(BLOCK_TYPES.COMPLETIONS, completionKey);
+  const completion = mapProgressionToCompletion(progression);
 
-  if (stringifiedCompletion) {
-    const mergedCompletion = mergeCompletion(
-      JSON.parse(stringifiedCompletion),
-      mapProgressionToCompletion(progression)
-    );
-    await updateItem(completionKey, mergedCompletion);
+  if (previousCompletion) {
+    const mergedCompletion = mergeCompletion(previousCompletion, completion);
+    await updateItem(BLOCK_TYPES.COMPLETIONS, completionKey, mergedCompletion);
     return mergedCompletion;
   }
 
-  const completion = mapProgressionToCompletion(progression);
-  await storeOne(completionKey, completion);
+  await store(BLOCK_TYPES.COMPLETIONS, {
+    [completionKey]: completion
+  });
   return completion;
 };
 
@@ -63,7 +67,7 @@ export const buildProgressionKey = (progressionId: string) => `progression_${pro
 const findById = async (id: string) => {
   const progression = await getItemFromBlocks(buildProgressionKey(id));
   if (!progression) throw new Error('Progression not found');
-  return JSON.parse(progression);
+  return progression;
 };
 
 const getAll = async () => {
@@ -105,7 +109,8 @@ const synchronize = async (
 
   if (response.status >= 400) throw new Error(response.statusText);
 
-  await remove(buildProgressionKey(_id));
+  // @todo!
+  await remove(BLOCK_TYPES.PROGRESSIONS, buildProgressionKey(_id));
 
   return;
 };
@@ -132,11 +137,23 @@ const persist = async (progression: Progression): Promise<Progression> => {
   const {_id} = progression;
   if (_id === undefined) throw new TypeError('progression has no property _id');
 
-  await storeOne(buildProgressionKey(_id), progression);
-  await storeOne(
-    buildLastProgressionKey(progression.engine.ref, progression.content.ref),
-    progression._id || ''
+  const progressionKey = buildProgressionKey(_id);
+  await store(BLOCK_TYPES.PROGRESSIONS, {
+    [progressionKey]: progression
+  });
+
+  await store(BLOCK_TYPES.PROGRESSIONS, {
+    [progressionKey]: progression
+  });
+
+  const lastProgressionKey = buildLastProgressionKey(
+    progression.engine.ref,
+    progression.content.ref
   );
+
+  await store(BLOCK_TYPES.LAST_PROGRESSIONS, {
+    [lastProgressionKey]: progression._id || ''
+  });
 
   storeOrReplaceCompletion(progression);
 
@@ -148,17 +165,18 @@ const save = (progression: Progression): Promise<Progression> =>
 
 const findLast = async (engineRef: string, contentRef: string) => {
   const key = buildLastProgressionKey(engineRef, contentRef);
-  const progressionId = await getItemFromBlocks(key);
+  const progressionId = await getItemFromBlocks(BLOCK_TYPES.LAST_PROGRESSIONS, key);
   if (!progressionId) return null;
 
-  const stringifiedProgression = await getItemFromBlocks(buildProgressionKey(progressionId));
+  const progression = await getItemFromBlocks(
+    BLOCK_TYPES.PROGRESSIONS,
+    buildProgressionKey(progressionId)
+  );
 
-  if (!stringifiedProgression) return null;
+  if (!progression) return null;
 
   // if Progression is on successNode, failureNode or extraLifeNode
   // then skip resuming
-
-  const progression = JSON.parse(stringifiedProgression);
 
   if (!progression.state) return null;
   const {nextContent} = progression.state;
@@ -179,7 +197,7 @@ const findBestOf = (language: SupportedLanguage) => async (
   progressionId: string
 ): Promise<number> => {
   // $FlowFixMe
-  const card = await getItem('card', language, contentRef);
+  const card = await getItemFromBlocks(BLOCK_TYPES.CARDS, `card:${language}:${contentRef}`);
   return card && card.stars;
 };
 export {save, getAll, findById, findLast, findBestOf, synchronize};

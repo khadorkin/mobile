@@ -47,7 +47,9 @@ export const BLOCK_TYPES = {
   DISCIPLINES: 'disciplines',
   LEVELS: 'levels',
   EXIT_NODES: 'exitNodes',
-  SLIDES: 'slides'
+  SLIDES: 'slides',
+  PROGRESSIONS: 'progressions',
+  LAST_PROGRESSIONS: 'lastProgressions'
 };
 
 export const getBlockType = (resourceType: ResourceType) => {
@@ -77,9 +79,8 @@ export const getBlock = async blockKey => {
   return _block;
 };
 
-export const getItem = async (blockType, key) => {
-  const t = startTime();
-  console.log(`[block-manager] getItem | ${blockType} | ${key}`);
+const getBlockKey = async (blockType, key) => {
+  console.log(`[block-manager] getBlockKey | ${blockType} | ${key}`);
   const metadata = await getBlock(BLOCK_TYPES.METADATA);
 
   if (!metadata[blockType]) {
@@ -95,10 +96,37 @@ export const getItem = async (blockType, key) => {
   }
 
   console.log({blockKey});
+  return blockKey;
+};
+
+export const getItem = async (blockType, key) => {
+  const t = startTime();
+  const blockKey = await getBlockKey(blockType, key);
+
+  if (!blockKey) {
+    return;
+  }
+
   const block = await getBlock(blockKey);
   const item = block[key];
   console.log(`[block-manager] getItem | ${getDuration(t)} | ${key}`, {key, item});
   return item;
+};
+
+export const updateItem = async (blockType, key, newValue) => {
+  const t = startTime();
+
+  console.log('[block-manager] start updateItem', blockType, key);
+  const blockKey = await getBlockKey(blockType, key);
+
+  if (!blockKey) {
+    return;
+  }
+
+  const block = await getBlock(blockKey);
+  block[key] = newValue;
+  await AsyncStorage.setItem(blockKey, block);
+  console.log('[block-manager] updateItem', getDuration(t));
 };
 
 const addBlockTypeToMetadata = async (metadata, blockType) => {
@@ -268,21 +296,8 @@ export const store = (blockType, items) => {
   return storeBlock(blockType);
 };
 
-export const storeOne = async (key, value) => {
-  const t = startTime();
-  const _value = typeof value === 'object' ? JSON.stringify(value) : value;
-  await AsyncStorage.setItem(key, _value);
-  console.log(`[block-manager] storeOne | ${getDuration(t)} | ${key}`);
-};
-
-export const updateItem = async (key, newValue) => {
-  const t = startTime();
-  const _value = typeof newValue === 'object' ? JSON.stringify(newValue) : newValue;
-  await AsyncStorage.mergeItem(key, _value);
-  console.log('[block-manager] updateItem', getDuration(t));
-};
-
-export const remove = async key => {
+// @todo remove item from BLOCK + METADATA!
+export const remove = async (blockType, key) => {
   const t = startTime();
   await AsyncStorage.removeItem(key);
   console.log('[block-manager] remove', getDuration(t));

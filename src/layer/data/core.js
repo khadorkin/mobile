@@ -15,7 +15,7 @@ export const getItem = async (
 ): Promise<Resource> => {
   const key = buildKey(resourceType, language, ref);
   try {
-    console.log('---> getitem');
+    console.log('---> getitem', resourceType);
     const item = await getItemFromBlocks(getBlockType(resourceType), key);
     console.log(item);
     return item;

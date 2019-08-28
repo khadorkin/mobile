@@ -98,7 +98,7 @@ const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<Di
         const completionKey = buildCompletionKey(ENGINE.LEARNER, level.universalRef || level.ref);
         const completionString = await getItemFromBlocks(BLOCK_TYPES.COMPLETIONS, completionKey);
         if (!completionString) return null;
-        return JSON.parse(completionString);
+        return completionString;
       }
     )
   );
@@ -118,7 +118,7 @@ const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard
     return chapterCard;
   }
 
-  const mergedCompletion = mergeCompletion(cardCompletion, JSON.parse(latestCompletion));
+  const mergedCompletion = mergeCompletion(cardCompletion, latestCompletion);
   return updateChapterCardAccordingToCompletion(mergedCompletion, chapterCard);
 };
 

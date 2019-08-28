@@ -8,6 +8,7 @@ import {CONTENT_TYPE} from './_const';
 import type {ExitNode} from './_types';
 
 export const getExitNode = async (exitNodeRef: string): Promise<ExitNodeAPI> => {
+  console.log('getExitNode', exitNodeRef);
   const language = translations.getLanguage();
   // $FlowFixMe union type
   const item: ExitNode = await getItem(CONTENT_TYPE.EXIT_NODE, language, exitNodeRef);
