@@ -65,7 +65,8 @@ export const buildLastProgressionKey = (engineRef: string, contentRef: string) =
 export const buildProgressionKey = (progressionId: string) => `progression_${progressionId}`;
 
 const findById = async (id: string) => {
-  const progression = await getItemFromBlocks(buildProgressionKey(id));
+  const progression = await getItemFromBlocks(BLOCK_TYPES.PROGRESSIONS, buildProgressionKey(id));
+  console.log({progression});
   if (!progression) throw new Error('Progression not found');
   return progression;
 };
@@ -138,10 +139,6 @@ const persist = async (progression: Progression): Promise<Progression> => {
   if (_id === undefined) throw new TypeError('progression has no property _id');
 
   const progressionKey = buildProgressionKey(_id);
-  await store(BLOCK_TYPES.PROGRESSIONS, {
-    [progressionKey]: progression
-  });
-
   await store(BLOCK_TYPES.PROGRESSIONS, {
     [progressionKey]: progression
   });

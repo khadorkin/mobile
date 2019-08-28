@@ -2,7 +2,11 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import type {SupportedLanguage} from '../../translations/_types';
-import {getItem as getItemFromBlocks, getBlockType} from './block-manager';
+import {
+  getItem as getItemFromBlocks,
+  getAllItemsFromBlockType,
+  getBlockType
+} from './block-manager';
 import type {Resource, ResourceType} from './_types';
 
 export const buildKey = (resourceType: ResourceType, language: SupportedLanguage, ref: string) =>
@@ -24,19 +28,18 @@ export const getItem = async (
   }
 };
 
-export const filterKeys = (regex: RegExp, keys: Array<string>): Array<string> =>
+export const filterKeys = (regex: RegExp) => (keys: Array<string>): Array<string> =>
   keys.filter((key: string) => key.match(regex));
 
 export const getItemsPerResourceType = async (
   resourceType: ResourceType,
   language: SupportedLanguage
 ) => {
-  const keys = await AsyncStorage.getAllKeys();
+  console.log('----> getItemsPerResourceType');
   const regex = new RegExp(`^(${resourceType}:${language}:(.+)+)`, 'gm');
-  const filteredKeys = filterKeys(regex, keys);
-  const items = await AsyncStorage.multiGet(filteredKeys);
-
-  return items.map(item => JSON.parse(item[1]));
+  const items = await getAllItemsFromBlockType(getBlockType(resourceType), filterKeys(regex));
+  console.log({items});
+  return items;
 };
 
 export default {

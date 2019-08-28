@@ -15,9 +15,12 @@ export const findById = async (universalRef: string): Promise<SlideAPI> => {
   return mapToSlideAPI(item);
 };
 
+// perf note: investigate why this is called 3 times instead of one
+// here https://github.com/CoorpAcademy/components/blob/master/packages/%40coorpacademy-player-services/src/progressions.js#L131
 export const findByChapter = async (chapterId: string): Promise<Array<SlideAPI>> => {
   const language = translations.getLanguage();
   const slides: Array<Slide> = await getItemsPerResourceType(CONTENT_TYPE.SLIDE, language);
+  console.log({slides});
   const flitredSlide = slides.filter(slide => slide.chapter_id === chapterId);
   return flitredSlide.map(slide => mapToSlideAPI(slide));
 };

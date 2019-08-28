@@ -210,6 +210,7 @@ const mapStateToProps = (state: StoreState, {dispatch}: Props): ConnectedStatePr
     return emptySlide;
   }
 
+  console.log(state);
   const currentRoute = getRoute(state);
   console.log('     render ', currentRoute);
 
