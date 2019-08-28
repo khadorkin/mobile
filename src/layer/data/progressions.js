@@ -139,6 +139,10 @@ const persist = async (progression: Progression): Promise<Progression> => {
   if (_id === undefined) throw new TypeError('progression has no property _id');
 
   const progressionKey = buildProgressionKey(_id);
+
+  // @todo here must be a store or update
+  // https://github.com/CoorpAcademy/components/blob/master/packages/%40coorpacademy-player-services/src/answers.js#L26
+  // n'a pas la DERNIERE progression
   await store(BLOCK_TYPES.PROGRESSIONS, {
     [progressionKey]: progression
   });
