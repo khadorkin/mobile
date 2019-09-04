@@ -213,3 +213,14 @@ export type Completion = {|
   current: number,
   stars: number
 |};
+
+export type ProgressionAggregationByContent = {|
+  success: boolean,
+  content: {
+    ref: string,
+    type: 'chapter' | 'level',
+    version: string
+  },
+  current: number,
+  updatedAt: string
+|};
