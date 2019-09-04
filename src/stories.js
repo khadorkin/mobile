@@ -36,6 +36,7 @@ require('./components/header-back-icon.stories.js');
 require('./components/header-slide-right.stories.js');
 require('./components/header-slide-title.stories.js');
 require('./components/heart-broken.stories.js');
+require('./components/hero.stories.js');
 require('./components/home.stories.js');
 require('./components/html.stories.js');
 require('./components/image-background.stories.js');
