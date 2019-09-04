@@ -3,9 +3,7 @@
 import * as React from 'react';
 
 import {storiesOf} from '@storybook/react-native';
+import image from '../__fixtures__/assets/landscape-2.jpg';
+import Hero from './hero';
 
-import {Component as Hero} from './hero';
-
-storiesOf('Button', module).add('Default', () => (
-  <Hero backgroundImage="handleFakePress" userName="Pol Pot" />
-));
+storiesOf('Hero', module).add('Default', () => <Hero backgroundImage={image} userName="Pol Pot" />);
