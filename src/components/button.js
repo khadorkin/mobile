@@ -77,7 +77,6 @@ class Button extends React.PureComponent<Props> {
         ...(analyticsParams || {}),
         id: analyticsID
       });
-
     onPress();
   };
 

@@ -21,6 +21,7 @@ export const initialState: State = {
   colors: {
     primary: '#00B0FF'
   },
+  hero: ' https://static.coorpacademy.com/content/onboarding/raw/image-dios-1-1531517080118.jpg',
   contentCategoryName: 'Onboarding',
   name: 'onboarding',
   images: {

@@ -29,7 +29,7 @@ const Hero = ({userName, backgroundImage}: Props) => {
   return (
     <BrandThemeContext.Consumer>
       {brandTheme => {
-        <ImageBackground style={styles.container} resizeMode="cover" source={backgroundImage}>
+        <ImageBackground style={styles.container} resizeMode="cover" source={brandTheme.hero}>
           <Text style={styles.text}> {`Bienvenue ${userName}`} </Text>
         </ImageBackground>;
       }}
