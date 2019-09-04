@@ -95,6 +95,7 @@ export type Brand = {|
   colors: {
     primary: string
   },
+  hero: string,
   images: {
     'logo-mobile': string
   },
