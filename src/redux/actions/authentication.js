@@ -51,11 +51,20 @@ export const signInRequest = (token?: string): Action => ({
   payload: token
 });
 
-export const signInSuccess = ({token, isGodModeUser}: SignInSuccess): Action => ({
+export const signInSuccess = ({
+  token,
+  isGodModeUser,
+  displayName,
+  familyName,
+  givenName
+}: SignInSuccess): Action => ({
   type: SIGN_IN_SUCCESS,
   payload: {
     token,
-    isGodModeUser
+    isGodModeUser,
+    displayName,
+    familyName,
+    givenName
   }
 });
 
@@ -114,13 +123,15 @@ export const signIn = (
     const isGodModeUser = hasGodMode(jwt, brand.name);
     const {services} = options;
 
+    const {displayName, familyName, givenName} = await services.Users.find(token);
+
     services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.SIGN_IN, {
       userId: jwt.user,
       brand: brand.name,
       authenticationType
     });
 
-    return dispatch(signInSuccess({token, isGodModeUser}));
+    return dispatch(signInSuccess({token, isGodModeUser, displayName, familyName, givenName}));
   } catch (e) {
     setToken(null);
     // $FlowFixMe wrong StoreAction type

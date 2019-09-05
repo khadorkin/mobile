@@ -1,12 +1,12 @@
 // @flow strict
 
-import {initialState as tokenInitialState} from './token';
+import {initialState as userInitialState} from './user';
 import type {State} from '.';
 import reducer from '.';
 
 describe('Authentification', () => {
   const expectedInitialState: State = {
-    user: tokenInitialState,
+    user: userInitialState,
     brand: null
   };
 
