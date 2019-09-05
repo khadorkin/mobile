@@ -82,3 +82,16 @@ describe('progression-aggregation-by-content | reduce', () => {
     expect(secondExpected).toEqual(secondActual);
   });
 });
+
+it('should overwrite new state of progression over old state', () => {
+  const progressions = useMocks([
+    '57a2591927dc292f0065fdf3',
+    '57a2591927dc292f0065fdf4',
+    '57a2591927dc292f0065fdf5',
+    '57a2591927dc292f0065fdf6',
+    '57a2591927dc292f0065fdf7',
+    '57a2591927dc292f0065fdf8',
+    '57a2591927dc292f0065fdf9',
+    '5af99fdb99ac5a001ca5a769'
+  ]);
+});
