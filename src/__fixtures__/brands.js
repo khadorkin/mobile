@@ -13,6 +13,7 @@ export const createBrand = ({
   colors: {
     primary: '#00B0FF'
   },
+  hero: 'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png',
   images: {
     'logo-mobile':
       'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png'

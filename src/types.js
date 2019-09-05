@@ -102,6 +102,12 @@ export type Brand = {|
   progressionEngine: ProgressionEngineVersions
 |};
 
+export type User = {|
+  displayName: string,
+  familyName: string,
+  givenName: string
+|};
+
 export type PermissionStatus = 'authorized' | 'denied' | 'restricted' | 'undetermined';
 
 export type UnlockedLevelInfo = {|
