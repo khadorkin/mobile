@@ -2,8 +2,8 @@
 
 import {SIGN_OUT, SIGN_IN_SUCCESS} from '../../actions/authentication';
 import type {Action} from '../../actions/authentication';
-import reducer, {initialState as tokenInitialState} from './token';
-import type {State} from './token';
+import reducer, {initialState as tokenInitialState} from './user';
+import type {State} from './user';
 
 describe('Authentification', () => {
   const expectedInitialState: State = tokenInitialState;
@@ -21,7 +21,13 @@ describe('Authentification', () => {
 
   describe(SIGN_IN_SUCCESS, () => {
     it('Default', () => {
-      const payload = {token: TOKEN, isGodModeUser: false};
+      const payload = {
+        token: TOKEN,
+        isGodModeUser: false,
+        familyName: '',
+        givenName: '',
+        displayName: ''
+      };
       const action: Action = {type: SIGN_IN_SUCCESS, payload};
       const result = reducer(undefined, action);
       const expected: State = payload;

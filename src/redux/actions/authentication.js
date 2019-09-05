@@ -22,7 +22,13 @@ export const SIGN_IN_SUCCESS = `@@authentication/SIGN_IN_SUCCESS`;
 export const SIGN_IN_ERROR = `@@authentication/SIGN_IN_ERROR`;
 export const SIGN_OUT = `@@authentication/SIGN_OUT`;
 
-type SignInSuccess = {|token: string, isGodModeUser: boolean|};
+type SignInSuccess = {|
+  token: string,
+  isGodModeUser: boolean,
+  givenName: string,
+  familyName: string,
+  displayName: string
+|};
 
 export type Action =
   | {|

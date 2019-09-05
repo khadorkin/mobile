@@ -4,8 +4,8 @@ import {combineReducers} from 'redux';
 import type {Reducer} from 'redux';
 import type {Action} from '../../actions/authentication';
 import type {Action as BrandAction} from '../../actions/brands';
-import tokenReducer from './token';
-import type {State as TokenState} from './token';
+import userReducer from './user';
+import type {State as TokenState} from './user';
 import brandReducer from './brand';
 import type {State as BrandState} from './brand';
 
@@ -16,6 +16,6 @@ export type State = {|
 
 const reducers: Reducer<State, BrandAction | Action> = combineReducers({
   brand: brandReducer,
-  user: tokenReducer
+  user: userReducer
 });
 export default reducers;

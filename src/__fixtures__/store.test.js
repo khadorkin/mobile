@@ -167,6 +167,8 @@ describe('storeFixture', () => {
           primary: '#00B0FF'
         },
         contentCategoryName: 'Mobile',
+        hero:
+          'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png',
         host: 'https://mobile-staging.coorpacademy.com',
         images: {
           'logo-mobile':
