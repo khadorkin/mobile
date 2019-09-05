@@ -5,11 +5,7 @@ import {StyleSheet, Text} from 'react-native';
 import theme from '../modules/theme';
 import ImageBackground from './image-background';
 import {BrandThemeContext} from './brand-theme-provider';
-
-type Props = {|
-  userName: string,
-  backgroundImage: string
-|};
+import {UserContext} from './user-provider';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,15 +21,19 @@ const styles = StyleSheet.create({
   }
 });
 
-const Hero = ({userName, backgroundImage}: Props) => {
+const Hero = () => {
   return (
-    <BrandThemeContext.Consumer>
-      {brandTheme => {
-        <ImageBackground style={styles.container} resizeMode="cover" source={brandTheme.hero}>
-          <Text style={styles.text}> {`Bienvenue ${userName}`} </Text>
-        </ImageBackground>;
+    <UserContext.Consumer>
+      {user => {
+        <BrandThemeContext.Consumer>
+          {brandTheme => {
+            <ImageBackground style={styles.container} resizeMode="cover" source={brandTheme.hero}>
+              <Text style={styles.text}> {`Bienvenue ${user.givenName}`} </Text>
+            </ImageBackground>;
+          }}
+        </BrandThemeContext.Consumer>;
       }}
-    </BrandThemeContext.Consumer>
+    </UserContext.Consumer>
   );
 };
 
