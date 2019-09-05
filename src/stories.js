@@ -72,5 +72,6 @@ require('./components/text.stories.js');
 require('./components/tooltip.stories.js');
 require('./components/touchable.stories.js');
 require('./components/trophy.stories.js');
+require('./components/user-provider.stories.js');
 require('./components/version.stories.js');
 require('./components/video.stories.js');

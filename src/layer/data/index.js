@@ -35,7 +35,6 @@ export type DataLayer = {
   fetchCards: typeof fetchCards,
   fetchBrand: typeof fetchBrand,
   fetchLanguage: typeof fetchLanguage,
-  fetchUser: typeof fetchUser,
   setLanguage: typeof setLanguage,
   getInterfaceLanguage: typeof getInterfaceLanguage,
   fetchSections: typeof fetchSections,
@@ -47,7 +46,8 @@ export type DataLayer = {
   findBestOf: () => Promise<number>,
   getNextChapter: (ref: string) => Promise<ChapterAPI | void>,
   getNextLevel: (ref: string) => Promise<LevelAPI | void>,
-  logEvent: typeof logEvent
+  logEvent: typeof logEvent,
+  fetchUser: typeof fetchUser
 };
 
 const createDataLayer = (): DataLayer => ({
