@@ -17,6 +17,7 @@ import {getExitNode} from './exit-nodes';
 import {fetchBundle, storeBundle} from './bundle';
 import {fetchCards, refreshCard, getCardFromLocalStorage} from './cards';
 import {fetchBrand} from './brand';
+import {fetchUser} from './users';
 import {findById as findSlideById, findByChapter as findSlideByChapter} from './slides';
 import {find as findRecommendations} from './recommendations';
 import {findById as findLevelById, getNextLevel} from './levels';
@@ -34,6 +35,7 @@ export type DataLayer = {
   fetchCards: typeof fetchCards,
   fetchBrand: typeof fetchBrand,
   fetchLanguage: typeof fetchLanguage,
+  fetchUser: typeof fetchUser,
   setLanguage: typeof setLanguage,
   getInterfaceLanguage: typeof getInterfaceLanguage,
   fetchSections: typeof fetchSections,
@@ -60,6 +62,7 @@ const createDataLayer = (): DataLayer => ({
   getAllProgressions,
   saveProgression,
   synchronizeProgression,
+  fetchUser,
   findRecommendations,
   getNextChapter,
   getNextLevel,
