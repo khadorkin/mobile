@@ -2,6 +2,7 @@
 
 import {createBrand} from '../../__fixtures__/brands';
 import {createToken} from '../../__fixtures__/tokens';
+import {createUser} from '../../__fixtures__/user';
 import {createFakeAnalytics, fakeError} from '../../utils/tests';
 import {ANALYTICS_EVENT_TYPE, AUTHENTICATION_TYPE} from '../../const';
 import {fetchRequest as fetchBrandRequest, fetchSuccess as fetchBrandSuccess} from './brands';
@@ -15,6 +16,7 @@ jest.mock('../../utils/local-token');
 jest.mock('cross-fetch');
 
 const language = 'fr';
+const user = createUser();
 
 describe('Authentication', () => {
   describe('getAnonymousToken', () => {
@@ -74,6 +76,9 @@ describe('Authentication', () => {
           Brands: {
             find: jest.fn(() => Promise.resolve(brand))
           },
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Language: {
             fetch: jest.fn(() => Promise.resolve(language)),
             set: jest.fn()
@@ -114,7 +119,15 @@ describe('Authentication', () => {
         return action;
       });
       dispatch.mockImplementationOnce(action => {
-        expect(action).toEqual(signInSuccess({token, isGodModeUser: false}));
+        expect(action).toEqual(
+          signInSuccess({
+            token,
+            isGodModeUser: false,
+            givenName: user.givenName,
+            familyName: user.familyName,
+            displayName: user.displayName
+          })
+        );
         return action;
       });
 
@@ -132,7 +145,15 @@ describe('Authentication', () => {
       expect(options.services.Language.set).toHaveBeenCalledTimes(1);
       expect(options.services.Language.set).toHaveBeenCalledWith(language);
 
-      return expect(current).toEqual(signInSuccess({token, isGodModeUser: false}));
+      return expect(current).toEqual(
+        signInSuccess({
+          token,
+          isGodModeUser: false,
+          givenName: user.givenName,
+          familyName: user.familyName,
+          displayName: user.displayName
+        })
+      );
     });
 
     it('should sign in as anonymous', async () => {
@@ -161,6 +182,9 @@ describe('Authentication', () => {
           Analytics: createFakeAnalytics(),
           Brands: {
             find: jest.fn(() => Promise.resolve(brand))
+          },
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
           },
           Language: {
             fetch: jest.fn(() => Promise.resolve(language)),
@@ -199,7 +223,15 @@ describe('Authentication', () => {
       });
       dispatch.mockImplementationOnce(action => action);
       dispatch.mockImplementationOnce(action => {
-        expect(action).toEqual(signInSuccess({token, isGodModeUser: false}));
+        expect(action).toEqual(
+          signInSuccess({
+            token,
+            isGodModeUser: false,
+            givenName: user.givenName,
+            familyName: user.familyName,
+            displayName: user.displayName
+          })
+        );
         return action;
       });
 
@@ -217,7 +249,15 @@ describe('Authentication', () => {
       expect(options.services.Language.set).toHaveBeenCalledTimes(1);
       expect(options.services.Language.set).toHaveBeenCalledWith(language);
 
-      return expect(current).toEqual(signInSuccess({token, isGodModeUser: false}));
+      return expect(current).toEqual(
+        signInSuccess({
+          token,
+          isGodModeUser: false,
+          givenName: user.givenName,
+          familyName: user.familyName,
+          displayName: user.displayName
+        })
+      );
     });
 
     it('should handle error on anonymous sign in', async () => {
@@ -237,6 +277,9 @@ describe('Authentication', () => {
       const getState = jest.fn();
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Language: {
             getFromInterface: jest.fn().mockImplementation(() => language),
@@ -279,6 +322,9 @@ describe('Authentication', () => {
       const getState = jest.fn();
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Language: {
             getFromInterface: jest.fn().mockImplementation(() => language),
@@ -323,6 +369,9 @@ describe('Authentication', () => {
       const getState = jest.fn();
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Language: {
             getFromInterface: jest.fn().mockImplementation(() => language),
@@ -370,6 +419,9 @@ describe('Authentication', () => {
       const getState = jest.fn();
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Brands: {
             find: jest.fn(() => Promise.reject(fakeError))
@@ -433,6 +485,9 @@ describe('Authentication', () => {
       });
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Brands: {
             find: jest.fn(() => Promise.resolve(brand))
@@ -503,6 +558,9 @@ describe('Authentication', () => {
       });
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Language: {
             getFromInterface: jest.fn().mockImplementation(() => language),
@@ -562,6 +620,9 @@ describe('Authentication', () => {
       });
       const options = {
         services: {
+          Users: {
+            find: jest.fn(() => Promise.resolve(user))
+          },
           Analytics: createFakeAnalytics(),
           Language: {
             getFromInterface: jest.fn().mockImplementation(() => language),

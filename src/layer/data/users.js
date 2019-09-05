@@ -33,7 +33,7 @@ export const fetchUser = async (token: string): Promise<User> => {
   return {
     givenName: name.givenName,
     familyName: name.familyName,
-    displayName: displayName
+    displayName
   };
 };
 
