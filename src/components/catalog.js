@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, Text} from 'react-native';
 
 import type {ChapterCard, DisciplineCard} from '../layer/data/_types';
 import type {Section} from '../types';
 import CatalogSection from '../containers/catalog-section-refreshable';
 import theme from '../modules/theme';
+import Hero from './hero';
 import Space from './space';
 
 export type Props = {|
@@ -59,11 +60,14 @@ class Catalog extends React.Component<Props> {
 
   renderFooter = (): React.Node | null => this.props.children || null;
 
+  renderHeader = (): React.Node => <Hero />;
+
   render() {
     const {sections, onRefresh, isRefreshing = false, onScroll} = this.props;
 
     return (
       <FlatList
+        ListHeaderComponent={this.renderHeader}
         refreshing={isRefreshing}
         onRefresh={onRefresh}
         data={sections.length > 0 ? sections : new Array(PLACEHOLDER_LENGTH).fill()}
