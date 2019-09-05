@@ -4,13 +4,9 @@ const moment = require('moment');
 const {assign, set, toNumber, getOr} = require('lodash/fp');
 
 const takeMaxDate = (date1, date2) => {
-  console.log(date1);
-  console.log(date2);
   if (date1 === undefined) return date2;
   if (date2 === undefined) return date1;
 
-  console.log(moment(date1));
-  console.log(moment(date2));
   if (moment(date2).isAfter(date1)) {
     return date2;
   }
@@ -18,8 +14,7 @@ const takeMaxDate = (date1, date2) => {
 };
 
 const reduce = (prevCompletion, nextCompletion) => {
-  console.log('reduce');
-  const latestDate = takeMaxDate(
+  const updatedAt = takeMaxDate(
     prevCompletion && prevCompletion.updatedAt,
     nextCompletion && nextCompletion.updatedAt
   );
@@ -32,29 +27,29 @@ const reduce = (prevCompletion, nextCompletion) => {
   if (prevCompletion.success === true) {
     if (nextCompletion.success === false)
       return assign(prevCompletion, {
-        latestDate
+        updatedAt
       });
 
     // if existing document in dynamoDB is already in success we update only if new stars are greater than prev's
     if (prevCompletion.stars < nextCompletion.stars) {
       return assign(nextCompletion, {
-        latestDate
+        updatedAt
       });
     }
     if (prevCompletion.stars > nextCompletion.stars) {
       return assign(prevCompletion, {
-        latestDate
+        updatedAt
       });
     }
 
     if (moment(nextCompletion.updatedAt).isBefore(prevCompletion.updatedAt)) {
       return assign(prevCompletion, {
-        latestDate
+        updatedAt
       });
     }
 
     return assign(nextCompletion, {
-      latestDate
+      updatedAt
     });
   } else {
     // prevCompletion.success === false
@@ -62,7 +57,7 @@ const reduce = (prevCompletion, nextCompletion) => {
     // if incoming document is in success it should be updated
     if (nextCompletion.success === true)
       return assign(nextCompletion, {
-        latestDate
+        updatedAt
       });
 
     // if incoming document is older than the current one.
@@ -71,14 +66,14 @@ const reduce = (prevCompletion, nextCompletion) => {
       moment(nextCompletion.updatedAt).isBefore(prevCompletion.updatedAt)
     ) {
       return assign(prevCompletion, {
-        latestDate
+        updatedAt
       });
     }
 
     if (nextCompletion.success === false && nextCompletion.latestNbQuestions === 0) {
       // if incoming document is in failure (so completion 0) it should be updated
       return assign(nextCompletion, {
-        latestDate
+        updatedAt
       });
     }
     // if incoming document version is higher it should be updated
@@ -87,7 +82,7 @@ const reduce = (prevCompletion, nextCompletion) => {
       toNumber(getOr('1', 'content.version', nextCompletion))
     ) {
       return assign(nextCompletion, {
-        latestDate
+        updatedAt
       });
     }
     if (
@@ -95,19 +90,19 @@ const reduce = (prevCompletion, nextCompletion) => {
       toNumber(getOr('1', 'content.version', nextCompletion))
     ) {
       return assign(prevCompletion, {
-        latestDate
+        updatedAt
       });
     }
 
     // if a new completion is higher
     if (prevCompletion.latestNbQuestions <= nextCompletion.latestNbQuestions) {
       return assign(nextCompletion, {
-        latestDate
+        updatedAt
       });
     }
 
     return assign(prevCompletion, {
-      latestDate
+      updatedAt
     });
   }
 };
@@ -122,7 +117,7 @@ const mapValue = record => {
   const {
     state,
     content,
-    meta: {updatedAt: latestDate}
+    meta: {updatedAt}
   } = record.content;
 
   const {step, nextContent} = state;
@@ -132,7 +127,7 @@ const mapValue = record => {
     content: Object.assign({version: '1'}, content),
     latestNbQuestions: current ? current - 1 : 0,
     success: false,
-    latestDate
+    updatedAt
   };
 
   if (nextContent.type === 'failure') {

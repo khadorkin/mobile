@@ -221,6 +221,6 @@ export type ProgressionAggregationByContent = {|
     type: 'chapter' | 'level',
     version: string
   },
-  current: number,
-  updatedAt: string
+  latestNbQuestions: number,
+  latestDate: string
 |};
