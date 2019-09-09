@@ -106,5 +106,6 @@ export type Translations = {|
   winAdditionalStars: string,
   wrongAnswer: string,
   yourAnswer: string,
-  yourAnswers: string
+  yourAnswers: string,
+  hello: string
 |};

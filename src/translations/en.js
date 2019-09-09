@@ -41,7 +41,7 @@ const translations: Translations = {
   goodJob: 'Good job!',
   goToQuestion: 'Go to question',
   highscore: 'You have a new highscore<br><b>you just won {{score}} stars</b>',
-  howToSignIn: 'Have you received an email to download the app?',
+  howToSignIn: 'Did you receive an email to download the app?',
   iWantIt: 'I want it !',
   keyPoint: 'Key point',
   lesson: 'Lesson',
@@ -96,7 +96,8 @@ const translations: Translations = {
   welcomeDescription: 'This app is linked to your account on your company’s Learning Platform.',
   wrongAnswer: 'Wrong answer',
   yourAnswer: 'Your answer:',
-  yourAnswers: 'Your answers:'
+  yourAnswers: 'Your answers:',
+  hello: 'Welcome, {{displayname}}!'
 };
 
 export default translations;

@@ -113,7 +113,6 @@ class Catalog extends React.Component<Props, State> {
 
     const offsetY = this.offsetY > HERO_HEIGHT ? this.offsetY - HERO_HEIGHT : 0;
     const offset = Math.trunc(offsetY / (SECTION_HEIGHT + SEPARATOR_HEIGHT));
-    console.log('OFFSET', offsetY, offset);
     return getOffsetWithoutCards(sections, offset);
   };
 

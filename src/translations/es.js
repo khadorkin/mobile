@@ -86,7 +86,7 @@ const translations: Translations = {
   typeHere: 'Escribe aquí',
   validate: 'Validar',
   version: 'Licencia',
-  videoLoadingError: '',
+  videoLoadingError: 'Se ha producido un error al cargar el vídeo, se ruega volver a probar.',
   unlockNextLevel: 'Acabas de desbloquear el<br><b>nivel {{levelName}}</b>',
   upgrade: 'Actualizar',
   upgradeDescription:
@@ -98,7 +98,8 @@ const translations: Translations = {
     'Esta aplicación se vincula a tu cuenta en la plataforma de aprendizaje de tu empresa.',
   wrongAnswer: 'Respuesta incorrecta',
   yourAnswer: 'Su respuesta:',
-  yourAnswers: 'Sus respuestas:'
+  yourAnswers: 'Sus respuestas:',
+  hello: '¡ Bienvenido, {{displayname}}!'
 };
 
 export default translations;

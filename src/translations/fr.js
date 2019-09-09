@@ -99,7 +99,8 @@ const translations: Translations = {
     'Cette app est associée à votre compte sur la plateforme de formation de votre société.',
   wrongAnswer: 'Mauvaise réponse',
   yourAnswer: 'Votre réponse :',
-  yourAnswers: 'Vos réponses :'
+  yourAnswers: 'Vos réponses :',
+  hello: 'Bienvenue {{displayname}} !'
 };
 
 export default translations;
