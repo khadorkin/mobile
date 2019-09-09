@@ -53,7 +53,7 @@ if (__TEST__) {
       });
 
       const result = mapStateToProps(state);
-      expect(result).toEqual(user);
+      expect(result).toEqual({user});
     });
 
     it('should return the initial state', () => {
@@ -74,7 +74,7 @@ if (__TEST__) {
       });
 
       const result = mapStateToProps(state);
-      expect(result).toEqual(initialState);
+      expect(result).toEqual({user: initialState});
     });
   });
 }

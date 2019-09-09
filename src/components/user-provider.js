@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import * as React from 'react';
 
@@ -29,8 +29,6 @@ const UserProvider = ({children, user}: Props) => (
 
 export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const user = state.authentication.user;
-
-  console.log('USER', user);
 
   if (!user) return {user: initialState};
   return {
