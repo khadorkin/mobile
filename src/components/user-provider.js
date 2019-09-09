@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 
@@ -6,10 +6,10 @@ import {connect} from 'react-redux';
 import type {User} from '../types';
 import type {StoreState} from '../redux/store';
 
-type ConnectedStateProps = User;
+type ConnectedStateProps = {|user: User|};
 
 type Props = {|
-  user: User,
+  ...ConnectedStateProps,
   children: React.Node
 |};
 
@@ -30,8 +30,13 @@ const UserProvider = ({children, user}: Props) => (
 export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const user = state.authentication.user;
 
-  if (!user) return initialState;
-  return {familyName: user.familyName, givenName: user.givenName, displayName: user.displayName};
+  console.log('USER', user);
+
+  if (!user) return {user: initialState};
+  return {
+    // a améliorer
+    user: {familyName: user.familyName, givenName: user.givenName, displayName: user.displayName}
+  };
 };
 
 export {UserProvider as Component};
