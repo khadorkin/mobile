@@ -31,7 +31,6 @@ export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const user = state.authentication.user;
 
   if (!user) return initialState;
-
   return {familyName: user.familyName, givenName: user.givenName, displayName: user.displayName};
 };
 

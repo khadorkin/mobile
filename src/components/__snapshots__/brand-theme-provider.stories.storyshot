@@ -3,29 +3,16 @@
 exports[`Storyshots BrandThemeProvider Default 1`] = `
 Array [
   <Text>
-    Host: 
-    https://mobile-staging.coorpacademy.com
-  </Text>,
-  <Text
-    style={
-      Object {
-        "color": "#00B0FF",
-      }
-    }
-  >
-    Primary color
+    FamilyName: 
+    Pot
   </Text>,
   <Text>
-    Content category name: 
-    Mobile
+    GivenName: 
+    Pol
   </Text>,
   <Text>
-    Name: 
-    mobile
-  </Text>,
-  <Text>
-    Logo: 
-    https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png
+    DisplayName: 
+    Pol P.
   </Text>,
 ]
 `;

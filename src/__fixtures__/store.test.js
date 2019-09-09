@@ -21,6 +21,8 @@ describe('storeFixture', () => {
           'logo-mobile':
             'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png'
         },
+        hero:
+          'https://static.coorpacademy.com/content/mobile/raw/coorp_logo_infinite-1552063832916.png',
         name: 'mobile',
         progressionEngine: {
           versions: {
@@ -160,7 +162,10 @@ describe('storeFixture', () => {
     const authenticationState = {
       user: {
         token: '__TOKEN__',
-        isGodModeUser: false
+        isGodModeUser: false,
+        displayName: '',
+        givenName: '',
+        familyName: ''
       },
       brand: {
         colors: {

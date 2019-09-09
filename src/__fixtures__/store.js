@@ -8,7 +8,7 @@ import type {
 import type {Slide as SlideEngine, Progression, Answer} from '@coorpacademy/progression-engine';
 import type {SlideAPI, ChapterAPI, LevelAPI} from '@coorpacademy/player-services';
 
-import type {Section, Brand} from '../types';
+import type {Section, Brand, User} from '../types';
 import type {
   Level,
   Slide,
@@ -91,13 +91,18 @@ export const createCatalogState = (
 });
 
 export const createAuthenticationState = ({
-  brand
+  brand,
+  user
 }: {
-  brand?: Brand | null
+  brand?: Brand | null,
+  user?: User | null
 }): AuthenticationState => ({
   user: {
     token: '__TOKEN__',
-    isGodModeUser: false
+    isGodModeUser: false,
+    displayName: user ? user.displayName : '',
+    givenName: user ? user.givenName : '',
+    familyName: user ? user.familyName : ''
   },
   brand: brand !== undefined ? brand : createBrand({})
 });

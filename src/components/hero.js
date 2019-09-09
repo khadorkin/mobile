@@ -31,6 +31,7 @@ const Hero = () => {
   return (
     <UserContext.Consumer>
       {user => {
+        console.log('USER', user);
         return (
           <BrandThemeContext.Consumer>
             {brandTheme => {
