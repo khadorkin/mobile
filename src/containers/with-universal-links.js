@@ -10,10 +10,9 @@ import hoistNonReactStatic from 'hoist-non-react-statics';
 
 import {AUTHENTICATION_TYPE} from '../const';
 import {signIn, signOut} from '../redux/actions/authentication';
-import type {State as TokenState} from '../redux/reducers/authentication/token';
 
 type ConnectedStateProps = {|
-  token: TokenState
+  token: string
 |};
 
 type ConnectedDispatchProps = {|

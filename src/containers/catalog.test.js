@@ -68,7 +68,7 @@ describe('Catalog', () => {
       jest.advanceTimersByTime(DEBOUNCE_DURATION);
       expect(fetchSections).toHaveBeenCalledTimes(2);
       expect(fetchSections.mock.calls[0]).toEqual([0, 3, false]);
-      expect(fetchSections.mock.calls[1]).toEqual([2, 1, false]);
+      expect(fetchSections.mock.calls[1]).toEqual([0, 3, false]);
     });
 
     it('should handle scroll on sections already fetched', () => {

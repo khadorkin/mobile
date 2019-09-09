@@ -50,6 +50,11 @@ exports[`Storyshots Home Default 1`] = `
     ItemSeparatorComponent={[Function]}
     ListFooterComponent={[Function]}
     ListHeaderComponent={[Function]}
+    ListHeaderComponentStyle={
+      Object {
+        "marginBottom": 24,
+      }
+    }
     data={
       Array [
         undefined,
@@ -99,101 +104,72 @@ exports[`Storyshots Home Default 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
       >
         <View
-          accessibilityIgnoresInvertColors={true}
           style={
-            Array [
-              Object {
-                "height": "100%",
-                "width": "100%",
-              },
-              Object {
-                "height": 544,
-                "marginBottom": 16,
-              },
-            ]
+            Object {
+              "backgroundColor": "#ECEFF1",
+              "height": 250,
+              "justifyContent": "flex-end",
+              "padding": 16,
+            }
           }
+          testID="hero-placeholder"
         >
-          <Image
-            resizeMode="cover"
-            source={
-              Object {
-                "uri": "https://api.coorpacademy.com/api-service/medias?url=https%3A%2F%2Fstatic.coorpacademy.com%2Fcontent%2Fonboarding%2Fraw%2Fimage-dios-1-1531517080118.jpg&m=crop&q=90&h=544",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                },
-                Object {
-                  "height": undefined,
-                  "width": undefined,
-                },
-                undefined,
-              ]
-            }
-            testID="image-background"
-          />
-          <BVLinearGradient
-            colors={
-              Array [
-                0,
-                1711276032,
-                3003121664,
-                4278190080,
-              ]
-            }
-            endPoint={
-              Object {
-                "x": 0.5,
-                "y": 1,
-              }
-            }
-            locations={null}
-            startPoint={
-              Object {
-                "x": 0.5,
-                "y": 0,
-              }
-            }
-            style={
-              Array [
-                Array [
-                  Object {
-                    "flex": 1,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 544,
-                    "justifyContent": "flex-end",
-                    "padding": 8,
-                  },
-                ],
-                undefined,
-              ]
-            }
-            testID="image-background-gradient"
-          >
-            <Text
+          <View>
+            <View
               style={
                 Object {
-                  "color": "#FFFFFF",
-                  "fontSize": 28,
-                  "fontWeight": "700",
+                  "flex": 1,
                 }
               }
             >
-               
-              Bienvenue 
-               
-            </Text>
-          </BVLinearGradient>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  noMargin={true}
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 0,
+                      },
+                      Object {
+                        "height": 5,
+                      },
+                      Object {
+                        "backgroundColor": "#CFD8DC",
+                      },
+                    ]
+                  }
+                  width="40%"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
       <View
