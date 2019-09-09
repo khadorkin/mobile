@@ -42,6 +42,7 @@ if (__TEST__) {
           ref: ''
         }
       });
+
       const state = createStoreState({
         levels: [],
         disciplines: [],

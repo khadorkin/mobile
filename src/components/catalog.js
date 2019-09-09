@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {StyleSheet, FlatList, Text} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 
 import type {ChapterCard, DisciplineCard} from '../layer/data/_types';
 import type {Section} from '../types';
