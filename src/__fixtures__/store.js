@@ -225,7 +225,7 @@ export const createNavigationState = (): NavigationState => ({
   currentNavigatorName: 'dummyNavigatorName',
   currentAppScreenName: 'dummycurrentAppScreenName',
   currentScreenName: 'dummyScreenName',
-  currentTabName: 'dummyScreenName'
+  currentTabName: 'dummyTabName'
 });
 
 export const createPermissionsState = (): PermissionsState => ({

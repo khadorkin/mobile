@@ -280,7 +280,7 @@ describe('storeFixture', () => {
         currentNavigatorName: 'dummyNavigatorName',
         currentAppScreenName: 'dummycurrentAppScreenName',
         currentScreenName: 'dummyScreenName',
-        currentTabName: 'dummyScreenName'
+        currentTabName: 'dummyTabName'
       },
       catalog: catalogState,
       permissions: permissionsState,
