@@ -85,7 +85,7 @@ const translations: Translations = {
   typeHere: 'Írjon ide',
   validate: 'Érvényesít',
   version: 'Verzió',
-  videoLoadingError: '',
+  videoLoadingError: 'Hiba történt a videó betöltése közben, kérjük, próbálja meg újra.',
   unlockNextLevel: 'Elérted a(z) <br><b>{{levelName}} szintet</b>',
   upgrade: 'Frissítés',
   upgradeDescription:
@@ -97,7 +97,8 @@ const translations: Translations = {
     'Ez az alkalmazás a vállalati tanulási platformon található fiókjához kapcsolódik.',
   wrongAnswer: 'Rossz válasz',
   yourAnswer: 'Az ön válasza:',
-  yourAnswers: 'Az ön válaszai:'
+  yourAnswers: 'Az ön válaszai:',
+  hello: 'Üdvözöljük, {{displayname}}!'
 };
 
 export default translations;

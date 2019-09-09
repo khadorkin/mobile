@@ -38,7 +38,7 @@ const translations: Translations = {
   goodJob: '잘 했습니다!',
   goToQuestion: '질문으로 이동',
   highscore: '새로운 최고 점수입니다<br><b>{{score}}별을 획득했습니다</b>',
-  howToSignIn: '앱을 다운로드할 수 있는 이메일을 받으셨나요?',
+  howToSignIn: '앱을 다운로드할 수 있는 이메일을 받으셨나요? ',
   iWantIt: '다시 활성화하겠습니다',
   keyPoint: '핵심 포인트',
   lesson: '강의',
@@ -81,7 +81,7 @@ const translations: Translations = {
   typeHere: '여기에 입력하세요',
   validate: '인증하기',
   version: '버전 ',
-  videoLoadingError: '',
+  videoLoadingError: '비디오를 불러오는 중에 오류가 발생했습니다. 다시 시도하세요.',
   unlockNextLevel: '<br><b>{{levelName}} 레벨</b>의 잠금이 해제되었습니다',
   upgrade: '업그레이드 ',
   upgradeDescription: '응용 프로그램이 업데이트 되었습니다! 최신 버전을 다운로드하고 즐겨 보세요.',
@@ -90,7 +90,8 @@ const translations: Translations = {
   welcomeDescription: '이 앱은 귀사의 학습 플랫폼에 있는 귀하의 계정에 연결되어 있습니다.',
   wrongAnswer: '오답',
   yourAnswer: '귀하의 답:',
-  yourAnswers: '귀하의 답:'
+  yourAnswers: '귀하의 답:',
+  hello: '환영 합니다, {{displayname}}!'
 };
 
 export default translations;

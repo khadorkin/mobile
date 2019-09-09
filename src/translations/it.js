@@ -41,7 +41,7 @@ const translations: Translations = {
   goodJob: 'Ottimo lavoro!',
   goToQuestion: 'Vai alla domanda',
   highscore: 'Hai stabilito un nuovo record<br><b>hai appena vinto {{score}} stelle</b>',
-  howToSignIn: "Hai ricevuto un'email per scaricare l'app?",
+  howToSignIn: "Hai ricevuto un'e-mail per scaricare l'app?",
   iWantIt: 'Lo voglio!',
   keyPoint: 'Punto chiave',
   lesson: 'Lezione',
@@ -85,7 +85,7 @@ const translations: Translations = {
   typeHere: 'Digita qui',
   validate: 'Convalida',
   version: 'Versione',
-  videoLoadingError: '',
+  videoLoadingError: 'Si è verificato un errore durante il caricamento del video, riprova.',
   unlockNextLevel: 'Hai appena sbloccato<br><b>il livello {{levelName}}</b>',
   upgrade: "Esegui l'upgrade",
   upgradeDescription:
@@ -97,7 +97,8 @@ const translations: Translations = {
     'Questa app è collegata al tuo account sulla Piattaforma di Apprendimento della tua azienda.',
   wrongAnswer: 'Risposta sbagliata',
   yourAnswer: 'La tua risposta:',
-  yourAnswers: 'Le tue risposte:'
+  yourAnswers: 'Le tue risposte:',
+  hello: 'Benvenuto, {{displayname}}!'
 };
 
 export default translations;

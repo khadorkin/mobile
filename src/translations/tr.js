@@ -39,7 +39,7 @@ const translations: Translations = {
   goodJob: 'Tebrikler!',
   goToQuestion: 'Soruya git',
   highscore: 'Yeni bir yüksek puanın var<br><b>az önce {{score}} yıldız kazandın</b>',
-  howToSignIn: 'Uygulamayı indirmek için bir e-posta adresi aldınız mı?',
+  howToSignIn: 'Uygulamayı yüklemeniz için gönderilen e-posta ulaştı mı?',
   iWantIt: 'İstiyorum !',
   keyPoint: 'Anahtar noktası',
   lesson: 'Ders',
@@ -82,7 +82,7 @@ const translations: Translations = {
   typeHere: 'Buraya yazın',
   validate: 'Onayla',
   version: 'Sürüm',
-  videoLoadingError: '',
+  videoLoadingError: 'Video yüklenirken bir hata meydana geldi, lütfen tekrar deneyin.',
   unlockNextLevel: 'Az önce <br><b>{{levelName}} seviyesinin</b> kilidini açtın',
   upgrade: 'Yükselt',
   upgradeDescription: 'Uygulaman güncellendi! Keyfini sürmek için lütfen en son sürümü indir.',
@@ -91,7 +91,8 @@ const translations: Translations = {
   welcomeDescription: "Bu uygulama, şirketinizin Öğrenme Platformu'ndaki hesabınıza bağlanır.",
   wrongAnswer: 'Yanlış cevap',
   yourAnswer: 'Yanıtınız:',
-  yourAnswers: 'Yanıtlarınız:'
+  yourAnswers: 'Yanıtlarınız:',
+  hello: 'Hoşgeldiniz, {{displayname}}!'
 };
 
 export default translations;

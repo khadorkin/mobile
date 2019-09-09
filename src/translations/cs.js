@@ -42,7 +42,7 @@ const translations: Translations = {
   goodJob: 'Dobře!',
   goToQuestion: 'Přejděte k otázce',
   highscore: 'Máte nové nejvyšší skóre,<br><b>právě jste vyhráli {{score}} hvězdiček</b>',
-  howToSignIn: 'Dostali jste e-mail ke stažení aplikace?',
+  howToSignIn: 'Obdrželi jste e-mail ke stažení aplikace?',
   iWantIt: 'To chci!',
   keyPoint: 'Klíčový bod',
   lesson: 'Lekce',
@@ -98,7 +98,8 @@ const translations: Translations = {
     'Tato aplikace je propojena s vaším účtem na vzdělávací platformě vaší společnosti.',
   wrongAnswer: 'Chybná odpověď',
   yourAnswer: 'Vaše odpověď:',
-  yourAnswers: 'Vaše odpovědi:'
+  yourAnswers: 'Vaše odpovědi:',
+  hello: 'Vítejte, {{displayname}}!'
 };
 
 export default translations;

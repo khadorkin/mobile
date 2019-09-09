@@ -38,7 +38,7 @@ const translations: Translations = {
   goodJob: 'よく出来ました！',
   goToQuestion: '質問に行く',
   highscore: 'ハイスコアを更新<br><b>{{score}}の星を獲得しました</b>',
-  howToSignIn: 'アプリをダウンロードするメールを受け取りましたか？',
+  howToSignIn: 'アプリをダウンロードするEメールを受け取りましたか？',
   iWantIt: '有効化したい！',
   keyPoint: '重要なポイント',
   lesson: 'レッスン',
@@ -82,7 +82,7 @@ const translations: Translations = {
   typeHere: 'ここに入力します',
   validate: '回答',
   version: 'バージョン',
-  videoLoadingError: '',
+  videoLoadingError: 'ビデオの読み込み中にエラーが発生しました。再度お試しください。',
   unlockNextLevel: '新たにアンロックしました<br><b>{{levelName}}レベル</b>',
   upgrade: 'アップグレード',
   upgradeDescription:
@@ -93,7 +93,8 @@ const translations: Translations = {
   welcomeDescription: '会社のLearning Platformのマイアカウントにアプリがリンクされる。',
   wrongAnswer: '不正解',
   yourAnswer: 'あなたの答え：',
-  yourAnswers: 'あなたの答え：'
+  yourAnswers: 'あなたの答え：',
+  hello: 'ようこそ、 {{displayname}}!'
 };
 
 export default translations;
