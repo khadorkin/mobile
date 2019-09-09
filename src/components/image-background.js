@@ -58,8 +58,6 @@ const ImageBackground = ({
 
   let resizedSource = (uri && {uri}) || source;
 
-  console.log('SOURCE', resizedSource);
-
   if (gradient) {
     const {children, ...remainingProps} = props;
 
