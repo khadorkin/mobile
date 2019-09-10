@@ -96,10 +96,10 @@ const translations: Translations = {
   welcome: 'Bine aţi venit',
   welcomeDescription:
     'Această aplicație este conectată la contul dvs. de pe platforma de învățare a companiei dvs.',
+  welcomeUser: 'Bine ai venit, {{displayname}}!',
   wrongAnswer: 'Răspuns incorect',
   yourAnswer: 'Răspunsul dumneavoastră:',
-  yourAnswers: 'Răspunsurile dumneavoastră:',
-  hello: 'Bine ai venit, {{displayname}}!'
+  yourAnswers: 'Răspunsurile dumneavoastră:'
 };
 
 export default translations;

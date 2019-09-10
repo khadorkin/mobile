@@ -97,10 +97,10 @@ const translations: Translations = {
   welcome: 'Willkommen auf der Plattform.',
   welcomeDescription:
     'Diese App ist mit Ihrem Konto auf der Lernplattform Ihres Unternehmens verknüpft.',
+  welcomeUser: 'Willkommen, {{displayname}}!',
   wrongAnswer: 'Falsche Antwort',
   yourAnswer: 'Ihre Antwort:',
-  yourAnswers: 'Ihre Antworten:',
-  hello: 'Willkommen, {{displayname}}!'
+  yourAnswers: 'Ihre Antworten:'
 };
 
 export default translations;

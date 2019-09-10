@@ -95,10 +95,10 @@ const translations: Translations = {
   welcome: 'Üdvözlünk',
   welcomeDescription:
     'Ez az alkalmazás a vállalati tanulási platformon található fiókjához kapcsolódik.',
+  welcomeUser: 'Üdvözöljük, {{displayname}}!',
   wrongAnswer: 'Rossz válasz',
   yourAnswer: 'Az ön válasza:',
-  yourAnswers: 'Az ön válaszai:',
-  hello: 'Üdvözöljük, {{displayname}}!'
+  yourAnswers: 'Az ön válaszai:'
 };
 
 export default translations;

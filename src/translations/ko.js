@@ -88,10 +88,10 @@ const translations: Translations = {
   winAdditionalStars: '귀하가 레슨을 처음 볼 때, 이 장에서 {{count}}개의 추가 스타를 획득하세요!',
   welcome: '환영합니다',
   welcomeDescription: '이 앱은 귀사의 학습 플랫폼에 있는 귀하의 계정에 연결되어 있습니다.',
+  welcomeUser: '환영 합니다, {{displayname}}!',
   wrongAnswer: '오답',
   yourAnswer: '귀하의 답:',
-  yourAnswers: '귀하의 답:',
-  hello: '환영 합니다, {{displayname}}!'
+  yourAnswers: '귀하의 답:'
 };
 
 export default translations;

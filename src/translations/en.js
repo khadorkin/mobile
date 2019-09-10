@@ -94,10 +94,10 @@ const translations: Translations = {
     'Win {{count}} additional stars in this chapter the first time you view a lesson!',
   welcome: 'Welcome',
   welcomeDescription: 'This app is linked to your account on your company’s Learning Platform.',
+  welcomeUser: 'Welcome, {{displayname}}!',
   wrongAnswer: 'Wrong answer',
   yourAnswer: 'Your answer:',
-  yourAnswers: 'Your answers:',
-  hello: 'Welcome, {{displayname}}!'
+  yourAnswers: 'Your answers:'
 };
 
 export default translations;
