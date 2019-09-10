@@ -7,7 +7,6 @@ import {createLevel} from './levels';
 import {createSlide} from './slides';
 import {createQCM} from './questions';
 import {createProgression} from './progression';
-import {createUser} from './user';
 
 describe('storeFixture', () => {
   it('should override progressionEngine', () => {

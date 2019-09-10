@@ -29,7 +29,6 @@ const UserProvider = ({children, user}: Props) => (
 
 export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
   const user = state.authentication.user;
-
   if (!user) return {user: initialState};
   return {
     // a améliorer
