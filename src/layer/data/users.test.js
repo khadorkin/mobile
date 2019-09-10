@@ -3,7 +3,6 @@
 import {createToken} from '../../__fixtures__/tokens';
 import {createBrand} from '../../__fixtures__/brands';
 import {createUser} from '../../__fixtures__/user';
-import type {Config} from './brand';
 import type {FetchUserResponse} from './users';
 
 const brand = createBrand();

@@ -9,7 +9,6 @@ import {CONTENT_TYPE, ENGINE} from '../const';
 import {createProgression} from '../__fixtures__/progression';
 import {createStoreState, createAuthenticationState} from '../__fixtures__/store';
 import {__TEST__} from '../modules/environment';
-import {createBrand} from '../__fixtures__/brands';
 import {
   UserContext,
   Component as UserProvider,
