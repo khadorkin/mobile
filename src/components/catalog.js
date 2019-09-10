@@ -19,19 +19,15 @@ export type Props = {|
   children?: React.Node
 |};
 
-const HERO_SEPARATOR_HEIGHT = theme.spacing.base;
-export const HERO_HEIGHT = _HERO_HEIGHT + HERO_SEPARATOR_HEIGHT;
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1
-  },
-  hero: {
-    marginBottom: HERO_SEPARATOR_HEIGHT
   }
 });
 
 const SEPARATOR_SIZE = 'small';
 export const SEPARATOR_HEIGHT = theme.spacing[SEPARATOR_SIZE];
+export const HERO_HEIGHT = _HERO_HEIGHT;
 const PLACEHOLDER_LENGTH = 3;
 
 class Catalog extends React.Component<Props> {
@@ -65,7 +61,12 @@ class Catalog extends React.Component<Props> {
 
   renderFooter = (): React.Node | null => this.props.children || null;
 
-  renderHeader = (): React.Node => <Hero />;
+  renderHeader = (): React.Node => (
+    <React.Fragment>
+      <Hero />
+      {this.renderSeparator()}
+    </React.Fragment>
+  );
 
   render() {
     const {sections, onRefresh, isRefreshing = false, onScroll} = this.props;
@@ -73,7 +74,6 @@ class Catalog extends React.Component<Props> {
     return (
       <FlatList
         ListHeaderComponent={this.renderHeader}
-        ListHeaderComponentStyle={styles.hero}
         refreshing={isRefreshing}
         onRefresh={onRefresh}
         data={sections.length > 0 ? sections : new Array(PLACEHOLDER_LENGTH).fill()}

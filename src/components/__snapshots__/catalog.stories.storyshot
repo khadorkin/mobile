@@ -5,11 +5,6 @@ exports[`Storyshots Catalog Default 1`] = `
   ItemSeparatorComponent={[Function]}
   ListFooterComponent={[Function]}
   ListHeaderComponent={[Function]}
-  ListHeaderComponentStyle={
-    Object {
-      "marginBottom": 24,
-    }
-  }
   data={
     Array [
       undefined,
@@ -59,11 +54,6 @@ exports[`Storyshots Catalog Default 1`] = `
   <View>
     <View
       onLayout={[Function]}
-      style={
-        Object {
-          "marginBottom": 24,
-        }
-      }
     >
       <View
         style={
@@ -126,6 +116,14 @@ exports[`Storyshots Catalog Default 1`] = `
           </View>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "height": 16,
+            "width": 16,
+          }
+        }
+      />
     </View>
     <View
       onLayout={[Function]}
@@ -4319,11 +4317,6 @@ exports[`Storyshots Catalog Refreshing 1`] = `
   ItemSeparatorComponent={[Function]}
   ListFooterComponent={[Function]}
   ListHeaderComponent={[Function]}
-  ListHeaderComponentStyle={
-    Object {
-      "marginBottom": 24,
-    }
-  }
   data={
     Array [
       undefined,
@@ -4373,11 +4366,6 @@ exports[`Storyshots Catalog Refreshing 1`] = `
   <View>
     <View
       onLayout={[Function]}
-      style={
-        Object {
-          "marginBottom": 24,
-        }
-      }
     >
       <View
         style={
@@ -4440,6 +4428,14 @@ exports[`Storyshots Catalog Refreshing 1`] = `
           </View>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "height": 16,
+            "width": 16,
+          }
+        }
+      />
     </View>
     <View
       onLayout={[Function]}
@@ -8633,11 +8629,6 @@ exports[`Storyshots Catalog Sections with bad card refs 1`] = `
   ItemSeparatorComponent={[Function]}
   ListFooterComponent={[Function]}
   ListHeaderComponent={[Function]}
-  ListHeaderComponentStyle={
-    Object {
-      "marginBottom": 24,
-    }
-  }
   data={
     Array [
       Object {
@@ -8706,11 +8697,6 @@ exports[`Storyshots Catalog Sections with bad card refs 1`] = `
   <View>
     <View
       onLayout={[Function]}
-      style={
-        Object {
-          "marginBottom": 24,
-        }
-      }
     >
       <View
         style={
@@ -8773,6 +8759,14 @@ exports[`Storyshots Catalog Sections with bad card refs 1`] = `
           </View>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "height": 16,
+            "width": 16,
+          }
+        }
+      />
     </View>
     <View
       onLayout={[Function]}
@@ -11480,11 +11474,6 @@ exports[`Storyshots Catalog Sections with cards 1`] = `
   ItemSeparatorComponent={[Function]}
   ListFooterComponent={[Function]}
   ListHeaderComponent={[Function]}
-  ListHeaderComponentStyle={
-    Object {
-      "marginBottom": 24,
-    }
-  }
   data={
     Array [
       Object {
@@ -11559,11 +11548,6 @@ exports[`Storyshots Catalog Sections with cards 1`] = `
   <View>
     <View
       onLayout={[Function]}
-      style={
-        Object {
-          "marginBottom": 24,
-        }
-      }
     >
       <View
         style={
@@ -11626,6 +11610,14 @@ exports[`Storyshots Catalog Sections with cards 1`] = `
           </View>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "height": 16,
+            "width": 16,
+          }
+        }
+      />
     </View>
     <View
       onLayout={[Function]}

@@ -110,9 +110,11 @@ class Catalog extends React.Component<Props, State> {
 
   getOffset = (): number => {
     const {sections} = this.props;
+    const heroHeight = HERO_HEIGHT + SEPARATOR_HEIGHT;
 
-    const offsetY = this.offsetY > HERO_HEIGHT ? this.offsetY - HERO_HEIGHT : 0;
+    const offsetY = this.offsetY > heroHeight ? this.offsetY - heroHeight : 0;
     const offset = Math.trunc(offsetY / (SECTION_HEIGHT + SEPARATOR_HEIGHT));
+
     return getOffsetWithoutCards(sections, offset);
   };
 
@@ -135,12 +137,15 @@ class Catalog extends React.Component<Props, State> {
 
   handleScroll = ({nativeEvent}: ScrollEvent) => {
     const {layout} = this.props;
+
+    // 580
     const offsetY = nativeEvent.contentOffset.y;
 
     if (offsetY !== this.offsetY && layout) {
       this.offsetY = offsetY;
 
       const offset = this.getOffset();
+
       const limit = this.getLimit(offset);
       const hasUnfetchedSections = this.hasUnfetchedSections(offset, limit);
 
