@@ -7,6 +7,7 @@ import {createLevel} from './levels';
 import {createSlide} from './slides';
 import {createQCM} from './questions';
 import {createProgression} from './progression';
+import {createUser} from './user';
 
 describe('storeFixture', () => {
   it('should override progressionEngine', () => {
@@ -161,11 +162,11 @@ describe('storeFixture', () => {
 
     const authenticationState = {
       user: {
-        token: '__TOKEN__',
-        isGodModeUser: false,
         displayName: '',
         givenName: '',
-        familyName: ''
+        familyName: '',
+        token: '__TOKEN__',
+        isGodModeUser: false
       },
       brand: {
         colors: {

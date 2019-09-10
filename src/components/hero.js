@@ -40,7 +40,7 @@ const Hero = ({layout}: Props) => {
           <BrandThemeContext.Consumer>
             {brandTheme => {
               const componentToRender =
-                !user.givenName || !brandTheme.hero ? (
+                !brandTheme.hero || !user.givenName ? (
                   <HeroPlaceholder />
                 ) : (
                   <ImageBackground
@@ -62,7 +62,7 @@ const Hero = ({layout}: Props) => {
                     ]}
                   >
                     <Text style={styles.text}>
-                      {translations.welcome.replace(/{{levelName}}/g, user.givenName)}
+                      {translations.welcomeUser.replace(/{{displayname}}/g, user.givenName)}
                     </Text>
                   </ImageBackground>
                 );
