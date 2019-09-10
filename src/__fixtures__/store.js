@@ -28,6 +28,7 @@ import type {State as PermissionsState} from '../redux/reducers/permissions';
 import type {State as VideoState} from '../redux/reducers/video';
 import {mapToLevel, mapToSlide, mapToChapter, mapToDiscipline} from './utils/mappers';
 import {createBrand} from './brands';
+import {createUser} from './user';
 
 type MappableObject =
   | {
@@ -96,16 +97,20 @@ export const createAuthenticationState = ({
 }: {
   brand?: Brand | null,
   user?: User | null
-}): AuthenticationState => ({
-  user: {
-    token: '__TOKEN__',
-    isGodModeUser: false,
-    displayName: user ? user.displayName : '',
-    givenName: user ? user.givenName : '',
-    familyName: user ? user.familyName : ''
-  },
-  brand: brand !== undefined ? brand : createBrand({})
-});
+}): AuthenticationState => {
+  const buildedUser = user || null;
+  return {
+    user: {
+      ...buildedUser,
+      token: '__TOKEN__',
+      isGodModeUser: false,
+      displayName: buildedUser ? buildedUser.displayName : '',
+      givenName: buildedUser ? buildedUser.givenName : '',
+      familyName: buildedUser ? buildedUser.familyName : ''
+    },
+    brand: brand !== undefined ? brand : createBrand({})
+  };
+};
 
 export const createUiState = ({
   answers = {}

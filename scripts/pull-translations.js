@@ -204,10 +204,10 @@ const generate = async (locale: string) => {
     winAdditionalStars: formatTranslation(componentsTranslations.media_stars_to_win_plural),
     welcome: formatTranslation(moocLoginTranslations.mobile.welcome),
     welcomeDescription: formatTranslation(moocLoginTranslations.mobile.welcomeDescription),
+    welcomeUser: formatTranslation(moocDashboardTranslations.hello),
     wrongAnswer: formatTranslation(playerTranslations['Wrong answer']),
     yourAnswer: formatTranslation(playerTranslations['Your answer_']),
-    yourAnswers: formatTranslation(playerTranslations['Your answers_']),
-    hello: formatTranslation(moocDashboardTranslations.hello)
+    yourAnswers: formatTranslation(playerTranslations['Your answers_'])
   };
 
   const outputFilePath = path.resolve(`${__dirname}/../src/translations/${locale}.js`);

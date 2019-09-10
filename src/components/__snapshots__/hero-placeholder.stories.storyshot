@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots HeroPlaceholder Default 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ECEFF1",
+      "height": 250,
+      "justifyContent": "flex-end",
+      "padding": 16,
+    }
+  }
+  testID="hero-placeholder"
+>
+  <View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "justifyContent": "center",
+            },
+            Object {
+              "height": undefined,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          noMargin={true}
+          style={
+            Array [
+              Object {
+                "borderRadius": 0,
+              },
+              Object {
+                "height": 5,
+              },
+              Object {
+                "backgroundColor": "#CFD8DC",
+              },
+            ]
+          }
+          width="40%"
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
