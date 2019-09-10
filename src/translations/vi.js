@@ -96,10 +96,10 @@ const translations: Translations = {
   welcome: 'Chào mừng',
   welcomeDescription:
     'Ứng dụng này được liên kết với tài khoản của bạn trên Nền tảng Học tập của công ty bạn.',
+  welcomeUser: 'Xin chào, {{displayname}}!',
   wrongAnswer: 'Câu trả lời sai',
   yourAnswer: 'Your answer:',
-  yourAnswers: 'Your answers:',
-  hello: 'Xin chào, {{displayname}}!'
+  yourAnswers: 'Your answers:'
 };
 
 export default translations;

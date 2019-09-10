@@ -89,10 +89,10 @@ const translations: Translations = {
   winAdditionalStars: 'İlk dersinizi görüntülediğinizde bu ünitede {{count}} ek yıldız kazanın!',
   welcome: 'Hoş Geldin',
   welcomeDescription: "Bu uygulama, şirketinizin Öğrenme Platformu'ndaki hesabınıza bağlanır.",
+  welcomeUser: 'Hoşgeldiniz, {{displayname}}!',
   wrongAnswer: 'Yanlış cevap',
   yourAnswer: 'Yanıtınız:',
-  yourAnswers: 'Yanıtlarınız:',
-  hello: 'Hoşgeldiniz, {{displayname}}!'
+  yourAnswers: 'Yanıtlarınız:'
 };
 
 export default translations;

@@ -93,10 +93,10 @@ const translations: Translations = {
     'Win {{count}} extra sterren in dit hoofdstuk de eerste keer dat je een les bekijkt!',
   welcome: 'Welkom',
   welcomeDescription: 'De app is gekoppeld aan uw account op het Learning Platform van uw bedrijf.',
+  welcomeUser: 'Welkom, {{displayname}}!',
   wrongAnswer: 'Verkeerd antwoord',
   yourAnswer: 'Jouw antwoord:',
-  yourAnswers: 'Jouw antwoorden:',
-  hello: 'Welkom, {{displayname}}!'
+  yourAnswers: 'Jouw antwoorden:'
 };
 
 export default translations;

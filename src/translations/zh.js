@@ -83,10 +83,10 @@ const translations: Translations = {
   winAdditionalStars: '在这一章，当你首次阅读一节课的时候可以赢得 {{count}}额外的星星！',
   welcome: '欢迎',
   welcomeDescription: '本 app 与公司学习平台上您的账户相关联。',
+  welcomeUser: '欢迎你，{{displayname}}！',
   wrongAnswer: '错误的答案',
   yourAnswer: '您的答案：',
-  yourAnswers: '您的答案：',
-  hello: '欢迎你，{{displayname}}！'
+  yourAnswers: '您的答案：'
 };
 
 export default translations;

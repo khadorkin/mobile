@@ -103,9 +103,9 @@ export type Translations = {|
   videoLoadingError: string,
   welcome: string,
   welcomeDescription: string,
+  welcomeUser: string,
   winAdditionalStars: string,
   wrongAnswer: string,
   yourAnswer: string,
-  yourAnswers: string,
-  hello: string
+  yourAnswers: string
 |};

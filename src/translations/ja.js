@@ -91,10 +91,10 @@ const translations: Translations = {
     'もし、はじめてこのレッスンを受けた場合は{{count}}個のスターが追加で獲得できます。',
   welcome: 'ようこそ',
   welcomeDescription: '会社のLearning Platformのマイアカウントにアプリがリンクされる。',
+  welcomeUser: 'ようこそ、 {{displayname}}!',
   wrongAnswer: '不正解',
   yourAnswer: 'あなたの答え：',
-  yourAnswers: 'あなたの答え：',
-  hello: 'ようこそ、 {{displayname}}!'
+  yourAnswers: 'あなたの答え：'
 };
 
 export default translations;
