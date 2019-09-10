@@ -24,11 +24,11 @@ export const getMinimalVersion = async (): Promise<string | void> => {
 };
 
 export const needUpgrade = async (): Promise<boolean> => {
-  // const minimalVersion = await getMinimalVersion();
+  const minimalVersion = await getMinimalVersion();
 
-  // if (minimalVersion) {
-  //   return isGreeterVersion(minimalVersion, version.tag);
-  // }
+  if (minimalVersion) {
+    return isGreeterVersion(minimalVersion, version.tag);
+  }
 
   return false;
 };
