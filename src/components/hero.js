@@ -33,46 +33,30 @@ const styles = StyleSheet.create({
 });
 
 const Hero = ({layout}: Props) => {
-  return (
-    <UserContext.Consumer>
-      {user => {
-        return (
-          <BrandThemeContext.Consumer>
-            {brandTheme => {
-              const componentToRender =
-                !brandTheme.hero || !user.givenName ? (
-                  <HeroPlaceholder />
-                ) : (
-                  <ImageBackground
-                    height={HEIGHT}
-                    width={layout && layout.width}
-                    style={styles.imageStyle}
-                    resizeMode="cover"
-                    source={
-                      layout && {
-                        uri: brandTheme.hero
-                      }
-                    }
-                    gradientStyle={styles.imageCoverGradient}
-                    gradient={[
-                      'rgba(0,0,0,0)',
-                      'rgba(0,0,0,0.4)',
-                      'rgba(0,0,0,0.7)',
-                      'rgba(0,0,0,1)'
-                    ]}
-                  >
-                    <Text style={styles.text}>
-                      {translations.welcomeUser.replace(/{{displayname}}/g, user.givenName)}
-                    </Text>
-                  </ImageBackground>
-                );
+  const user = React.useContext(UserContext);
+  const brandTheme = React.useContext(BrandThemeContext);
 
-              return componentToRender;
-            }}
-          </BrandThemeContext.Consumer>
-        );
-      }}
-    </UserContext.Consumer>
+  if (!brandTheme.hero || !user.givenName) {
+    return <HeroPlaceholder />;
+  }
+  return (
+    <ImageBackground
+      height={HEIGHT}
+      width={layout && layout.width}
+      style={styles.imageStyle}
+      resizeMode="cover"
+      source={
+        layout && {
+          uri: brandTheme.hero
+        }
+      }
+      gradientStyle={styles.imageCoverGradient}
+      gradient={['rgba(0,0,0,0)', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,1)']}
+    >
+      <Text style={styles.text}>
+        {translations.welcomeUser.replace(/{{displayname}}/g, user.givenName)}
+      </Text>
+    </ImageBackground>
   );
 };
 
