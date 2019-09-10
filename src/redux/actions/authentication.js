@@ -105,8 +105,6 @@ export const signIn = (
     // $FlowFixMe wrong StoreAction type
     const action = await fetchBrand(token)(dispatch, getState, options);
 
-    // fetchUser here
-
     if (action.error) {
       throw new Error(action.payload.error);
     }
