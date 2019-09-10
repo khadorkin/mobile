@@ -138,7 +138,6 @@ class Catalog extends React.Component<Props, State> {
   handleScroll = ({nativeEvent}: ScrollEvent) => {
     const {layout} = this.props;
 
-    // 580
     const offsetY = nativeEvent.contentOffset.y;
 
     if (offsetY !== this.offsetY && layout) {
