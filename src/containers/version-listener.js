@@ -26,10 +26,10 @@ class VersionListener extends React.PureComponent<Props, State> {
 
   alertVisible: boolean;
 
-  // async componentDidMount() {
-  //   AppStateBase.addEventListener('change', this.handleAppStateChange);
-  //   await this.checkUpgrade();
-  // }
+  async componentDidMount() {
+    AppStateBase.addEventListener('change', this.handleAppStateChange);
+    await this.checkUpgrade();
+  }
 
   componentWillUnmount() {
     AppStateBase.removeEventListener('change', this.handleAppStateChange);
