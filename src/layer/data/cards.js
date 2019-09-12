@@ -3,6 +3,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {getConfig} from '@coorpacademy/progression-engine';
 
+import decode from 'jwt-decode';
+import {get as getToken} from '../../utils/local-token';
 import fetch from '../../modules/fetch';
 import {__E2E__} from '../../modules/environment';
 import {createDisciplinesCards, createChaptersCards} from '../../__fixtures__/cards';
@@ -14,7 +16,7 @@ import {buildUrlQueryParams} from '../../modules/uri';
 import type {QueryParams} from '../../modules/uri';
 
 import {ENGINE} from '../../const';
-import type {Section} from '../../types';
+import type {ContentType, Section} from '../../types';
 import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
@@ -201,6 +203,22 @@ const saveDashboardCardsInAsyncStorage = async (
       throw new Error('could not store the dashboard cards');
     }
   }
+};
+
+export const fetchCard = async (content: ContentType): Promise<Card> => {
+  const token = getToken();
+  const jwt: JWT = decode(token);
+  const response = await fetch(
+    `${jwt.host}/api/v2/contents?type=${content.type}&universalRef=${content.ref}`,
+    {
+      headers: {
+        authorization: token
+      }
+    }
+  );
+
+  const {hits}: {hits?: Array<Card>} = await response.json();
+  return hits[0];
 };
 
 export const fetchCards = async (

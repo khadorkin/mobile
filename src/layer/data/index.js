@@ -19,10 +19,11 @@ import {fetchCards, refreshCard, getCardFromLocalStorage} from './cards';
 import {fetchBrand} from './brand';
 import {fetchUser} from './users';
 import {findById as findSlideById, findByChapter as findSlideByChapter} from './slides';
-import {find as findRecommendations} from './recommendations';
+import {fetch as fetchRecommendation, find as findRecommendations} from './recommendations';
 import {findById as findLevelById, getNextLevel} from './levels';
 import {getCorrectAnswer} from './answers';
 import {getClue} from './clues';
+import {getHeroContent} from './hero-content';
 import {logEvent} from './analytics';
 import {fetchLanguage, setLanguage, getInterfaceLanguage} from './language';
 import {fetchSections} from './sections';
@@ -43,7 +44,9 @@ export type DataLayer = {
   findLast: (engineRef: string, contentRef: string) => Promise<Progression | null>,
   synchronizeProgression: typeof synchronizeProgression,
   getAllProgressions: typeof getAllProgressions,
+  fetchRecommendation: typeof fetchRecommendation,
   findBestOf: () => Promise<number>,
+  getHeroContent: typeof getHeroContent,
   getNextChapter: (ref: string) => Promise<ChapterAPI | void>,
   getNextLevel: (ref: string) => Promise<LevelAPI | void>,
   logEvent: typeof logEvent,
@@ -72,6 +75,7 @@ const createDataLayer = (): DataLayer => ({
   fetchLanguage,
   setLanguage,
   getInterfaceLanguage,
+  fetchRecommendation,
   findVideoUriById,
   // $FlowFixMe
   findBestOf: findBestOf,
@@ -81,6 +85,7 @@ const createDataLayer = (): DataLayer => ({
   getCardFromLocalStorage,
   // @todo implement it
   getChapterRulesByContent: () => [],
+  getHeroContent,
   fetchBundle,
   storeBundle,
   logEvent

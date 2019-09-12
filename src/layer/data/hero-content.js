@@ -1,15 +1,15 @@
 // @flow
 
-import type {ProgressionAggregationByContent} from './_types';
+import type {Card, ProgressionAggregationByContent} from './_types';
+import {fetchCard} from './cards';
 
 const isOnGoing = (aggregation: ProgressionAggregationByContent) =>
   aggregation.success === false && aggregation.latestNbQuestions > 3;
 
-const heroContent = async (
+const getHeroContent = async (
   aggregations: Array<ProgressionAggregationByContent>,
-  // eslint-disable-next-line flowtype/no-weak-types
-  fetchRecommendation: Function
-) => {
+  fetchRecommendation: () => Promise<Card>
+): Promise<Card> => {
   if (aggregations.length === 0) {
     return null;
   }
@@ -23,7 +23,7 @@ const heroContent = async (
   onGoingProgressions.sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
 
   const currentProgression = onGoingProgressions[0];
-  return currentProgression.content;
+  return fetchCard(currentProgression.content);
 };
 
-module.exports = {heroContent};
+module.exports = {getHeroContent};

@@ -6,4 +6,4 @@ const aggregate = progressions => {
   return values.reduce(reducer, null);
 };
 
-module.exports = aggregate;
+export default aggregate;

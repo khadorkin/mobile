@@ -2,6 +2,9 @@
 
 import type {ChapterAPI, RecommendationAPI} from '@coorpacademy/player-services';
 
+import decode from 'jwt-decode';
+import {get as getToken} from '../../utils/local-token';
+import type {Card} from './_types';
 import {CONTENT_TYPE} from './_const';
 import {find as findChapters} from './chapters';
 
@@ -22,4 +25,17 @@ const find = async (type: string, ref: string): Promise<Array<RecommendationAPI>
   return Promise.resolve(recommendations);
 };
 
-export {find};
+const fetch = async (): Promise<Card> => {
+  const token = getToken();
+  const jwt: JWT = decode(token);
+  const response = await fetch(`${jwt.host}/api/v2/recommendations`, {
+    headers: {
+      authorization: token
+    }
+  });
+
+  const {hits}: {hits?: Array<Card>} = await response.json();
+  return hits[0];
+};
+
+export {fetch, find};
