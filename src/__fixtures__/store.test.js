@@ -160,12 +160,11 @@ describe('storeFixture', () => {
     };
 
     const authenticationState = {
+      token: '__TOKEN__',
       user: {
         displayName: '',
         givenName: '',
-        familyName: '',
-        token: '__TOKEN__',
-        isGodModeUser: false
+        familyName: ''
       },
       brand: {
         colors: {

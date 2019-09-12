@@ -9,17 +9,17 @@ import {createUser} from '../__fixtures__/user';
 
 import {Component as Hero} from './hero';
 
-const authenticationStateWithoutUser = createAuthenticationState({user: undefined});
+const authenticationStateWithoutUser = createAuthenticationState({user: null});
 const authenticationStateWithUser = createAuthenticationState({user: createUser()});
 
 storiesOf('Hero', module)
   .add('Default', () => (
-    <TestContextProvider store={{authentication: authenticationStateWithUser}}>
+    <TestContextProvider store={{authentication: authenticationStateWithoutUser}}>
       <Hero layout={fakeLayout} />
     </TestContextProvider>
   ))
-  .add('Placeholder', () => (
-    <TestContextProvider store={{authentication: authenticationStateWithoutUser}}>
+  .add('With user', () => (
+    <TestContextProvider store={{authentication: authenticationStateWithUser}}>
       <Hero layout={fakeLayout} />
     </TestContextProvider>
   ));

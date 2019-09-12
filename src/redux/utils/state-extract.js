@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import {
   getCurrentProgression,
@@ -9,12 +9,14 @@ import {
   getCurrentSlide
 } from '@coorpacademy/player-store';
 import type {Context} from '@coorpacademy/progression-engine';
+import {ROLES, SCOPES, hasRole} from '@coorpacademy/acl';
 
 import {CONTENT_TYPE, PERMISSION_STATUS} from '../../const';
 import type {Section, ProgressionEngineVersions} from '../../types';
 import type {StoreState} from '../store';
 import type {State as PermissionsState} from '../reducers/permissions';
 import type {State as BrandState} from '../reducers/authentication/brand';
+import type {State as UserState} from '../reducers/authentication/user';
 import type {PermissionType} from '../actions/permissions';
 import type {DisciplineCard, ChapterCard} from '../../layer/data/_types';
 import translations from '../../translations';
@@ -53,7 +55,7 @@ export const getNextContentRef = (state: StoreState): string | void => {
 };
 
 export const getToken = (state: StoreState) =>
-  state.authentication && state.authentication.user && state.authentication.user.token;
+  state.authentication && state.authentication.user && state.authentication.token;
 
 export const getBrand = (state: StoreState): BrandState => state.authentication.brand;
 
@@ -114,4 +116,17 @@ export const getContext = (state: StoreState): Context | void => {
   return currentSlide && currentSlide.context && currentSlide.context.title
     ? currentSlide.context
     : undefined;
+};
+
+export const getUser = (state: StoreState): UserState | void => state.authentication.user;
+
+export const isGodModeUser = (state: StoreState): boolean => {
+  const token = getToken(state);
+  const brand = getBrand(state);
+
+  if (!token || !brand) {
+    return false;
+  }
+
+  return hasRole(SCOPES.MOOC(brand.name), ROLES.GODMODE, token);
 };

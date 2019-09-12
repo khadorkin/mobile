@@ -8,13 +8,17 @@ import userReducer from './user';
 import type {State as UserState} from './user';
 import brandReducer from './brand';
 import type {State as BrandState} from './brand';
+import tokenReducer from './token';
+import type {State as TokenState} from './token';
 
 export type State = {|
+  token: TokenState,
   user: UserState,
   brand: BrandState
 |};
 
 const reducers: Reducer<State, BrandAction | Action> = combineReducers({
+  token: tokenReducer,
   brand: brandReducer,
   user: userReducer
 });

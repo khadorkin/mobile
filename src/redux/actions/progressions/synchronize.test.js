@@ -226,8 +226,9 @@ describe('Progressions synchronization', () => {
         }
       };
 
+      // @todo replace with fixture creator
       store.getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand}
+        authentication: {user: {token: '__TOKEN__'}, brand}
       });
 
       store.dispatch.mockImplementationOnce(action => {
@@ -284,8 +285,9 @@ describe('Progressions synchronization', () => {
         }
       };
 
+      // @todo replace with fixture creator
       store.getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}},
+        authentication: {user: {token: '__TOKEN__'}},
         brand
       });
 
@@ -342,8 +344,9 @@ describe('Progressions synchronization', () => {
         }
       };
 
+      // @todo replace with fixture creator
       store.getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand}
+        authentication: {user: {token: '__TOKEN__'}, brand}
       });
 
       store.dispatch.mockImplementationOnce(action => {
@@ -417,8 +420,9 @@ describe('Progressions synchronization', () => {
         });
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: null, isGodModeUser: false}, brand: null}
+        authentication: {user: {token: null}, brand: null}
       });
 
       // $FlowFixMe
@@ -465,8 +469,9 @@ describe('Progressions synchronization', () => {
         });
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand: null}
+        authentication: {user: {token: '__TOKEN__'}, brand: null}
       });
 
       // $FlowFixMe

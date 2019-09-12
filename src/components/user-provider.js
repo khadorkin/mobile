@@ -1,25 +1,25 @@
 // @flow
 
 import * as React from 'react';
-
 import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
+
 import type {User} from '../types';
 import type {StoreState} from '../redux/store';
+import {getUser} from '../redux/utils/state-extract';
 
-type ConnectedStateProps = {|user: User|};
+type ConnectedStateProps = {|
+  user: User
+|};
 
 type Props = {|
   ...ConnectedStateProps,
   children: React.Node
 |};
 
-type State = User;
+type State = User | null;
 
-export const initialState: State = {
-  familyName: '',
-  givenName: '',
-  displayName: ''
-};
+export const initialState: State = null;
 
 export const UserContext: React.Context<State> = React.createContext(initialState);
 
@@ -27,14 +27,14 @@ const UserProvider = ({children, user}: Props) => (
   <UserContext.Provider value={user}>{children}</UserContext.Provider>
 );
 
-export const mapStateToProps = (state: StoreState): ConnectedStateProps => {
-  const user = state.authentication.user;
-  if (!user) return {user: initialState};
-  return {
-    // a améliorer
-    user: {familyName: user.familyName, givenName: user.givenName, displayName: user.displayName}
-  };
-};
+const getUserState = createSelector(
+  [getUser],
+  user => user
+);
+
+export const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
+  user: getUserState(state)
+});
 
 export {UserProvider as Component};
 export default connect(mapStateToProps)(UserProvider);

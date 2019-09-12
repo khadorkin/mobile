@@ -21,11 +21,11 @@ const user = createUser();
 storiesOf('BrandThemeProvider', module).add('Default', () => (
   <UserProvider user={user}>
     <UserContext.Consumer>
-      {providedUser => (
+      {_user => (
         <React.Fragment>
-          <Text>FamilyName: {providedUser.familyName}</Text>
-          <Text>GivenName: {providedUser.givenName}</Text>
-          <Text>DisplayName: {providedUser.displayName}</Text>
+          <Text>FamilyName: {_user && _user.familyName}</Text>
+          <Text>GivenName: {_user && _user.givenName}</Text>
+          <Text>DisplayName: {_user && _user.displayName}</Text>
         </React.Fragment>
       )}
     </UserContext.Consumer>
@@ -70,9 +70,11 @@ if (__TEST__) {
         chapters: [],
         slides: [],
         progression,
+        // @todo use fixture creator
         authentication: {
           brand: null,
-          user: null
+          user: null,
+          token: null
         }
       });
 

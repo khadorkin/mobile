@@ -10,9 +10,10 @@ import hoistNonReactStatic from 'hoist-non-react-statics';
 
 import {AUTHENTICATION_TYPE} from '../const';
 import {signIn, signOut} from '../redux/actions/authentication';
+import {getToken} from '../redux/utils/state-extract';
 
 type ConnectedStateProps = {|
-  token: string
+  token: string | null
 |};
 
 type ConnectedDispatchProps = {|
@@ -82,8 +83,8 @@ function withUniversalLinks<P, T: React$ComponentType<P>>(WrappedComponent: T): 
     }
   }
 
-  const mapStateToProps = ({authentication}: StoreState): ConnectedStateProps => ({
-    token: authentication.user.token
+  const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
+    token: getToken(state)
   });
 
   const mapDispatchToProps: ConnectedDispatchProps = {

@@ -9,6 +9,7 @@ import Screen from '../components/screen';
 import {selectCard} from '../redux/actions/catalog/cards/select';
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import {signOut} from '../redux/actions/authentication';
+import {getToken} from '../redux/utils/state-extract';
 import translations from '../translations';
 import theme from '../modules/theme';
 
@@ -62,8 +63,8 @@ class HomeScreen extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = ({authentication}: StoreState): ConnectedStateProps => ({
-  isFetching: !authentication.user.token
+const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
+  isFetching: !getToken(state)
 });
 
 const mapDispatchToProps: ConnectedDispatchProps = {

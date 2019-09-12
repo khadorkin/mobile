@@ -4,8 +4,8 @@ import {createUser} from '../../../__fixtures__/user';
 import {createToken} from '../../../__fixtures__/tokens';
 import {SIGN_OUT, SIGN_IN_SUCCESS} from '../../actions/authentication';
 import type {Action} from '../../actions/authentication';
-import reducer from './user';
-import type {State} from './user';
+import reducer from './token';
+import type {State} from './token';
 
 describe('Authentification', () => {
   const expectedInitialState: State = null;
@@ -21,17 +21,17 @@ describe('Authentification', () => {
 
   describe(SIGN_IN_SUCCESS, () => {
     it('Default', () => {
-      const user = createUser();
+      const token = createToken({});
       const action: Action = {
         type: SIGN_IN_SUCCESS,
         payload: {
-          token: createToken({}),
-          user
+          token,
+          user: createUser()
         }
       };
 
       const result = reducer(undefined, action);
-      const expected: State = user;
+      const expected: State = token;
 
       expect(result).toEqual(expected);
     });

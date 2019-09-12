@@ -8,7 +8,7 @@ import type {
 import type {Slide as SlideEngine, Progression, Answer} from '@coorpacademy/progression-engine';
 import type {SlideAPI, ChapterAPI, LevelAPI} from '@coorpacademy/player-services';
 
-import type {Section, Brand, User} from '../types';
+import type {Section, Brand, User, JWT} from '../types';
 import type {
   Level,
   Slide,
@@ -28,6 +28,7 @@ import type {State as PermissionsState} from '../redux/reducers/permissions';
 import type {State as VideoState} from '../redux/reducers/video';
 import {mapToLevel, mapToSlide, mapToChapter, mapToDiscipline} from './utils/mappers';
 import {createBrand} from './brands';
+import {createUser} from './user';
 
 type MappableObject =
   | {
@@ -91,25 +92,18 @@ export const createCatalogState = (
 });
 
 export const createAuthenticationState = ({
+  token,
   brand,
   user
 }: {
+  token?: string | null,
   brand?: Brand | null,
   user?: User | null
-}): AuthenticationState => {
-  const builtUser = user || null;
-  return {
-    user: {
-      ...builtUser,
-      token: '__TOKEN__',
-      isGodModeUser: false,
-      displayName: builtUser ? builtUser.displayName : '',
-      givenName: builtUser ? builtUser.givenName : '',
-      familyName: builtUser ? builtUser.familyName : ''
-    },
-    brand: brand !== undefined ? brand : createBrand({})
-  };
-};
+}): AuthenticationState => ({
+  token: token !== undefined ? token : '__TOKEN__',
+  user: user !== undefined ? user : createUser(),
+  brand: brand !== undefined ? brand : createBrand({})
+});
 
 export const createUiState = ({
   answers = {}

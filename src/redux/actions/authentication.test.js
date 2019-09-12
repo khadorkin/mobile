@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import {createBrand} from '../../__fixtures__/brands';
 import {createToken} from '../../__fixtures__/tokens';
@@ -16,7 +16,6 @@ jest.mock('../../utils/local-token');
 jest.mock('cross-fetch');
 
 const language = 'fr';
-const user = createUser();
 
 describe('Authentication', () => {
   describe('getAnonymousToken', () => {
@@ -62,9 +61,14 @@ describe('Authentication', () => {
       const {signIn, signInRequest, signInSuccess} = require('./authentication');
 
       const brand = createBrand();
+      const token = createToken({
+        brand: brand.name
+      });
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
+      // @todo replace with fixture creator
       getState.mockReturnValue({
         authentication: {
           brand
@@ -85,10 +89,6 @@ describe('Authentication', () => {
           }
         }
       };
-
-      const token = createToken({
-        brand: brand.name
-      });
 
       dispatch.mockImplementationOnce(action => {
         expect(action).toEqual(signInRequest(token));
@@ -122,10 +122,7 @@ describe('Authentication', () => {
         expect(action).toEqual(
           signInSuccess({
             token,
-            isGodModeUser: false,
-            givenName: user.givenName,
-            familyName: user.familyName,
-            displayName: user.displayName
+            user
           })
         );
         return action;
@@ -148,17 +145,17 @@ describe('Authentication', () => {
       return expect(current).toEqual(
         signInSuccess({
           token,
-          isGodModeUser: false,
-          givenName: user.givenName,
-          familyName: user.familyName,
-          displayName: user.displayName
+          user
         })
       );
     });
 
     it('should sign in as anonymous', async () => {
       const brand = createBrand();
-      const token = createToken({brand: brand.name});
+      const token = createToken({
+        brand: brand.name
+      });
+      const user = createUser();
 
       const fetch = require('cross-fetch');
       fetch.mockImplementationOnce((url, fetchOptions) => {
@@ -172,6 +169,7 @@ describe('Authentication', () => {
 
       const dispatch = jest.fn();
       const getState = jest.fn();
+      // @todo replace with fixture creator
       getState.mockReturnValue({
         authentication: {
           brand
@@ -226,10 +224,7 @@ describe('Authentication', () => {
         expect(action).toEqual(
           signInSuccess({
             token,
-            isGodModeUser: false,
-            givenName: user.givenName,
-            familyName: user.familyName,
-            displayName: user.displayName
+            user
           })
         );
         return action;
@@ -252,10 +247,7 @@ describe('Authentication', () => {
       return expect(current).toEqual(
         signInSuccess({
           token,
-          isGodModeUser: false,
-          givenName: user.givenName,
-          familyName: user.familyName,
-          displayName: user.displayName
+          user
         })
       );
     });
@@ -270,6 +262,8 @@ describe('Authentication', () => {
 
         throw _fakeError;
       });
+
+      const user = createUser();
 
       const {signIn, signInRequest, signInError} = require('./authentication');
 
@@ -318,6 +312,8 @@ describe('Authentication', () => {
     it('should reject non-coorpacademy token', async () => {
       const {signIn, signInRequest, signInError} = require('./authentication');
 
+      const user = createUser();
+
       const dispatch = jest.fn();
       const getState = jest.fn();
       const options = {
@@ -364,6 +360,8 @@ describe('Authentication', () => {
 
     it('should reject if host is missing', async () => {
       const {signIn, signInRequest, signInError} = require('./authentication');
+
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
@@ -414,6 +412,8 @@ describe('Authentication', () => {
     it('should reject if fetching brand failed', async () => {
       const {signIn, signInRequest, signInError} = require('./authentication');
       const {fetchRequest, fetchError} = require('./brands');
+
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
@@ -475,9 +475,11 @@ describe('Authentication', () => {
       const {fetchRequest, fetchSuccess} = require('./brands');
 
       const brand = createBrand();
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
+      // @todo replace with fixture creator
       getState.mockReturnValue({
         authentication: {
           brand: null
@@ -544,14 +546,15 @@ describe('Authentication', () => {
       const {SIGN_OUT, signOut} = require('./authentication');
 
       const brand = createBrand();
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
+      // @todo replace with fixture creator
       getState.mockReturnValue({
         authentication: {
           user: {
-            token,
-            isGodModeUser: false
+            token
           },
           brand
         }
@@ -606,14 +609,15 @@ describe('Authentication', () => {
       const {SIGN_OUT, signOut} = require('./authentication');
 
       const brand = createBrand();
+      const user = createUser();
 
       const dispatch = jest.fn();
       const getState = jest.fn();
+      // @todo replace with fixture creator
       getState.mockReturnValue({
         authentication: {
           user: {
-            token,
-            isGodModeUser: false
+            token
           },
           brand
         }

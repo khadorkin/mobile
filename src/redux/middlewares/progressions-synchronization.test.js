@@ -43,11 +43,11 @@ describe("Progression's synchronization middleware", () => {
     };
     const middleware = createMiddleware(options);
     const store = createStore();
+    // @todo replace with fixture creator
     store.getState.mockImplementation(() => ({
       authentication: {
+        token: '__TOKEN__',
         user: {
-          token: '__TOKEN__',
-          isGodModeUser: false,
           displayName: '',
           givenName: '',
           familyName: ''

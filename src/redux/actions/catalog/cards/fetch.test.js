@@ -52,8 +52,9 @@ describe('Cards', () => {
         expect(action).toEqual(fetchSuccess('foo', 0, 3, 8, items, language));
         return Promise.resolve(action);
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand, language},
+        authentication: {user: {token: '__TOKEN__'}, brand, language},
         catalog: {entities: {sections: {foo: {[language]: section}}}}
       });
       options.services.Cards.find.mockReturnValueOnce(
@@ -87,8 +88,9 @@ describe('Cards', () => {
         expect(action).toEqual(fetchError(new TypeError('Token not defined')));
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: null, isGodModeUser: false}, brand: null},
+        authentication: {user: {token: null}, brand: null},
         catalog: {entities: {sections: {bar: {[language]: section}}}}
       });
 
@@ -118,8 +120,9 @@ describe('Cards', () => {
         expect(action).toEqual(fetchError(new TypeError('Brand not defined')));
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand: null},
+        authentication: {user: {token: '__TOKEN__'}, brand: null},
         catalog: {entities: {sections: {baz: {[language]: section}}}}
       });
 
@@ -149,8 +152,9 @@ describe('Cards', () => {
         expect(action).toEqual(fetchError(new TypeError('Section not found')));
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand},
+        authentication: {user: {token: '__TOKEN__'}, brand},
         catalog: {entities: {sections: {}}}
       });
 
@@ -181,8 +185,9 @@ describe('Cards', () => {
         // $FlowFixMe
         return action;
       });
+      // @todo replace with fixture creator
       getState.mockReturnValue({
-        authentication: {user: {token: '__TOKEN__', isGodModeUser: false}, brand, language},
+        authentication: {user: {token: '__TOKEN__'}, brand, language},
         catalog: {entities: {sections: {quux: {[language]: section}}}}
       });
       options.services.Cards.find.mockReturnValueOnce(Promise.reject(fakeError));

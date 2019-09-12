@@ -37,10 +37,10 @@ const mockedStore = createStoreState({
   chapters: [],
   slides: [],
   progression,
+  // @todo use fixture creator
   authentication: {
+    token: '__TOKEN__',
     user: {
-      token: '__TOKEN__',
-      isGodModeUser: false,
       displayName: '',
       givenName: '',
       familyName: ''

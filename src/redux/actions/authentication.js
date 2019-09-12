@@ -6,10 +6,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import fetch from '../../modules/fetch';
 import type {StoreAction, ErrorAction} from '../_types';
 import {ANALYTICS_EVENT_TYPE} from '../../const';
-import type {JWT, AuthenticationType} from '../../types';
+import type {JWT, AuthenticationType, User} from '../../types';
 import {set as setToken} from '../../utils/local-token';
 import {getBrand, getToken} from '../utils/state-extract';
-import {hasGodMode} from '../utils/has-role';
 import {fetchBrand} from './brands';
 import type {Action as BrandsAction} from './brands';
 import {fetchLanguage} from './language/fetch';
@@ -22,14 +21,6 @@ export const SIGN_IN_SUCCESS = `@@authentication/SIGN_IN_SUCCESS`;
 export const SIGN_IN_ERROR = `@@authentication/SIGN_IN_ERROR`;
 export const SIGN_OUT = `@@authentication/SIGN_OUT`;
 
-type SignInSuccess = {|
-  token: string,
-  isGodModeUser: boolean,
-  givenName: string,
-  familyName: string,
-  displayName: string
-|};
-
 export type Action =
   | {|
       type: '@@authentication/SIGN_IN_REQUEST',
@@ -37,7 +28,10 @@ export type Action =
     |}
   | {|
       type: '@@authentication/SIGN_IN_SUCCESS',
-      payload: SignInSuccess
+      payload: {
+        token: string,
+        user: User
+      }
     |}
   | ErrorAction<{|
       type: '@@authentication/SIGN_IN_ERROR'
@@ -51,20 +45,11 @@ export const signInRequest = (token?: string): Action => ({
   payload: token
 });
 
-export const signInSuccess = ({
-  token,
-  isGodModeUser,
-  displayName,
-  familyName,
-  givenName
-}: SignInSuccess): Action => ({
+export const signInSuccess = ({token, user}: {token: string, user: User}): Action => ({
   type: SIGN_IN_SUCCESS,
   payload: {
     token,
-    isGodModeUser,
-    displayName,
-    familyName,
-    givenName
+    user
   }
 });
 
@@ -118,10 +103,9 @@ export const signIn = (
     // $FlowFixMe wrong StoreAction type
     await fetchLanguage(dispatch, getState, options);
 
-    const isGodModeUser = hasGodMode(jwt, brand.name);
     const {services} = options;
 
-    const {displayName, familyName, givenName} = await services.Users.find(token);
+    const user = await services.Users.find(token);
 
     services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.SIGN_IN, {
       userId: jwt.user,
@@ -129,7 +113,7 @@ export const signIn = (
       authenticationType
     });
 
-    return dispatch(signInSuccess({token, isGodModeUser, displayName, familyName, givenName}));
+    return dispatch(signInSuccess({token, user}));
   } catch (e) {
     setToken(null);
     // $FlowFixMe wrong StoreAction type
