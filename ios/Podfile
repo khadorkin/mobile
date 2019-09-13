@@ -30,6 +30,10 @@ target 'Coorpacademy' do
   pod 'glog', :podspec => "#{rn_path}/third-party-podspecs"
   pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs"
 
+  # Crashlytics
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.2'
+
   # Firebase
   pod 'Firebase/Core', '~> 5.20.1'
   pod 'Firebase/DynamicLinks', '~> 5.20.1'
