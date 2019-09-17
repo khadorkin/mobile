@@ -2,6 +2,7 @@
 
 import AsyncStorage from '@react-native-community/async-storage';
 import {getConfig} from '@coorpacademy/progression-engine';
+import type {Content} from '@coorpacademy/progression-engine';
 
 import decode from 'jwt-decode';
 import {get as getToken} from '../../utils/local-token';
@@ -16,7 +17,7 @@ import {buildUrlQueryParams} from '../../modules/uri';
 import type {QueryParams} from '../../modules/uri';
 
 import {ENGINE} from '../../const';
-import type {ContentType, Section} from '../../types';
+import type {JWT, Section} from '../../types';
 import {getItem} from './core';
 import type {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
 import {CARD_TYPE} from './_const';
@@ -205,15 +206,18 @@ const saveDashboardCardsInAsyncStorage = async (
   }
 };
 
-export const fetchCard = async (
-  content: ContentType
-): Promise<DisciplineCard | ChapterCard | void> => {
+export const fetchCard = async (content: Content): Promise<DisciplineCard | ChapterCard | void> => {
   const card = await getCardFromLocalStorage(content.ref);
   if (card) {
     return card;
   }
 
-  const token = getToken();
+  const token = await getToken();
+
+  if (!token) {
+    throw new Error('Invalid token');
+  }
+
   const jwt: JWT = decode(token);
   const response = await fetch(
     `${jwt.host}/api/v2/contents?type=${content.type}&universalRef=${content.ref}`,
@@ -225,7 +229,7 @@ export const fetchCard = async (
   );
 
   const {hits}: {hits?: Array<DisciplineCard | ChapterCard>} = await response.json();
-  return hits[0];
+  return hits ? hits[0] : undefined;
 };
 
 export const fetchCards = async (

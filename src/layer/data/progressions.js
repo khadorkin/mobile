@@ -183,11 +183,11 @@ const findBestOf = (language: SupportedLanguage) => async (
   return card && card.stars;
 };
 
-const getAggregations = async (): Array<ProgressionAggregationByContent> => {
+const getAggregations = async (): Promise<Array<ProgressionAggregationByContent>> => {
   const progressions = await getAll();
   const records = progressions.map(p => ({content: p}));
   const values = records.map(mapValue);
-  return values.reduce(reducer, null);
+  return values.reduce(reducer, undefined);
 };
 
 export {getAggregations, save, getAll, findById, findLast, findBestOf, synchronize};

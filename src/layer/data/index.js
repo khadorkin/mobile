@@ -15,11 +15,11 @@ import {find as findContent} from './content';
 import {findById as findChapterById, getNextChapter} from './chapters';
 import {getExitNode} from './exit-nodes';
 import {fetchBundle, storeBundle} from './bundle';
-import {fetchCards, refreshCard, getCardFromLocalStorage} from './cards';
+import {fetchCard, fetchCards, refreshCard, getCardFromLocalStorage} from './cards';
 import {fetchBrand} from './brand';
 import {fetchUser} from './users';
 import {findById as findSlideById, findByChapter as findSlideByChapter} from './slides';
-import {fetch as fetchRecommendation, find as findRecommendations} from './recommendations';
+import {fetchRecommendation, find as findRecommendations} from './recommendations';
 import {findById as findLevelById, getNextLevel} from './levels';
 import {getCorrectAnswer} from './answers';
 import {getClue} from './clues';
@@ -33,6 +33,7 @@ export type DataLayer = {
   ...DataLayerBase,
   fetchBundle: typeof fetchBundle,
   storeBundle: typeof storeBundle,
+  fetchCard: typeof fetchCard,
   fetchCards: typeof fetchCards,
   fetchBrand: typeof fetchBrand,
   fetchLanguage: typeof fetchLanguage,
@@ -70,6 +71,7 @@ const createDataLayer = (): DataLayer => ({
   getNextChapter,
   getNextLevel,
   findLevelById,
+  fetchCard,
   fetchCards,
   fetchBrand,
   fetchLanguage,

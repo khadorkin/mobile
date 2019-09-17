@@ -34,20 +34,24 @@ const createAggregation = ({
 describe('Hero-Engine', function() {
   describe('No content', function() {
     it('should return "null" when no progression is started', async function() {
-      expect(await getHeroContent([])).toEqual(null);
+      expect(await getHeroContent([], noop, noop)).toEqual(null);
     });
 
     it('should return "null" when all started progressions are successful, and no recommendation is found', async function() {
-      const hero = await getHeroContent([
-        createAggregation({
-          contentRef: 'foo',
-          success: true
-        }),
-        createAggregation({
-          contentRef: 'bar',
-          success: true
-        })
-      ]);
+      const hero = await getHeroContent(
+        [
+          createAggregation({
+            contentRef: 'foo',
+            success: true
+          }),
+          createAggregation({
+            contentRef: 'bar',
+            success: true
+          })
+        ],
+        noop,
+        noop
+      );
 
       expect(hero).toEqual(null);
     });
@@ -72,7 +76,8 @@ describe('Hero-Engine', function() {
             success: true
           })
         ],
-        fetchRecommendations
+        fetchRecommendations,
+        noop
       );
 
       expect(hero).toEqual(reco);
@@ -102,8 +107,9 @@ describe('Hero-Engine', function() {
         version: '1'
       };
       const fetchRecommendations = () => Promise.resolve(reco);
+      const fetchCard = () => Promise.resolve(undefined);
 
-      const hero = await getHeroContent(completions, fetchRecommendations);
+      const hero = await getHeroContent(completions, fetchRecommendations, fetchCard);
 
       expect(hero).toEqual(reco);
     });
@@ -135,7 +141,7 @@ describe('Hero-Engine', function() {
         })
       ];
 
-      const hero = await getHeroContent(completions, noop);
+      const hero = await getHeroContent(completions, noop, noop);
 
       expect(hero).toEqual({
         ref: 'me!',

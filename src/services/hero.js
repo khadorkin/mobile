@@ -1,5 +1,6 @@
 // @flow strict
 
+import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import type {DataLayer} from '../layer/data';
 import {getAggregations} from '../layer/data/progressions';
 

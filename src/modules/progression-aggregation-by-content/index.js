@@ -82,9 +82,9 @@ const updateForFinishedContent = (
 };
 
 export const reduce = (
-  currentAggregation: ProgressionAggregationByContent,
+  currentAggregation: ProgressionAggregationByContent | void,
   newRecord: ProgressionAggregationByContent
-) => {
+): Array<ProgressionAggregationByContent> => {
   // if not found, document should be created
   if (!currentAggregation) {
     return newRecord;
@@ -108,6 +108,7 @@ export const mapValue = (record: {content: Progression}): ProgressionAggregation
   const {current} = step;
 
   const aggregValue = {
+    // $FlowFixMe union type
     content: Object.assign({version: '1', ref: content.ref, type: content.type}),
     latestNbQuestions: current ? current - 1 : 0,
     success: false,
