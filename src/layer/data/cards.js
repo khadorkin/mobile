@@ -208,6 +208,11 @@ const saveDashboardCardsInAsyncStorage = async (
 export const fetchCard = async (
   content: ContentType
 ): Promise<DisciplineCard | ChapterCard | void> => {
+  const card = await getCardFromLocalStorage(content.ref);
+  if (card) {
+    return card;
+  }
+
   const token = getToken();
   const jwt: JWT = decode(token);
   const response = await fetch(
