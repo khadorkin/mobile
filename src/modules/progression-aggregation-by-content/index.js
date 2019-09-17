@@ -81,7 +81,7 @@ const updateForFinishedContent = (
   return {...newRecord, updatedAt};
 };
 
-export const reduce = (
+const reduce = (
   currentAggregation: ProgressionAggregationByContent | void,
   newRecord: ProgressionAggregationByContent
 ): Array<ProgressionAggregationByContent> => {
@@ -97,7 +97,12 @@ export const reduce = (
   }
 };
 
-export const mapValue = (record: {content: Progression}): ProgressionAggregationByContent => {
+const mapId = (record: {content: Progression}) =>
+  `${record.content.engine.ref}-${record.content.content.type}-${record.content.content.ref}-${
+    record.content.userId
+  }`;
+
+const mapValue = (record: {content: Progression}): ProgressionAggregationByContent => {
   const {
     state = {},
     content,
@@ -123,4 +128,10 @@ export const mapValue = (record: {content: Progression}): ProgressionAggregation
     return {...aggregValue, success: true};
   }
   return aggregValue;
+};
+
+export default {
+  mapId,
+  mapValue,
+  reduce
 };

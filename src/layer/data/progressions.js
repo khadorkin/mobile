@@ -3,11 +3,13 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import type {Progression, Action} from '@coorpacademy/progression-engine';
 
+import {groupBy, mapValues} from 'lodash/fp';
+
 import fetch from '../../modules/fetch';
 import {isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
-import {mapValue, reduce as reducer} from '../../modules/progression-aggregation-by-content';
+import aggregation from '../../modules/progression-aggregation-by-content';
 import type {Completion, ProgressionAggregationByContent} from './_types';
 import {getItem} from './core';
 
@@ -183,11 +185,19 @@ const findBestOf = (language: SupportedLanguage) => async (
   return card && card.stars;
 };
 
-const getAggregations = async (): Promise<Array<ProgressionAggregationByContent>> => {
-  const progressions = await getAll();
-  const records = progressions.map(p => ({content: p}));
-  const values = records.map(mapValue);
-  return values.reduce(reducer, undefined);
+const aggregate = (progressionsByContent: Array<Progression>): ProgressionAggregationByContent => {
+  const values = progressionsByContent.map(aggregation.mapValue);
+  return values.reduce(aggregation.reduce, undefined);
 };
 
-export {getAggregations, save, getAll, findById, findLast, findBestOf, synchronize};
+const getAggregationsByContent = async (): Promise<{
+  [id: string]: ProgressionAggregationByContent
+}> => {
+  const progressions = await getAll();
+  const records = progressions.map(p => ({content: p}));
+  const recordsByContent = groupBy(aggregation.mapId, records);
+  const result = mapValues(aggregate, recordsByContent);
+  return result;
+};
+
+export {getAggregationsByContent, save, getAll, findById, findLast, findBestOf, synchronize};
