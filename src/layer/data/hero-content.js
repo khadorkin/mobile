@@ -1,15 +1,15 @@
 // @flow
 
-import type {Card, ProgressionAggregationByContent} from './_types';
-import {fetchCard} from './cards';
+import type {DisciplineCard, ChapterCard, ProgressionAggregationByContent} from './_types';
 
 const isOnGoing = (aggregation: ProgressionAggregationByContent) =>
   aggregation.success === false && aggregation.latestNbQuestions > 3;
 
 const getHeroContent = async (
   aggregations: Array<ProgressionAggregationByContent>,
-  fetchRecommendation: () => Promise<Card>
-): Promise<Card> => {
+  fetchRecommendation: () => Promise<DisciplineCard | ChapterCard | void>,
+  fetchCard: () => Promise<DisciplineCard | ChapterCard | void>
+): Promise<DisciplineCard | ChapterCard | void> => {
   if (aggregations.length === 0) {
     return null;
   }

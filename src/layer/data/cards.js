@@ -205,7 +205,9 @@ const saveDashboardCardsInAsyncStorage = async (
   }
 };
 
-export const fetchCard = async (content: ContentType): Promise<Card> => {
+export const fetchCard = async (
+  content: ContentType
+): Promise<DisciplineCard | ChapterCard | void> => {
   const token = getToken();
   const jwt: JWT = decode(token);
   const response = await fetch(
@@ -217,7 +219,7 @@ export const fetchCard = async (content: ContentType): Promise<Card> => {
     }
   );
 
-  const {hits}: {hits?: Array<Card>} = await response.json();
+  const {hits}: {hits?: Array<DisciplineCard | ChapterCard>} = await response.json();
   return hits[0];
 };
 

@@ -3,7 +3,7 @@
 import Promise from 'bluebird';
 import noop from 'lodash/fp/noop';
 import type {ProgressionAggregationByContent} from './_types';
-import {heroContent} from './hero-content';
+import {getHeroContent} from './hero-content';
 
 type DefaultAggreationSetup = {
   success?: boolean,
@@ -34,24 +34,20 @@ const createAggregation = ({
 describe('Hero-Engine', function() {
   describe('No content', function() {
     it('should return "null" when no progression is started', async function() {
-      expect(await heroContent([])).toEqual(null);
+      expect(await getHeroContent([])).toEqual(null);
     });
 
     it('should return "null" when all started progressions are successful, and no recommendation is found', async function() {
-      const fetchRecommendations = () => Promise.resolve(undefined);
-      const hero = await heroContent(
-        [
-          createAggregation({
-            contentRef: 'foo',
-            success: true
-          }),
-          createAggregation({
-            contentRef: 'bar',
-            success: true
-          })
-        ],
-        fetchRecommendations
-      );
+      const hero = await getHeroContent([
+        createAggregation({
+          contentRef: 'foo',
+          success: true
+        }),
+        createAggregation({
+          contentRef: 'bar',
+          success: true
+        })
+      ]);
 
       expect(hero).toEqual(null);
     });
@@ -65,7 +61,7 @@ describe('Hero-Engine', function() {
         version: '1'
       };
       const fetchRecommendations = () => Promise.resolve(reco);
-      const hero = await heroContent(
+      const hero = await getHeroContent(
         [
           createAggregation({
             contentRef: 'foo',
@@ -107,7 +103,7 @@ describe('Hero-Engine', function() {
       };
       const fetchRecommendations = () => Promise.resolve(reco);
 
-      const hero = await heroContent(completions, fetchRecommendations);
+      const hero = await getHeroContent(completions, fetchRecommendations);
 
       expect(hero).toEqual(reco);
     });
@@ -139,7 +135,7 @@ describe('Hero-Engine', function() {
         })
       ];
 
-      const hero = await heroContent(completions, noop);
+      const hero = await getHeroContent(completions, noop);
 
       expect(hero).toEqual({
         ref: 'me!',

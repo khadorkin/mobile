@@ -7,7 +7,8 @@ import fetch from '../../modules/fetch';
 import {isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
-import type {Completion} from './_types';
+import {mapValue, reduce as reducer} from '../../modules/progression-aggregation-by-content';
+import type {Completion, ProgressionAggregationByContent} from './_types';
 import {getItem} from './core';
 
 export const buildCompletionKey = (engineRef: string, contentRef: string) =>
@@ -181,4 +182,12 @@ const findBestOf = (language: SupportedLanguage) => async (
   const card = await getItem('card', language, contentRef);
   return card && card.stars;
 };
-export {save, getAll, findById, findLast, findBestOf, synchronize};
+
+const getAggregations = async (): Array<ProgressionAggregationByContent> => {
+  const progressions = await getAll();
+  const records = progressions.map(p => ({content: p}));
+  const values = records.map(mapValue);
+  return values.reduce(reducer, null);
+};
+
+export {getAggregations, save, getAll, findById, findLast, findBestOf, synchronize};
