@@ -2,7 +2,7 @@
 
 import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
 import type {DataLayer} from '../layer/data';
-import {getAggregations} from '../layer/data/progressions';
+import {getAggregationsByContent} from '../layer/data/progressions';
 
 export type HeroService = {|
   get: () => Promise<DisciplineCard | ChapterCard | void>
@@ -17,7 +17,7 @@ const get = async (dataLayer: DataLayer) => {
 =======
 const get = (dataLayer: DataLayer) => async () => {
   const {fetchCard, fetchRecommendation, getHeroContent} = dataLayer;
-  const aggregations = await getAggregations();
+  const aggregations = await getAggregationsByContent();
   return getHeroContent(aggregations, fetchRecommendation, fetchCard);
 >>>>>>> moced aggregations within layer/data/progressions
 };

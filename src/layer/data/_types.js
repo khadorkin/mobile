@@ -10,6 +10,7 @@ import type {
 import type {Content, Context, Lesson, ResourceMimeType} from '@coorpacademy/progression-engine';
 import type {Discipline as DisciplineStore} from '@coorpacademy/player-store';
 import type {SupportedLanguage} from '../../translations/_types';
+import type {Progression} from '../../types';
 
 export type MimeType = ResourceMimeType;
 
@@ -213,6 +214,8 @@ export type Completion = {|
   current: number,
   stars: number
 |};
+
+export type Record = {content: Progression};
 
 export type ProgressionAggregationByContent = {|
   stars: number,

@@ -2,16 +2,7 @@
 // from https://github.com/CoorpAcademy/api-progression/blob/master/lambda/aggregations/completion.js#L28
 
 import moment from 'moment';
-import type {Progression as ProgressionBase} from '@coorpacademy/progression-engine';
-import type {ProgressionAggregationByContent} from '../../layer/data/_types';
-
-type Progression = {|
-  ...ProgressionBase,
-  meta: {
-    updatedAt: string,
-    createdAt: string
-  }
-|};
+import type {Record, ProgressionAggregationByContent} from '../../layer/data/_types';
 
 const isOlder = (
   aggregationToCheck: ProgressionAggregationByContent,
@@ -84,7 +75,7 @@ const updateForFinishedContent = (
 const reduce = (
   currentAggregation: ProgressionAggregationByContent | void,
   newRecord: ProgressionAggregationByContent
-): Array<ProgressionAggregationByContent> => {
+): ProgressionAggregationByContent => {
   // if not found, document should be created
   if (!currentAggregation) {
     return newRecord;
@@ -97,12 +88,10 @@ const reduce = (
   }
 };
 
-const mapId = (record: {content: Progression}) =>
-  `${record.content.engine.ref}-${record.content.content.type}-${record.content.content.ref}-${
-    record.content.userId
-  }`;
+const mapId = (record: Record) =>
+  `${record.content.engine.ref}-${record.content.content.type}-${record.content.content.ref}`;
 
-const mapValue = (record: {content: Progression}): ProgressionAggregationByContent => {
+const mapValue = (record: Record): ProgressionAggregationByContent => {
   const {
     state = {},
     content,
