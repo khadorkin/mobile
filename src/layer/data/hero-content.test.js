@@ -33,11 +33,11 @@ const createAggregation = ({
 
 describe('Hero-Engine', function() {
   describe('No content', function() {
-    it('should return "null" when no progression is started', async function() {
-      expect(await getHeroContent([], noop, noop)).toEqual(null);
+    it('should return "undefined" when no progression is started', async function() {
+      expect(await getHeroContent([], noop, noop)).toEqual(undefined);
     });
 
-    it('should return "null" when all started progressions are successful, and no recommendation is found', async function() {
+    it('should return "undefined" when all started progressions are successful, and no recommendation is found', async function() {
       const hero = await getHeroContent(
         [
           createAggregation({
@@ -53,7 +53,7 @@ describe('Hero-Engine', function() {
         noop
       );
 
-      expect(hero).toEqual(null);
+      expect(hero).toEqual(undefined);
     });
   });
 
@@ -141,9 +141,10 @@ describe('Hero-Engine', function() {
         })
       ];
 
-      const hero = await getHeroContent(completions, noop, noop);
+      const fetchCard = jest.fn();
 
-      expect(hero).toEqual({
+      await getHeroContent(completions, noop, fetchCard);
+      expect(fetchCard).toHaveBeenCalledWith({
         ref: 'me!',
         type: 'chapter',
         version: '1'

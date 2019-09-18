@@ -1,5 +1,7 @@
-const {pipe, set} = require('lodash/fp');
-const {mapValue, reduce} = require('..');
+import aggregations from '..';
+import {pipe, set} from 'lodash/fp';
+
+const {mapValue, reduce} = aggregations;
 const PROGRESSION = require('./fixtures/progression');
 
 const COMPLETION = pipe(
