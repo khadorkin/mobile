@@ -1,6 +1,7 @@
-// @flow strict
+// @flow
 
 import type {Progression} from '@coorpacademy/progression-engine';
+import {orderBy} from 'lodash/fp';
 import {CONTENT_TYPE} from '../const';
 
 export const isSuccess = (progression: Progression) => {
@@ -18,3 +19,6 @@ export const isFailure = (progression: Progression) => {
 export const isDone = (progression: Progression) => {
   return isFailure(progression) || isSuccess(progression);
 };
+
+export const sortProgressionChronologicaly = (progressions: Progression[]): Progression[] =>
+  orderBy(['actions[0].createdAt'], ['asc'], progressions);

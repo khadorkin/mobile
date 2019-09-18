@@ -4,7 +4,7 @@ import pMap from 'p-map';
 
 import type {StoreAction, ErrorAction} from '../../_types';
 import {getToken, getBrand} from '../../utils/state-extract';
-import {isDone} from '../../../utils/progressions';
+import {isDone, sortProgressionChronologicaly} from '../../../utils/progressions';
 
 export const SYNCHRONIZE_REQUEST = '@@progression/SYNCHRONIZE_REQUEST';
 export const SYNCHRONIZE_SUCCESS = '@@progression/SYNCHRONIZE_SUCCESS';
@@ -63,8 +63,9 @@ export const synchronizeProgressions: StoreAction<Action> = async (dispatch, get
   const {services} = options;
 
   const progressions = await services.Progressions.getAll();
+  const sortedProgressions = sortProgressionChronologicaly(progressions);
   await pMap(
-    progressions.filter(isDone),
+    sortedProgressions.filter(isDone),
     (progression): Promise<Action | void> => {
       const {_id} = progression;
       if (_id) {
