@@ -1,7 +1,8 @@
-const {pipe, map, reduce, reverse} = require('lodash/fp');
-const {mapValue, reduce: reduceValue} = require('..');
-const allProgressions = require('./fixtures/progressions');
+import aggregations from '..';
+import {pipe, map, reduce, reverse} from 'lodash/fp';
+import allProgressions from './fixtures/progressions';
 
+const {mapValue, reduce: reduceValue} = aggregations;
 const useMocks = ids => allProgressions.filter(mock => ids.includes(mock.content._id));
 
 describe('progression-aggregation-by-content | non regression', () => {
