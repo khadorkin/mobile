@@ -1,19 +1,10 @@
 // @flow strict
 
 import type {
-  Progression as ProgressionBase,
   ContentType as ContentTypeBase,
   GenericContent as GenericContentBase,
   Lesson
 } from '@coorpacademy/progression-engine';
-
-export type Progression = {|
-  ...ProgressionBase,
-  meta: {
-    updatedAt: string,
-    createdAt: string
-  }
-|};
 
 export type JWT = {|
   exp: number,

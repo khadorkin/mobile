@@ -92,12 +92,13 @@ const mapId = (record: Record) =>
   `${record.content.engine.ref}-${record.content.content.type}-${record.content.content.ref}`;
 
 const mapValue = (record: Record): ProgressionAggregationByContent => {
-  const {
-    state = {},
-    content,
-    meta: {updatedAt}
-  } = record.content;
+  const {state = {}, content, meta} = record.content;
 
+  if (!meta) {
+    throw new Error('progression.meta is required for aggregations');
+  }
+
+  const {updatedAt} = meta;
   const {stars = 0, step = {}, nextContent = {type: 'node'}} = state;
   const {current} = step;
 
