@@ -1,5 +1,7 @@
 // @flow strict
 
+import {createChapterCard} from '../../__fixtures__/cards';
+
 jest.mock('./chapters', () => {
   const {mapToChapterAPIExpectedResult} = require('./mappers.test');
 
@@ -7,6 +9,16 @@ jest.mock('./chapters', () => {
     find: () => Promise.resolve([mapToChapterAPIExpectedResult])
   };
 });
+
+jest.mock('../../utils/local-token', () => {
+  const {createToken} = require('../../__fixtures__/tokens');
+  const token = createToken({});
+  return {
+    get: jest.fn(() => Promise.resolve(token))
+  };
+});
+
+jest.mock('cross-fetch');
 
 describe('Recommendation data layer', () => {
   describe('find', () => {
@@ -27,6 +39,58 @@ describe('Recommendation data layer', () => {
       const expected = [recommendation];
 
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('fetch', () => {
+    it('should fetch a recommendation', async () => {
+      const fetch = require('cross-fetch');
+      const mockRecommendation = createChapterCard({
+        ref: 'foo',
+        status: 'isStarted',
+        title: 'plop',
+        completion: 0
+      });
+
+      fetch.mockImplementationOnce(
+        (
+          url
+        ): Promise<{
+          json: () => Promise<DisciplineCard | ChapterCard | void>
+        }> => {
+          expect(url).toBe('https://domain.tld/api/v2/recommendations');
+
+          return Promise.resolve({
+            json: () => Promise.resolve({hits: [mockRecommendation]})
+          });
+        }
+      );
+
+      const {fetchRecommendation} = require('./recommendations');
+      const recommendation = await fetchRecommendation();
+      return expect(recommendation).toEqual(mockRecommendation);
+    });
+
+    it('should return undefined if no recommendation is found', async () => {
+      const fetch = require('cross-fetch');
+
+      fetch.mockImplementationOnce(
+        (
+          url
+        ): Promise<{
+          json: () => Promise<DisciplineCard | ChapterCard | void>
+        }> => {
+          expect(url).toBe('https://domain.tld/api/v2/recommendations');
+
+          return Promise.resolve({
+            json: () => Promise.resolve({hits: []})
+          });
+        }
+      );
+
+      const {fetchRecommendation} = require('./recommendations');
+      const recommendation = await fetchRecommendation();
+      return expect(recommendation).toEqual(undefined);
     });
   });
 });
