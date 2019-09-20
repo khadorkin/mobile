@@ -395,7 +395,7 @@ describe('progresssion', () => {
 
       const {synchronize} = require('./progressions');
       await expect(synchronize(TOKEN, HOST, fakeProgression)).rejects.toThrow(
-        new ForbiddenError('Fetch Forbidden')
+        new Error('Forbidden')
       );
     });
 
