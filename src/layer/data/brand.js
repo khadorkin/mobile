@@ -43,7 +43,8 @@ export const fetchBrand = async (token: string): Promise<Brand> => {
   const response = await fetch(`${jwt.host}/config`, {
     headers: {
       authorization: token,
-      accept: 'application/json'
+      accept: 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
     }
   });
 
