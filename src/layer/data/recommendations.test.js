@@ -92,5 +92,17 @@ describe('Recommendation data layer', () => {
       const recommendation = await fetchRecommendation();
       return expect(recommendation).toEqual(undefined);
     });
+
+    it('should return throw error', async () => {
+      const fetch = require('cross-fetch');
+      const localToken = require('../../utils/local-token');
+      // $FlowFixMe this function is mocked;
+      localToken.get.mockImplementationOnce(() => Promise.resolve(null));
+
+      const {fetchRecommendation} = require('./recommendations');
+      const fetching = fetchRecommendation();
+
+      await expect(fetching).rejects.toThrow(new Error('Invalid token'));
+    });
   });
 });
