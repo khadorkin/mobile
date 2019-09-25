@@ -1,5 +1,6 @@
 // @flow strict
 
+<<<<<<< HEAD
 import {createDisciplineCard, createCardLevel} from '../__fixtures__/cards';
 import {CARD_STATUS} from '../layer/data/_const';
 
@@ -57,5 +58,36 @@ describe('Hero service', () => {
 
   afterAll(() => {
     jest.resetAllMocks();
+=======
+import type {DataLayer} from '../layer/data';
+import createService from './hero';
+
+const card = 'foo';
+
+jest.mock('../layer/data/progressions', () => {
+  return {
+    getAggregationsByContent: jest.fn(() => Promise.resolve(['a', 'b', 'c']))
+  };
+});
+
+const fetchCard = jest.fn();
+const fetchRecommendation = jest.fn();
+
+const getHeroContent = jest.fn();
+getHeroContent.mockImplementationOnce(
+  ((_aggregations, _fetchRecommendation, _fetchCard) => {
+    expect(_aggregations).toEqual(['a', 'b', 'c']);
+    expect(_fetchRecommendation).toEqual(fetchRecommendation);
+    expect(_fetchCard).toEqual(_fetchCard);
+    return Promise.resolve(card);
+  }: $PropertyType<DataLayer, 'getHeroContent'>)
+);
+
+describe('Hero service', () => {
+  it('get card', async () => {
+    const heroService = createService({fetchCard, fetchRecommendation, getHeroContent});
+    const result = await heroService.get();
+    return expect(result).toEqual(card);
+>>>>>>> coverage service.hero
   });
 });
