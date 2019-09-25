@@ -166,6 +166,105 @@ describe('cards', () => {
     });
   });
 
+  describe('fetchCard', () => {
+    beforeEach(() => {
+      jest.resetModules();
+      jest.mock('cross-fetch');
+
+      jest.mock('../../utils/local-token', () => {
+        const {createToken} = require('../../__fixtures__/tokens');
+        return {
+          get: jest.fn(() => Promise.resolve(createToken({})))
+        };
+      });
+    });
+
+    it('should get a card already in async storage', async () => {
+      const mockCard = createChapterCard({
+        ref: 'foo',
+        status: 'isStarted',
+        title: 'plop',
+        completion: 12
+      });
+
+      AsyncStorage.getItem = jest
+        .fn()
+        .mockImplementation(key =>
+          key === 'completion_microlearning_foo' ? null : Promise.resolve(JSON.stringify(mockCard))
+        );
+
+      const {fetchCard} = require('./cards');
+      const card = await fetchCard({ref: 'foo', type: 'chapter'});
+      return expect(card).toEqual(mockCard);
+    });
+
+    it('should fetch a card', async () => {
+      const fetch = require('cross-fetch');
+      const mockCard = createChapterCard({
+        ref: 'foo',
+        status: 'isStarted',
+        title: 'plop',
+        completion: 17
+      });
+
+      AsyncStorage.getItem = jest.fn().mockImplementation(() => Promise.resolve(null));
+
+      fetch.mockImplementationOnce(
+        (
+          url
+        ): Promise<{
+          json: () => Promise<DisciplineCard | ChapterCard | void>
+        }> => {
+          expect(url).toBe('https://domain.tld/api/v2/contents?type=chapter&universalRef=foo');
+
+          return Promise.resolve({
+            json: () => Promise.resolve({hits: [mockCard]})
+          });
+        }
+      );
+
+      const {fetchCard} = require('./cards');
+      const card = await fetchCard({ref: 'foo', type: 'chapter'});
+      return expect(card).toEqual(mockCard);
+    });
+
+    it('should return undefined if no card is found', async () => {
+      const fetch = require('cross-fetch');
+
+      fetch.mockImplementationOnce(
+        (
+          url
+        ): Promise<{
+          json: () => Promise<DisciplineCard | ChapterCard | void>
+        }> => {
+          expect(url).toBe('https://domain.tld/api/v2/contents?type=chapter&universalRef=foo');
+
+          return Promise.resolve({
+            json: () => Promise.resolve({hits: []})
+          });
+        }
+      );
+
+      const {fetchCard} = require('./cards');
+      const card = await fetchCard({ref: 'foo', type: 'chapter'});
+      return expect(card).toEqual(undefined);
+    });
+
+    it('should return throw error', async () => {
+      const localToken = require('../../utils/local-token');
+      // $FlowFixMe this function is mocked;
+      localToken.get.mockImplementationOnce(() => Promise.resolve(null));
+
+      const {fetchCard} = require('./cards');
+      const fetching = fetchCard({ref: 'foo', type: 'chapter'});
+      await expect(fetching).rejects.toThrow(new Error('Invalid token'));
+    });
+
+    afterAll(() => {
+      jest.resetAllMocks();
+    });
+  });
+
   describe('update cards according to progression', () => {
     it('should update the  cards total star count', () => {
       const fakeRef = 'lolipop';

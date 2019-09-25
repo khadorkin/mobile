@@ -228,8 +228,8 @@ export const fetchCard = async (content: Content): Promise<DisciplineCard | Chap
     }
   );
 
-  const {hits}: {hits?: Array<DisciplineCard | ChapterCard>} = await response.json();
-  return hits ? hits[0] : undefined;
+  const {hits}: {hits: Array<DisciplineCard | ChapterCard>} = await response.json();
+  return hits.length > 0 ? hits[0] : undefined;
 };
 
 export const fetchCards = async (

@@ -94,7 +94,6 @@ describe('Recommendation data layer', () => {
     });
 
     it('should return throw error', async () => {
-      const fetch = require('cross-fetch');
       const localToken = require('../../utils/local-token');
       // $FlowFixMe this function is mocked;
       localToken.get.mockImplementationOnce(() => Promise.resolve(null));
