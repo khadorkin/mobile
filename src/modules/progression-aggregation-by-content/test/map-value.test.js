@@ -5,6 +5,15 @@ const {mapValue} = aggregations;
 const PROGRESSION = require('./fixtures/progression');
 
 describe('progression-aggregation-by-content | mapValue', () => {
+  it('should check meta', () => {
+    expect(() =>
+      pipe(
+        unset('content.meta'),
+        mapValue
+      )({content: PROGRESSION})
+    ).toThrow(new Error('progression.meta is required for aggregations'));
+  });
+
   it('should map progression without state to default completion value', () => {
     expect(
       pipe(
