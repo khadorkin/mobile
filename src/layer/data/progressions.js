@@ -5,13 +5,15 @@ import type {Progression, Action} from '@coorpacademy/progression-engine';
 
 import {groupBy, mapValues} from 'lodash/fp';
 
+import aggregations from '@coorpacademy/progression-aggregations';
 import fetch from '../../modules/fetch';
 import {isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
-import aggregation from '../../modules/progression-aggregation-by-content';
 import type {Record, Completion, ProgressionAggregationByContent} from './_types';
 import {getItem} from './core';
+
+const {content: aggregationByContent} = aggregations;
 
 export const buildCompletionKey = (engineRef: string, contentRef: string) =>
   `completion_${engineRef}_${contentRef}`;
@@ -186,14 +188,14 @@ const findBestOf = (language: SupportedLanguage) => async (
 };
 
 const aggregate = (progressionsByContent: Array<Record>): ProgressionAggregationByContent => {
-  const values = progressionsByContent.map(aggregation.mapValue);
-  return values.reduce(aggregation.reduce, undefined);
+  const values = progressionsByContent.map(aggregationByContent.mapValue);
+  return values.reduce(aggregationByContent.reduce, undefined);
 };
 
 const getAggregationsByContent = async (): Promise<Array<ProgressionAggregationByContent>> => {
   const progressions = await getAll();
   const records = progressions.map(p => ({content: p}));
-  const recordsByContent = groupBy(aggregation.mapId, records);
+  const recordsByContent = groupBy(aggregationByContent.mapId, records);
   const result = mapValues(aggregate, recordsByContent);
   const keys = Object.keys(result);
   return keys.map(key => result[key]);
