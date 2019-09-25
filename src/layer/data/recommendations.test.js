@@ -1,6 +1,7 @@
 // @flow strict
 
 import {createChapterCard} from '../../__fixtures__/cards';
+import type {DisciplineCard, ChapterCard} from './_types';
 
 jest.mock('./chapters', () => {
   const {mapToChapterAPIExpectedResult} = require('./mappers.test');
@@ -56,7 +57,7 @@ describe('Recommendation data layer', () => {
         (
           url
         ): Promise<{
-          json: () => Promise<DisciplineCard | ChapterCard | void>
+          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>
         }> => {
           expect(url).toBe('https://domain.tld/api/v2/recommendations');
 
@@ -78,7 +79,7 @@ describe('Recommendation data layer', () => {
         (
           url
         ): Promise<{
-          json: () => Promise<DisciplineCard | ChapterCard | void>
+          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>
         }> => {
           expect(url).toBe('https://domain.tld/api/v2/recommendations');
 

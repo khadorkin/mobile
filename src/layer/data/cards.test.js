@@ -21,7 +21,7 @@ import {
   refreshCard,
   getCardFromLocalStorage
 } from './cards';
-import type {Card} from './_types';
+import type {DisciplineCard, ChapterCard, Card} from './_types';
 
 const host = 'https://host.coorpacademy.com';
 const token = '__token__';
@@ -213,7 +213,7 @@ describe('cards', () => {
         (
           url
         ): Promise<{
-          json: () => Promise<DisciplineCard | ChapterCard | void>
+          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>
         }> => {
           expect(url).toBe('https://domain.tld/api/v2/contents?type=chapter&universalRef=foo');
 
@@ -235,7 +235,7 @@ describe('cards', () => {
         (
           url
         ): Promise<{
-          json: () => Promise<DisciplineCard | ChapterCard | void>
+          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>
         }> => {
           expect(url).toBe('https://domain.tld/api/v2/contents?type=chapter&universalRef=foo');
 

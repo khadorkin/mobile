@@ -62,6 +62,7 @@ describe('progression aggregation', () => {
     expect(result).toEqual([
       {
         content: {version: '1', ref: 'foo', type: 'chapter'},
+        // $FlowFixMe state.step IS defined
         latestNbQuestions: progression1.state.step.current - 1,
         success: true,
         stars: 0,
@@ -169,6 +170,7 @@ describe('progression aggregation', () => {
     expect(result).toEqual([
       {
         content: {version: '1', ref: 'foo', type: 'chapter'},
+        // $FlowFixMe state.step IS defined
         latestNbQuestions: progression1.state.step.current - 1,
         success: true,
         stars: 14,
@@ -176,6 +178,7 @@ describe('progression aggregation', () => {
       },
       {
         content: {version: '1', ref: 'bar', type: 'chapter'},
+        // $FlowFixMe state.step IS defined
         latestNbQuestions: progression3.state.step.current - 1,
         success: false,
         stars: 0,
