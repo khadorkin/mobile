@@ -190,7 +190,6 @@ class LevelEnd extends React.PureComponent<Props> {
 
     const header = (isSuccess && translations.congratulations) || translations.ooops;
     const backgroundColor = (isSuccess && styles.positive) || styles.negative;
-    const bestScoreTranslation = translations.highscore.replace(/{{score}}/g, bestScore);
     const unlockNextLevelTranslation = translations.unlockNextLevel.replace(
       /{{levelName}}/g,
       nextContentLabel
@@ -246,8 +245,11 @@ class LevelEnd extends React.PureComponent<Props> {
                 <View style={styles.content}>
                   {isSuccess && (
                     <View>
-                      {bestScore !== '0' && (
-                        <Tooltip type="highscore" text={bestScoreTranslation} />
+                      {parseInt(bestScore) > 0 && (
+                        <Tooltip
+                          type="highscore"
+                          text={translations.highscore.replace(/{{score}}/g, `+${bestScore}`)}
+                        />
                       )}
                       <Space type="tiny" />
                       {nextContentType === CONTENT_TYPE.LEVEL && (

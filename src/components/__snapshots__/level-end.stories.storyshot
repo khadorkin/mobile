@@ -8400,7 +8400,7 @@ exports[`Storyshots LevelEnd Success 1`] = `
                                 }
                               }
                             >
-                              you just won 20 stars
+                              you just won +20 stars
                             </Text>
                           </Text>
                         </Text>
