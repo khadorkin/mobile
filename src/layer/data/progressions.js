@@ -7,7 +7,7 @@ import {groupBy, mapValues} from 'lodash/fp';
 
 import aggregations from '@coorpacademy/progression-aggregations';
 import fetch from '../../modules/fetch';
-import {isDone, isFailure} from '../../utils/progressions';
+import {getCreatedAt, getUpdatedAt, isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {Record, Completion, ProgressionAggregationByContent} from './_types';
@@ -70,7 +70,7 @@ const findById = async (id: string) => {
   return JSON.parse(progression);
 };
 
-const getAll = async () => {
+const getAll = async (): Promise<Array<Progression>> => {
   const keys = await AsyncStorage.getAllKeys();
   const filteredKeys = keys.filter(key => key.startsWith('progression'));
   const items = await AsyncStorage.multiGet(filteredKeys);
@@ -114,8 +114,9 @@ const synchronize = async (
   return;
 };
 
-const addCreatedAtToAction = (progression: Progression): Progression => {
+const updateDates = (progression: Progression | Progression): Progression => {
   const now = new Date().toISOString();
+
   return {
     ...progression,
     actions:
@@ -139,7 +140,7 @@ const persist = async (progression: Progression): Promise<Progression> => {
   await AsyncStorage.setItem(buildProgressionKey(_id), JSON.stringify(progression));
   await AsyncStorage.setItem(
     buildLastProgressionKey(progression.engine.ref, progression.content.ref),
-    progression._id || ''
+    _id
   );
 
   storeOrReplaceCompletion(progression);
@@ -147,8 +148,8 @@ const persist = async (progression: Progression): Promise<Progression> => {
   return progression;
 };
 
-const save = (progression: Progression): Promise<Progression> =>
-  persist(addCreatedAtToAction(progression));
+const save = (progression: Progression | Progression): Promise<Progression> =>
+  persist(updateDates(progression));
 
 const findLast = async (engineRef: string, contentRef: string) => {
   const key = buildLastProgressionKey(engineRef, contentRef);
@@ -193,8 +194,16 @@ const aggregate = (progressionsByContent: Array<Record>): ProgressionAggregation
 };
 
 const getAggregationsByContent = async (): Promise<Array<ProgressionAggregationByContent>> => {
-  const progressions = await getAll();
-  const records = progressions.map(p => ({content: p}));
+  const progressions: Array<Progression> = await getAll();
+  const records = progressions.map(p => ({
+    content: {
+      ...p,
+      meta: {
+        createdAt: getCreatedAt(p.actions),
+        updatedAt: getUpdatedAt(p.actions)
+      }
+    }
+  }));
   const recordsByContent = groupBy(aggregationByContent.mapId, records);
   const result = mapValues(aggregate, recordsByContent);
   const keys = Object.keys(result);

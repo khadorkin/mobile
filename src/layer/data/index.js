@@ -51,7 +51,8 @@ export type DataLayer = {
   getNextChapter: (ref: string) => Promise<ChapterAPI | void>,
   getNextLevel: (ref: string) => Promise<LevelAPI | void>,
   logEvent: typeof logEvent,
-  fetchUser: typeof fetchUser
+  fetchUser: typeof fetchUser,
+  saveProgression: Progression => Promise<Progression>
 };
 
 const createDataLayer = (): DataLayer => ({

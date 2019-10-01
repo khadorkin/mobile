@@ -19,7 +19,7 @@ import {
   storeOrReplaceCompletion
 } from './progressions';
 
-describe('progresssion', () => {
+describe('Progression', () => {
   describe('buildLastProgressionKey', () => {
     it('should build the lastProgression Key ', () => {
       const engineRef = 'lol';
@@ -28,7 +28,7 @@ describe('progresssion', () => {
     });
   });
   describe('findById', () => {
-    it('shoud find a progression by id', async () => {
+    it('should find a progression by id', async () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -48,7 +48,7 @@ describe('progresssion', () => {
       expect(result).toEqual(fakeProgression);
     });
 
-    it("shoud throw error if progression isn't found", async () => {
+    it("should throw error if progression isn't found", async () => {
       const progressionId = 'fakeProgressionId';
       AsyncStorage.getItem = jest.fn().mockImplementation(() => Promise.resolve());
 
@@ -56,7 +56,7 @@ describe('progresssion', () => {
     });
   });
   describe('getAll', () => {
-    it('shoud get all the progression items', async () => {
+    it('should get all the progression items', async () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -82,7 +82,7 @@ describe('progresssion', () => {
     });
   });
   describe('save', () => {
-    it('shoud the progression and the last progression id simultaneously', async () => {
+    it('should the progression and the last progression id simultaneously', async () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -105,10 +105,9 @@ describe('progresssion', () => {
         });
 
       const result = await save(fakeProgression);
-
       expect(result).toEqual(fakeProgression);
     });
-    it('shoud add createAt in each action', async () => {
+    it('should add createAt in each action', async () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -130,7 +129,7 @@ describe('progresssion', () => {
           expect(action).toHaveProperty('createdAt');
         });
     });
-    it('shoud throw on progression without _id', async () => {
+    it('should throw on progression without _id', async () => {
       const fakeProgression = createProgression({
         engine: 'learner',
         progressionContent: {
@@ -147,7 +146,7 @@ describe('progresssion', () => {
     });
   });
   describe('findLast', () => {
-    it('shoud find the last progression', async () => {
+    it('should find the last progression', async () => {
       const progressionId = 'fakeProgressionId';
       const engine = 'learner';
       const progressionContent = {
@@ -180,13 +179,13 @@ describe('progresssion', () => {
       expect(result).toEqual(fakeProgression);
     });
 
-    it('shoud find the last progression -- without retrieved progression id', async () => {
+    it('should find the last progression -- without retrieved progression id', async () => {
       AsyncStorage.getItem = jest.fn().mockImplementation(() => null);
       const result = await findLast('tata', 'toto');
       expect(result).toEqual(null);
     });
 
-    it('shoud find the last progression -- without retrieved progression', async () => {
+    it('should find the last progression -- without retrieved progression', async () => {
       const progressionId = 'fakeProgressionId';
       const engine = 'learner';
       const progressionContent = {
@@ -205,7 +204,7 @@ describe('progresssion', () => {
       expect(result).toEqual(null);
     });
 
-    it('shoud find the last progression -- with success as nextContent type', async () => {
+    it('should find the last progression -- with success as nextContent type', async () => {
       const progressionId = 'fakeProgressionId';
       const engine = 'learner';
       const progressionContent = {
@@ -237,7 +236,7 @@ describe('progresssion', () => {
       expect(result).toEqual(null);
     });
 
-    it('shoud find the last progression -- with failure as nextContent type', async () => {
+    it('should find the last progression -- with failure as nextContent type', async () => {
       const progressionId = 'fakeProgressionId';
       const engine = 'learner';
       const progressionContent = {
@@ -269,7 +268,7 @@ describe('progresssion', () => {
       expect(result).toEqual(null);
     });
 
-    it('shoud find the last progression -- with node as nextContent type and extralife as ref', async () => {
+    it('should find the last progression -- with node as nextContent type and extralife as ref', async () => {
       const progressionId = 'fakeProgressionId';
       const engine = 'learner';
       const progressionContent = {
@@ -458,6 +457,7 @@ describe('progresssion', () => {
       });
 
       const {synchronize} = require('./progressions');
+      // $FlowFixMe fakeProgression does not need meta for this test
       await expect(synchronize(TOKEN, HOST, fakeProgression)).rejects.toBeInstanceOf(TypeError);
     });
 
@@ -631,7 +631,7 @@ describe('progresssion', () => {
   });
 
   describe('findBestOf', () => {
-    it('shoud return a number of stars from an item', async () => {
+    it('should return a number of stars from an item', async () => {
       const language = 'en',
         progressionId = 'fakeProgressionId',
         engineRef = 'learner',
