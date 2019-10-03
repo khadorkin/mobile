@@ -2,12 +2,18 @@
 
 import AsyncStorage from '@react-native-community/async-storage';
 
+import type {Progression} from '@coorpacademy/progression-engine';
 import {createDisciplineCard, createCardLevel} from '../../__fixtures__/cards';
 import {createProgression, createState, createAction} from '../../__fixtures__/progression';
 import createCompletion from '../../__fixtures__/completion';
 import {ForbiddenError} from '../../models/error';
+import {CONTENT_TYPE, ENGINE, SPECIFIC_CONTENT_REF} from '../../const';
+
+import {OLDEST_DATE} from '../../utils/progressions';
+import type {ProgressionAggregationByContent} from './_types';
 import {
   findById,
+  getAggregationsByContent,
   getAll,
   save,
   findLast,
@@ -32,10 +38,10 @@ describe('Progression', () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         }
       });
 
@@ -60,10 +66,10 @@ describe('Progression', () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         }
       });
 
@@ -86,10 +92,10 @@ describe('Progression', () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         }
       });
 
@@ -111,10 +117,10 @@ describe('Progression', () => {
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         },
         actions: [createAction({}), createAction({})]
       });
@@ -131,10 +137,10 @@ describe('Progression', () => {
     });
     it('should throw on progression without _id', async () => {
       const fakeProgression = createProgression({
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         }
       });
 
@@ -148,10 +154,10 @@ describe('Progression', () => {
   describe('findLast', () => {
     it('should find the last progression', async () => {
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
 
       const nextContent = {
@@ -187,10 +193,10 @@ describe('Progression', () => {
 
     it('should find the last progression -- without retrieved progression', async () => {
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
 
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
@@ -206,15 +212,15 @@ describe('Progression', () => {
 
     it('should find the last progression -- with success as nextContent type', async () => {
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
 
       const nextContent = {
         ref: 'bar',
-        type: 'success'
+        type: CONTENT_TYPE.SUCCESS
       };
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -238,10 +244,10 @@ describe('Progression', () => {
 
     it('should find the last progression -- with failure as nextContent type', async () => {
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
 
       const nextContent = {
@@ -270,10 +276,10 @@ describe('Progression', () => {
 
     it('should find the last progression -- with node as nextContent type and extralife as ref', async () => {
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
 
       const nextContent = {
@@ -312,10 +318,10 @@ describe('Progression', () => {
       const fetch = require('cross-fetch');
 
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
       const nextContent = {
         ref: 'bar',
@@ -362,10 +368,10 @@ describe('Progression', () => {
       const fetch = require('cross-fetch');
 
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
       const nextContent = {
         ref: 'bar',
@@ -403,10 +409,10 @@ describe('Progression', () => {
       const fetch = require('cross-fetch');
 
       const progressionId = 'fakeProgressionId';
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
       const nextContent = {
         ref: 'bar',
@@ -440,10 +446,10 @@ describe('Progression', () => {
     });
 
     it('should support only progression with _id', async () => {
-      const engine = 'learner';
+      const engine = ENGINE.LEARNER;
       const progressionContent = {
         ref: 'foo',
-        type: 'chapter'
+        type: CONTENT_TYPE.CHAPTER
       };
       const nextContent = {
         ref: 'bar',
@@ -475,10 +481,10 @@ describe('Progression', () => {
       });
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         },
         state: fakeState
       });
@@ -503,10 +509,10 @@ describe('Progression', () => {
       });
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         },
         state: fakeState
       });
@@ -526,10 +532,10 @@ describe('Progression', () => {
 
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         }
       });
 
@@ -558,10 +564,10 @@ describe('Progression', () => {
 
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         },
         state: fakeState
       });
@@ -602,10 +608,10 @@ describe('Progression', () => {
 
       const fakeProgression = createProgression({
         _id: progressionId,
-        engine: 'learner',
+        engine: ENGINE.LEARNER,
         progressionContent: {
           ref: 'foo',
-          type: 'chapter'
+          type: CONTENT_TYPE.CHAPTER
         },
         state: fakeState
       });
@@ -634,8 +640,8 @@ describe('Progression', () => {
     it('should return a number of stars from an item', async () => {
       const language = 'en',
         progressionId = 'fakeProgressionId',
-        engineRef = 'learner',
-        content = {ref: 'foo', type: 'chapter'},
+        engineRef = ENGINE.LEARNER,
+        content = {ref: 'foo', type: CONTENT_TYPE.CHAPTER},
         contentRef = 'foo';
 
       const levelCard = createCardLevel({
@@ -661,5 +667,278 @@ describe('Progression', () => {
 
       expect(result).toEqual(100);
     });
+  });
+});
+
+const mockProgressionsStorage = (progressions: Array<Progression>) => {
+  AsyncStorage.getAllKeys = jest
+    .fn()
+    .mockImplementation(() => Promise.resolve(progressions.map(p => `progression_${p._id || ''}`)));
+
+  AsyncStorage.multiGet = jest
+    .fn()
+    .mockImplementation(keys =>
+      Promise.resolve(progressions.map(p => [`progression_${p._id || ''}`, JSON.stringify(p)]))
+    );
+};
+
+describe('aggregation by content', () => {
+  it('should get aggregate 2 progressions with same content, and set an old date when no actions', async () => {
+    const progression1 = createProgression({
+      _id: 'progression1',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        step: {
+          current: 12
+        }
+      }
+    });
+
+    const progression2 = createProgression({
+      _id: 'progression2',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      }
+    });
+
+    const progressions = [progression1, progression2];
+    mockProgressionsStorage(progressions);
+
+    const result = await getAggregationsByContent();
+    const expected: Array<ProgressionAggregationByContent> = [
+      {
+        content: {version: '1', ref: 'foo', type: CONTENT_TYPE.CHAPTER},
+        // $FlowFixMe state.step IS defined
+        latestNbQuestions: progression1.state.step.current - 1,
+        success: true,
+        stars: 0,
+        updatedAt: OLDEST_DATE
+      }
+    ];
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should aggregate many progressions with different contents', async () => {
+    const progression1 = createProgression({
+      _id: 'progression1',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        stars: 4,
+        step: {
+          current: 12
+        }
+      },
+      actions: [
+        createAction({createdAt: '2003-01-18T08:41:37.004Z'}),
+        createAction({createdAt: '2002-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2001-09-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progression2 = createProgression({
+      _id: 'progression2',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        stars: 14,
+        step: {
+          current: 13
+        }
+      },
+      actions: [
+        createAction({createdAt: '2004-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2005-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2006-01-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progression3 = createProgression({
+      _id: 'progression3',
+      engine: ENGINE.MICROLEARNING,
+      progressionContent: {
+        ref: 'bar',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: 'slide1',
+          type: CONTENT_TYPE.SLIDE
+        },
+        step: {
+          current: 13
+        }
+      },
+      actions: [
+        createAction({createdAt: '1994-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2000-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2007-01-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progression4 = createProgression({
+      _id: 'progression2',
+      engine: ENGINE.MICROLEARNING,
+      progressionContent: {
+        ref: 'bar',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: 'slide4',
+          type: CONTENT_TYPE.SLIDE
+        },
+        step: {
+          current: 5
+        }
+      },
+      actions: [
+        createAction({createdAt: '2002-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2003-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2004-01-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progressions = [progression1, progression2, progression3, progression4];
+    mockProgressionsStorage(progressions);
+
+    const result = await getAggregationsByContent();
+    const expected: Array<ProgressionAggregationByContent> = [
+      {
+        content: {version: '1', ref: 'foo', type: CONTENT_TYPE.CHAPTER},
+        // $FlowFixMe state.step IS defined
+        latestNbQuestions: progression2.state.step.current - 1,
+        success: true,
+        // $FlowFixMe state.stars IS defined
+        stars: progression2.state.stars,
+        // $FlowFixMe actions[2] IS defined
+        updatedAt: progression2.actions[2].createdAt
+      },
+      {
+        content: {version: '1', ref: 'bar', type: CONTENT_TYPE.CHAPTER},
+        // $FlowFixMe state.step IS defined
+        latestNbQuestions: progression3.state.step.current - 1,
+        success: false,
+        stars: 0,
+        // $FlowFixMe actions[2] IS defined
+        updatedAt: progression3.actions[2].createdAt
+      }
+    ];
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should set progressions with no actions as older than others', async () => {
+    const progression0 = createProgression({
+      _id: 'progression0',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        stars: 24,
+        step: {
+          current: 17
+        }
+      }
+    });
+
+    const progression1 = createProgression({
+      _id: 'progression1',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        stars: 8,
+        step: {
+          current: 10
+        }
+      },
+      actions: [
+        createAction({createdAt: '2002-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2003-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2004-01-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progression2 = createProgression({
+      _id: 'progression2',
+      engine: ENGINE.LEARNER,
+      progressionContent: {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER
+      },
+      state: {
+        nextContent: {
+          ref: SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE,
+          type: CONTENT_TYPE.SUCCESS
+        },
+        stars: 14,
+        step: {
+          current: 12
+        }
+      },
+      actions: [
+        createAction({createdAt: '2000-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2001-09-18T08:41:37.004Z'}),
+        createAction({createdAt: '2002-01-18T08:41:37.004Z'})
+      ]
+    });
+
+    const progressions = [progression0, progression1, progression2];
+    // $FlowFixMe _id IS defined
+    mockProgressionsStorage(progressions);
+
+    const result = await getAggregationsByContent();
+    const expected: Array<ProgressionAggregationByContent> = [
+      {
+        content: {version: '1', ref: 'foo', type: CONTENT_TYPE.CHAPTER},
+        // $FlowFixMe state.step IS defined
+        latestNbQuestions: progression0.state.step.current - 1,
+        success: true,
+        // $FlowFixMe state.stars IS defined
+        stars: progression0.state.stars,
+        // $FlowFixMe actions[2] IS defined
+        updatedAt: progression1.actions[2].createdAt
+      }
+    ];
+
+    expect(result).toEqual(expected);
   });
 });

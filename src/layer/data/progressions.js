@@ -3,17 +3,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import type {Progression, Action} from '@coorpacademy/progression-engine';
 
-import {groupBy, mapValues} from 'lodash/fp';
+import {groupBy} from 'lodash/fp';
 
-import aggregations from '@coorpacademy/progression-aggregations';
+import {content as aggregationByContent} from '@coorpacademy/progression-aggregations';
 import fetch from '../../modules/fetch';
 import {getCreatedAt, getUpdatedAt, isDone, isFailure} from '../../utils/progressions';
 import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {SupportedLanguage} from '../../translations/_types';
 import type {Record, Completion, ProgressionAggregationByContent} from './_types';
 import {getItem} from './core';
-
-const {content: aggregationByContent} = aggregations;
 
 export const buildCompletionKey = (engineRef: string, contentRef: string) =>
   `completion_${engineRef}_${contentRef}`;
@@ -114,7 +112,7 @@ const synchronize = async (
   return;
 };
 
-const updateDates = (progression: Progression | Progression): Progression => {
+const addCreatedAtToAction = (progression: Progression): Progression => {
   const now = new Date().toISOString();
 
   return {
@@ -148,8 +146,8 @@ const persist = async (progression: Progression): Promise<Progression> => {
   return progression;
 };
 
-const save = (progression: Progression | Progression): Promise<Progression> =>
-  persist(updateDates(progression));
+const save = (progression: Progression): Promise<Progression> =>
+  persist(addCreatedAtToAction(progression));
 
 const findLast = async (engineRef: string, contentRef: string) => {
   const key = buildLastProgressionKey(engineRef, contentRef);
@@ -188,14 +186,9 @@ const findBestOf = (language: SupportedLanguage) => async (
   return card && card.stars;
 };
 
-const aggregate = (progressionsByContent: Array<Record>): ProgressionAggregationByContent => {
-  const values = progressionsByContent.map(aggregationByContent.mapValue);
-  return values.reduce(aggregationByContent.reduce, undefined);
-};
-
 const getAggregationsByContent = async (): Promise<Array<ProgressionAggregationByContent>> => {
   const progressions: Array<Progression> = await getAll();
-  const records = progressions.map(p => ({
+  const allRecords: Array<Record> = progressions.map(p => ({
     content: {
       ...p,
       meta: {
@@ -204,10 +197,24 @@ const getAggregationsByContent = async (): Promise<Array<ProgressionAggregationB
       }
     }
   }));
-  const recordsByContent = groupBy(aggregationByContent.mapId, records);
-  const result = mapValues(aggregate, recordsByContent);
-  const keys = Object.keys(result);
-  return keys.map(key => result[key]);
+  const recordsByContent: {[string]: Array<Record>} = groupBy(
+    aggregationByContent.mapId,
+    allRecords
+  );
+
+  const aggregations = Object.entries(recordsByContent).reduce(
+    (acc, [id: string, records: Array<Record>]) => {
+      // $FlowFixMe records is Array<Record> and no mixed
+      const values: Array<ProgressionAggregationByContent> = records.map(
+        aggregationByContent.mapValue
+      );
+      acc.push(values.reduce(aggregationByContent.reduce, undefined));
+      return acc;
+    },
+    []
+  );
+
+  return aggregations;
 };
 
 export {getAggregationsByContent, save, getAll, findById, findLast, findBestOf, synchronize};

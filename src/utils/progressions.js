@@ -18,26 +18,34 @@ export const isFailure = (progression: Progression) => {
   return nextContent.type === CONTENT_TYPE.FAILURE;
 };
 
-export const isDone = (progression: Progression) => {
+export const isDone = (progression: Progression): boolean => {
   return isFailure(progression) || isSuccess(progression);
 };
 
-export const getUpdatedAt = (actions: Array<Action> | void) => {
+export const getUpdatedAt = (actions: Array<Action> | void): string => {
   if (!actions || actions.length === 0) {
     return OLDEST_DATE;
   }
+  // $FlowFixMe this reduce always returns a string
   return actions.reduce((oldestDate, action) => {
+    if (!action.createdAt) {
+      return oldestDate;
+    }
     return moment(action.createdAt).isAfter(oldestDate) ? action.createdAt : oldestDate;
   }, OLDEST_DATE);
 };
 
-export const getCreatedAt = (actions: Array<Action> | void) => {
+export const getCreatedAt = (actions: Array<Action> | void): string => {
   if (!actions || actions.length === 0) {
     return OLDEST_DATE;
   }
+  // $FlowFixMe this reduce always returns a string
   return actions.reduce((oldestDate, action) => {
+    if (!action.createdAt) {
+      return oldestDate;
+    }
     return moment(action.createdAt).isBefore(oldestDate) ? action.createdAt : oldestDate;
-  }, new Date());
+  }, new Date().toISOString());
 };
 
 export const sortProgressionChronologicaly = (
