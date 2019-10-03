@@ -28,10 +28,8 @@ export const getUpdatedAt = (actions: Array<Action> | void): string => {
   }
   // $FlowFixMe this reduce always returns a string
   return actions.reduce((oldestDate, action) => {
-    if (!action.createdAt) {
-      return oldestDate;
-    }
-    return moment(action.createdAt).isAfter(oldestDate) ? action.createdAt : oldestDate;
+    const createdAt = action.createdAt || oldestDate;
+    return moment(createdAt).isAfter(oldestDate) ? createdAt : oldestDate;
   }, OLDEST_DATE);
 };
 
@@ -41,10 +39,8 @@ export const getCreatedAt = (actions: Array<Action> | void): string => {
   }
   // $FlowFixMe this reduce always returns a string
   return actions.reduce((oldestDate, action) => {
-    if (!action.createdAt) {
-      return oldestDate;
-    }
-    return moment(action.createdAt).isBefore(oldestDate) ? action.createdAt : oldestDate;
+    const createdAt = action.createdAt || OLDEST_DATE;
+    return moment(createdAt).isBefore(oldestDate) ? createdAt : oldestDate;
   }, new Date().toISOString());
 };
 

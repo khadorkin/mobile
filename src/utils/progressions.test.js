@@ -2,7 +2,13 @@
 
 import {ENGINE, CONTENT_TYPE} from '../const';
 import {createProgression, createState, createAction} from '../__fixtures__/progression';
-import {isDone, sortProgressionChronologicaly} from './progressions';
+import {
+  getCreatedAt,
+  getUpdatedAt,
+  isDone,
+  sortProgressionChronologicaly,
+  OLDEST_DATE
+} from './progressions';
 
 describe('progressionUtils', () => {
   it('isDone should detect if progression is done', () => {
@@ -133,5 +139,49 @@ describe('progressionUtils', () => {
       newerProgression
     ]);
     expect(resultOfInvertedEntry).toEqual(expectedResult);
+  });
+
+  it('getCreatedAt should return default old date for no actions', () => {
+    const createdAt = getCreatedAt();
+    expect(createdAt).toEqual(OLDEST_DATE);
+  });
+
+  it('getCreatedAt should return oldest date from provided actions', () => {
+    const newerAction = createAction({createdAt: '2019-09-18T08:41:37.004Z'});
+    const olderAction = createAction({createdAt: '2000-01-18T08:41:37.004Z'});
+    const createdAt = getCreatedAt([newerAction, olderAction]);
+    expect(createdAt).toEqual(olderAction.createdAt);
+  });
+
+  it('getCreatedAt should return default old date for no action.createdAt', () => {
+    const newerAction = createAction({createdAt: '2019-09-18T08:41:37.004Z'});
+    const badAction = createAction({});
+    const createdAt = getCreatedAt([newerAction, badAction]);
+    expect(createdAt).toEqual(OLDEST_DATE);
+  });
+
+  it('getUpdatedAt should return default old date for no actions', () => {
+    const createdAt = getUpdatedAt();
+    expect(createdAt).toEqual(OLDEST_DATE);
+  });
+
+  it('getUpdatedAt should return latest date from provided actions', () => {
+    const newerAction = createAction({createdAt: '2019-09-18T08:41:37.004Z'});
+    const olderAction = createAction({createdAt: '2000-01-18T08:41:37.004Z'});
+    const createdAt = getUpdatedAt([newerAction, olderAction]);
+    expect(createdAt).toEqual(newerAction.createdAt);
+  });
+
+  it('getUpdatedAt should return default old date for no action.createdAt', () => {
+    const badAction = createAction({});
+    const createdAt = getUpdatedAt([badAction]);
+    expect(createdAt).toEqual(OLDEST_DATE);
+  });
+
+  it('getUpdatedAt should return default old date for no action.createdAt', () => {
+    const newerAction = createAction({createdAt: '2019-09-18T08:41:37.004Z'});
+    const badAction = createAction({});
+    const createdAt = getUpdatedAt([newerAction, badAction]);
+    expect(createdAt).toEqual(newerAction.createdAt);
   });
 });
