@@ -207,9 +207,9 @@ const saveDashboardCardsInAsyncStorage = async (
 };
 
 export const fetchCard = async (content: Content): Promise<DisciplineCard | ChapterCard | void> => {
-  const card = await getCardFromLocalStorage(content.ref);
-  if (card) {
-    return card;
+  const existingCard = await getCardFromLocalStorage(content.ref);
+  if (existingCard) {
+    return existingCard;
   }
 
   const token = await getToken();
@@ -229,7 +229,15 @@ export const fetchCard = async (content: Content): Promise<DisciplineCard | Chap
   );
 
   const {hits}: {hits: Array<DisciplineCard | ChapterCard>} = await response.json();
-  return hits.length > 0 ? hits[0] : undefined;
+  const card = hits[0];
+  if (!card) {
+    return;
+  }
+
+  const language = translations.getLanguage();
+  await saveDashboardCardsInAsyncStorage([card], language);
+  await refreshCard(card);
+  return card;
 };
 
 export const fetchCards = async (

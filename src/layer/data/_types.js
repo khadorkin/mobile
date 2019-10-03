@@ -230,7 +230,7 @@ export type Completion = {|
   stars: number
 |};
 
-export type Record = {content: ProgressionAPI};
+export type Record = {|content: ProgressionAPI|};
 
 export type ProgressionAggregationByContent = {|
   stars: number,
