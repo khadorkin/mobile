@@ -277,8 +277,8 @@ export const fetchCards = async (
     });
     const {
       search_meta: {total: _total},
-      hits = []
-    }: {search_meta: {total: number}, hits?: Cards} = await response.json();
+      hits
+    }: {search_meta: {total: number}, hits: Cards} = await response.json();
 
     cards = hits;
     total = _total;
