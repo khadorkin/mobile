@@ -2,16 +2,17 @@
 
 import Promise from 'bluebird';
 import noop from 'lodash/fp/noop';
-import type {ProgressionAggregationByContent} from './_types';
+import {createChapterCard} from '../../__fixtures__/cards';
+import type {ChapterCard, ProgressionAggregationByContent} from './_types';
 import {getHeroContent} from './hero-content';
 
-type DefaultAggreationSetup = {
+type DefaultAggregationSetup = {|
   success?: boolean,
   contentRef?: string,
   latestNbQuestions?: number,
   stars?: number,
   updatedAt?: string
-};
+|};
 
 const createAggregation = ({
   success = true,
@@ -19,7 +20,7 @@ const createAggregation = ({
   latestNbQuestions = 10,
   stars = 0,
   updatedAt = '2019-05-23T16:10:38.486Z'
-}: DefaultAggreationSetup = {}): ProgressionAggregationByContent => ({
+}: DefaultAggregationSetup = {}): ProgressionAggregationByContent => ({
   content: {
     ref: contentRef,
     type: 'chapter',
@@ -31,40 +32,23 @@ const createAggregation = ({
   updatedAt
 });
 
-describe('Hero-Engine', function() {
-  describe('No content', function() {
-    it('should return "undefined" when no progression is started', async function() {
-      expect(await getHeroContent([], noop, noop)).toEqual(undefined);
+describe('HeroContent', () => {
+  describe('Recommendation', () => {
+    it('should fetchRecommendations when no progression is provided', async () => {
+      const fetchRecommendations = jest.fn();
+      expect(await getHeroContent([], fetchRecommendations, noop)).toEqual(undefined);
+      expect(fetchRecommendations).toHaveBeenCalledTimes(1);
     });
 
-    it('should return "undefined" when all started progressions are successful, and no recommendation is found', async function() {
-      const hero = await getHeroContent(
-        [
-          createAggregation({
-            contentRef: 'foo',
-            success: true
-          }),
-          createAggregation({
-            contentRef: 'bar',
-            success: true
-          })
-        ],
-        noop,
-        noop
-      );
-
-      expect(hero).toEqual(undefined);
-    });
-  });
-
-  describe('Recommendation', function() {
-    it('should return "recommendation" when all started progressions are successful', async function() {
-      const reco = {
+    it('should return "recommendation" when all started progressions are successful', async () => {
+      const reco: ChapterCard = createChapterCard({
         ref: 'reco',
-        type: 'chapter',
-        version: '1'
-      };
-      const fetchRecommendations = () => Promise.resolve(reco);
+        status: 'isStarted',
+        title: 'plop',
+        completion: 12
+      });
+
+      const fetchRecommendations = jest.fn(() => Promise.resolve(reco));
       const hero = await getHeroContent(
         [
           createAggregation({
@@ -80,11 +64,12 @@ describe('Hero-Engine', function() {
         noop
       );
 
+      expect(fetchRecommendations).toHaveBeenCalledTimes(1);
       expect(hero).toEqual(reco);
     });
 
-    it('should return "recommendation" if no started content have at least 3 questions answered', async function() {
-      const completions = [
+    it('should return "recommendation" if no started content have at least 3 questions answered', async () => {
+      const completions: Array<ProgressionAggregationByContent> = [
         createAggregation({
           contentRef: 'notMe | success: true',
           success: true
@@ -101,23 +86,27 @@ describe('Hero-Engine', function() {
           success: false
         })
       ];
-      const reco = {
+      const reco: ChapterCard = createChapterCard({
         ref: 'reco',
-        type: 'chapter',
-        version: '1'
-      };
-      const fetchRecommendations = () => Promise.resolve(reco);
-      const fetchCard = () => Promise.resolve(undefined);
+        status: 'isStarted',
+        title: 'plop',
+        completion: 12
+      });
+
+      const fetchRecommendations = jest.fn(() => Promise.resolve(reco));
+      const fetchCard = jest.fn();
 
       const hero = await getHeroContent(completions, fetchRecommendations, fetchCard);
 
+      expect(fetchRecommendations).toHaveBeenCalledTimes(1);
+      expect(fetchCard).toHaveBeenCalledTimes(0);
       expect(hero).toEqual(reco);
     });
   });
 
-  describe('Recent content', function() {
-    it('should return "the most recent content", not finished, having 3 or more questions answered', async function() {
-      const completions = [
+  describe('Recent content', () => {
+    it('should return "the most recent content", not finished, having 3 or more questions answered', async () => {
+      const completions: Array<ProgressionAggregationByContent> = [
         createAggregation({
           contentRef: 'notMe | success: true',
           success: true
@@ -138,12 +127,21 @@ describe('Hero-Engine', function() {
           updatedAt: '2019-05-23T16:10:38.486Z',
           latestNbQuestions: 10,
           success: false
+        }),
+        createAggregation({
+          contentRef: 'stillNotMe | date 2017',
+          updatedAt: '2017-05-23T16:10:38.486Z',
+          latestNbQuestions: 8,
+          success: false
         })
       ];
 
+      const fetchRecommendation = jest.fn();
       const fetchCard = jest.fn();
 
-      await getHeroContent(completions, noop, fetchCard);
+      await getHeroContent(completions, fetchRecommendation, fetchCard);
+      expect(fetchRecommendation).toHaveBeenCalledTimes(0);
+      expect(fetchCard).toHaveBeenCalledTimes(1);
       expect(fetchCard).toHaveBeenCalledWith({
         ref: 'me!',
         type: 'chapter',

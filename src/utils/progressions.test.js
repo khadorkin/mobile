@@ -128,8 +128,6 @@ describe('progressionUtils', () => {
       }
     });
 
-    delete extraOldProgression.actions;
-
     const expectedResult = [extraOldProgression, newerProgression];
     const result = sortProgressionChronologicaly([newerProgression, extraOldProgression]);
     expect(result).toEqual(expectedResult);

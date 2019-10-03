@@ -80,7 +80,7 @@ export const createProgression = ({
     engineOptions: {
       version: '2'
     },
-    actions: actions ? actions : [],
+    actions: actions || undefined,
     state: state && createState(state)
   };
 };

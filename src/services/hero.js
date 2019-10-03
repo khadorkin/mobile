@@ -8,9 +8,17 @@ export type HeroService = {|
   get: () => Promise<DisciplineCard | ChapterCard | void>
 |};
 
-const get = (dataLayer: DataLayer) => async () => {
-  const {fetchCard, fetchRecommendation, getHeroContent} = dataLayer;
+const get = (
+  dataLayer: DataLayer
+): (() => Promise<DisciplineCard | ChapterCard | void>) => async (): Promise<
+  DisciplineCard | ChapterCard | void
+> => {
   const aggregations = await getAggregationsByContent();
+  if (aggregations.length === 0) {
+    return undefined;
+  }
+
+  const {fetchCard, fetchRecommendation, getHeroContent} = dataLayer;
   return getHeroContent(aggregations, fetchRecommendation, fetchCard);
 };
 
