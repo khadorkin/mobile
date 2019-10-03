@@ -16,7 +16,7 @@ const answerQuestion = async () => {
   await element(by.id('button-next-question')).tap();
 };
 
-describe('Correction: good answer', () => {
+describe('Hero: display card for uncomplete level', () => {
   beforeAll(async () => {
     await reloadApp();
     await bypassAuthentication();
