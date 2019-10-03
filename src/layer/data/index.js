@@ -19,7 +19,7 @@ import {fetchCard, fetchCards, refreshCard, getCardFromLocalStorage} from './car
 import {fetchBrand} from './brand';
 import {fetchUser} from './users';
 import {findById as findSlideById, findByChapter as findSlideByChapter} from './slides';
-import {fetchRecommendation, find as findRecommendations} from './recommendations';
+import {fetchRecommendation} from './recommendations';
 import {findById as findLevelById, getNextLevel} from './levels';
 import {getCorrectAnswer} from './answers';
 import {getClue} from './clues';
@@ -68,7 +68,8 @@ const createDataLayer = (): DataLayer => ({
   saveProgression,
   synchronizeProgression,
   fetchUser,
-  findRecommendations,
+  // $FlowFixMe  @todo replace with fetchRecommendations
+  findRecommendations: () => [],
   getNextChapter,
   getNextLevel,
   findLevelById,

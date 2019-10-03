@@ -3,16 +3,16 @@
 import {createChapterCard} from '../__fixtures__/cards';
 import type {DataLayer} from '../layer/data';
 
-jest.mock('../layer/data/progressions', () => {
-  return {
-    getAggregationsByContent: jest.fn(() => Promise.resolve(['a', 'b', 'c']))
-  };
-});
-
 describe('Hero service', () => {
-  const createService = require('./hero').default;
-
   it('should get card', async () => {
+    const createService = require('./hero').default;
+
+    jest.mock('../layer/data/progressions', () => {
+      return {
+        getAggregationsByContent: jest.fn(() => Promise.resolve(['a', 'b', 'c']))
+      };
+    });
+
     const card = createChapterCard({
       ref: 'foo',
       status: 'isStarted',

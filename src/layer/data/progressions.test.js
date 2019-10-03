@@ -1,7 +1,5 @@
 // @flow
 
-import AsyncStorage from '@react-native-community/async-storage';
-
 import type {Progression} from '@coorpacademy/progression-engine';
 import {createDisciplineCard, createCardLevel} from '../../__fixtures__/cards';
 import {createProgression, createState, createAction} from '../../__fixtures__/progression';
@@ -35,6 +33,7 @@ describe('Progression', () => {
   });
   describe('findById', () => {
     it('should find a progression by id', async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
       const progressionId = 'fakeProgressionId';
       const fakeProgression = createProgression({
         _id: progressionId,
@@ -55,6 +54,7 @@ describe('Progression', () => {
     });
 
     it("should throw error if progression isn't found", async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
       const progressionId = 'fakeProgressionId';
       AsyncStorage.getItem = jest.fn().mockImplementation(() => Promise.resolve());
 
@@ -72,6 +72,8 @@ describe('Progression', () => {
           type: CONTENT_TYPE.CHAPTER
         }
       });
+
+      const AsyncStorage = require('@react-native-community/async-storage');
 
       AsyncStorage.getAllKeys = jest
         .fn()
@@ -98,6 +100,7 @@ describe('Progression', () => {
           type: CONTENT_TYPE.CHAPTER
         }
       });
+      const AsyncStorage = require('@react-native-community/async-storage');
 
       AsyncStorage.setItem = jest
         .fn()
@@ -125,6 +128,7 @@ describe('Progression', () => {
         actions: [createAction({}), createAction({})]
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.setItem = jest.fn();
 
       const result = await save(fakeProgression);
@@ -144,6 +148,7 @@ describe('Progression', () => {
         }
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.setItem = jest.fn().mockImplementation(() => {});
 
       const result = save(fakeProgression);
@@ -173,6 +178,7 @@ describe('Progression', () => {
         state
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         if (key === `progression_${progressionId}`) {
           return Promise.resolve(progressionId);
@@ -186,6 +192,7 @@ describe('Progression', () => {
     });
 
     it('should find the last progression -- without retrieved progression id', async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(() => null);
       const result = await findLast('tata', 'toto');
       expect(result).toEqual(null);
@@ -199,6 +206,7 @@ describe('Progression', () => {
         type: CONTENT_TYPE.CHAPTER
       };
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         if (key === `last_progression_${engine}_${progressionContent.ref}`) {
           return Promise.resolve(progressionId);
@@ -231,6 +239,7 @@ describe('Progression', () => {
         }
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         if (key === `progression_${progressionId}`) {
           return Promise.resolve(progressionId);
@@ -263,6 +272,7 @@ describe('Progression', () => {
         }
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         if (key === `progression_${progressionId}`) {
           return Promise.resolve(progressionId);
@@ -295,6 +305,7 @@ describe('Progression', () => {
         }
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         if (key === `progression_${progressionId}`) {
           return Promise.resolve(progressionId);
@@ -354,6 +365,7 @@ describe('Progression', () => {
         });
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.removeItem = jest.fn().mockImplementation(keys => {
         expect(keys).toEqual(`progression_${progressionId}`);
         return Promise.resolve();
@@ -393,6 +405,7 @@ describe('Progression', () => {
         });
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.removeItem = jest.fn().mockImplementation(keys => {
         expect(keys).toEqual(`progression_${progressionId}`);
         return Promise.resolve();
@@ -434,6 +447,7 @@ describe('Progression', () => {
         });
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.removeItem = jest.fn().mockImplementation(keys => {
         expect(keys).toEqual(`progression_${progressionId}`);
         return Promise.resolve();
@@ -572,6 +586,7 @@ describe('Progression', () => {
         state: fakeState
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         return Promise.resolve(undefined);
       });
@@ -616,6 +631,7 @@ describe('Progression', () => {
         state: fakeState
       });
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest.fn().mockImplementation(key => {
         return Promise.resolve(
           JSON.stringify(createCompletion({stars: expectedMaxStarCount, current: 9}))
@@ -659,6 +675,7 @@ describe('Progression', () => {
 
       const fakeCardWithStars = {...disciplineCard, stars: 100};
 
+      const AsyncStorage = require('@react-native-community/async-storage');
       AsyncStorage.getItem = jest
         .fn()
         .mockImplementation(() => Promise.resolve(JSON.stringify(fakeCardWithStars)));
@@ -671,6 +688,8 @@ describe('Progression', () => {
 });
 
 const mockProgressionsStorage = (progressions: Array<Progression>) => {
+  const AsyncStorage = require('@react-native-community/async-storage');
+
   AsyncStorage.getAllKeys = jest
     .fn()
     .mockImplementation(() => Promise.resolve(progressions.map(p => `progression_${p._id || ''}`)));
