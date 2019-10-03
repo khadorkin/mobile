@@ -27,13 +27,7 @@ describe('Dashboard', () => {
 
   describe('Hero', () => {
     it('should see the hero on dashboard', async () => {
-      await waitForVisible('catalog-hero-footer');
-      await waitForVisible('catalog-hero-button');
-    });
-
-    it('should be redirected to question', async () => {
-      await element(by.id('catalog-hero-button')).tap();
-      await waitForExist('question');
+      await waitForVisible('catalog-hero-welcome-message');
     });
   });
 });

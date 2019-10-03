@@ -42,7 +42,7 @@ const fetchRecommendation = async (): Promise<DisciplineCard | ChapterCard | voi
   });
 
   const {hits}: {hits: Array<DisciplineCard | ChapterCard>} = await response.json();
-  return hits.length > 0 ? hits[0] : undefined;
+  return hits[0];
 };
 
 export {fetchRecommendation, find};
