@@ -8,6 +8,7 @@ import {
   createDisciplineCard,
   createChapterCard,
   createCardAuthor,
+  createExtCard,
 } from '../__fixtures__/cards';
 import {__TEST__} from '../modules/environment';
 import {AUTHOR_TYPE} from '../const';
@@ -38,14 +39,16 @@ const thirdCard = createChapterCard({
   isNew: true,
   authors: [authorCard],
 });
-const fourthCard = createChapterCard({
-  ref: 'qux',
-  completion: 0.5,
-  title: 'Chapter card',
+const fourthCard = createExtCard({
+  ref: 'bars',
+  completion: 0.8,
+  title:
+    'Balancing the dual roles of people manager and technical expert kjlj sqdlkj lskqdj lkjqs  edqsdf lkjd slkj lkj dsf ',
   status: CARD_STATUS.ACTIVE,
   isNew: true,
-  authors: [authorCard],
+  isAdaptive: false,
 });
+
 const emptyCards = new Array(30).fill();
 const cards = [firstCard, secondCard, thirdCard, fourthCard].concat(emptyCards.slice(0, 26));
 

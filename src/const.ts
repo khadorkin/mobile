@@ -94,11 +94,25 @@ export const AUTHOR_TYPE: Record<'COORP' | 'VERIFIED' | 'MARKETPLACE' | 'CUSTOM'
 };
 
 export const CONTENT_TYPE: Record<
-  'DISCIPLINE' | 'CHAPTER' | 'LEVEL' | 'NODE' | 'SLIDE' | 'SUCCESS' | 'FAILURE',
+  | 'DISCIPLINE'
+  | 'CHAPTER'
+  | 'SCORM'
+  | 'VIDEO'
+  | 'PODCAST'
+  | 'ARTICLE'
+  | 'LEVEL'
+  | 'NODE'
+  | 'SLIDE'
+  | 'SUCCESS'
+  | 'FAILURE',
   ContentType
 > = {
   DISCIPLINE: 'discipline',
   CHAPTER: 'chapter',
+  SCORM: 'scorm',
+  VIDEO: 'video',
+  ARTICLE: 'article',
+  PODCAST: 'podcast',
   LEVEL: 'level',
   NODE: 'node',
   SLIDE: 'slide',
@@ -115,6 +129,7 @@ export const SPECIFIC_CONTENT_REF = {
 export const ENGINE = {
   LEARNER: 'learner',
   MICROLEARNING: 'microlearning',
+  EXTERNAL: 'external',
 } as const;
 
 export const PERMISSION_RECURENCE = {

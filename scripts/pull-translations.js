@@ -126,6 +126,7 @@ const generate = async (locale: string) => {
 
   const translations: Translations = {
     accessTheLesson: formatTranslation(playerTranslations['Access the lesson']),
+    article: formatTranslation(moocTranslations.content.filters.article),
     authenticationMagicLinkHeader: formatTranslation(moocLoginTranslations.mobile.magicLink.header),
     authenticationMagicLinkStepOneDescription: formatTranslation(
       moocLoginTranslations.mobile.magicLink.stepOne,
@@ -219,6 +220,7 @@ const generate = async (locale: string) => {
     platformHasBeenDisabled: formatTranslation(
       moocErrorTranslations.modal.mobile.platform_has_been_disabled,
     ),
+    podcast: formatTranslation(moocTranslations.content.filters.podcast),
     question: formatTranslation(playerTranslations.Question),
     quit: formatTranslation(playerTranslations.Quit),
     reactivatePlatform: formatTranslation(moocErrorTranslations.modal.mobile.reactivate_platform),
@@ -232,6 +234,8 @@ const generate = async (locale: string) => {
     retryChapter: formatTranslation(playerTranslations['Retry chapter']),
     retryLevel: formatTranslation(playerTranslations['Retry level']),
     scanQRCode: formatTranslation(moocLoginTranslations.mobile.scanQRCode),
+    scorm: formatTranslation(moocTranslations.content.filters.scorm),
+    externalFinishCourse: formatTranslation(moocFormTranslations.finish),
     search: formatTranslation(moocTranslations.content.search.placeholder),
     seeClue: formatTranslation(componentsTranslations['See clue']),
     selectSomethingBelow: formatTranslation(playerTranslations['Select something below']),
@@ -249,6 +253,7 @@ const generate = async (locale: string) => {
     typeHere: formatTranslation(playerTranslations['Type here']),
     validate: formatTranslation(playerTranslations.Validate),
     version: formatTranslation(moocTranslations.mobile.version.title),
+    video: formatTranslation(moocTranslations.content.filters.video),
     videoLoadingError: formatTranslation(componentsTranslations['Video Loading Error']),
     unlockNextLevel: formatTranslation(playerTranslations['Unlock next level']),
     upgrade: formatTranslation(moocTranslations.mobile.version.upgrade),

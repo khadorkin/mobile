@@ -24,6 +24,10 @@ describe('Data layer', () => {
       findSlideByChapter: expect.any(Function),
       findSlideById: expect.any(Function),
       findVideoUriById: expect.any(Function),
+      fetchExternalContentLoginInfo: expect.any(Function),
+      getExternalContentHideCompleteButton: expect.any(Function),
+      completeRemoteProgression: expect.any(Function),
+      getRemoteCurrentProgressionId: expect.any(Function),
       findVideoTracksById: expect.any(Function),
       getAllProgressions: expect.any(Function),
       getCardFromLocalStorage: expect.any(Function),
@@ -43,6 +47,7 @@ describe('Data layer', () => {
       storeBundle: expect.any(Function),
       synchronizeProgression: expect.any(Function),
       fetchUser: expect.any(Function),
+      fetchNewToken: expect.any(Function),
       updateSynchronizedProgressionIds: expect.any(Function),
     };
     expect(expected).toEqual(result);

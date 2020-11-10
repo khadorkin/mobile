@@ -15,7 +15,7 @@ describe('QCM Slider', () => {
   });
 
   it('should see catalog, choose a discipline and see a question slider', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 9);
+    await tapCardOnList('catalog-section-recommended-items', 'with-slider-dis-1', 1, 9, true);
     await waitForExist('question-slider');
   });
 
@@ -35,7 +35,7 @@ describe('QCM Slider', () => {
   });
 
   it('should be able to move the slider question and validate the answer', async () => {
-    await element(by.id('slider-thumb')).swipe('right', 'slow', 0.1);
+    await element(by.id('slider-thumb')).swipe('right', 'slow', 1);
     await expect(element(by.text('200'))).toHaveId('slider-value');
     await expect(element(by.id('button-validate'))).toBeVisible();
     await element(by.id('button-validate')).tap();

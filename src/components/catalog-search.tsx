@@ -71,7 +71,8 @@ const CatalogSearch = ({
           cards={cards}
           onCardPress={onCardPress}
           onScroll={onScroll}
-          numColumns={numColumns}
+          numColumns={2}
+          fitScreenWidth
           style={styles.content}
           containerStyle={styles.contentContainer}
           testID={`${testID}-items`}

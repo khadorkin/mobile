@@ -6,8 +6,10 @@ exports[`Storyshots CatalogItemBadge Cover size 1`] = `
     Object {
       "alignSelf": "flex-start",
       "backgroundColor": "#FFFFFF",
-      "borderBottomEndRadius": 12,
-      "paddingHorizontal": 8,
+      "borderRadius": 100,
+      "marginLeft": 8,
+      "marginTop": 8,
+      "paddingHorizontal": 12,
       "paddingVertical": 4,
     }
   }
@@ -22,7 +24,7 @@ exports[`Storyshots CatalogItemBadge Cover size 1`] = `
             "textAlign": "center",
           },
           Object {
-            "color": "#00B0FF",
+            "color": "#FF7043",
             "fontSize": 12,
           },
         ],
@@ -41,8 +43,10 @@ exports[`Storyshots CatalogItemBadge Default 1`] = `
     Object {
       "alignSelf": "flex-start",
       "backgroundColor": "#FFFFFF",
-      "borderBottomEndRadius": 12,
-      "paddingHorizontal": 8,
+      "borderRadius": 100,
+      "marginLeft": 8,
+      "marginTop": 8,
+      "paddingHorizontal": 12,
       "paddingVertical": 4,
     }
   }
@@ -57,8 +61,8 @@ exports[`Storyshots CatalogItemBadge Default 1`] = `
             "textAlign": "center",
           },
           Object {
-            "color": "#00B0FF",
-            "fontSize": 10,
+            "color": "#FF7043",
+            "fontSize": 12,
           },
         ],
       ]

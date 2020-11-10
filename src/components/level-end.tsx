@@ -11,7 +11,7 @@ import {CONTENT_TYPE, TOOLTIP_TYPE} from '../const';
 import theme from '../modules/theme';
 import {getStatusBarHeight} from '../modules/status-bar';
 import {isMediaSupported} from '../modules/media';
-import type {ChapterCard, DisciplineCard} from '../layer/data/_types';
+import type {Card as ContentCard} from '../layer/data/_types';
 import withVibration from '../containers/with-vibration';
 import type {WithVibrationProps} from '../containers/with-vibration';
 import withAudio from '../containers/with-audio';
@@ -140,7 +140,7 @@ interface Props extends WithVibrationProps, WithAudioProps {
   contentType: ContentType;
   isSuccess: boolean;
   onButtonPress: () => void;
-  onCardPress: (item: DisciplineCard | ChapterCard) => void;
+  onCardPress: (item: ContentCard) => void;
   onFeedbackLinkPress: (url: string) => void;
   onClose: () => void;
   isFocused: boolean;
@@ -150,7 +150,7 @@ interface Props extends WithVibrationProps, WithAudioProps {
   feedbackTitle?: string;
   feedbackDescription?: string;
   feedbackMedia?: Media;
-  recommendation: DisciplineCard | ChapterCard;
+  recommendation: ContentCard;
   onPDFButtonPress: (url: string, description?: string) => void;
   testID?: string;
 }

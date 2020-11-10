@@ -4,18 +4,20 @@ import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 
 import {StackScreenProps} from '@react-navigation/stack';
+import {NotificationType} from '../types';
 import {withBackHandler} from '../containers/with-backhandler';
 import Home from '../components/home';
 import Screen from '../components/screen';
 import {selectCard} from '../redux/actions/catalog/cards/select';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {Card, ExternalContentCard} from '../layer/data/_types';
 import {getToken, getCurrentScreenName} from '../redux/utils/state-extract';
 import theme from '../modules/theme';
 import {PERMISSION_STATUS, PERMISSION_RECURENCE, NOTIFICATION_SETTINGS_STATUS} from '../const';
 import {StoreState} from '../redux/store';
+import {ExternalTypeState} from '../redux/external-content';
 import {toggle} from '../redux/notifications/settings';
-import {NotificationType} from 'src/types';
 import type {State as NotificationsSettingsState} from '../redux/notifications/settings';
+import {isExternalContent} from '../utils';
 
 export interface ConnectedStateProps {
   isFetching: boolean;
@@ -35,6 +37,7 @@ type ScreenParams = {
   Slide: undefined;
   Search: undefined;
   Settings: undefined;
+  ExternalContent: {contentType: ExternalTypeState; contentRef: string};
 };
 
 interface Props
@@ -82,8 +85,17 @@ class HomeScreen extends React.PureComponent<Props> {
     }
   }
 
-  handleCardPress = (item: DisciplineCard | ChapterCard) => {
-    this.props.navigation.navigate('Slide');
+  handleCardPress = (item: Card): void => {
+    const isExternal = isExternalContent(item);
+
+    if (!isExternal) {
+      this.props.navigation.navigate('Slide');
+    } else {
+      this.props.navigation.navigate('ExternalContent', {
+        contentRef: (item as ExternalContentCard).modules[0].universalRef,
+        contentType: (item as ExternalContentCard).type,
+      });
+    }
     this.props.selectCard(item);
   };
 

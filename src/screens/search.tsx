@@ -4,11 +4,13 @@ import {connect} from 'react-redux';
 
 import {StackScreenProps} from '@react-navigation/stack';
 import Screen from '../components/screen';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {Card, ExternalContentCard} from '../layer/data/_types';
 import {selectCard} from '../redux/actions/catalog/cards/select';
 import {HEADER_BACKGROUND_COLOR} from '../navigator/navigation-options';
 import Search from '../containers/search';
 import {withBackHandler} from '../containers/with-backhandler';
+import {ExternalTypeState} from '../redux/external-content';
+import {isExternalContent} from '../utils';
 
 interface ConnectedDispatchProps {
   selectCard: typeof selectCard;
@@ -18,6 +20,7 @@ type Params = {
   Search: undefined;
   Home: undefined;
   Slide: undefined;
+  ExternalContent: {contentType: ExternalTypeState; contentRef: string};
 };
 
 type Props = StackScreenProps<Params, 'Search'> & ConnectedDispatchProps;
@@ -32,8 +35,17 @@ class SearchScreen extends React.PureComponent<Props> {
     return true;
   };
 
-  handleCardPress = (item: DisciplineCard | ChapterCard) => {
-    this.props.navigation.navigate('Slide');
+  handleCardPress = (item: Card) => {
+    const isExternal = isExternalContent(item);
+
+    if (!isExternal) {
+      this.props.navigation.navigate('Slide');
+    } else {
+      this.props.navigation.navigate('ExternalContent', {
+        contentRef: (item as ExternalContentCard).modules[0].universalRef,
+        contentType: (item as ExternalContentCard).type,
+      });
+    }
     this.props.selectCard(item);
   };
 

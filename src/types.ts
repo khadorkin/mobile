@@ -32,7 +32,7 @@ export type AuthorType = 'coorp' | 'verified' | 'custom' | 'marketplace';
 
 export type Question = string;
 
-export type Engine = 'learner' | 'microlearning';
+export type Engine = 'learner' | 'microlearning' | 'external';
 
 export type ContentType = ContentTypeBase | 'discipline' | 'success' | 'failure' | 'node';
 
@@ -98,6 +98,11 @@ export type User = {
   displayName: string;
   familyName: string;
   givenName: string;
+};
+
+export type ExternalContentLoginInfo = {
+  loginUrl: string;
+  token: string;
 };
 
 export type PermissionStatus =

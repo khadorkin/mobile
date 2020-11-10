@@ -3,7 +3,7 @@ import {View, StyleSheet, FlatList, ViewStyle} from 'react-native';
 import kebabCase from 'lodash/fp/kebabCase';
 
 import theme from '../modules/theme';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {Card as ContentCard} from '../layer/data/_types';
 import Card from './card';
 import CatalogItem, {
   WIDTH as CATALOG_ITEM_WIDTH,
@@ -16,11 +16,9 @@ export const ITEM_HEIGHT = CATALOG_ITEM_HEIGHT + ITEM_OFFSET * 2;
 
 const styles = StyleSheet.create({
   item: {
-    // to see the shadow
-    margin: ITEM_OFFSET,
+    margin: theme.spacing.micro,
   },
   card: {
-    flex: 0,
     width: CATALOG_ITEM_WIDTH,
     height: CATALOG_ITEM_HEIGHT,
   },
@@ -29,18 +27,20 @@ const styles = StyleSheet.create({
 type EmptyCard = {};
 
 export interface Props {
-  cards?: Array<DisciplineCard | ChapterCard | void>;
-  onCardPress?: (arg0: DisciplineCard | ChapterCard) => void;
+  cards?: Array<ContentCard | void>;
+  onCardPress?: (item: ContentCard) => void;
   onScroll?: (arg0: ScrollEvent) => void;
   onScrollBeginDrag?: (arg0: ScrollEvent) => void;
   placeholderLength?: number;
   numColumns?: number;
   style?: ViewStyle;
   testID?: string;
+  fitScreenWidth?: boolean;
+  scale?: number;
 }
 
 class CatalogItems extends React.PureComponent<Props> {
-  keyExtractor = (item: DisciplineCard | ChapterCard | EmptyCard, index: number) => {
+  keyExtractor = (item: ContentCard | EmptyCard, index: number) => {
     const {testID = 'catalog-items'} = this.props;
     const suffix =
       // @ts-ignore union type
@@ -49,28 +49,44 @@ class CatalogItems extends React.PureComponent<Props> {
     return `${testID}-item-${suffix}`;
   };
 
-  getItemLayout = (
-    data?: Array<DisciplineCard | ChapterCard | EmptyCard> | null,
-    index: number,
-  ) => ({
-    length: ITEM_WIDTH,
-    offset: ITEM_WIDTH * index,
-    index,
-  });
+  getItemLayout = (data?: Array<ContentCard | EmptyCard> | null, index: number) => {
+    const {scale} = this.props;
+    const itemScale = scale ? scale : 1;
+    return {
+      length: ITEM_WIDTH * itemScale,
+      offset: ITEM_WIDTH * index * itemScale,
+      index,
+    };
+  };
 
-  renderItem = ({item, index}: {item: DisciplineCard | ChapterCard | EmptyCard; index: number}) => {
-    const {onCardPress} = this.props;
+  renderItem = ({item, index}: {item: ContentCard | EmptyCard; index: number}) => {
+    const {onCardPress, scale} = this.props;
     const testID = this.keyExtractor(item, index);
-
+    const itemScale = scale ? scale : 1;
+    const containerWidth = CATALOG_ITEM_WIDTH * itemScale;
+    const containerHeight = CATALOG_ITEM_HEIGHT * itemScale;
     return (
+      // itemScale !== 1 is necessary in order to rerender the component with style transform updated, ohterwise it seems to stay unchanged even if itemScale has changed
       <View style={styles.item}>
-        <Card style={styles.card}>
-          <CatalogItem
-            // @ts-ignore union type
-            item={item.universalRef ? item : undefined}
-            onPress={onCardPress}
-            testID={testID}
-          />
+        <Card style={[styles.card, {width: containerWidth, height: containerHeight}]}>
+          <View
+            style={[
+              {
+                transform: [
+                  {scale: itemScale + 0.02},
+                  {translateX: -(CATALOG_ITEM_WIDTH - containerWidth) / 2 - 1}, // dirty but necessary to have a perfect fit
+                  {translateY: -(CATALOG_ITEM_HEIGHT - containerHeight) / 2 - 3},
+                ],
+              },
+            ]}
+          >
+            <CatalogItem
+              // @ts-ignore union type
+              item={item.universalRef ? item : undefined}
+              onPress={onCardPress}
+              testID={testID}
+            />
+          </View>
         </Card>
       </View>
     );
@@ -88,7 +104,6 @@ class CatalogItems extends React.PureComponent<Props> {
     } = this.props;
 
     const _cards = cards && cards.length > 0 ? cards : new Array(placeholderLength).fill();
-
     return (
       <FlatList
         // Empty object to prevent filtering when using numColumns

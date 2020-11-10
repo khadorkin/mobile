@@ -15,6 +15,7 @@ import './components/carousel.stories';
 import './components/catalog-item-author.stories';
 import './components/catalog-item-badge.stories';
 import './components/catalog-item-content.stories';
+import './components/catalog-item-cover.stories';
 import './components/catalog-item-footer.stories';
 import './components/catalog-item.stories';
 import './components/catalog-items.stories';

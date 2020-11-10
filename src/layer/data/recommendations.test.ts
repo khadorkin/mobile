@@ -1,6 +1,6 @@
 import {createChapterCard} from '../../__fixtures__/cards';
 import disciplinesBundle from '../../__fixtures__/discipline-bundle';
-import type {Completion, DisciplineCard, ChapterCard} from './_types';
+import type {Completion, Card} from './_types';
 
 describe('Recommendation data layer', () => {
   describe('fetchRecommendation', () => {
@@ -40,10 +40,10 @@ describe('Recommendation data layer', () => {
         (
           url,
         ): Promise<{
-          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>;
+          json: () => Promise<{hits: Array<Card | void>}>;
         }> => {
           expect(url).toBe(
-            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter&lang=en',
+            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast&lang=en',
           );
 
           return Promise.resolve({
@@ -77,10 +77,10 @@ describe('Recommendation data layer', () => {
         (
           url,
         ): Promise<{
-          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>;
+          json: () => Promise<{hits: Array<Card | void>}>;
         }> => {
           expect(url).toBe(
-            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter&lang=en',
+            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast&lang=en',
           );
 
           return Promise.resolve({
@@ -108,11 +108,11 @@ describe('Recommendation data layer', () => {
           url,
           params,
         ): Promise<{
-          json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>;
+          json: () => Promise<{hits: Array<Card | void>}>;
         }> => {
           expect(params.headers.authorization).toEqual(token);
           expect(url).toBe(
-            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter&lang=en',
+            'https://domain.tld/api/v2/recommendations?contentType=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast&lang=en',
           );
 
           return Promise.resolve({

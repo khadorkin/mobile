@@ -26,6 +26,7 @@ type NotificationWording = {
 
 export type Translations = {
   accessTheLesson: string;
+  article: string;
   authenticationMagicLinkHeader: string;
   authenticationMagicLinkStepOneDescription: string;
   authenticationMagicLinkStepTwoDescription: string;
@@ -89,6 +90,7 @@ export type Translations = {
   yesNotifyMe: string;
   maybeLater: string;
   platformHasBeenDisabled: string;
+  podcast: string;
   question: string;
   quit: string;
   reactivatePlatform: string;
@@ -100,6 +102,8 @@ export type Translations = {
   retryChapter: string;
   relatedSubjects: string;
   scanQRCode: string;
+  scorm: string;
+  externalFinishCourse: string;
   search: string;
   seeClue: string;
   selectAnAnswer: string;
@@ -118,6 +122,7 @@ export type Translations = {
   upgradeDescription: string;
   validate: string;
   version: string;
+  video: string;
   videoLoadingError: string;
   welcome: string;
   welcomeDescription: string;

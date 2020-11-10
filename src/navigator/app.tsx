@@ -8,7 +8,9 @@ import HomeScreen from '../screens/home';
 import AuthenticationScreen from '../screens/authentication';
 import AuthenticationDetailsScreen from '../screens/authentication-details';
 import SearchScreen from '../screens/search';
+import ExternalContentScreen from '../screens/external-content';
 import SettingsScreen from '../screens/settings';
+import ExternalContentHeader from '../containers/external-content-header';
 import SlidesNavigator from './slide';
 import navigationOptions, {
   navigationOptionsWithoutHeader,
@@ -78,6 +80,21 @@ export default function AppNavigator(): React.ReactNode {
             backgroundColor: HEADER_BACKGROUND_COLOR,
           },
           header: QuestionHeader,
+          gestureEnabled: true,
+        }}
+      />
+
+      <Stack.Screen
+        name="ExternalContent"
+        component={ExternalContentScreen}
+        options={{
+          ...navigationOptions,
+          ...cardTransitionAnimation,
+          headerStyle: {
+            ...navigationOptions.headerStyle,
+            backgroundColor: HEADER_BACKGROUND_COLOR,
+          },
+          header: ExternalContentHeader,
           gestureEnabled: true,
         }}
       />

@@ -6,14 +6,14 @@ import createServices from './services';
 import createDataLayer from './layer/data';
 import {ANALYTICS_EVENT_TYPE} from './const';
 import {NotificationType} from './types';
-import {ChapterCard, DisciplineCard} from './layer/data/_types';
+import {Card} from './layer/data/_types';
 
 const dataLayer = createDataLayer();
 const services = createServices(dataLayer);
 const analytics = services.Analytics;
 
 export default class NotificationHandler {
-  constructor(onNotification: (content: DisciplineCard | ChapterCard) => void) {
+  constructor(onNotification: (content: Card) => void) {
     if (Platform.OS === 'android') {
       Notifications.events().registerNotificationReceivedForeground(
         (notification: Notification, completion) => {
@@ -98,10 +98,10 @@ export default class NotificationHandler {
   handleNotificationContent = (
     type: NotificationType,
     content: string,
-    onNotification: (parseContent: DisciplineCard | ChapterCard) => void,
+    onNotification: (parseContent: Card) => void,
     defer = false,
   ): void => {
-    const parsedContent: undefined | DisciplineCard | ChapterCard = JSON.parse(content);
+    const parsedContent: undefined | Card = JSON.parse(content);
     if (!parsedContent || (parsedContent && !parsedContent.universalRef)) return;
     analytics?.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS_OPENED, {
       type,

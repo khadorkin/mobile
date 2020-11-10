@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {getConfig} from '@coorpacademy/progression-engine';
 import decode from 'jwt-decode';
+import getOr from 'lodash/fp/getOr';
+import {isExternalContent} from '../../utils';
 import type {Content} from '../../types/coorpacademy/progression-engine';
 
 import {get as getToken} from '../../utils/local-token';
@@ -17,7 +19,15 @@ import {ENGINE} from '../../const';
 import type {JWT, Section} from '../../types';
 import {getItem} from './core';
 import {fetchLevel} from './levels';
-import {Cards, DisciplineCard, ChapterCard, Card, CardLevel, Completion} from './_types';
+import {
+  Cards,
+  DisciplineCard,
+  ChapterCard,
+  ExternalContentCard,
+  Card,
+  CardLevel,
+  Completion,
+} from './_types';
 import {CARD_TYPE, CONTENT_TYPE} from './_const';
 import {buildCompletionKey, mergeCompletion} from './progressions';
 
@@ -34,7 +44,7 @@ const computeCardCompletionRate = (levels: Array<CardLevel>): number =>
   levels.reduce((accumulator, currentValue) => accumulator + currentValue.completion, 0) /
   levels.length;
 
-const cardToCompletion = (card: DisciplineCard | ChapterCard | CardLevel): Completion => ({
+const cardToCompletion = (card: Card | CardLevel): Completion => ({
   stars: card.stars,
   current: card.completion,
 });
@@ -77,6 +87,45 @@ export const updateDisciplineCardDependingOnCompletion = (
   };
 };
 
+export const updateExternalCardDependingOnCompletion = (
+  latestCompletions: Array<Completion | null>,
+  card: ExternalContentCard,
+): ExternalContentCard => {
+  const config = getConfig({
+    ref: ENGINE.EXTERNAL,
+    version: '1',
+  });
+
+  const levelCards = card.modules.map((levelCard, index) => {
+    const latestCompletion = latestCompletions[index];
+    if (!latestCompletion) return levelCard;
+
+    const cardCompletion = cardToCompletion(levelCard);
+
+    const levelCompletion = mergeCompletion(cardCompletion, latestCompletion);
+    const levelStars = Math.max(levelCard.stars, latestCompletion.stars);
+    const completion = computeLevelCompletionRate(
+      levelCompletion,
+      levelCard.nbChapters,
+      config.slidesToComplete,
+    );
+    return {
+      ...levelCard,
+      completion,
+      stars: levelStars,
+    };
+  });
+
+  const stars = levelCards.reduce((acc, levelCard) => acc + levelCard.stars, 0);
+
+  return {
+    ...card,
+    modules: levelCards,
+    completion: computeCardCompletionRate(levelCards),
+    stars,
+  };
+};
+
 export const updateChapterCardAccordingToCompletion = (
   completion: Completion,
   chapterCard: ChapterCard,
@@ -91,6 +140,23 @@ export const updateChapterCardAccordingToCompletion = (
     stars: Math.max(completion.stars, chapterCard.stars),
     completion: completion.current / config.slidesToComplete,
   };
+};
+
+const refreshExternalCard = async (
+  externalContentCard: ExternalContentCard,
+): Promise<ExternalContentCard> => {
+  const latestCompletions = await Promise.all(
+    externalContentCard.modules.map(
+      async (level): Promise<Completion | null> => {
+        const completionKey = buildCompletionKey(ENGINE.EXTERNAL, level.universalRef || level.ref);
+        const completionString = await AsyncStorage.getItem(completionKey);
+        if (!completionString) return null;
+        return JSON.parse(completionString);
+      },
+    ),
+  );
+
+  return updateExternalCardDependingOnCompletion(latestCompletions, externalContentCard);
 };
 
 const refreshDisciplineCard = async (disciplineCard: DisciplineCard): Promise<DisciplineCard> => {
@@ -125,25 +191,26 @@ const refreshChapterCard = async (chapterCard: ChapterCard): Promise<ChapterCard
 };
 
 export const refreshCard = (card: Card): Promise<Card> | void => {
-  if (card && card.type === 'course') {
+  if (card && card.type === CARD_TYPE.COURSE) {
     return refreshDisciplineCard(card);
   }
-  if (card && card.type === 'chapter') {
+  if (card && card.type === CARD_TYPE.CHAPTER) {
     return refreshChapterCard(card);
+  }
+  if (card && isExternalContent(card)) {
+    return refreshExternalCard(card);
   }
   return undefined;
 };
 
-export const getCardFromLocalStorage = async (
-  ref: string,
-): Promise<DisciplineCard | ChapterCard | void> => {
+export const getCardFromLocalStorage = async (ref: string): Promise<Card | void> => {
   const language = translations.getLanguage();
   // @ts-ignore
   const card = await getItem('card', language, ref);
   return refreshCard(card);
 };
 
-const cardsToPairs = (cards: {[key: string]: DisciplineCard | ChapterCard}) => {
+const cardsToPairs = (cards: {[key: string]: Card}) => {
   return Object.entries(cards).reduce((acc, card) => {
     const [cardKey, cardContent] = card;
     return [...acc, [cardKey, JSON.stringify(cardContent)]];
@@ -161,16 +228,32 @@ const createDisciplineCardForModules = (card: DisciplineCard, language: Supporte
   }, {});
 };
 
+const createExternalContentCardForModules = (
+  card: ExternalContentCard,
+  language: SupportedLanguage,
+) => {
+  return card.modules.reduce((acc, mod) => {
+    const key = `card:${language}:${mod.universalRef || mod.ref}`;
+    const moduleCard = {
+      ...acc,
+      [key]: card,
+    };
+    return moduleCard;
+  }, {});
+};
+
 export const cardsToKeys = (
-  cards: Array<DisciplineCard | ChapterCard>,
+  cards: Array<Card>,
   language: SupportedLanguage,
 ): {
-  [key: string]: DisciplineCard | ChapterCard;
+  [key: string]: Card;
 } => {
   return cards.reduce((acc, card) => {
     const cardType = card.type;
     let modulesCards = {};
     let disciplinesCards = {};
+    let externalContentsCards = {};
+    let externalContentsModulesCards = {};
     let chapterCard = {};
     if (cardType === CARD_TYPE.COURSE) {
       disciplinesCards = {
@@ -187,18 +270,30 @@ export const cardsToKeys = (
       };
     }
 
+    if (isExternalContent(card)) {
+      externalContentsCards = {
+        [`card:${language}:${card.ref || card.universalRef}`]: card,
+      };
+      externalContentsModulesCards = {
+        // @ts-ignore
+        ...createExternalContentCardForModules(card, language),
+      };
+    }
+
     const keyedCards = {
       ...acc,
       ...chapterCard,
       ...disciplinesCards,
       ...modulesCards,
+      ...externalContentsCards,
+      ...externalContentsModulesCards,
     };
     return keyedCards;
   }, {});
 };
 
 export const saveDashboardCardsInAsyncStorage = async (
-  cards: Array<DisciplineCard | ChapterCard>,
+  cards: Array<Card>,
   language: SupportedLanguage,
 ): Promise<void> => {
   if (cards.length > 0) {
@@ -211,15 +306,12 @@ export const saveDashboardCardsInAsyncStorage = async (
   }
 };
 
-export const saveAndRefreshCards = async (
-  cards: Array<DisciplineCard | ChapterCard>,
-  language: SupportedLanguage,
-) => {
+export const saveAndRefreshCards = async (cards: Array<Card>, language: SupportedLanguage) => {
   await saveDashboardCardsInAsyncStorage(cards, language);
   return Promise.all(cards.map(refreshCard).filter(Boolean));
 };
 
-export const fetchCard = async (content: Content): Promise<DisciplineCard | ChapterCard | void> => {
+export const fetchCard = async (content: Content): Promise<Card | void> => {
   const language = translations.getLanguage();
   const token = await getToken();
 
@@ -308,7 +400,7 @@ export const fetchCards = async (
       offset,
       limit,
       lang: language,
-      type: 'course,chapter',
+      type: 'course,chapter,scorm,article,video,podcast',
     };
     const response = await fetch(`${host}${endpoint}?${buildUrlQueryParams(query)}`, {
       headers: {authorization: token},
@@ -328,6 +420,26 @@ export const fetchCards = async (
     cards: refreshedCards,
     total,
   };
+};
+
+export const getExternalContentHideCompleteButton = async (
+  host: string,
+  token: string,
+  contentRef: string,
+): Promise<boolean> => {
+  const queryParams = buildUrlQueryParams({
+    conditions: `{"externalContents.ref":"${contentRef}"}`,
+  });
+
+  const response = await fetch(`${host}/api/v2/externalCourses?${queryParams}`, {
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  });
+  const data = await response.json();
+  return getOr(false, '0.externalContents.0.hideCompleteButton', data);
 };
 
 export const fetchSectionCards = (
@@ -358,5 +470,6 @@ export default {
   fetchCards,
   getCardFromLocalStorage,
   cardsToKeys,
+  getExternalContentHideCompleteButton,
   saveAndRefreshCards,
 };

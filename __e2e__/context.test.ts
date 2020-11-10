@@ -18,7 +18,13 @@ describe('Context', () => {
   describe('With image', () => {
     beforeAll(async () => {
       await reloadApp();
-      await tapCardOnList('catalog-section-recommended-items', 3);
+      await tapCardOnList(
+        'catalog-section-recommended-items',
+        'with-image-context-dis-1',
+        1,
+        3,
+        true,
+      );
     });
 
     it('should see elements', async () => {
@@ -44,7 +50,13 @@ describe('Context', () => {
   describe('With video', () => {
     beforeAll(async () => {
       await reloadApp();
-      await tapCardOnList('catalog-section-recommended-items', 4);
+      await tapCardOnList(
+        'catalog-section-recommended-items',
+        'with-video-context-dis-2',
+        1,
+        4,
+        true,
+      );
     });
 
     it('should see elements', async () => {
@@ -67,7 +79,7 @@ describe('Context', () => {
 
   describe('Without', () => {
     beforeAll(async () => {
-      await tapCardOnList('catalog-section-recommended-items', 2);
+      await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2);
     });
 
     it('should not see elements', async () => {

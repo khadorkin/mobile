@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Access the lesson',
+  article: 'Article',
   authenticationMagicLinkHeader:
     'Click on the link you received by email to connect to your platform',
   authenticationMagicLinkStepOneDescription:
@@ -130,6 +131,7 @@ const translations: Translations = {
   yesNotifyMe: 'Yes, notify me',
   maybeLater: 'Maybe later',
   platformHasBeenDisabled: 'The app has been disabled for your platform',
+  podcast: 'Podcast',
   question: 'Question',
   quit: 'Quit',
   reactivatePlatform:
@@ -143,6 +145,8 @@ const translations: Translations = {
   retryChapter: 'Retry chapter',
   retryLevel: 'Retry level',
   scanQRCode: 'Scan your <b>QR code</b>',
+  scorm: 'Interactive slides',
+  externalFinishCourse: 'I have completed this course',
   search: 'Search',
   seeClue: 'See clue',
   selectSomethingBelow: 'Select something below',
@@ -195,6 +199,7 @@ const translations: Translations = {
   typeHere: 'Type here',
   validate: 'Submit',
   version: 'Version',
+  video: 'Video',
   videoLoadingError: 'An error occurred while loading the video, please try again.',
   unlockNextLevel: 'You have just unlocked<br><b>{{levelName}} level</b>',
   upgrade: 'Upgrade',

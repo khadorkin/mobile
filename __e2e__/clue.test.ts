@@ -4,7 +4,6 @@ import {
   reloadApp,
   bypassAuthentication,
   bypassNotifyMeScreen,
-  getClueTab,
   tapCardOnList,
   waitForExist,
 } from './utils';
@@ -18,11 +17,11 @@ describe('Clue', () => {
 
   describe('With clue', () => {
     it('should open the player', async () => {
-      await tapCardOnList('catalog-section-recommended-items', 2);
+      await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
     });
 
     it('should be able to open the clue tab', async () => {
-      await getClueTab(element).tap();
+      await element(by.id('clue-tab')).tap();
       await waitForExist('clue');
       await expect(element(by.id('clue-advice'))).toBeVisible();
       await expect(element(by.id('button-clue'))).toBeVisible();
@@ -41,11 +40,11 @@ describe('Clue', () => {
   describe('Without clue', () => {
     beforeAll(async () => {
       await element(by.id('question-header-back')).tap();
-      await tapCardOnList('catalog-section-recommended-items', 6);
+      await tapCardOnList('catalog-section-recommended-items', 'no-clue-dis-1', 1, 6);
     });
 
     it('should not be able to open the clue tab', async () => {
-      await getClueTab(element).tap();
+      await element(by.id('clue-tab')).tap();
       await expect(element(by.id('clue'))).toBeNotVisible();
     });
   });

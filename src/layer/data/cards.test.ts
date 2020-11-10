@@ -72,7 +72,9 @@ describe('cards', () => {
             hits: Array<Card>;
           }>;
         }> => {
-          expect(url).toBe(`${host}${endpoint}?offset=0&limit=2&lang=en&type=course%2Cchapter`);
+          expect(url).toBe(
+            `${host}${endpoint}?offset=0&limit=2&lang=en&type=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast`,
+          );
 
           expect(options).toHaveProperty('headers.authorization', token);
 
@@ -180,7 +182,7 @@ describe('cards', () => {
           }>;
         }> => {
           expect(url).toBe(
-            `${host}${section.endpoint}?contentType=all&offset=0&limit=2&lang=en&type=course%2Cchapter`,
+            `${host}${section.endpoint}?contentType=all&offset=0&limit=2&lang=en&type=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast`,
           );
 
           expect(options).toHaveProperty('headers.authorization', token);
@@ -289,7 +291,7 @@ describe('cards', () => {
           }>;
         }> => {
           expect(url).toBe(
-            `${host}/api/v2/contents?fullText=foo%20bar%20baz&offset=0&limit=2&lang=en&type=course%2Cchapter`,
+            `${host}/api/v2/contents?fullText=foo%20bar%20baz&offset=0&limit=2&lang=en&type=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast`,
           );
           expect(options).toHaveProperty('headers.authorization', token);
 
@@ -387,6 +389,29 @@ describe('cards', () => {
       });
 
       return expect(result.universalRef).toEqual(discipline.universalRef);
+    });
+
+    it('should fetch a card and throw an error if level has no disciplineRef', async () => {
+      const fetch = require('cross-fetch');
+
+      fetch.mockImplementationOnce(
+        (
+          url: string,
+        ): Promise<{
+          json: () => Promise<unknown>;
+        }> => {
+          expect(url).toBe('https://domain.tld/api/v2/levels/extCont_12345689');
+
+          return Promise.resolve({
+            json: () => Promise.resolve({disciplineUniversalRef: undefined}),
+          });
+        },
+      );
+
+      const {fetchCard} = require('./cards');
+      await expect(
+        fetchCard({ref: 'extCont_12345689', type: CONTENT_TYPE.LEVEL}),
+      ).rejects.toThrow();
     });
 
     it('should fetch a card with completion update', async () => {
@@ -620,7 +645,9 @@ describe('cards', () => {
         ): Promise<{
           json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>;
         }> => {
-          expect(url).toBe(`${host}${endpoint}?offset=1&limit=3&lang=en&type=course%2Cchapter`);
+          expect(url).toBe(
+            `${host}${endpoint}?offset=1&limit=3&lang=en&type=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast`,
+          );
 
           return Promise.resolve({
             json: () => Promise.resolve({search_meta: {total: 2}, hits: [mockCard1, mockCard2]}),
@@ -669,7 +696,9 @@ describe('cards', () => {
         ): Promise<{
           json: () => Promise<{hits: Array<DisciplineCard | ChapterCard | void>}>;
         }> => {
-          expect(url).toBe(`${host}${endpoint}?offset=1&limit=3&lang=en&type=course%2Cchapter`);
+          expect(url).toBe(
+            `${host}${endpoint}?offset=1&limit=3&lang=en&type=course%2Cchapter%2Cscorm%2Carticle%2Cvideo%2Cpodcast`,
+          );
 
           return Promise.resolve({
             json: () => Promise.resolve({search_meta: {total: 2}, hits: [mockCard1, mockCard2]}),
@@ -1092,6 +1121,84 @@ describe('cards', () => {
       expect(result).toEqual(disciplineCard);
     });
 
+    it('should refresh the externalContent card', async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
+      const {refreshCard} = require('./cards');
+
+      const minStar = 2;
+      const maxStars = 20;
+      const fakeRef = 'extCont_123';
+      const level1 = createCardLevel({
+        ref: fakeRef,
+        status: 'isStarted',
+        completion: 0,
+        stars: minStar,
+        label: 'fakeLabel',
+      });
+
+      const externalContentCard = createExtCard({
+        ref: 'extCourse_123',
+        completion: 0,
+        status: 'isStarted',
+        title: 'fakeTitle',
+        stars: 0,
+        levels: [level1],
+      });
+
+      const completion = createCompletion({stars: maxStars, current: 1});
+
+      const completionKey = `completion_external_extCont_123`;
+
+      AsyncStorage.getItem = jest.fn().mockImplementation((key) => {
+        if (key === completionKey) {
+          return Promise.resolve(JSON.stringify(completion));
+        }
+      });
+
+      const result = await refreshCard(externalContentCard);
+
+      const expectedResult = {
+        ...externalContentCard,
+        stars: maxStars,
+        completion: 1,
+        modules: [
+          {
+            ...level1,
+            completion: 1,
+            stars: maxStars,
+          },
+        ],
+      };
+
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should refresh the externalContent card -- without stored completion found', async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
+      const {refreshCard} = require('./cards');
+
+      const level1 = createCardLevel({
+        ref: 'extCont_321',
+        status: 'isStarted',
+        completion: 0,
+        label: 'fakeLabel',
+      });
+
+      const externalContentCard = createExtCard({
+        ref: 'extCourse_321',
+        completion: 0,
+        status: 'isStarted',
+        title: 'fakeTitle',
+        stars: 0,
+        levels: [level1],
+      });
+      AsyncStorage.getItem = jest.fn().mockImplementation(() => Promise.resolve(undefined));
+
+      const result = await refreshCard(externalContentCard);
+
+      expect(result).toEqual(externalContentCard);
+    });
+
     it('should refresh the chapter Card', async () => {
       const AsyncStorage = require('@react-native-community/async-storage');
       const {refreshCard} = require('./cards');
@@ -1147,7 +1254,7 @@ describe('cards', () => {
     });
   });
 
-  it('should not refresh if type is not chapter or course. ', async () => {
+  it('should not refresh if type is not scorm, chapter or course. ', async () => {
     const AsyncStorage = require('@react-native-community/async-storage');
     const {refreshCard} = require('./cards');
 
@@ -1159,6 +1266,7 @@ describe('cards', () => {
       status: 'isStarted',
       title: 'fakeTitle',
       stars: 0,
+      type: 'other',
     });
 
     AsyncStorage.getItem = jest.fn().mockImplementation(() => Promise.resolve(undefined));
@@ -1245,10 +1353,51 @@ describe('cards', () => {
         completion: 0,
         status: 'isActive',
       });
+      const fakeRef = 'extCont_123';
+      const level1 = createCardLevel({
+        ref: fakeRef,
+        status: 'isStarted',
+        completion: 0,
+        stars: 20,
+        label: 'fakeLabel',
+      });
 
-      const keyedChapterCard = cardsToKeys([chapterCard], 'en');
+      const externalContentCard = createExtCard({
+        ref: 'extCourse_123',
+        completion: 0,
+        status: 'isStarted',
+        title: 'fakeTitle',
+        stars: 0,
+        levels: [level1],
+      });
 
-      expect(Object.keys(keyedChapterCard)).toEqual(['card:en:test']);
+      const keyedChapterCard = cardsToKeys([chapterCard, externalContentCard], 'en');
+
+      expect(Object.keys(keyedChapterCard)).toEqual([
+        'card:en:test',
+        'card:en:extCourse_123',
+        'card:en:extCont_123',
+      ]);
+    });
+  });
+
+  describe('getExternalContentHideCompleteButton', () => {
+    it('fetches the hideCompleteButton information for a given content', async () => {
+      const fetch = require('cross-fetch');
+      const {getExternalContentHideCompleteButton} = require('./cards');
+
+      fetch.mockImplementationOnce((url, options) => {
+        return Promise.resolve({
+          json: () => Promise.resolve([{externalContents: [{hideCompleteButton: true}]}]),
+        });
+      });
+
+      const result = await getExternalContentHideCompleteButton(
+        'https://coorpacademy.com',
+        'eyeeIZfzeN24029JNodidç92042',
+        'extCourse_123',
+      );
+      expect(result).toEqual(true);
     });
   });
 });

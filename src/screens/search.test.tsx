@@ -2,7 +2,7 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import {createNavigation} from '../__fixtures__/navigation';
-import {createChapterCard} from '../__fixtures__/cards';
+import {createChapterCard, createExtCard} from '../__fixtures__/cards';
 import {CARD_STATUS} from '../layer/data/_const';
 import {TestContextProvider} from '../utils/tests';
 
@@ -13,8 +13,15 @@ const card = createChapterCard({
   status: CARD_STATUS.ACTIVE,
 });
 
+const externalContentCard = createExtCard({
+  ref: 'extCont_123',
+  completion: 0,
+  title: 'Fake ExternalContent',
+  status: CARD_STATUS.ACTIVE,
+});
+
 describe('Search', () => {
-  it('should handle card press', () => {
+  it('should handle card press and navigate to Slide', () => {
     const {Component: Seach} = require('./search');
 
     const selectCard = jest.fn();
@@ -32,6 +39,28 @@ describe('Search', () => {
     expect(navigation.navigate).toHaveBeenCalledWith('Slide');
     expect(selectCard).toHaveBeenCalledTimes(1);
     expect(selectCard).toHaveBeenCalledWith(card);
+  });
+
+  it('should handle card press and navigate to ExternalContent', () => {
+    const {Component: Seach} = require('./search');
+
+    const selectCard = jest.fn();
+    const navigation = createNavigation({});
+    const component = renderer.create(
+      <TestContextProvider>
+        <Seach navigation={navigation} selectCard={selectCard} />
+      </TestContextProvider>,
+    );
+
+    const search = component.root.find((el) => el.props.testID === 'search');
+    search.props.onCardPress(externalContentCard);
+
+    expect(navigation.navigate).nthCalledWith(1, 'ExternalContent', {
+      contentRef: 'extCont_123',
+      contentType: 'scorm',
+    });
+    expect(selectCard).toHaveBeenCalledTimes(1);
+    expect(selectCard).toHaveBeenCalledWith(externalContentCard);
   });
 
   it('should handle search press', () => {

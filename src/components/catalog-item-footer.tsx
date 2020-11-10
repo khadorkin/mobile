@@ -6,10 +6,13 @@ import {
   NovaSolidStatusCheckCircle2,
 } from '@coorpacademy/nova-icons';
 
+import {getExternalContentColor, isExternalContent} from '../utils';
 import {CONTENT_TYPE, AUTHOR_TYPE, SPACE} from '../const';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {ExternalContentCard, Card} from '../layer/data/_types';
+
 import {getAuthor} from '../utils/content';
 import theme from '../modules/theme';
+import translations from '../translations';
 import Text from './text';
 import ProgressionBar from './progression-bar';
 import Placeholder from './placeholder';
@@ -22,23 +25,35 @@ import PlaceholderLine, {
 import Space from './space';
 
 interface Props {
-  item?: ChapterCard | DisciplineCard;
+  item?: Card;
   testID: string;
   size?: 'cover' | 'hero';
 }
 
 export const PLACEHOLDER_COLOR = theme.colors.gray.lightMedium;
+export const PLACEHOLDER_COLOR_SCORM = theme.colors.gray.dark;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
+    padding: theme.spacing.small,
+  },
+  containerScorm: {
+    justifyContent: 'space-between',
+  },
+  black: {
+    color: theme.colors.black,
   },
   icons: {
     flexDirection: 'row',
   },
   textCentered: {
     textAlign: 'center',
+  },
+  externalContentType: {
+    fontWeight: theme.fontWeight.bold,
+    fontSize: theme.fontSize.small,
   },
   title: {
     color: theme.colors.white,
@@ -85,7 +100,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const getCompletion = (item: ChapterCard | DisciplineCard) => {
+const getCompletion = (item: Card) => {
   // If a course(even the adaptives ones) have more than a level
   // we want to show users' progressions for each one of them.
   if (item.type === 'course' && item.modules?.length > 1) {
@@ -98,6 +113,7 @@ const getCompletion = (item: ChapterCard | DisciplineCard) => {
 
 const CatalogItemFooter = ({item, testID, size}: Props) => {
   const isHero = size === 'hero';
+  const isExternal = isExternalContent(item);
 
   if (!item) {
     return (
@@ -152,60 +168,88 @@ const CatalogItemFooter = ({item, testID, size}: Props) => {
   const itemCompletion = getCompletion(item);
 
   return (
-    <View style={styles.container} testID={testID}>
-      <View style={styles.icons}>
-        {!isHero && item.type === CONTENT_TYPE.CHAPTER ? (
-          <React.Fragment>
-            <NovaCompositionCoorpacademyTimer
+    <View style={[styles.container, isExternal ? styles.containerScorm : null]} testID={testID}>
+      <View>
+        <View style={styles.icons}>
+          {!isHero && item.type === CONTENT_TYPE.CHAPTER ? (
+            <React.Fragment>
+              <NovaCompositionCoorpacademyTimer
+                testID={`infinite-${testID}`}
+                color={theme.colors.white}
+                height={topIconSize}
+                width={topIconSize}
+              />
+              <Space />
+            </React.Fragment>
+          ) : null}
+          {!isHero && item.adaptiv ? (
+            <NovaCompositionCoorpacademyAdaptive
               testID={`infinite-${testID}`}
-              color={theme.colors.white}
+              color={!isExternal ? theme.colors.white : theme.colors.black}
               height={topIconSize}
               width={topIconSize}
             />
-            <Space />
+          ) : null}
+        </View>
+        <Space type="micro" />
+        {isExternal ? (
+          <React.Fragment>
+            <Text
+              style={[
+                styles.externalContentType,
+                {color: getExternalContentColor((item as ExternalContentCard)?.type)},
+              ]}
+            >
+              {translations[item.type].toUpperCase()}
+            </Text>
+            <Space type="tiny" />
           </React.Fragment>
         ) : null}
-        {!isHero && item.adaptiv ? (
-          <NovaCompositionCoorpacademyAdaptive
-            testID={`infinite-${testID}`}
-            color={theme.colors.white}
-            height={topIconSize}
-            width={topIconSize}
-          />
+
+        <Text
+          numberOfLines={4}
+          testID={`title-${testID}`}
+          style={[
+            styles.title,
+            titleStyle,
+            isHero && styles.textCentered,
+            isExternal && styles.black,
+          ]}
+        >
+          {item.title}
+        </Text>
+        {subtitle ? (
+          <React.Fragment>
+            <Space type="tiny" />
+            <View style={styles.subtitleContainer}>
+              <Text
+                numberOfLines={1}
+                testID={`subtitle-${testID}`}
+                style={[
+                  styles.subtitle,
+                  subtitleStyle,
+                  isHero && styles.textCentered,
+                  isExternal && styles.black,
+                ]}
+              >
+                {subtitle}
+              </Text>
+              {author && author.authorType === AUTHOR_TYPE.VERIFIED && size !== 'hero' ? (
+                <React.Fragment>
+                  <Space type="tiny" />
+                  <NovaSolidStatusCheckCircle2
+                    testID={`certified-${testID}`}
+                    color={!isExternal ? theme.colors.white : theme.colors.black}
+                    height={iconCertifiedSize}
+                    width={iconCertifiedSize}
+                  />
+                </React.Fragment>
+              ) : null}
+            </View>
+          </React.Fragment>
         ) : null}
+        <Space type="small" />
       </View>
-      <Space type="tiny" />
-      <Text
-        testID={`title-${testID}`}
-        style={[styles.title, titleStyle, isHero && styles.textCentered]}
-      >
-        {item.title}
-      </Text>
-      {subtitle ? (
-        <React.Fragment>
-          <Space type="tiny" />
-          <View style={styles.subtitleContainer}>
-            <Text
-              testID={`subtitle-${testID}`}
-              style={[styles.subtitle, subtitleStyle, isHero && styles.textCentered]}
-            >
-              {subtitle}
-            </Text>
-            {author && author.authorType === AUTHOR_TYPE.VERIFIED && size !== 'hero' ? (
-              <React.Fragment>
-                <Space type="tiny" />
-                <NovaSolidStatusCheckCircle2
-                  testID={`certified-${testID}`}
-                  color={theme.colors.white}
-                  height={iconCertifiedSize}
-                  width={iconCertifiedSize}
-                />
-              </React.Fragment>
-            ) : null}
-          </View>
-        </React.Fragment>
-      ) : null}
-      <Space type="small" />
       <View
         style={[styles.progressionBar, isHero && styles.progressionBarCentered]}
         testID={`progress-bar-${testID}`}
@@ -214,7 +258,7 @@ const CatalogItemFooter = ({item, testID, size}: Props) => {
           current={itemCompletion}
           total={1}
           height={isHero ? 3 : 2}
-          backgroundColor={theme.colors.white}
+          backgroundColor={theme.colors.gray.light}
           isInnerRounded
         />
       </View>

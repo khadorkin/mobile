@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import {createChapterCard} from '../__fixtures__/cards';
 import {fakeLayout, handleFakePress} from '../utils/tests';
 import {CARD_STATUS} from '../layer/data/_const';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {Card} from '../layer/data/_types';
 import {ITEM_WIDTH, ITEM_HEIGHT} from '../components/catalog-items';
 
 const cardsRef = [
@@ -21,7 +21,8 @@ const cardsRef = [
   'plugh',
   'xyzzy',
 ];
-const cards: Array<DisciplineCard | ChapterCard | void> = cardsRef.map(
+
+const cards: Array<Card | void> = cardsRef.map(
   (ref) =>
     ref &&
     createChapterCard({
@@ -108,7 +109,7 @@ describe('CatalogItems', () => {
       const {Component: CatalogItems} = require('./catalog-items');
 
       const result = CatalogItems.getLimit(3, fakeLayout);
-      const expected = 15;
+      const expected = 12;
 
       expect(result).toEqual(expected);
     });
@@ -119,7 +120,7 @@ describe('CatalogItems', () => {
       const {Component: CatalogItems, DEBOUNCE_DURATION} = require('./catalog-items');
 
       const handleScroll = jest.fn();
-      const _cards: Array<DisciplineCard | ChapterCard | void> = cards
+      const _cards: Array<Card | void> = cards
         .slice(0, 2)
         .concat([undefined, undefined, undefined, undefined]);
 
@@ -149,9 +150,7 @@ describe('CatalogItems', () => {
       const {Component: CatalogItems, DEBOUNCE_DURATION} = require('./catalog-items');
 
       const handleScroll = jest.fn();
-      const _cards: Array<DisciplineCard | ChapterCard | void> = cards
-        .slice(0, 5)
-        .concat([undefined]);
+      const _cards: Array<Card | void> = cards.slice(0, 5).concat([undefined]);
 
       const component = renderer.create(
         <CatalogItems
@@ -178,7 +177,7 @@ describe('CatalogItems', () => {
       const {Component: CatalogItems, DEBOUNCE_DURATION} = require('./catalog-items');
 
       const handleScroll = jest.fn();
-      const _cards: Array<DisciplineCard | ChapterCard | void> = cards
+      const _cards: Array<Card | void> = cards
         .slice(0, 4)
         .concat([undefined, undefined, undefined, undefined]);
 
@@ -202,16 +201,14 @@ describe('CatalogItems', () => {
       list.props.onScroll(scrollEvent);
       jest.advanceTimersByTime(DEBOUNCE_DURATION);
       expect(handleScroll).toHaveBeenCalledTimes(1);
-      expect(handleScroll).toHaveBeenCalledWith(2, 10);
+      expect(handleScroll).toHaveBeenCalledWith(2, 8);
     });
 
     it('should not trigger onScroll on defined cards (with columns)', () => {
       const {Component: CatalogItems, DEBOUNCE_DURATION} = require('./catalog-items');
 
       const handleScroll = jest.fn();
-      const _cards: Array<DisciplineCard | ChapterCard | void> = cards
-        .slice(0, 12)
-        .concat([undefined]);
+      const _cards: Array<Card | void> = cards.slice(0, 12).concat([undefined]);
 
       const component = renderer.create(
         <CatalogItems
@@ -243,8 +240,15 @@ describe('CatalogItems', () => {
 
     const {Component: CatalogItems} = require('./catalog-items');
 
+    const _cards: Array<Card | void> = cards.slice(0, 12).concat([undefined]);
+
     const component = renderer.create(
-      <CatalogItems onCardPress={handleFakePress} onScroll={handleFakePress} />,
+      <CatalogItems
+        cards={_cards}
+        numColumns={2}
+        onCardPress={handleFakePress}
+        layout={fakeLayout}
+      />,
     );
 
     const list = component.root.find((el) => el.props.testID === 'catalog-items');

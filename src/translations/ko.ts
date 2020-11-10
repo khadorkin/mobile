@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: '강의에 접속하기',
+  article: '조',
   authenticationMagicLinkHeader: '플랫폼에 연결하려면 이메일로 받은 링크를 클릭하세요.',
   authenticationMagicLinkStepOneDescription: '이 전화기에서 <b>프로페셔널 편지함</b>으로 가세요.',
   authenticationMagicLinkStepTwoDescription:
@@ -126,6 +127,7 @@ const translations: Translations = {
   yesNotifyMe: '예, 알려 주세요',
   maybeLater: '나중에 하기',
   platformHasBeenDisabled: '사용하시는 플랫폼에 앱이 비활성화되어 있습니다',
+  podcast: '팟캐스트',
   question: '질문',
   quit: '끝내기',
   reactivatePlatform:
@@ -139,6 +141,8 @@ const translations: Translations = {
   retryChapter: '장 재시도',
   retryLevel: '레벨 재시도',
   scanQRCode: '<b>QR 코드</b> 스캔하기',
+  scorm: '인터랙티브 슬라이드',
+  externalFinishCourse: '이 코스를 완료했습니다',
   search: '검색',
   seeClue: '단서 보기',
   selectSomethingBelow: '아래에서 선택하세요',
@@ -182,6 +186,7 @@ const translations: Translations = {
   typeHere: '여기에 입력하세요',
   validate: '인증하기',
   version: '버전',
+  video: '비디오',
   videoLoadingError: '비디오를 불러오는 중에 오류가 발생했습니다. 다시 시도하세요.',
   unlockNextLevel: '<br><b>{{levelName}} 레벨</b>의 잠금이 해제되었습니다',
   upgrade: '업그레이드',

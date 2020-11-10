@@ -10,13 +10,6 @@ const defaultPermissions: Detox.DevicePermissions = {
   notifications: 'YES',
 };
 
-const getDevicePixelPerPoint = (): number => 2;
-
-const getDeviceDimensions = (): {width: number; height: number} => ({
-  width: 750 / getDevicePixelPerPoint(),
-  height: 1334 / getDevicePixelPerPoint(),
-});
-
 export const reloadApp = async (
   additionalPermissions: Detox.DevicePermissions = defaultPermissions || {},
   newInstance = false,
@@ -41,11 +34,6 @@ export const reloadApp = async (
     alreadyLaunched = true;
   }
 };
-
-export const getContextTab = (el: Detox.Element) => el(by.id('slide-tab')).atIndex(3);
-export const getQuestionTab = (el: Detox.Element) => el(by.id('slide-tab')).atIndex(2);
-export const getLessonTab = (el: Detox.Element) => el(by.id('slide-tab')).atIndex(1);
-export const getClueTab = (el: Detox.Element) => el(by.id('slide-tab')).atIndex(0);
 
 export const waitForExist = async (testID: string, useText = false) => {
   const getter = useText ? by.text : by.id;
@@ -72,43 +60,30 @@ export const tap = async (testID: string) => {
   await element(by.id(testID)).tap();
 };
 
-const getCardOffset = (index: number, numColumns?: number): {x: number; y: number} => {
-  const {width} = getDeviceDimensions();
-
-  if (numColumns) {
-    const paddingLeft = (width - numColumns * ITEM_WIDTH) / 2;
-
-    return {
-      x: paddingLeft + ITEM_WIDTH * ((index - 1) % numColumns),
-      y: ITEM_HEIGHT * parseInt(String((index - 1) / numColumns), 10) + 1, // Scroll amount must be positive and greater than zero
-    };
-  }
-
+const getCardOffset = (index: number): {x: number; y: number} => {
   return {
     x: ITEM_WIDTH * (index - 1) + 1, // Scroll amount must be positive and greater than zero
     y: 0,
   };
 };
 
-export const tapCardOnList = async (testID: string, index: number, isVertical?: boolean) => {
-  const {width} = getDeviceDimensions();
-  const numColumns = isVertical ? parseInt(String(width / ITEM_WIDTH), 10) : undefined;
-  const {x, y} = getCardOffset(index, numColumns);
-
-  await waitForExist(testID);
-
-  if (isVertical) {
-    await element(by.id(testID)).scrollTo('top');
-    await element(by.id(testID)).scroll(y, 'down');
-  } else {
-    await element(by.id(testID)).scrollTo('left');
-    await element(by.id(testID)).scroll(x, 'right');
+export const tapCardOnList = async (
+  parentTestID: string,
+  itemTestID: string,
+  sectionIndex = 1,
+  cardIndex: number,
+  scroll = false,
+) => {
+  if (scroll) {
+    await waitForExist('catalog');
+    await element(by.id('catalog')).scroll(ITEM_HEIGHT * sectionIndex - ITEM_WIDTH / 2, 'down');
   }
+  const {x} = getCardOffset(cardIndex);
 
-  await element(by.id(testID)).tapAtPoint({
-    x: x + ITEM_WIDTH / 2,
-    y: y + ITEM_HEIGHT / 2,
-  });
+  await waitForExist(parentTestID);
+  await element(by.id(parentTestID)).scrollTo('left');
+  await element(by.id(parentTestID)).scroll(x, 'right');
+  await element(by.id(`${parentTestID}-item-${itemTestID}`)).tap();
 };
 
 export const longPress = async (testID: string) => {
@@ -142,9 +117,5 @@ export const scrollHero = async () => {
 
 export default {
   reloadApp,
-  getQuestionTab,
-  getLessonTab,
-  getClueTab,
-  getContextTab,
   bypassAuthentication,
 };

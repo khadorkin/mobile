@@ -7,13 +7,17 @@ export const OLDEST_DATE = new Date('1971').toISOString();
 export const isSuccess = (progression: Progression) => {
   if (!progression.state) return false;
   const {nextContent} = progression.state;
-  return nextContent.type === CONTENT_TYPE.SUCCESS;
+  // TODO: for some reason nextContent seems
+  // to be empty for scorm contents, so this needs to be fixed
+  return nextContent?.type === CONTENT_TYPE.SUCCESS;
 };
 
 export const isFailure = (progression: Progression) => {
   if (!progression.state) return false;
   const {nextContent} = progression.state;
-  return nextContent.type === CONTENT_TYPE.FAILURE;
+  // TODO: for some reason nextContent seems
+  // to be empty for scorm contents, so this needs to be fixed
+  return nextContent?.type === CONTENT_TYPE.FAILURE;
 };
 
 export const isDone = (progression: Progression): boolean => {

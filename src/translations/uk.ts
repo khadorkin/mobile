@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Доступ до уроку ',
+  article: 'Стаття',
   authenticationMagicLinkHeader:
     'Увійдіть до платформи через посилання, яке ви отримали в електронному листі',
   authenticationMagicLinkStepOneDescription:
@@ -127,6 +128,7 @@ const translations: Translations = {
   yesNotifyMe: 'Так, сповістіть мене',
   maybeLater: 'Можливо пізніше',
   platformHasBeenDisabled: 'Застосунок було вимкнено для вашої платформи',
+  podcast: 'Подкаст',
   question: 'Питання',
   quit: 'Вийти',
   reactivatePlatform:
@@ -140,6 +142,8 @@ const translations: Translations = {
   retryChapter: 'Пройти розділ ще раз',
   retryLevel: 'Пройти рівень ще раз',
   scanQRCode: 'Відскануйте свій <b>QR-код</b>',
+  scorm: 'Інтерактивні слайди',
+  externalFinishCourse: 'Я завершив(ла) цей курс',
   search: 'Шукати',
   seeClue: 'Переглянути підказку',
   selectSomethingBelow: 'Оберіть положення нижче',
@@ -190,6 +194,7 @@ const translations: Translations = {
   typeHere: 'Ввести тут',
   validate: 'Підтвердити',
   version: 'Версія',
+  video: 'Відео',
   videoLoadingError: 'Під час завантаження відео сталася помилка. Повторіть ще раз.',
   unlockNextLevel: 'Ви щойно розблокували<br><b>рівень {{levelName}}</b>',
   upgrade: 'Перейти на кращу версію',

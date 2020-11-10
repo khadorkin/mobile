@@ -1,37 +1,45 @@
 import * as React from 'react';
+import {StyleSheet, View} from 'react-native';
 
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import {isExternalContent} from '../utils';
+import type {Card} from '../layer/data/_types';
 import {getAuthor} from '../utils/content';
-import {BrandThemeContext} from './brand-theme-provider';
+import theme from '../modules/theme';
 import CatalogItemFooter from './catalog-item-footer';
 import CatalogItemAuthor from './catalog-item-author';
 
 interface Props {
-  item?: DisciplineCard | ChapterCard;
+  item?: Card;
   size?: 'cover' | 'hero';
   testID?: string;
 }
 
-const CatalogItemContent = ({item, size, testID = 'catalog-item-content'}: Props) => (
-  <BrandThemeContext.Consumer>
-    {(brandTheme) => {
-      const author = item && getAuthor(item);
+const styles = StyleSheet.create({
+  authorScorm: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: theme.spacing.tiny,
+  },
+});
 
-      return (
-        <React.Fragment>
-          {author ? (
-            <CatalogItemAuthor
-              type={author.authorType}
-              name={author.label}
-              size={size}
-              testID={`${testID}-author`}
-            />
-          ) : null}
-          <CatalogItemFooter item={item} size={size} testID={`${testID}-footer`} />
-        </React.Fragment>
-      );
-    }}
-  </BrandThemeContext.Consumer>
-);
+const CatalogItemContent = ({item, size, testID = 'catalog-item-content'}: Props) => {
+  const author = item && getAuthor(item);
+  const isExternal = isExternalContent(item);
+  return (
+    <React.Fragment>
+      {author ? (
+        <View style={isExternal ? styles.authorScorm : null}>
+          <CatalogItemAuthor
+            type={author.authorType}
+            name={author.label}
+            size={size}
+            testID={`${testID}-author`}
+          />
+        </View>
+      ) : null}
+      <CatalogItemFooter item={item} size={size} testID={`${testID}-footer`} />
+    </React.Fragment>
+  );
+};
 
 export default CatalogItemContent;

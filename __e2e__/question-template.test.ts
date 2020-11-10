@@ -16,7 +16,7 @@ describe('Template', () => {
   });
 
   it('should see catalog and choose a discipline', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 7);
+    await tapCardOnList('catalog-section-recommended-items', 'template-dis-1', 1, 7, true);
   });
 
   it('should see template elements', async () => {
@@ -39,7 +39,7 @@ describe('Template', () => {
   });
 
   it('should open modal', async () => {
-    await element(by.id('question-section-1-part-4-select-input')).tap();
+    await element(by.id('question-section-1-part-4-select-input')).multiTap(2);
     await waitForExist('question-section-1-part-4-select-modal-animated');
   });
 
@@ -69,7 +69,7 @@ describe('Template', () => {
   describe('Positive correction', () => {
     beforeAll(async () => {
       await element(by.id('question-section-1-part-2-text')).replaceText('Coorpacademy');
-      await element(by.id('question-section-1-part-4-select-input')).tap();
+      await element(by.id('question-section-1-part-4-select-input')).multiTap(2);
       await waitForExist('question-section-1-part-4-select-modal-animated');
       await element(by.id('question-section-1-part-4-select-modal-item-2')).tap();
       await waitForNotVisible('question-section-1-part-4-select-modal-animated');

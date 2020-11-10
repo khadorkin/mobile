@@ -115,174 +115,144 @@ exports[`Storyshots NotifyMe Notify Me 1`] = `
               style={
                 Array [
                   Object {
-                    "borderRadius": 5,
-                  },
-                  Array [
-                    Object {
-                      "backgroundColor": "#FFFFFF",
+                    "elevation": 4,
+                    "shadowColor": "#14171A",
+                    "shadowOffset": Object {
+                      "height": 0,
+                      "width": 0,
                     },
-                    Object {
-                      "opacity": 0.6,
-                      "position": "absolute",
-                      "top": -12,
-                      "width": "100%",
-                    },
-                  ],
-                  Object {
-                    "overflow": "hidden",
+                    "shadowOpacity": 0.15,
+                    "shadowRadius": 8,
                   },
+                  undefined,
                 ]
               }
             >
               <View
                 style={
-                  Object {
-                    "flexDirection": "row",
-                    "marginBottom": 16,
-                    "marginLeft": 24,
-                    "marginRight": 24,
-                    "marginTop": 24,
-                  }
+                  Array [
+                    Object {
+                      "borderRadius": 5,
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "#FFFFFF",
+                      },
+                      Object {
+                        "opacity": 0.6,
+                        "position": "absolute",
+                        "top": -12,
+                        "width": "100%",
+                      },
+                    ],
+                    Object {
+                      "overflow": "hidden",
+                    },
+                  ]
                 }
               >
                 <View
                   style={
                     Object {
-                      "justifyContent": "center",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "marginLeft": 24,
+                      "marginRight": 24,
+                      "marginTop": 24,
                     }
                   }
                 >
                   <View
                     style={
                       Object {
-                        "height": 40,
-                        "marginRight": 24,
-                        "width": 40,
+                        "justifyContent": "center",
                       }
                     }
                   >
-                    <Image
-                      source={
-                        Object {
-                          "process": [Function],
-                        }
-                      }
+                    <View
                       style={
                         Object {
                           "height": 40,
+                          "marginRight": 24,
                           "width": 40,
                         }
                       }
-                    />
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#FF6A6A",
-                          "borderRadius": 18,
-                          "height": 18,
-                          "left": 30,
-                          "position": "absolute",
-                          "top": -8,
-                          "width": 18,
-                        }
-                      }
                     >
-                      <Text
+                      <Image
+                        source={
+                          Object {
+                            "process": [Function],
+                          }
+                        }
                         style={
-                          Array [
-                            Object {
-                              "color": "#FFFFFF",
-                              "fontSize": 28,
-                              "fontWeight": "700",
-                            },
-                            Object {
-                              "fontSize": 13,
-                              "textAlign": "center",
-                            },
-                          ]
+                          Object {
+                            "height": 40,
+                            "width": 40,
+                          }
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "backgroundColor": "#FF6A6A",
+                            "borderRadius": 18,
+                            "height": 18,
+                            "left": 30,
+                            "position": "absolute",
+                            "top": -8,
+                            "width": 18,
+                          }
                         }
                       >
-                        1
-                      </Text>
+                        <Text
+                          style={
+                            Array [
+                              Object {
+                                "color": "#FFFFFF",
+                                "fontSize": 28,
+                                "fontWeight": "700",
+                              },
+                              Object {
+                                "fontSize": 13,
+                                "textAlign": "center",
+                              },
+                            ]
+                          }
+                        >
+                          1
+                        </Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "color": "#323232",
-                          "fontSize": 17,
-                        },
-                        Object {
-                          "fontWeight": "700",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
                   >
-                    Challenge of the day 👊
-                  </Text>
-                  <View>
-                    <View
-                      style={Object {}}
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#323232",
+                            "fontSize": 17,
+                          },
+                          Object {
+                            "fontWeight": "700",
+                          },
+                        ]
+                      }
                     >
-                      <Text
-                        allowFontScaling={true}
+                      Challenge of the day 👊
+                    </Text>
+                    <View>
+                      <View
                         style={Object {}}
                       >
                         <Text
                           allowFontScaling={true}
-                          selectable={false}
-                          style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            allowFontScaling={true}
-                            style={
-                              Object {
-                                "color": "#323232",
-                                "fontSize": 17,
-                              }
-                            }
-                          >
-                            Start the course
-                          </Text>
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          style={
-                            Object {
-                              "flex": 1,
-                              "height": 16.8,
-                            }
-                          }
-                        >
-                          
-
-                        </Text>
-                        <Text
-                          allowFontScaling={true}
-                          selectable={false}
-                          style={
-                            Array [
-                              Object {
-                                "fontWeight": "700",
-                              },
-                              Object {},
-                              Object {},
-                            ]
-                          }
+                          style={Object {}}
                         >
                           <Text
                             allowFontScaling={true}
@@ -300,15 +270,63 @@ exports[`Storyshots NotifyMe Notify Me 1`] = `
                                 Object {
                                   "color": "#323232",
                                   "fontSize": 17,
-                                  "fontWeight": "700",
                                 }
                               }
                             >
-                              Online Customer
+                              Start the course
+                            </Text>
+                          </Text>
+                          <Text
+                            allowFontScaling={true}
+                            style={
+                              Object {
+                                "flex": 1,
+                                "height": 16.8,
+                              }
+                            }
+                          >
+                            
+
+                          </Text>
+                          <Text
+                            allowFontScaling={true}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "fontWeight": "700",
+                                },
+                                Object {},
+                                Object {},
+                              ]
+                            }
+                          >
+                            <Text
+                              allowFontScaling={true}
+                              selectable={false}
+                              style={
+                                Array [
+                                  Object {},
+                                  Object {},
+                                ]
+                              }
+                            >
+                              <Text
+                                allowFontScaling={true}
+                                style={
+                                  Object {
+                                    "color": "#323232",
+                                    "fontSize": 17,
+                                    "fontWeight": "700",
+                                  }
+                                }
+                              >
+                                Online Customer
+                              </Text>
                             </Text>
                           </Text>
                         </Text>
-                      </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -338,18 +356,260 @@ exports[`Storyshots NotifyMe Notify Me 1`] = `
               style={
                 Array [
                   Object {
+                    "elevation": 4,
+                    "shadowColor": "#14171A",
+                    "shadowOffset": Object {
+                      "height": 0,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.15,
+                    "shadowRadius": 8,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "borderRadius": 5,
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "#FFFFFF",
+                      },
+                      Object {
+                        "opacity": 0.8,
+                        "position": "absolute",
+                        "top": -6,
+                        "width": "100%",
+                      },
+                    ],
+                    Object {
+                      "overflow": "hidden",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "marginLeft": 24,
+                      "marginRight": 24,
+                      "marginTop": 24,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": 40,
+                          "marginRight": 24,
+                          "width": 40,
+                        }
+                      }
+                    >
+                      <Image
+                        source={
+                          Object {
+                            "process": [Function],
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 40,
+                            "width": 40,
+                          }
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "backgroundColor": "#FF6A6A",
+                            "borderRadius": 18,
+                            "height": 18,
+                            "left": 30,
+                            "position": "absolute",
+                            "top": -8,
+                            "width": 18,
+                          }
+                        }
+                      >
+                        <Text
+                          style={
+                            Array [
+                              Object {
+                                "color": "#FFFFFF",
+                                "fontSize": 28,
+                                "fontWeight": "700",
+                              },
+                              Object {
+                                "fontSize": 13,
+                                "textAlign": "center",
+                              },
+                            ]
+                          }
+                        >
+                          1
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#323232",
+                            "fontSize": 17,
+                          },
+                          Object {
+                            "fontWeight": "700",
+                          },
+                        ]
+                      }
+                    >
+                      Challenge of the day 👊
+                    </Text>
+                    <View>
+                      <View
+                        style={Object {}}
+                      >
+                        <Text
+                          allowFontScaling={true}
+                          style={Object {}}
+                        >
+                          <Text
+                            allowFontScaling={true}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {},
+                                Object {},
+                              ]
+                            }
+                          >
+                            <Text
+                              allowFontScaling={true}
+                              style={
+                                Object {
+                                  "color": "#323232",
+                                  "fontSize": 17,
+                                }
+                              }
+                            >
+                              Start the course
+                            </Text>
+                          </Text>
+                          <Text
+                            allowFontScaling={true}
+                            style={
+                              Object {
+                                "flex": 1,
+                                "height": 16.8,
+                              }
+                            }
+                          >
+                            
+
+                          </Text>
+                          <Text
+                            allowFontScaling={true}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "fontWeight": "700",
+                                },
+                                Object {},
+                                Object {},
+                              ]
+                            }
+                          >
+                            <Text
+                              allowFontScaling={true}
+                              selectable={false}
+                              style={
+                                Array [
+                                  Object {},
+                                  Object {},
+                                ]
+                              }
+                            >
+                              <Text
+                                allowFontScaling={true}
+                                style={
+                                  Object {
+                                    "color": "#323232",
+                                    "fontSize": 17,
+                                    "fontWeight": "700",
+                                  }
+                                }
+                              >
+                                Online Customer
+                              </Text>
+                            </Text>
+                          </Text>
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "borderRadius": 5,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "elevation": 4,
+                  "shadowColor": "#14171A",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.15,
+                  "shadowRadius": 8,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
                     "borderRadius": 5,
                   },
                   Array [
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
-                    Object {
-                      "opacity": 0.8,
-                      "position": "absolute",
-                      "top": -6,
-                      "width": "100%",
-                    },
+                    undefined,
                   ],
                   Object {
                     "overflow": "hidden",
@@ -533,212 +793,6 @@ exports[`Storyshots NotifyMe Notify Me 1`] = `
                         </Text>
                       </Text>
                     </View>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "borderRadius": 5,
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "borderRadius": 5,
-                },
-                Array [
-                  Object {
-                    "backgroundColor": "#FFFFFF",
-                  },
-                  undefined,
-                ],
-                Object {
-                  "overflow": "hidden",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "marginBottom": 16,
-                  "marginLeft": 24,
-                  "marginRight": 24,
-                  "marginTop": 24,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "justifyContent": "center",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "height": 40,
-                      "marginRight": 24,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "process": [Function],
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      }
-                    }
-                  />
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": "#FF6A6A",
-                        "borderRadius": 18,
-                        "height": 18,
-                        "left": 30,
-                        "position": "absolute",
-                        "top": -8,
-                        "width": 18,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#FFFFFF",
-                            "fontSize": 28,
-                            "fontWeight": "700",
-                          },
-                          Object {
-                            "fontSize": 13,
-                            "textAlign": "center",
-                          },
-                        ]
-                      }
-                    >
-                      1
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#323232",
-                        "fontSize": 17,
-                      },
-                      Object {
-                        "fontWeight": "700",
-                      },
-                    ]
-                  }
-                >
-                  Challenge of the day 👊
-                </Text>
-                <View>
-                  <View
-                    style={Object {}}
-                  >
-                    <Text
-                      allowFontScaling={true}
-                      style={Object {}}
-                    >
-                      <Text
-                        allowFontScaling={true}
-                        selectable={false}
-                        style={
-                          Array [
-                            Object {},
-                            Object {},
-                          ]
-                        }
-                      >
-                        <Text
-                          allowFontScaling={true}
-                          style={
-                            Object {
-                              "color": "#323232",
-                              "fontSize": 17,
-                            }
-                          }
-                        >
-                          Start the course
-                        </Text>
-                      </Text>
-                      <Text
-                        allowFontScaling={true}
-                        style={
-                          Object {
-                            "flex": 1,
-                            "height": 16.8,
-                          }
-                        }
-                      >
-                        
-
-                      </Text>
-                      <Text
-                        allowFontScaling={true}
-                        selectable={false}
-                        style={
-                          Array [
-                            Object {
-                              "fontWeight": "700",
-                            },
-                            Object {},
-                            Object {},
-                          ]
-                        }
-                      >
-                        <Text
-                          allowFontScaling={true}
-                          selectable={false}
-                          style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            allowFontScaling={true}
-                            style={
-                              Object {
-                                "color": "#323232",
-                                "fontSize": 17,
-                                "fontWeight": "700",
-                              }
-                            }
-                          >
-                            Online Customer
-                          </Text>
-                        </Text>
-                      </Text>
-                    </Text>
                   </View>
                 </View>
               </View>

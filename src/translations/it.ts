@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Accedi alla lezione',
+  article: 'Articolo',
   authenticationMagicLinkHeader:
     'Clicca sul link che hai ricevuto via email per collegarti alla tua piattaforma',
   authenticationMagicLinkStepOneDescription:
@@ -131,6 +132,7 @@ const translations: Translations = {
   yesNotifyMe: 'Sì, attiva le notifiche',
   maybeLater: 'Forse più tardi',
   platformHasBeenDisabled: "L'app è stata disabilitata per la tua piattaforma",
+  podcast: 'Podcast',
   question: 'Questione',
   quit: 'Abbandona',
   reactivatePlatform:
@@ -144,6 +146,8 @@ const translations: Translations = {
   retryChapter: 'Ritenta capitolo',
   retryLevel: 'Ritenta il livello',
   scanQRCode: 'Leggi il <b>codice QR</b>',
+  scorm: 'Slides interattive',
+  externalFinishCourse: 'Ho completato questo corso',
   search: 'Cerca',
   seeClue: 'Vedi indizio',
   selectSomethingBelow: 'Seleziona qualcosa qui di seguito',
@@ -196,6 +200,7 @@ const translations: Translations = {
   typeHere: 'Digita qui',
   validate: 'Convalida',
   version: 'Versione',
+  video: 'Video',
   videoLoadingError: 'Si è verificato un errore durante il caricamento del video, riprova.',
   unlockNextLevel: 'Hai appena sbloccato<br><b>il livello {{levelName}}</b>',
   upgrade: "Esegui l'upgrade",

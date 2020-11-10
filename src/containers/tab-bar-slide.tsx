@@ -115,7 +115,7 @@ function TabBBar({
   }, [hasContext]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="slide-tab">
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const label = options?.tabBarLabel ?? options?.title ?? route.name;
@@ -161,7 +161,7 @@ function TabBBar({
             accessibilityRole="button"
             accessibilityStates={isFocused ? ['selected'] : []}
             accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
+            testID={`${label}-tab`}
             onPress={onPress}
             // onLongPress={onLongPress}
             style={styles.touchable}

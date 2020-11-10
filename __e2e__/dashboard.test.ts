@@ -35,7 +35,7 @@ describe('Dashboard', () => {
 
   describe('Locked card', () => {
     it('should not be able to press on locked card', async () => {
-      await tapCardOnList('catalog-section-recommended-items', 11);
+      await tapCardOnList('catalog-section-recommended-items', 'locked-dis-1', 1, 11);
       await waitForNotVisible('question-screen');
     });
   });

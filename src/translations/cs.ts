@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Vstup do lekce',
+  article: 'Článek',
   authenticationMagicLinkHeader:
     'Chcete-li se připojit ke svojí platformě, klikněte na odkaz, který jste obdrželi e-mailem',
   authenticationMagicLinkStepOneDescription:
@@ -123,6 +124,7 @@ const translations: Translations = {
   yesNotifyMe: 'Ano, posílejte mi oznámení',
   maybeLater: 'Možná později',
   platformHasBeenDisabled: 'Aplikace byla pro vaši platformu deaktivována',
+  podcast: 'Podcast',
   question: 'Otázka',
   quit: 'Opustit',
   reactivatePlatform:
@@ -136,6 +138,8 @@ const translations: Translations = {
   retryChapter: 'Zkuste kapitolu znovu',
   retryLevel: 'Zkuste úroveň znovu',
   scanQRCode: 'Naskenujte svůj <b>kód QR</b>',
+  scorm: 'Interaktivní snímky',
+  externalFinishCourse: 'Tento kurs jsem absolvoval/a',
   search: 'Hledat',
   seeClue: 'Zobrazit nápovědu',
   selectSomethingBelow: 'Vyberte něco níže',
@@ -176,6 +180,7 @@ const translations: Translations = {
   typeHere: 'Zapište sem',
   validate: 'Potvrdit',
   version: 'Verze',
+  video: 'Video',
   videoLoadingError: 'Při načítání videa došlo k chybě, zkuste to znovu.',
   unlockNextLevel: 'Právě jste odemkli<br><b>úroveň {{levelName}}</b>',
   upgrade: 'Aktualizovat',

@@ -28,7 +28,7 @@ describe('QCM Drag', () => {
   });
 
   it('should see catalog and choose a discipline', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 8);
+    await tapCardOnList('catalog-section-recommended-items', 'qcm-drag-dis-1', 1, 8, true);
   });
 
   it('should see only choice item', async () => {

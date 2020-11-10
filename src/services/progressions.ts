@@ -13,6 +13,8 @@ export interface ProgressionService extends Service {
   findRemoteProgressionById: Pick<DataLayer, 'findRemoteProgressionById'>;
   updateSynchronizedProgressionIds: Pick<DataLayer, 'updateSynchronizedProgressionIds'>;
   findBestOf: Pick<DataLayer, 'findBestOf'>;
+  completeRemoteProgression: Pick<DataLayer, 'completeRemoteProgression'>;
+  getRemoteCurrentProgressionId: Pick<DataLayer, 'getRemoteCurrentProgressionId'>;
 }
 
 const create = (dataLayer: DataLayer): Pick<ProgressionService, 'create'> => (
@@ -41,6 +43,8 @@ const service = (dataLayer: DataLayer): ProgressionService => ({
   findRemoteProgressionById: dataLayer.findRemoteProgressionById,
   findBestOf: dataLayer.findBestOf,
   updateSynchronizedProgressionIds: dataLayer.updateSynchronizedProgressionIds,
+  completeRemoteProgression: dataLayer.completeRemoteProgression,
+  getRemoteCurrentProgressionId: dataLayer.getRemoteCurrentProgressionId,
 });
 
 export default service;

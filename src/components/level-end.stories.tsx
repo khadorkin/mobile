@@ -3,7 +3,12 @@ import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
 
 import {__TEST__} from '../modules/environment';
-import {createCardLevel, createDisciplineCard, createChapterCard} from '../__fixtures__/cards';
+import {
+  createCardLevel,
+  createDisciplineCard,
+  createChapterCard,
+  createExtCard,
+} from '../__fixtures__/cards';
 import {video, image, pdf, emptyMedia} from '../__fixtures__/medias';
 import {CARD_STATUS} from '../layer/data/_const';
 import {handleFakePress, createFakeVibration, createFakeAudio} from '../utils/tests';
@@ -44,6 +49,24 @@ const chapterNewCoorp = createChapterCard({
   status: CARD_STATUS.ACTIVE,
   isNew: false,
   authors: [{authorType: AUTHOR_TYPE.COORP, label: 'custom', ref: 'part_VyFl5hZ3V'}],
+});
+const scormNew = createExtCard({
+  ref: 'bar',
+  completion: 0.8,
+  title: 'Scorm card',
+  status: CARD_STATUS.ACTIVE,
+  isNew: true,
+  isAdaptive: true,
+});
+
+const scormWithoutImage = createExtCard({
+  ref: 'bar',
+  completion: 0.8,
+  title: 'Scorm card',
+  status: CARD_STATUS.ACTIVE,
+  isNew: true,
+  isAdaptive: true,
+  image: null,
 });
 
 const feedbackTitle = 'Foo';
@@ -231,6 +254,38 @@ storiesOf('LevelEnd', module)
       onPDFButtonPress={handleFakePress}
       onFeedbackLinkPress={handleFakePress}
       recommendation={disciplineNew}
+      feedbackMedia={emptyMedia}
+      vibration={createFakeVibration()}
+      audio={createFakeAudio()}
+    />
+  ))
+  .add('Scrom (with image)', () => (
+    <LevelEnd
+      contentType={CONTENT_TYPE.LEVEL}
+      isSuccess={false}
+      isFocused={false}
+      onButtonPress={handleFakePress}
+      onCardPress={handleFakePress}
+      onClose={handleFakePress}
+      onPDFButtonPress={handleFakePress}
+      onFeedbackLinkPress={handleFakePress}
+      recommendation={scormNew}
+      feedbackMedia={emptyMedia}
+      vibration={createFakeVibration()}
+      audio={createFakeAudio()}
+    />
+  ))
+  .add('Scrom (without image)', () => (
+    <LevelEnd
+      contentType={CONTENT_TYPE.LEVEL}
+      isSuccess={false}
+      isFocused={false}
+      onButtonPress={handleFakePress}
+      onCardPress={handleFakePress}
+      onClose={handleFakePress}
+      onPDFButtonPress={handleFakePress}
+      onFeedbackLinkPress={handleFakePress}
+      recommendation={scormWithoutImage}
       feedbackMedia={emptyMedia}
       vibration={createFakeVibration()}
       audio={createFakeAudio()}

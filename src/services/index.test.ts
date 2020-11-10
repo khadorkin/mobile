@@ -27,6 +27,7 @@ describe('Services', () => {
         findBySearch: expect.any(Function),
         findBySection: expect.any(Function),
         getCardFromLocalStorage: expect.any(Function),
+        getExternalContentHideCompleteButton: expect.any(Function),
         refreshCard: expect.any(Function),
       },
       Clues: {
@@ -72,6 +73,7 @@ describe('Services', () => {
         findBestOf: expect.any(Function),
         findById: expect.any(Function),
         findLast: expect.any(Function),
+        completeRemoteProgression: expect.any(Function),
         findRemoteProgressionById: expect.any(Function),
         getAll: expect.any(Function),
         getAvailableContent: expect.any(Function),
@@ -85,6 +87,7 @@ describe('Services', () => {
         save: expect.any(Function),
         synchronize: expect.any(Function),
         updateSynchronizedProgressionIds: expect.any(Function),
+        getRemoteCurrentProgressionId: expect.any(Function),
       },
       Recommendations: {
         find: expect.any(Function),
@@ -95,6 +98,8 @@ describe('Services', () => {
       },
       Users: {
         find: expect.any(Function),
+        getNewToken: expect.any(Function),
+        getExternalContentLoginInfo: expect.any(Function),
       },
       Videos: {
         findTracksById: expect.any(Function),

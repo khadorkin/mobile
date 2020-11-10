@@ -17,7 +17,7 @@ describe('Header', () => {
 
   it('should see catalog and choose a discipline', async () => {
     await waitForExist('catalog-section-recommended-items-item-basic-dis-1');
-    await tapCardOnList('catalog-section-recommended-items', 2);
+    await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
   });
 
   it('should see the header elements', async () => {

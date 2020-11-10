@@ -8,6 +8,7 @@ import {createNavigation} from '../__fixtures__/navigation';
 import {createStoreState} from '../__fixtures__/store';
 import {createProgression} from '../__fixtures__/progression';
 import {ENGINE, CONTENT_TYPE, AUTHENTICATION_TYPE} from '../const';
+import {Card} from '../layer/data/_types';
 import type {ConnectedStateProps} from './authentication';
 
 jest.mock('../containers/error-listener', () => 'Mock$ErrorListener');
@@ -242,6 +243,83 @@ describe('Authentication', () => {
     BackHandler.exitApp = jest.fn();
     Authentication.handleBackButton();
     expect(BackHandler.exitApp).toHaveBeenCalledTimes(1);
+  });
+
+  describe('Notification (Regular Content)', () => {
+    beforeAll(() => {
+      jest.mock('../notification-handler.ts', () => {
+        const {CARD_STATUS} = require('../layer/data/_const');
+
+        const {createCardLevel, createDisciplineCard} = require('../__fixtures__/cards');
+        const levelCard = createCardLevel({
+          ref: 'mod_1',
+          status: CARD_STATUS.ACTIVE,
+          label: 'Fake level',
+        });
+        const firstCard = createDisciplineCard({
+          ref: 'foo',
+          completion: 0.3,
+          levels: [levelCard],
+          title: 'Discipline card',
+        });
+        return {
+          __esModule: true,
+          default: class {
+            constructor(onNotification: (content: Card) => void) {
+              onNotification(firstCard);
+            }
+          },
+        };
+      });
+    });
+    it('handles notification opening', async () => {
+      const {Component: Authentication} = require('./authentication');
+
+      const navigation = createNavigation({});
+      const selectCard = jest.fn();
+      await renderer.create(<Authentication navigation={navigation} selectCard={selectCard} />);
+
+      expect(navigation.navigate).toHaveBeenCalledTimes(1);
+      expect(navigation.navigate).toHaveBeenCalledWith('Slide');
+    });
+  });
+  describe('Notification (External Content)', () => {
+    beforeAll(() => {
+      jest.mock('../notification-handler.ts', () => {
+        const {createExtCard} = require('../__fixtures__/cards');
+        const {CARD_STATUS} = require('../layer/data/_const');
+        const externalContentCard = createExtCard({
+          ref: 'bar',
+          completion: 0.8,
+          title: 'Scorm card with 4 lines of content, its a lot but can happen so dont juge',
+          status: CARD_STATUS.ACTIVE,
+          isNew: true,
+          isAdaptive: false,
+        });
+        return {
+          __esModule: true,
+          default: class {
+            constructor(onNotification: (content: Card) => void) {
+              onNotification(externalContentCard);
+            }
+          },
+        };
+      });
+    });
+
+    it('handles notification opening(external-content)', async () => {
+      const {Component: Authentication} = require('./authentication');
+
+      const navigation = createNavigation({});
+      const selectCard = jest.fn();
+      await renderer.create(<Authentication navigation={navigation} selectCard={selectCard} />);
+
+      expect(navigation.navigate).toHaveBeenCalledTimes(1);
+      expect(navigation.navigate).toHaveBeenCalledWith('ExternalContent', {
+        contentRef: 'bar',
+        contentType: 'scorm',
+      });
+    });
   });
 
   afterEach(() => {

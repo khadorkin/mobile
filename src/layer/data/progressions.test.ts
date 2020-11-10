@@ -712,6 +712,36 @@ describe('Progressions', () => {
       expect(result).toEqual(expectedResult);
     });
 
+    it('should map a progression to a completion -- with current step at 0', () => {
+      const {mapProgressionToCompletion} = require('./progressions');
+
+      const progressionId = 'fakeProgressionId';
+      const fakeState = createState({
+        stars: 2,
+        step: {
+          current: 0,
+        },
+      });
+      const fakeProgression = createProgression({
+        _id: progressionId,
+        engine: ENGINE.LEARNER,
+        progressionContent: {
+          ref: 'foo',
+          type: CONTENT_TYPE.FAILURE,
+        },
+        state: fakeState,
+      });
+
+      const result = mapProgressionToCompletion(fakeProgression);
+
+      const expectedResult = {
+        current: 0,
+        stars: 2,
+      };
+
+      expect(result).toEqual(expectedResult);
+    });
+
     it('should map a progression to a completion -- without state', () => {
       const {mapProgressionToCompletion} = require('./progressions');
 
@@ -824,6 +854,51 @@ describe('Progressions', () => {
       const expectedResult = {
         stars: expectedMaxStarCount,
         current: 19,
+      };
+      const result = await storeOrReplaceCompletion(fakeProgression);
+
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should update the completion as being completed if the nextContent is a successExitNode', async () => {
+      const AsyncStorage = require('@react-native-community/async-storage');
+      const {storeOrReplaceCompletion} = require('./progressions');
+
+      const progressionId = 'fakeProgressionId';
+
+      const fakeState = createState({
+        stars: 22,
+        step: {
+          current: 20,
+          total: 10,
+        },
+        nextContent: {
+          type: 'success',
+          ref: 'successExitNode',
+        },
+      });
+
+      const fakeProgression = createProgression({
+        _id: progressionId,
+        engine: ENGINE.EXTERNAL,
+        progressionContent: {
+          ref: 'foo',
+          type: CONTENT_TYPE.CHAPTER,
+        },
+        state: fakeState,
+      });
+
+      AsyncStorage.getItem = jest.fn().mockImplementation((key) => {
+        return Promise.resolve(null);
+      });
+
+      AsyncStorage.mergeItem = jest.fn().mockImplementation((key) => {
+        return Promise.resolve(undefined);
+      });
+
+      const expectedResult = {
+        stars: 22,
+        current: 1,
       };
       const result = await storeOrReplaceCompletion(fakeProgression);
 
@@ -1527,6 +1602,82 @@ describe('Progressions', () => {
       await expect(findRemoteProgressionById(TOKEN, HOST, progressionId)).resolves.toBe(
         fakeProgression,
       );
+    });
+  });
+
+  describe('completeRemoteProgression', () => {
+    const TOKEN = '__TOKEN__';
+    const HOST = 'https://coorp.mobile.com';
+
+    it('completes a remote progression', async () => {
+      const fetch = require('cross-fetch');
+
+      const progressionId = 'fakeProgressionId';
+      const engine = ENGINE.EXTERNAL;
+      const progressionContent = {
+        ref: 'foo',
+        type: CONTENT_TYPE.CHAPTER,
+      };
+      const nextContent = {
+        ref: 'bar',
+        type: 'discipline',
+      };
+
+      const fakeProgression = createProgression({
+        _id: progressionId,
+        engine,
+        progressionContent,
+        nextContent,
+      });
+
+      fetch.mockImplementationOnce((url, options) => {
+        expect(url).toBe(`${HOST}/api/v2/progressions/${progressionId}/complete`);
+        expect(options.method).toBe('POST');
+        expect(options.headers).toEqual({
+          authorization: TOKEN,
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'User-Agent': expectedUserAgent,
+        });
+        expect(options.body).toEqual(JSON.stringify({success: true}));
+        return Promise.resolve({
+          json: () => Promise.resolve(fakeProgression),
+        });
+      });
+
+      const {completeRemoteProgression} = require('./progressions');
+      const result = await completeRemoteProgression(HOST, TOKEN, progressionId);
+      expect(result).toEqual(fakeProgression);
+    });
+  });
+
+  describe('getRemoteCurrentProgressionId', () => {
+    const TOKEN = '__TOKEN__';
+    const HOST = 'https://coorp.mobile.com';
+
+    it('gets the current progression id', async () => {
+      const fetch = require('cross-fetch');
+
+      const progressionId = 'fakeProgressionId';
+
+      const contentRef = 'extCont_123';
+      fetch.mockImplementationOnce((url, options) => {
+        expect(url).toBe(`${HOST}/api/v2/progressions/external/current/scorm/${contentRef}`);
+        expect(options.method).toBe('GET');
+        expect(options.headers).toEqual({
+          authorization: TOKEN,
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'User-Agent': expectedUserAgent,
+        });
+        return Promise.resolve({
+          json: () => Promise.resolve({currentProgressionId: progressionId}),
+        });
+      });
+
+      const {getRemoteCurrentProgressionId} = require('./progressions');
+      const result = await getRemoteCurrentProgressionId(HOST, TOKEN, contentRef, 'scorm');
+      expect(result).toEqual(progressionId);
     });
   });
 });

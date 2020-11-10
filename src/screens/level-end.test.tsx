@@ -10,7 +10,7 @@ import {createLevel} from '../__fixtures__/levels';
 import {createChapter} from '../__fixtures__/chapters';
 import {createProgression} from '../__fixtures__/progression';
 import {createContextWithImage} from '../__fixtures__/context';
-import {createDisciplineCard, createCardLevel} from '../__fixtures__/cards';
+import {createDisciplineCard, createCardLevel, createExtCard} from '../__fixtures__/cards';
 import {createExitNode} from '../__fixtures__/exit-nodes';
 import {CONTENT_TYPE, ENGINE} from '../const';
 import {CARD_STATUS, EXIT_NODE_TYPE} from '../layer/data/_const';
@@ -28,6 +28,15 @@ const slide = createSlide({
   context,
 });
 
+const externalContentCard = createExtCard({
+  ref: 'bar',
+  completion: 0.8,
+  title: 'Scorm card with 4 lines of content, its a lot but can happen so dont juge',
+  status: CARD_STATUS.ACTIVE,
+  isNew: true,
+  isAdaptive: false,
+});
+
 const levelOne = createLevel({ref: 'mod_foo', chapterIds: ['cha_foo']});
 const levelTwo = createLevel({ref: 'mod_bar', chapterIds: ['cha_bar']});
 const levelThree = createLevel({ref: 'mod_baz', chapterIds: ['cha_baz']});
@@ -39,11 +48,13 @@ const disciplineOne = createDiscipline({
   levels: [levelOne, levelTwo, levelThree],
   name: 'Fake discipline',
 });
+
 const disciplineTwo = createDiscipline({
   ref: 'dis2',
   levels: [levelFour, levelFive],
   name: 'Fake discipline',
 });
+
 const disciplineCardOne = createDisciplineCard({
   ref: disciplineOne.ref,
   completion: 0,
@@ -52,6 +63,7 @@ const disciplineCardOne = createDisciplineCard({
   ),
   title: disciplineOne.name,
 });
+
 const disciplineCardTwo = createDisciplineCard({
   ref: disciplineTwo.ref,
   completion: 0,
@@ -60,6 +72,7 @@ const disciplineCardTwo = createDisciplineCard({
   ),
   title: disciplineTwo.name,
 });
+
 const exitNode = createExitNode({type: EXIT_NODE_TYPE.SUCCESS});
 
 const createParams = ({isCorrect = false}: {isCorrect?: boolean}): Params => ({
@@ -259,6 +272,28 @@ describe('LevelEnd', () => {
     expect(navigation.navigate).toHaveBeenCalledWith('Slide');
     expect(selectCard).toHaveBeenCalledTimes(1);
     expect(selectCard).toHaveBeenCalledWith(disciplineCardOne);
+  });
+
+  it('should handle card press(external-content)', () => {
+    const {Component: LevelEnd} = require('./level-end');
+
+    const selectCard = jest.fn();
+    const params = createParams({});
+    const {route, ...navigation} = createNavigation({params});
+    const component = renderer.create(
+      <LevelEnd navigation={navigation} route={route} selectCard={selectCard} />,
+    );
+
+    const levelEnd = component.root.find((el) => el.props.testID === 'level-end');
+    levelEnd.props.onCardPress(externalContentCard);
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(1);
+    expect(navigation.navigate).toHaveBeenCalledWith('ExternalContent', {
+      contentRef: 'bar',
+      contentType: 'scorm',
+    });
+    expect(selectCard).toHaveBeenCalledTimes(1);
+    expect(selectCard).toHaveBeenCalledWith(externalContentCard);
   });
 
   it('should handle feedback link press', () => {

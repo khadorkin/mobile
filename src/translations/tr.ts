@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Derse eriş',
+  article: 'makale',
   authenticationMagicLinkHeader:
     'Platformunuza bağlanmak için e-posta ile gönderilen bağlantıya tıklayın',
   authenticationMagicLinkStepOneDescription:
@@ -122,6 +123,7 @@ const translations: Translations = {
   yesNotifyMe: 'Evet, bana bildirim gönderin',
   maybeLater: 'Belki daha sonra',
   platformHasBeenDisabled: 'Uygulama, platformunuz için devre dışı bırakıldı',
+  podcast: 'Podcast',
   question: 'Soru',
   quit: 'Çık',
   reactivatePlatform:
@@ -135,6 +137,8 @@ const translations: Translations = {
   retryChapter: 'Bölümü yeniden dene',
   retryLevel: 'Seviyeyi  yeniden dene',
   scanQRCode: '<b>QR kodunu</b> tara',
+  scorm: 'Etkileşimli slaytlar',
+  externalFinishCourse: 'Bu dersi tamamladım',
   search: 'Ara',
   seeClue: 'İpucunu gör',
   selectSomethingBelow: 'Aşağıdan bir öğe seçin',
@@ -187,6 +191,7 @@ const translations: Translations = {
   typeHere: 'Buraya yazın',
   validate: 'Onayla',
   version: 'Sürüm',
+  video: 'Video',
   videoLoadingError: 'Video yüklenirken bir hata meydana geldi, lütfen tekrar deneyin.',
   unlockNextLevel: 'Az önce <br><b>{{levelName}} seviyesinin</b> kilidini açtın',
   upgrade: 'Yükselt',

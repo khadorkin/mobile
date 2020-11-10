@@ -76,6 +76,7 @@ export type IMG = 'img';
 export type VIDEO = 'video';
 export type PDF = 'pdf';
 export type SCORM = 'scorm';
+export type PODCAST = 'podcast';
 export type ARTICLE = 'article';
 export type ContentType =
   | DISCIPLINE
@@ -89,6 +90,7 @@ export type ContentType =
   | PDF
   | VIDEO
   | SCORM
+  | PODCAST
   | ARTICLE;
 
 export type LessonType = VIDEO | PDF | IMG;

@@ -3,6 +3,8 @@ import {Linking, StatusBar, StyleSheet, BackHandler} from 'react-native';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import RNBootSplash from 'react-native-bootsplash';
+import {StackScreenProps} from '@react-navigation/stack';
+import {ExternalTypeState} from '../redux/external-content';
 import {withBackHandler} from '../containers/with-backhandler';
 
 import {assistanceEmail} from '../../app';
@@ -14,12 +16,13 @@ import Screen from '../components/screen';
 import {signIn} from '../redux/actions/authentication';
 import {selectCard} from '../redux/actions/catalog/cards/select';
 import NotificationHandler from '../notification-handler';
-import {ChapterCard, DisciplineCard} from '../layer/data/_types';
+import {Card, ExternalContentCard} from '../layer/data/_types';
 
 import {get as getToken} from '../utils/local-token';
 import {getToken as _getToken} from '../redux/utils/state-extract';
 import {migrationsRunner} from '../migrations';
 import ErrorListener from '../containers/error-listener';
+import {isExternalContent} from '../utils';
 import type {Params as AuthenticationDetailsParams} from './authentication-details';
 
 export interface ConnectedStateProps {
@@ -31,7 +34,18 @@ interface ConnectedDispatchProps {
   selectCard: typeof selectCard;
 }
 
-interface Props extends NavigationScreenProps, ConnectedStateProps, ConnectedDispatchProps {}
+type AuthenticationParams = {
+  Authentication: undefined;
+  Slide: undefined;
+  Home: undefined;
+  ExternalContent: {contentType: ExternalTypeState; contentRef: string};
+  AuthenticationDetails: AuthenticationDetailsParams;
+};
+
+interface Props
+  extends StackScreenProps<AuthenticationParams, 'Authentication'>,
+    ConnectedStateProps,
+    ConnectedDispatchProps {}
 
 type State = {
   isSplashScreenHidden: boolean;
@@ -58,7 +72,7 @@ class AuthenticationScreen extends React.PureComponent<Props, State> {
     };
   }
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<void> {
     const token = await getToken();
 
     if (token) {
@@ -67,13 +81,13 @@ class AuthenticationScreen extends React.PureComponent<Props, State> {
     await this.runMigrations();
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.isAuthenticated && !this.props.isAuthenticated) {
       this.handleSignOut();
     }
   }
 
-  hideSplashScreen = () => {
+  hideSplashScreen = (): void => {
     // Because iOS automatically hides the splash screen
     this.setState({
       isSplashScreenHidden: true,
@@ -82,27 +96,35 @@ class AuthenticationScreen extends React.PureComponent<Props, State> {
     RNBootSplash.hide({duration: 250});
   };
 
-  handleSignOut = () => this.props.navigation.popToTop();
+  handleSignOut = (): void => this.props.navigation.popToTop();
 
-  handleSignIn = async (authenticationType: AuthenticationType, token?: string) => {
+  handleSignIn = async (authenticationType: AuthenticationType, token?: string): Promise<void> => {
     this.props.navigation.navigate('Home');
     await this.props.signIn(authenticationType, token);
   };
 
-  handleNotification(content: DisciplineCard | ChapterCard) {
-    this.props.navigation.navigate('Slide');
+  handleNotification(content: Card): void {
+    const isExternal = isExternalContent(content);
+    if (!isExternal) {
+      this.props.navigation.navigate('Slide');
+    } else {
+      this.props.navigation.navigate('ExternalContent', {
+        contentRef: (content as ExternalContentCard).modules[0].universalRef,
+        contentType: (content as ExternalContentCard).type,
+      });
+    }
     this.props.selectCard(content);
   }
 
-  handleDemoPress = () => {
+  handleDemoPress = (): void => {
     this.handleSignIn(AUTHENTICATION_TYPE.DEMO);
   };
 
-  handleHelpPress = () => {
+  handleHelpPress = (): void => {
     Linking.openURL(`mailto:${assistanceEmail}`);
   };
 
-  handleDesktopButtonPress = () => {
+  handleDesktopButtonPress = (): void => {
     this.handleDetailsNavigation(AUTHENTICATION_TYPE.QR_CODE);
   };
 
@@ -110,7 +132,7 @@ class AuthenticationScreen extends React.PureComponent<Props, State> {
     this.handleDetailsNavigation(AUTHENTICATION_TYPE.MAGIC_LINK);
   };
 
-  runMigrations = async () => {
+  runMigrations = async (): Promise<void> => {
     try {
       await migrationsRunner();
       return this.hideSplashScreen();
@@ -119,7 +141,7 @@ class AuthenticationScreen extends React.PureComponent<Props, State> {
     }
   };
 
-  handleDetailsNavigation = (type: Pick<AuthenticationDetailsParams, 'type'>) => {
+  handleDetailsNavigation = (type: AuthenticationType): void => {
     const {navigation} = this.props;
     const params: AuthenticationDetailsParams = {
       type,

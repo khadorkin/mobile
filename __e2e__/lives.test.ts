@@ -19,8 +19,8 @@ describe('Lives', () => {
 
   describe('Learner', () => {
     beforeAll(async () => {
-      await waitForExist('catalog-section-recommended-items-item-basic-dis-1');
-      await tapCardOnList('catalog-section-recommended-items', 2);
+      await waitForExist('catalog-section-recommended-items');
+      await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2);
     });
 
     it('should see 4 lives', async () => {
@@ -41,7 +41,7 @@ describe('Lives', () => {
   describe('Adaptive', () => {
     beforeAll(async () => {
       await element(by.id('question-header-back')).tap();
-      await tapCardOnList('catalog-section-recommended-items', 1);
+      await tapCardOnList('catalog-section-recommended-items', 'adaptive-dis-1', 1, 1);
     });
 
     it('should not see lives', async () => {
@@ -52,8 +52,7 @@ describe('Lives', () => {
   describe('Microlearning', () => {
     beforeAll(async () => {
       await element(by.id('question-header-back')).tap();
-      await element(by.id('home-screen')).swipe('up');
-      await tapCardOnList('catalog-section-recommended-items', 12);
+      await tapCardOnList('catalog-section-recommended-items', 'microlearning-basic-cha-1', 1, 12);
     });
 
     it('should not see lives', async () => {

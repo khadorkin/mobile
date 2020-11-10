@@ -5,7 +5,7 @@ import {Platform} from 'react-native';
 import {createNavigation} from '../__fixtures__/navigation';
 import {createStoreState} from '../__fixtures__/store';
 import {createProgression} from '../__fixtures__/progression';
-import {createChapterCard} from '../__fixtures__/cards';
+import {createChapterCard, createExtCard} from '../__fixtures__/cards';
 import {CARD_STATUS} from '../layer/data/_const';
 import {ENGINE, CONTENT_TYPE, NOTIFICATION_SETTINGS_STATUS} from '../const';
 import {mapStateToProps} from './home';
@@ -15,6 +15,13 @@ const card = createChapterCard({
   ref: 'bar',
   completion: 0,
   title: 'Fake chapter',
+  status: CARD_STATUS.ACTIVE,
+});
+
+const externalContentCard = createExtCard({
+  ref: 'extCont_123',
+  completion: 0,
+  title: 'Fake ExternalContent',
   status: CARD_STATUS.ACTIVE,
 });
 
@@ -79,7 +86,7 @@ describe('Home', () => {
     expect(expected).toEqual(result);
   });
 
-  it('should handle card press', () => {
+  it('should handle card press and navigate to Slide', () => {
     const {Component: Home} = require('./home');
 
     const selectCard = jest.fn();
@@ -103,6 +110,34 @@ describe('Home', () => {
     expect(navigation.navigate).toHaveBeenCalledWith('Slide');
     expect(selectCard).toHaveBeenCalledTimes(1);
     expect(selectCard).toHaveBeenCalledWith(card);
+  });
+
+  it('should handle card press and navigate to ExternalContent', () => {
+    const {Component: Home} = require('./home');
+
+    const selectCard = jest.fn();
+    const navigation = createNavigation({});
+    const component = renderer.create(
+      <Home
+        navigation={navigation}
+        selectCard={selectCard}
+        isFetching
+        isFocused={false}
+        appSession={3}
+        notificationStatus="granted"
+        notificationSettings={notificationSettings}
+      />,
+    );
+
+    const home = component.root.find((el) => el.props.testID === 'home');
+    home.props.onCardPress(externalContentCard);
+
+    expect(navigation.navigate).nthCalledWith(1, 'ExternalContent', {
+      contentRef: 'extCont_123',
+      contentType: 'scorm',
+    });
+    expect(selectCard).toHaveBeenCalledTimes(1);
+    expect(selectCard).toHaveBeenCalledWith(externalContentCard);
   });
 
   it('should handle search press', () => {

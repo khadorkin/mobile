@@ -100,7 +100,7 @@ describe('Fetch', () => {
 
     _fetch.mockImplementationOnce((url, options) => {
       expect(url).toBe('https://domain.tld?foo=qux');
-      expect(options).toEqual({headers: expectedHeader, method: 'POST'});
+      expect(options).toEqual({headers: expectedHeader, method: 'POST', credentials: 'omit'});
 
       return Promise.resolve(response);
     });

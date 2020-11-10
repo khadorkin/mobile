@@ -1,4 +1,5 @@
-import type {DisciplineCard, ChapterCard} from '../../../../layer/data/_types';
+import {isExternalContent} from '../../../../utils';
+import type {Card} from '../../../../layer/data/_types';
 import translations from '../../../../translations';
 import type {SupportedLanguage} from '../../../../translations/_types';
 import type {StoreAction} from '../../../_types';
@@ -10,14 +11,11 @@ export type Action = {
   type: '@@cards/REFRESH';
   payload: {
     language: SupportedLanguage;
-    item: DisciplineCard | ChapterCard;
+    item: Card;
   };
 };
 
-export const refreshCard = (
-  language: SupportedLanguage,
-  item: DisciplineCard | ChapterCard,
-): Action => ({
+export const refreshCard = (language: SupportedLanguage, item: Card): Action => ({
   type: REFRESH,
   payload: {
     language,
@@ -25,10 +23,7 @@ export const refreshCard = (
   },
 });
 
-export const updateCard = (
-  language: SupportedLanguage,
-  card: DisciplineCard | ChapterCard,
-): StoreAction<Action> => {
+export const updateCard = (language: SupportedLanguage, card: Card): StoreAction<Action> => {
   return async (dispatch, getState, options) => {
     const {services} = options;
     const refreshedCard = await services.Cards.refreshCard(card);
@@ -47,6 +42,7 @@ export const getAndRefreshCard = (progressionId: string): StoreAction<Action> =>
   if (
     progression &&
     (progression.content.type === CONTENT_TYPE.CHAPTER ||
+      isExternalContent({type: progression.content.type} as Card) ||
       progression.content.type === CONTENT_TYPE.LEVEL)
   ) {
     const card = await services.Cards.getCardFromLocalStorage(progression.content.ref);

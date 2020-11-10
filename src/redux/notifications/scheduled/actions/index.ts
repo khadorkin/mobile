@@ -12,7 +12,7 @@ import {
   NOTIFICATION_TYPE,
 } from '../../../../const';
 import {getUser, getNotificationsSettings} from '../../../utils/state-extract';
-import {ChapterCard, DisciplineCard} from '../../../../layer/data/_types';
+import {Card} from '../../../../layer/data/_types';
 import {scheduleNotificationOnDevice, calculateNotificationDeliveryDate} from '../utils';
 
 export type ScheduleActionPayload = {
@@ -47,13 +47,13 @@ export type Action<T = typeof SCHEDULE_NOTIFICATION_ACTION_NAME, R = ScheduleAct
 
 const scheduleNotification = (
   userName: string | undefined,
-  content: DisciplineCard | ChapterCard,
+  content: Card,
   type: NotificationType,
   index: number,
 ) => (dispatch): StoreAction<Action | void> => {
   const id: number = Math.floor(Math.random() * Math.pow(2, 32));
   const action = {
-    type: SCHEDULE_NOTIFICATION,
+    type: SCHEDULE_NOTIFICATION.type,
     payload: {
       id: id,
       courseID: content?.universalRef,
@@ -82,7 +82,7 @@ export const unscheduleLocalNotifications = (type: NotificationType) => async (
   {services}: {services: Services},
 ) => {
   const action = {
-    type: UNSCHEDULE_NOTIFICATION,
+    type: UNSCHEDULE_NOTIFICATION.type,
     payload: {
       type: type,
     },

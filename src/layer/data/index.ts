@@ -17,6 +17,8 @@ import {
   synchronize as synchronizeProgression,
   findBestOf,
   updateSynchronizedProgressionIds,
+  completeRemoteProgression,
+  getRemoteCurrentProgressionId,
 } from './progressions';
 import {find as findContent} from './content';
 import {findById as findChapterById, getNextChapter} from './chapters';
@@ -28,9 +30,10 @@ import {
   fetchSearchCards,
   refreshCard,
   getCardFromLocalStorage,
+  getExternalContentHideCompleteButton,
 } from './cards';
 import {fetchBrand} from './brand';
-import {fetchUser} from './users';
+import {fetchUser, fetchNewToken, fetchExternalContentLoginInfo} from './users';
 import {findById as findSlideById, findByChapter as findSlideByChapter} from './slides';
 import {fetchRecommendation} from './recommendations';
 import {findById as findLevelById, getNextLevel} from './levels';
@@ -48,6 +51,10 @@ export type DataLayer = DataLayerBase & {
   storeBundle: typeof storeBundle;
   fetchCard: typeof fetchCard;
   fetchSectionCards: typeof fetchSectionCards;
+  fetchExternalContentLoginInfo: typeof fetchExternalContentLoginInfo;
+  getExternalContentHideCompleteButton: typeof getExternalContentHideCompleteButton;
+  completeRemoteProgression: typeof completeRemoteProgression;
+  getRemoteCurrentProgressionId: typeof getRemoteCurrentProgressionId;
   fetchSearchCards: typeof fetchSearchCards;
   fetchBrand: typeof fetchBrand;
   setLanguage: typeof setLanguage;
@@ -68,6 +75,7 @@ export type DataLayer = DataLayerBase & {
   logError: typeof logError;
   setLoggerProperties: typeof setLoggerProperties;
   fetchUser: typeof fetchUser;
+  fetchNewToken: typeof fetchNewToken;
   saveProgression: (arg0: Progression) => Promise<Progression>;
   updateSynchronizedProgressionIds: typeof updateSynchronizedProgressionIds;
   getChapterRulesByContent: typeof getChapterRulesByContent;
@@ -88,6 +96,7 @@ const createDataLayer = (): DataLayer => ({
   saveProgression,
   synchronizeProgression,
   fetchUser,
+  fetchNewToken,
   // @ts-ignore  @todo replace with fetchRecommendations
   findRecommendations: () => [],
   getNextChapter,
@@ -95,7 +104,11 @@ const createDataLayer = (): DataLayer => ({
   findLevelById,
   fetchCard,
   fetchSectionCards,
+  fetchExternalContentLoginInfo,
+  getExternalContentHideCompleteButton,
   fetchSearchCards,
+  completeRemoteProgression,
+  getRemoteCurrentProgressionId,
   fetchBrand,
   setLanguage,
   getInterfaceLanguage,

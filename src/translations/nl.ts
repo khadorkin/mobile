@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Naar de les',
+  article: 'Artikel',
   authenticationMagicLinkHeader:
     'Maak verbinding met uw platform door op de link te klikken die u via e-mail hebt ontvangen',
   authenticationMagicLinkStepOneDescription:
@@ -127,6 +128,7 @@ const translations: Translations = {
   yesNotifyMe: 'Ja, ik wil meldingen ontvangen',
   maybeLater: 'Straks misschien',
   platformHasBeenDisabled: 'De app is uitgeschakeld voor je platform',
+  podcast: 'Podcast',
   question: 'Vraag',
   quit: 'Verlaten',
   reactivatePlatform:
@@ -140,6 +142,8 @@ const translations: Translations = {
   retryChapter: 'Probeer hoofdstuk opnieuw',
   retryLevel: 'Probeer dit niveau opnieuw',
   scanQRCode: 'Scan uw <b>QR-code</b>',
+  scorm: "Interactieve dia's",
+  externalFinishCourse: 'Ik heb deze cursus voltooid',
   search: 'Zoeken',
   seeClue: 'Bekijk tip',
   selectSomethingBelow: 'Selecteer iets hieronder',
@@ -192,6 +196,7 @@ const translations: Translations = {
   typeHere: 'Schrijf hier',
   validate: 'Valideren',
   version: 'Versie',
+  video: 'Video',
   videoLoadingError:
     'Er is een fout opgetreden bij het laden van de video. Probeer het alsjeblieft opnieuw.',
   unlockNextLevel: 'Je hebt zojuist {{levelName}} niveau <br><b> ontgrendeld </b>',

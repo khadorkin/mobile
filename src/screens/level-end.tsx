@@ -17,7 +17,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import type {StoreState} from '../redux/store';
 import Screen from '../components/screen';
 import LevelEnd, {POSITIVE_COLOR, NEGATIVE_COLOR} from '../components/level-end';
-import type {DisciplineCard, ChapterCard} from '../layer/data/_types';
+import type {DisciplineCard, ChapterCard, Card, ExternalContentCard} from '../layer/data/_types';
 import {compareCards} from '../utils/content';
 import {CONTENT_TYPE} from '../const';
 import translations from '../translations';
@@ -28,6 +28,8 @@ import {getBestScore, getCards} from '../redux/utils/state-extract';
 import {edit as editSearch} from '../redux/actions/ui/search';
 import {getAllowedParamsForSearch} from '../utils/search';
 import {getQueryParamsFromURL} from '../modules/uri';
+import {isExternalContent} from '../utils';
+import {ExternalTypeState} from '../redux/external-content';
 import type {Params as PdfScreenParams} from './pdf';
 
 interface ConnectedDispatchProps {
@@ -39,7 +41,7 @@ interface ConnectedDispatchProps {
 
 export interface ConnectedStateProps {
   contentType?: ContentType;
-  recommendation: DisciplineCard | ChapterCard;
+  recommendation: Card;
   bestScore?: number | void;
   currentContent?: LevelAPI | ChapterAPI;
   nextContent?: LevelAPI | ChapterAPI | ExitNodeAPI;
@@ -55,6 +57,7 @@ export type Params = {
   Home: undefined;
   Search: undefined;
   Modals: {screen: string; params: PdfScreenParams};
+  ExternalContent: {contentType: ExternalTypeState; contentRef: string};
 };
 
 interface Props
@@ -73,28 +76,36 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
 
   unsubscribe: null;
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.unsubscribe = this.props.navigation.addListener('focus', this.handleDidFocus);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.unsubscribe();
     this.props.changeAnswerValidationStatus(false);
   }
 
-  handleClose = () => {
+  handleClose = (): void => {
     const {navigation} = this.props;
     return navigation.navigate('Home');
   };
 
-  handleCardPress = (item: DisciplineCard | ChapterCard) => {
+  handleCardPress = (item: Card): void => {
     const {navigation} = this.props;
 
     this.props.selectCard(item);
-    navigation.navigate('Slide');
+    const isExternal = isExternalContent(item);
+    if (!isExternal) {
+      navigation.navigate('Slide');
+    } else {
+      navigation.navigate('ExternalContent', {
+        contentRef: (item as ExternalContentCard).modules[0].universalRef,
+        contentType: (item as ExternalContentCard).type,
+      });
+    }
   };
 
-  handleButtonPress = () => {
+  handleButtonPress = (): void => {
     const {navigation, route, currentContent, nextContent} = this.props;
     const {isCorrect} = route.params;
 
@@ -109,7 +120,7 @@ class LevelEndScreen extends React.PureComponent<Props, State> {
     return navigation.navigate('Home');
   };
 
-  handlePDFButtonPress = (url: string, description?: string) => {
+  handlePDFButtonPress = (url: string, description?: string): void => {
     const pdfParams: PdfScreenParams = {
       title: description,
       source: {uri: url},

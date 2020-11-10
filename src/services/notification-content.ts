@@ -1,8 +1,4 @@
-import type {
-  DisciplineCard,
-  ChapterCard,
-  ContentRecommendation as FinishCourseRecommendation,
-} from '../layer/data/_types';
+import type {Card, ContentRecommendation as FinishCourseRecommendation} from '../layer/data/_types';
 import type {DataLayer} from '../layer/data';
 import {getAggregationsByContent} from '../layer/data/progressions';
 
@@ -16,8 +12,8 @@ const isOnGoing = (aggregation: FinishCourseRecommendation): boolean =>
   isContentStarted(aggregation) && isNotFinished(aggregation);
 
 export type NotificationContentService = {
-  getAllContentByMostRecent: () => Promise<Array<DisciplineCard | ChapterCard | void>>;
-  getRecommendationContent: () => Promise<Array<DisciplineCard | ChapterCard> | void>;
+  getAllContentByMostRecent: () => Promise<Array<Card | void>>;
+  getRecommendationContent: () => Promise<Array<Card> | void>;
 };
 
 const getMostRecentContent = (dataLayer: DataLayer) => async () => {

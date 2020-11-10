@@ -17,6 +17,7 @@ const fetch: typeof _fetch = async (url, options) => {
 
   const _options = {
     ...options,
+    credentials: 'omit',
     headers: {
       ...get('headers', options),
       'X-Requested-With': 'XMLHttpRequest',

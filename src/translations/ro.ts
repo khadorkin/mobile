@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Urmăriți lecția',
+  article: 'Articol',
   authenticationMagicLinkHeader:
     'Faceți clic pe linkul primit prin e-mail pentru a vă conecta la platforma dvs.',
   authenticationMagicLinkStepOneDescription:
@@ -131,6 +132,7 @@ const translations: Translations = {
   yesNotifyMe: 'Da, anunțați-mă',
   maybeLater: 'Poate mai târziu',
   platformHasBeenDisabled: 'Aplicația a fost dezactivată pe platforma ta.',
+  podcast: 'Podcast',
   question: 'Întrebare',
   quit: 'Renunță',
   reactivatePlatform:
@@ -144,6 +146,8 @@ const translations: Translations = {
   retryChapter: 'Încercați din nou acest capitol',
   retryLevel: 'Încercați din nou acest nivel',
   scanQRCode: 'Scanează <b>codul QR</b>',
+  scorm: 'Diapozitive interactive',
+  externalFinishCourse: 'Am terminat acest curs',
   search: 'Căutare',
   seeClue: 'Arată indiciul',
   selectSomethingBelow: 'Selectați din opțiunile de mai jos',
@@ -193,6 +197,7 @@ const translations: Translations = {
   typeHere: 'Tastați aici',
   validate: 'Validează',
   version: 'Versiune',
+  video: 'Video',
   videoLoadingError:
     'S-a produs o eroare în timpul încărcării materialului video. Vă rugăm să încercați din nou.',
   unlockNextLevel: 'Tocmai ai deblocat<br><b>nivelul {{levelName}}</b>',

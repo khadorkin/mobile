@@ -1,14 +1,18 @@
 import * as React from 'react';
 import {Keyboard} from 'react-native';
-
 import isEqual from '../modules/equal';
-import CatalogItemsComponent, {ITEM_WIDTH, ITEM_HEIGHT} from '../components/catalog-items';
-import type {Props as CatalogItemsProps} from '../components/catalog-items';
+import CatalogItemsComponent, {
+  ITEM_WIDTH,
+  ITEM_HEIGHT,
+  ITEM_OFFSET,
+} from '../components/catalog-items';
 import withLayout from './with-layout';
 import type {WithLayoutProps} from './with-layout';
 
 export interface OwnProps {
   onScroll: (offset: number, limit: number) => void;
+  fitScreenWidth?: boolean;
+  numColumns: number;
 }
 
 interface Props extends WithLayoutProps, OwnProps {}
@@ -94,15 +98,24 @@ class CatalogItems extends React.Component<Props> {
       layout,
       onLayout,
       onScroll,
+      numColumns,
+      fitScreenWidth,
       /* eslint-enable no-unused-vars */
       ...remainingProps
     } = this.props;
 
+    if (!layout && fitScreenWidth) return null;
+    let itemScale = 1;
+    if (fitScreenWidth) {
+      itemScale = (layout.width - ITEM_OFFSET * 3) / numColumns / ITEM_WIDTH;
+    }
     return (
       <CatalogItemsComponent
         {...remainingProps}
+        numColumns={numColumns}
         onScroll={this.handleScroll}
         onScrollBeginDrag={this.handleScrollBeginDrag}
+        scale={itemScale}
       />
     );
   }

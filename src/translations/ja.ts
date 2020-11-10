@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'レッスンを受ける',
+  article: '論文',
   authenticationMagicLinkHeader: 'メールで受け取ったリンクをクリックし、プラットフォームに接続する',
   authenticationMagicLinkStepOneDescription: 'この電話で<b>仕事のメールボックス</b>にアクセスする',
   authenticationMagicLinkStepTwoDescription:
@@ -127,6 +128,7 @@ const translations: Translations = {
   yesNotifyMe: 'はい、通知してください',
   maybeLater: '今は結構です',
   platformHasBeenDisabled: 'このアプリは、あなたのプラットフォームでは無効化されています。',
+  podcast: 'ポッドキャスト',
   question: '質問',
   quit: '終了する',
   reactivatePlatform:
@@ -140,6 +142,8 @@ const translations: Translations = {
   retryChapter: '章を再試行します。',
   retryLevel: 'リトライする',
   scanQRCode: 'あなたの<b>QRコードを</b>スキャンする',
+  scorm: 'インタラクティブなスライド',
+  externalFinishCourse: 'このコースを完了しました',
   search: '検索',
   seeClue: 'ヒントをみる ',
   selectSomethingBelow: '下に何かを選択します。',
@@ -189,6 +193,7 @@ const translations: Translations = {
   typeHere: 'ここに入力します',
   validate: '回答',
   version: 'バージョン',
+  video: 'ビデオ',
   videoLoadingError: 'ビデオの読み込み中にエラーが発生しました。再度お試しください。',
   unlockNextLevel: '新たにアンロックしました<br><b>{{levelName}}レベル</b>',
   upgrade: 'アップグレード',

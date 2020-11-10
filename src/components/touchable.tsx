@@ -13,6 +13,7 @@ import withAnalytics from '../containers/with-analytics';
 import type {WithAnalyticsProps} from '../containers/with-analytics';
 import withVibration from '../containers/with-vibration';
 import type {WithVibrationProps} from '../containers/with-vibration';
+import theme from '../modules/theme';
 
 interface Props extends WithAnalyticsProps, WithVibrationProps {
   accessible?: boolean;
@@ -99,6 +100,7 @@ class Touchable extends React.PureComponent<Props> {
       return (
         <TouchableHighlight
           {...props}
+          underlayColor={theme.colors.gray.light}
           onPress={this.handlePress}
           onLongPress={this.handleLongPress}
           activeOpacity={activeOpacity || (disabled ? 1 : 0.85)}

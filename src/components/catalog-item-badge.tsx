@@ -3,7 +3,6 @@ import {StyleSheet, View} from 'react-native';
 
 import theme from '../modules/theme';
 import Text from './text';
-import {BrandThemeContext} from './brand-theme-provider';
 
 interface Props {
   label: string;
@@ -14,10 +13,12 @@ interface Props {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
+    marginLeft: theme.spacing.tiny,
+    marginTop: theme.spacing.tiny,
     backgroundColor: theme.colors.white,
-    borderBottomEndRadius: theme.radius.medium,
+    borderRadius: 100,
     paddingVertical: theme.spacing.micro,
-    paddingHorizontal: theme.spacing.tiny,
+    paddingHorizontal: theme.spacing.tiny * 1.5,
   },
   label: {
     fontWeight: theme.fontWeight.bold,
@@ -26,11 +27,10 @@ const styles = StyleSheet.create({
 });
 
 const Badge = ({label, size, testID}: Props) => {
-  const brandTheme = React.useContext(BrandThemeContext);
-  const fontSize = size === 'cover' ? theme.fontSize.small : theme.fontSize.extraSmall;
+  const fontSize = theme.fontSize.small;
   const labelStyle = {
     fontSize,
-    color: brandTheme.colors.primary,
+    color: theme.colors.notification,
   };
 
   return (

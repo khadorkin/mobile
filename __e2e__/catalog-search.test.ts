@@ -6,7 +6,6 @@ import {
   waitForVisible,
   waitForExist,
   waitForNotVisible,
-  tapCardOnList,
 } from './utils';
 
 const thirdCard = 'catalog-search-items-item-with-image-context-dis-1';
@@ -40,7 +39,9 @@ describe('CatalogSearch', () => {
   });
 
   it('should be able to select a card', async () => {
-    await tapCardOnList('catalog-search-items', 4, true);
+    await waitForVisible('catalog-search-items-item-basic-dis-1');
+    // might be a detox bug, but we're forced to tap twice
+    await element(by.id('catalog-search-items-item-basic-dis-1')).multiTap(2);
     await expect(element(by.id('header-slide-title'))).toBeVisible();
   });
 

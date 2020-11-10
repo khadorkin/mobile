@@ -63,6 +63,7 @@ describe('Datadog', () => {
 
       const expectedOptions = {
         method: 'POST',
+        credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': expectedUserAgent,

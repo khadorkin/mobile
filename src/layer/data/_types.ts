@@ -215,7 +215,17 @@ export type ChapterCard = ICard & {
   accessible: boolean;
 };
 
-export type CardType = Pick<DisciplineCard, 'type'> | Pick<ChapterCard, 'type'>;
+export type ExternalContentType = 'scorm' | 'video' | 'article' | 'podcast';
+
+export type ExternalContentCard = ICard & {
+  type: ExternalContentType;
+  modules: Array<CardLevel>;
+};
+
+export type CardType =
+  | Pick<DisciplineCard, 'type'>
+  | Pick<ChapterCard, 'type'>
+  | Pick<ExternalContentCard, 'type'>;
 
 export type Resource =
   | ChapterRules
@@ -224,9 +234,10 @@ export type Resource =
   | Chapter
   | ExitNode
   | ChapterCard
-  | DisciplineCard;
+  | DisciplineCard
+  | ExternalContentCard;
 
-export type Card = DisciplineCard | ChapterCard;
+export type Card = DisciplineCard | ChapterCard | ExternalContentCard;
 
 export type Cards = Array<Card>;
 

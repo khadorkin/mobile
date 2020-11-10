@@ -1,17 +1,18 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import decode from 'jwt-decode';
 import {groupBy} from 'lodash/fp';
+import pRetry from 'p-retry';
 import {heroRecommendation} from '@coorpacademy/progression-aggregations';
 import type {Progression, Action, ContentType} from '../../types/coorpacademy/progression-engine';
 
 import {__E2E__} from '../../modules/environment';
 import fetch from '../../modules/fetch';
 import {getCreatedAt, getUpdatedAt, isDone, isFailure} from '../../utils/progressions';
-import {CONTENT_TYPE, SPECIFIC_CONTENT_REF} from '../../const';
+import {CONTENT_TYPE, ENGINE, SPECIFIC_CONTENT_REF} from '../../const';
 import type {JWT} from '../../types';
 import {get as getToken} from '../../utils/local-token';
 import {ForbiddenError, ConflictError, NotAcceptableError} from '../../models/error';
-import type {Record, Completion, HeroRecommendation} from './_types';
+import type {Record, Completion, HeroRecommendation, ExternalContentType} from './_types';
 
 export const SYNCHRONIZED_PROGRESSIONS = 'synchronized_progressions';
 export const PENDING_PROGRESSION = 'pending_progression';
@@ -53,6 +54,15 @@ export const storeOrReplaceCompletion = async (progression: Progression): Promis
     );
     await AsyncStorage.mergeItem(completionKey, JSON.stringify(mergedCompletion));
     return mergedCompletion;
+  }
+
+  if (
+    progression.engine.ref === ENGINE.EXTERNAL &&
+    progression.state?.nextContent?.ref === SPECIFIC_CONTENT_REF.SUCCESS_EXIT_NODE
+  ) {
+    const completion_ = {current: 1, stars: progression.state.stars};
+    await AsyncStorage.mergeItem(completionKey, JSON.stringify(completion_));
+    return completion_;
   }
 
   const completion = mapProgressionToCompletion(progression);
@@ -166,7 +176,7 @@ const addCreatedAtToAction = (progression: Progression): Progression => {
   };
 };
 
-const persist = async (progression: Progression): Promise<Progression> => {
+export const persist = async (progression: Progression): Promise<Progression> => {
   const {_id} = progression;
   if (_id === undefined) throw new TypeError('progression has no property _id');
 
@@ -299,6 +309,44 @@ const getAggregationsByContent = async (): Promise<Array<HeroRecommendation>> =>
   return aggregations;
 };
 
+const completeRemoteProgression = async (
+  host: string,
+  token: string,
+  progressionId: string,
+): Promise<Progression> => {
+  const response = await fetch(`${host}/api/v2/progressions/${progressionId}/complete`, {
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({success: true}),
+    method: 'POST',
+  });
+
+  const progression = await response.json();
+  return progression;
+};
+
+const getRemoteCurrentProgressionId = async (
+  host: string,
+  token: string,
+  extContRef: string,
+  extContentType: ExternalContentType,
+): Promise<string> => {
+  const response = await fetch(
+    `${host}/api/v2/progressions/external/current/${extContentType}/${extContRef}`,
+    {
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
+    },
+  );
+  const data = await response.json();
+  return data.currentProgressionId;
+};
+
 export {
   getAggregationsByContent,
   save,
@@ -310,4 +358,6 @@ export {
   synchronize,
   findRemoteProgressionById,
   updateSynchronizedProgressionIds,
+  completeRemoteProgression,
+  getRemoteCurrentProgressionId,
 };

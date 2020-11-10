@@ -3,7 +3,6 @@ import {
   reloadApp,
   bypassAuthentication,
   bypassNotifyMeScreen,
-  getLessonTab,
   tapCardOnList,
   waitForExist,
   waitForVisible,
@@ -19,8 +18,8 @@ describe('Lesson', () => {
 
   describe('More than 1 resource', () => {
     it('should see catalog and choose a discipline', async () => {
-      await waitForExist('catalog-section-recommended-items-item-basic-dis-1');
-      await tapCardOnList('catalog-section-recommended-items', 2);
+      await waitForExist('catalog-section-recommended-items');
+      await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
     });
 
     // it('should see lesson tab icon with notification', async () => {
@@ -28,7 +27,7 @@ describe('Lesson', () => {
     // });
 
     it('should be redirected to lesson tab', async () => {
-      await getLessonTab(element).tap();
+      await element(by.id('lesson-tab')).tap();
       await waitForVisible('lesson-screen');
     });
 
@@ -54,8 +53,8 @@ describe('Lesson', () => {
       await element(by.id('resources')).swipe('up');
       await expect(element(by.id('resource-les-4'))).toBeVisible();
       await expect(element(by.id('resource-les-4-thumbnail'))).toBeVisible();
-      await expect(element(by.id('resource-les-4-thumbnail-preview-container'))).toBeVisible();
-      await expect(element(by.id('resource-les-4-description'))).toBeVisible();
+      await expect(element(by.id('resource-les-4-thumbnail-preview-container'))).toExist();
+      await expect(element(by.id('resource-les-4-description'))).toExist();
     });
 
     it('should be able to select the pdf resource', async () => {
@@ -71,12 +70,12 @@ describe('Lesson', () => {
   describe('1 resource only', () => {
     beforeAll(async () => {
       await element(by.id('question-header-back')).tap();
-      await tapCardOnList('catalog-section-recommended-items', 1);
-      await getLessonTab(element).tap();
+      await tapCardOnList('catalog-section-recommended-items', 'adaptive-dis-1', 1, 1);
+      await element(by.id('lesson-tab')).tap();
     });
 
     it('should be redirected to lesson tab', async () => {
-      await getLessonTab(element).tap();
+      await element(by.id('lesson-tab')).tap();
       await waitForVisible('lesson-screen');
     });
 
@@ -88,11 +87,11 @@ describe('Lesson', () => {
   describe('Without resource', () => {
     beforeAll(async () => {
       await element(by.id('question-header-back')).tap();
-      await tapCardOnList('catalog-section-recommended-items', 5);
+      await tapCardOnList('catalog-section-recommended-items', 'with-pdf-context-dis-2', 1, 5);
     });
 
     it('should not be redirected to lesson tab', async () => {
-      await getLessonTab(element).tap();
+      await element(by.id('lesson-tab')).tap();
       await expect(element(by.id('lesson-screen'))).toBeNotVisible();
     });
   });

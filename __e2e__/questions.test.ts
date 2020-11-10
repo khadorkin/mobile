@@ -23,7 +23,7 @@ describe('Questions', () => {
   });
 
   it('should see the catalog and choose a discipline', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 2);
+    await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
   });
 
   it('should see QCM elements', async () => {
@@ -35,11 +35,7 @@ describe('Questions', () => {
     await expect(element(by.id('question-choices'))).toBeVisible();
     await expect(element(by.id('button-validate-disabled'))).toBeVisible();
   });
-  it('should not see correction elements', async () => {
-    await expect(element(by.id('correction-success'))).toBeNotVisible();
-    await expect(element(by.id('correction-error'))).toBeNotVisible();
-    await expect(element(by.id('chapter-end'))).toBeNotVisible();
-  });
+
   it('should be able to answer', async () => {
     await element(by.id('question-choice-1')).tap();
     await expect(element(by.id('question-choice-1-selected'))).toBeVisible();

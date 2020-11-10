@@ -12,9 +12,9 @@ const answerQuestion = async () => {
   await waitForExist('question-screen');
   await element(by.id('question-screen')).swipe('up');
   await element(by.id('question-choice-2')).tap();
-  await element(by.id('button-validate')).tap();
+  await element(by.id('button-validate')).multiTap(2);
   await waitForExist('correction-success');
-  await element(by.id('button-next-question')).tap();
+  await element(by.id('button-next-question')).multiTap(2);
 };
 
 describe('Hero: display card for uncomplete level', () => {
@@ -30,7 +30,7 @@ describe('Hero: display card for uncomplete level', () => {
   });
 
   it('answer successfully 3 questions', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 2);
+    await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
     await answerQuestion();
     await answerQuestion();
     await answerQuestion();
@@ -42,6 +42,7 @@ describe('Hero: display card for uncomplete level', () => {
   });
 
   it('should see the hero on dashboard', async () => {
+    await element(by.id('catalog')).scrollTo('top');
     await waitForVisible('catalog-hero-basic-dis-1-footer');
     await waitForVisible('catalog-hero-button');
   });

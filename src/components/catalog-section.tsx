@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: LIST_HORIZONTAL_OFFSET,
-    height: ITEM_HEIGHT,
+    height: ITEM_HEIGHT + 10,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   separator: {
     width: SEPARATOR_HEIGHT,

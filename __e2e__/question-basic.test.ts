@@ -5,6 +5,7 @@ import {
   bypassNotifyMeScreen,
   tapCardOnList,
   waitForExist,
+  waitForVisible,
 } from './utils';
 
 describe('Basic Question', () => {
@@ -15,7 +16,7 @@ describe('Basic Question', () => {
   });
 
   it('should see catalog and choose a discipline', async () => {
-    await tapCardOnList('catalog-section-recommended-items', 10);
+    await tapCardOnList('catalog-section-recommended-items', 'question-basic-dis-1', 1, 10, true);
   });
 
   it('should see the question elements', async () => {
@@ -29,12 +30,13 @@ describe('Basic Question', () => {
     await element(by.id('question-input-text')).replaceText(
       'Coucou toi qui essaie de debugger les tests e2e',
     );
-    await expect(element(by.id('button-validate'))).toBeVisible();
+    await element(by.id('question-screen')).multiTap(2);
+    await waitForVisible('button-validate');
   });
 
   describe('Negative correction', () => {
     it('should see the negative correction screen', async () => {
-      await element(by.id('button-validate')).tap();
+      await element(by.id('button-validate')).multiTap(2);
       await waitForExist('correction-error');
     });
   });
@@ -45,7 +47,8 @@ describe('Basic Question', () => {
     });
     it('should see the positve correction screen', async () => {
       await element(by.id('question-input-text')).replaceText('Play Store');
-      await element(by.id('button-validate')).tap();
+      await element(by.id('question-screen')).multiTap(2);
+      await element(by.id('button-validate')).multiTap(2);
       await waitForExist('correction-success');
     });
   });

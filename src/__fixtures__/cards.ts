@@ -2,12 +2,14 @@ import type {
   Cards,
   DisciplineCard,
   ChapterCard,
+  ExternalContentCard,
   CardLevel,
   CardStatus,
   LevelType,
   Discipline,
   Chapter,
   CardAuthor,
+  ExternalContentType,
 } from '../layer/data/_types';
 import {CARD_STATUS} from '../layer/data/_const';
 import type {AuthorType} from '../types';
@@ -221,8 +223,17 @@ export const createExtCard = ({
   isAdaptive = false,
   isNew = false,
   isFavorite = false,
-  isDone = false,
-  status,
+  image = '//static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg',
+  levels = [
+    createCardLevel({
+      ref: ref,
+      completion: 0,
+      stars: 0,
+      status: CARD_STATUS.ACTIVE,
+      label: 'level name' ?? '',
+      accessible: true,
+    }),
+  ],
   stars = 0,
   authors = [createCardAuthor({})],
   accessible = true,
@@ -230,21 +241,23 @@ export const createExtCard = ({
 }: {
   ref: string;
   completion: number;
+  type?: ExternalContentType;
+  module?: Array<CardLevel>;
   title: string;
   isAdaptive?: boolean;
   isNew?: boolean;
   isFavorite?: boolean;
+  levels?: Array<CardLevel>;
   isDone?: boolean;
   status: CardStatus;
   stars?: number;
   authors?: Array<CardAuthor>;
+  image?: string | null;
   accessible?: boolean;
-}): ChapterCard => ({
-  image:
-    '//static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg',
+}): ExternalContentCard => ({
+  image,
   time: 8,
   adaptiv: isAdaptive,
-  isStandalone: false,
   certification: false,
   lang: 'en',
   skills: [
@@ -275,19 +288,14 @@ export const createExtCard = ({
   ref,
   universalRef: ref,
   version: '1',
-  isFirst: false,
-  moduleRef: 'mod_NyEfthPvE',
-  creditsToAccess: 0,
   relatedContentHidden: 'Mastering the rules of agreement in French',
   _score: null,
   stars,
-  inProgress: completion !== 0,
-  isDone,
   completion,
-  status,
   isNew,
   favorite: isFavorite,
   accessible,
+  modules: levels,
 });
 
 export const createDisciplinesCards = (disciplines: Array<Discipline>): Cards => {

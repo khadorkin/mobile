@@ -27,6 +27,7 @@ import type {State as SelectState} from './reducers/ui/select';
 import type {State as AnswersState} from './reducers/ui/answers';
 import type {State as SearchState} from './reducers/ui/search';
 import type {State as ProgressionsState} from './reducers/progressions/synchronize';
+import type {State as ExternalContentState} from './external-content';
 import catalog from './reducers/catalog';
 import authentication from './reducers/authentication';
 import permissions from './reducers/permissions';
@@ -36,6 +37,7 @@ import video from './video';
 import godMode from './god-mode';
 import appSession from './app-session';
 import fastSlide from './fast-slide';
+import externalContent from './external-content';
 import errors from './reducers/ui/errors';
 import select from './reducers/ui/select';
 import isValidating from './reducers/ui/answers';
@@ -64,6 +66,7 @@ export type StoreState = ReduxState & {
   appSession: AppSessionState;
   notifications: NotificationsState;
   network: NetworkState;
+  externalContent: ExternalContentState;
 };
 
 const {ErrorLogger, ReduxThunkMemoized} = middlewares;
@@ -87,6 +90,7 @@ const reducers = combineReducers({
   appSession,
   notifications,
   network,
+  externalContent,
 });
 
 const createMiddlewares = (options: Options, reduxDevTools?: ReduxDevTools) => {

@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Hozzáférés a leckéhez',
+  article: 'Cikk',
   authenticationMagicLinkHeader:
     'Kattintson az e-mailben kapott linkre a platformhoz történő csatlakozáshoz',
   authenticationMagicLinkStepOneDescription:
@@ -127,6 +128,7 @@ const translations: Translations = {
   yesNotifyMe: 'Igen, kérek értesítést',
   maybeLater: 'Talán később',
   platformHasBeenDisabled: 'Az alkalmazás le van tiltva a platformodon',
+  podcast: 'Podcast',
   question: 'Kérdés',
   quit: 'Kilépés',
   reactivatePlatform:
@@ -140,6 +142,8 @@ const translations: Translations = {
   retryChapter: 'Fejezet újrapróbálása',
   retryLevel: 'Szint  újrajátszása',
   scanQRCode: 'Olvasd be <b>QR-kódodat</b>',
+  scorm: 'Interaktív diák',
+  externalFinishCourse: 'Elvégeztem ezt a kurzust',
   search: 'Keresés',
   seeClue: 'Tipp megtekintése',
   selectSomethingBelow: 'Válasszon ki valamit alul',
@@ -192,6 +196,7 @@ const translations: Translations = {
   typeHere: 'Írjon ide',
   validate: 'Érvényesít',
   version: 'Verzió',
+  video: 'Videó',
   videoLoadingError: 'Hiba történt a videó betöltése közben, kérjük, próbálja meg újra.',
   unlockNextLevel: 'Elérted a(z) <br><b>{{levelName}} szintet</b>',
   upgrade: 'Frissítés',

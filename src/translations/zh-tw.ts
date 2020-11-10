@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: '進入課程',
+  article: '文章',
   authenticationMagicLinkHeader: '點擊您郵件中收到的鏈接連接至您的平台',
   authenticationMagicLinkStepOneDescription: '用這個電話去到您的<b>專業郵箱</b>',
   authenticationMagicLinkStepTwoDescription: '<b>打開郵件</b>里的邀請以下載Coorpacademy App',
@@ -85,6 +86,7 @@ const translations: Translations = {
   yesNotifyMe: '好，請通知我',
   maybeLater: '稍後再說',
   platformHasBeenDisabled: '應用程式已在您的平台停用',
+  podcast: '播客',
   question: '問題',
   quit: '放棄',
   reactivatePlatform: '如果要重新啟動，請連絡您的管理員或按以下的連結，我們就會傳達您的訊息',
@@ -96,6 +98,8 @@ const translations: Translations = {
   retryChapter: '重試章節：',
   retryLevel: '重試級別',
   scanQRCode: '掃描您的 <b>QR 碼</b>',
+  scorm: '互動幻燈片',
+  externalFinishCourse: '我完成這個課程了',
   search: '搜尋',
   seeClue: '看到線索',
   selectSomethingBelow: '選擇以下內容',
@@ -127,6 +131,7 @@ const translations: Translations = {
   typeHere: '在此輸入',
   validate: '驗證',
   version: '版本',
+  video: '視頻',
   videoLoadingError: '加載視頻時出錯，請再次嘗試。',
   unlockNextLevel: '您剛剛解鎖了<br><b>{{levelName}}級</b>',
   upgrade: '升級',

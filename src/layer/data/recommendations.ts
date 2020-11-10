@@ -11,9 +11,9 @@ import chaptersBundle from '../../__fixtures__/chapter-bundle';
 import {buildUrlQueryParams} from '../../modules/uri';
 import type {QueryParams} from '../../modules/uri';
 import {saveAndRefreshCards} from './cards';
-import type {DisciplineCard, ChapterCard} from './_types';
+import type {Card} from './_types';
 
-const fetchRecommendations = async (): Promise<Array<DisciplineCard | ChapterCard>> => {
+const fetchRecommendations = async (): Promise<Array<Card>> => {
   const language = translations.getLanguage();
   const token = await getToken();
 
@@ -36,7 +36,7 @@ const fetchRecommendations = async (): Promise<Array<DisciplineCard | ChapterCar
     const jwt: JWT = decode(token);
 
     const query: QueryParams = {
-      contentType: 'course,chapter',
+      contentType: 'course,chapter,scorm,article,video,podcast',
       lang: language,
     };
 
@@ -47,7 +47,7 @@ const fetchRecommendations = async (): Promise<Array<DisciplineCard | ChapterCar
       },
     );
 
-    const {hits}: {hits: Array<DisciplineCard | ChapterCard>} = await response.json();
+    const {hits}: {hits: Array<Card>} = await response.json();
 
     cards = hits;
   }
@@ -56,9 +56,7 @@ const fetchRecommendations = async (): Promise<Array<DisciplineCard | ChapterCar
 };
 
 // @todo replace fetchRecommendation() by find(type: string, ref: string)
-const fetchRecommendation = async (
-  limit = 1,
-): Promise<DisciplineCard | ChapterCard | Array<DisciplineCard | ChapterCard> | void> => {
+const fetchRecommendation = async (limit = 1): Promise<Card | Array<Card> | void> => {
   const cards = await fetchRecommendations();
   if (limit > 1) {
     return cards.slice(0, limit);

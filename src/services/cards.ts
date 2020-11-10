@@ -5,6 +5,7 @@ export type CardsService = {
   findBySearch: Pick<DataLayer, 'fetchSearchCards'>;
   refreshCard: Pick<DataLayer, 'refreshCard'>;
   getCardFromLocalStorage: Pick<DataLayer, 'getCardFromLocalStorage'>;
+  getExternalContentHideCompleteButton: Pick<DataLayer, 'getExternalContentHideCompleteButton'>;
 };
 
 const service = (dataLayer: DataLayer): CardsService => ({
@@ -12,6 +13,7 @@ const service = (dataLayer: DataLayer): CardsService => ({
   findBySearch: dataLayer.fetchSearchCards,
   refreshCard: dataLayer.refreshCard,
   getCardFromLocalStorage: dataLayer.getCardFromLocalStorage,
+  getExternalContentHideCompleteButton: dataLayer.getExternalContentHideCompleteButton,
 });
 
 export default service;

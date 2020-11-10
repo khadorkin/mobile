@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import type {ViewStyle} from 'react-native';
-
 import theme from '../modules/theme';
+import Box from './box';
 
 export interface Props {
   children: React.ReactNode;
@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
 
 const Card = ({children, style, testID}: Props) => (
   <View style={styles.container} testID={testID}>
-    <View style={[styles.container, style, styles.overflowHidden]}>{children}</View>
+    <Box>
+      <View style={[styles.container, style, styles.overflowHidden]}>{children}</View>
+    </Box>
   </View>
 );
 

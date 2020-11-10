@@ -1,4 +1,4 @@
-import type {DisciplineCard, ChapterCard} from '../../../../layer/data/_types';
+import type {DisciplineCard, ChapterCard, Card} from '../../../../layer/data/_types';
 import type {StoreAction, StoreErrorAction} from '../../../_types';
 import {ERROR_TYPE} from '../../../../const';
 import {getToken, getBrand} from '../../../utils/state-extract';
@@ -17,12 +17,12 @@ export const SELECT_ERROR = '@@cards/SELECT_ERROR';
 
 export type SelectRequestAction = {
   type: '@@cards/SELECT_REQUEST';
-  payload: DisciplineCard | ChapterCard;
+  payload: Card;
 };
 
 export type SelectSuccessAction = {
   type: '@@cards/SELECT_SUCCESS';
-  payload: DisciplineCard | ChapterCard;
+  payload: Card;
 };
 
 export type SelectErrorAction = StoreErrorAction<{
@@ -31,12 +31,12 @@ export type SelectErrorAction = StoreErrorAction<{
 
 export type Action = SelectRequestAction | SelectSuccessAction | SelectErrorAction;
 
-export const selectRequest = (item: DisciplineCard | ChapterCard): SelectRequestAction => ({
+export const selectRequest = (item: Card): SelectRequestAction => ({
   type: SELECT_REQUEST,
   payload: item,
 });
 
-export const selectSuccess = (item: DisciplineCard | ChapterCard): SelectSuccessAction => ({
+export const selectSuccess = (item: Card): SelectSuccessAction => ({
   type: SELECT_SUCCESS,
   payload: item,
 });
@@ -89,7 +89,7 @@ const attemptToRetrieveContent = async (
 };
 
 export const selectCard = (
-  item: DisciplineCard | ChapterCard,
+  item: Card,
 ): StoreAction<Action | ErrorAction<StoreAction<Action>>> => async (
   dispatch,
   getState,
@@ -100,7 +100,16 @@ export const selectCard = (
   dispatch(selectRequest(item));
 
   try {
-    if (![CARD_TYPE.CHAPTER, CARD_TYPE.COURSE].includes(item.type)) {
+    if (
+      ![
+        CARD_TYPE.CHAPTER,
+        CARD_TYPE.COURSE,
+        CARD_TYPE.PODCAST,
+        CARD_TYPE.SCORM,
+        CARD_TYPE.ARTICLE,
+        CARD_TYPE.VIDEO,
+      ].includes(item.type)
+    ) {
       throw new Error('Card type not handled');
     }
 

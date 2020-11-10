@@ -2,6 +2,7 @@ import type {Translations} from './_types';
 
 const translations: Translations = {
   accessTheLesson: 'Truy cập vào bài học này',
+  article: 'Bài báo',
   authenticationMagicLinkHeader:
     'Nhấp vào liên kết bạn nhận được qua email để kết nối với nền tảng của bạn',
   authenticationMagicLinkStepOneDescription:
@@ -135,6 +136,7 @@ const translations: Translations = {
   yesNotifyMe: 'Có, hãy thông báo cho tôi',
   maybeLater: 'Có lẽ để sau',
   platformHasBeenDisabled: 'Ứng dụng đã bị vô hiệu hóa đối với nền tảng của bạn',
+  podcast: 'Podcast',
   question: 'Câu hỏi',
   quit: 'Thoát',
   reactivatePlatform:
@@ -148,6 +150,8 @@ const translations: Translations = {
   retryChapter: 'Thử lại chương',
   retryLevel: 'Thử lại cấp độ',
   scanQRCode: 'Quét <b>mã QR</b> của bạn',
+  scorm: 'Slide tương tác',
+  externalFinishCourse: 'Tôi đã hoàn thành khóa học này',
   search: 'Tìm kiếm',
   seeClue: 'Xem gợi ý',
   selectSomethingBelow: 'Chọn một điều nào đó dưới đây',
@@ -200,6 +204,7 @@ const translations: Translations = {
   typeHere: 'Nhập vào đây',
   validate: 'Xác nhận',
   version: 'Phiên bản',
+  video: 'Video',
   videoLoadingError: 'Đã xảy ra lỗi trong khi tải video, vui lòng thử lại.',
   unlockNextLevel: 'Bạn vừa mở khóa cấp độ <br><b>{{levelName}}</b>',
   upgrade: 'Nâng cấp',

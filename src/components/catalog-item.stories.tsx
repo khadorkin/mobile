@@ -3,7 +3,12 @@ import {storiesOf} from '@storybook/react-native';
 import renderer from 'react-test-renderer';
 
 import {__TEST__} from '../modules/environment';
-import {createChapterCard, createDisciplineCard, createCardLevel} from '../__fixtures__/cards';
+import {
+  createChapterCard,
+  createDisciplineCard,
+  createExtCard,
+  createCardLevel,
+} from '../__fixtures__/cards';
 import {CARD_STATUS} from '../layer/data/_const';
 import CatalogItem from './catalog-item';
 
@@ -43,6 +48,25 @@ const lockedChapterCard = createChapterCard({
   accessible: false,
 });
 
+const scormCard = createExtCard({
+  ref: 'bar',
+  completion: 0.8,
+  title: 'Scorm card with 4 lines of content, its a lot but can happen so dont juge',
+  status: CARD_STATUS.ACTIVE,
+  isNew: true,
+  isAdaptive: false,
+});
+
+const lockedScormCard = createExtCard({
+  ref: 'bar',
+  completion: 0.8,
+  title: 'Scorm card',
+  status: CARD_STATUS.ACTIVE,
+  isNew: true,
+  isAdaptive: true,
+  accessible: false,
+});
+
 storiesOf('CatalogItem', module)
   .add('Default', () => <CatalogItem />)
   .add('Default (cover)', () => <CatalogItem size="cover" />)
@@ -51,7 +75,10 @@ storiesOf('CatalogItem', module)
   .add('With chapter (locked)', () => <CatalogItem item={lockedChapterCard} />)
   .add('With discipline', () => <CatalogItem item={disciplineCard} />)
   .add('With discipline (cover)', () => <CatalogItem size="cover" item={disciplineCard} />)
-  .add('With discipline (locked)', () => <CatalogItem item={lockedDisciplineCard} />);
+  .add('With discipline (locked)', () => <CatalogItem item={lockedDisciplineCard} />)
+  .add('With scorm', () => <CatalogItem item={scormCard} />)
+  .add('With scorm (cover)', () => <CatalogItem size="cover" item={scormCard} />)
+  .add('With scorm (locked)', () => <CatalogItem item={lockedScormCard} />);
 
 if (__TEST__) {
   describe('CatalogItem', () => {

@@ -49,7 +49,7 @@ export type Theme = {
   };
 };
 
-const theme: Theme = {
+const theme = {
   colors: {
     border: 'rgba(0, 0, 0, 0.1)',
     gray: {
@@ -104,7 +104,7 @@ const theme: Theme = {
   letterSpacing: {
     header: 5,
   },
-};
+} as const;
 
 export const BLUE_COORP_LIGHT = '#00B0FF';
 export const BLUE_COORP_DARK = '#4481EB';

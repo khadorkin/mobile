@@ -12,7 +12,7 @@ describe('Correction: god mode', () => {
     await reloadApp();
     await bypassAuthentication();
     await bypassNotifyMeScreen();
-    await tapCardOnList('catalog-section-recommended-items', 2);
+    await tapCardOnList('catalog-section-recommended-items', 'basic-dis-1', 1, 2, true);
   });
 
   it('should be able to enable god mode', async () => {
