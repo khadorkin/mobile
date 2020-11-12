@@ -164,6 +164,20 @@ storiesOf('Resource', module)
         onPress={handleFakePress}
       />
     </TestContextProvider>
+  ))
+  .add('With height', () => (
+    <TestContextProvider>
+      <Resource
+        type={video.type}
+        url={video.url}
+        description={video.description}
+        thumbnail={video.poster}
+        mimeType={video.mimeType}
+        layout={fakeLayout}
+        height={200}
+        onPress={handleFakePress}
+      />
+    </TestContextProvider>
   ));
 
 if (__TEST__) {

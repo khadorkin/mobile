@@ -19,6 +19,7 @@ interface Props extends WithLayoutProps {
   testID?: string;
   thumbnail?: string;
   description?: string;
+  height?: number;
   onPress?: (url?: string, description?: string) => void;
   style?: ViewStyle;
   resizeMode?: 'cover' | 'contain' | 'center' | 'repeat' | 'stretch';
@@ -43,6 +44,7 @@ class Resource extends React.PureComponent<Props> {
       thumbnail = '',
       resizeMode = 'contain',
       extralifeOverlay = false,
+      height: height_,
       style,
     } = this.props;
 
@@ -50,7 +52,7 @@ class Resource extends React.PureComponent<Props> {
       return null;
     }
 
-    const height = layout.width / (16 / 9);
+    const height = height_ ?? layout.width / (16 / 9);
 
     switch (type) {
       case RESOURCE_TYPE.VIDEO: {

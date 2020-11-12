@@ -19,6 +19,7 @@ interface Props extends DeckCardProps, DeckCardHeaderProps {
   expandedOffsetBottom: number;
   style?: ViewStyle;
   testID?: string;
+  children: (isExpanded: boolean) => React.ReactNode;
 }
 
 type State = {
@@ -111,7 +112,7 @@ class DeckCardScalable extends React.PureComponent<Props, State> {
           <DeckCard testID={testID}>
             <DeckCardHeader type={type} title={title} isCorrect={isCorrect} />
             <View style={[styles.content, type === DECK_CARD_TYPE.RESOURCE && styles.noPadding]}>
-              {children}
+              {children(this.state.isExpanded)}
               <Gradient
                 height={theme.spacing.large}
                 colors={[theme.colors.white]}

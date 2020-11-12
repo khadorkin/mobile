@@ -231,6 +231,12 @@ class Correction extends React.PureComponent<Props> {
         ? `card-${type.toLowerCase()}`
         : `card-${type.toLowerCase()}-` + testIDSuffix;
 
+    // we don't a way to change isExpanded's value
+    const getResourceHeight = (isExpanded: boolean) =>
+      (!isExpanded
+        ? this.getCardsHeight()
+        : /* istanbul ignore next */ this.getCardsExpandedHeight()) / 2;
+
     return (
       <DeckCardScalable
         title={cardTitle}
@@ -244,65 +250,72 @@ class Correction extends React.PureComponent<Props> {
         style={styles.card}
         testID={testID}
       >
-        {type === DECK_CARD_TYPE.TIP ? (
-          <View style={styles.overflowHidden}>
-            <Html
-              onLinkPress={onLinkPress}
-              fontSize={theme.fontSize.regular}
-              style={styles.cardText}
-              testID={`${testID}-html`}
-            >
-              {tip}
-            </Html>
-          </View>
-        ) : null}
-        {type === DECK_CARD_TYPE.CORRECTION && answers && userAnswers ? (
-          <DeckCardCorrection
-            question={question}
-            answers={answers}
-            userAnswers={userAnswers}
-            isCorrect={Boolean(isCorrect)}
-          />
-        ) : null}
-        {type === DECK_CARD_TYPE.KEY_POINT ? (
-          <View style={styles.overflowHidden}>
-            <Html
-              onLinkPress={onLinkPress}
-              fontSize={theme.fontSize.regular}
-              style={styles.cardText}
-              testID={`${testID}-html`}
-            >
-              {keyPoint}
-            </Html>
-          </View>
-        ) : null}
-        {type === DECK_CARD_TYPE.RESOURCE && resource ? (
-          <React.Fragment>
-            <Resource
-              type={resource.type}
-              url={resource.url}
-              videoId={resource.videoId}
-              mimeType={resource.mimeType}
-              description={resource.description}
-              thumbnail={resource.poster}
-              onPress={this.handleResourcePress(resource.type)}
-              testID={`${testID}-resource`}
-              extralifeOverlay={offeringExtraLife}
-              containerStyle={styles.resource}
-            />
-            <View style={styles.resourceTitleContainer}>
-              <Html
-                onLinkPress={onLinkPress}
-                fontSize={theme.fontSize.regular}
-                testID={`${testID}-resource-description`}
-                style={styles.resourceTitle}
-                isTextCentered
-              >
-                {resource.description}
-              </Html>
-            </View>
-          </React.Fragment>
-        ) : null}
+        {(isExpanded) => {
+          return (
+            <React.Fragment>
+              {type === DECK_CARD_TYPE.TIP ? (
+                <View style={styles.overflowHidden}>
+                  <Html
+                    onLinkPress={onLinkPress}
+                    fontSize={theme.fontSize.regular}
+                    style={styles.cardText}
+                    testID={`${testID}-html`}
+                  >
+                    {tip}
+                  </Html>
+                </View>
+              ) : null}
+              {type === DECK_CARD_TYPE.CORRECTION && answers && userAnswers ? (
+                <DeckCardCorrection
+                  question={question}
+                  answers={answers}
+                  userAnswers={userAnswers}
+                  isCorrect={Boolean(isCorrect)}
+                />
+              ) : null}
+              {type === DECK_CARD_TYPE.KEY_POINT ? (
+                <View style={styles.overflowHidden}>
+                  <Html
+                    onLinkPress={onLinkPress}
+                    fontSize={theme.fontSize.regular}
+                    style={styles.cardText}
+                    testID={`${testID}-html`}
+                  >
+                    {keyPoint}
+                  </Html>
+                </View>
+              ) : null}
+              {type === DECK_CARD_TYPE.RESOURCE && resource ? (
+                <React.Fragment>
+                  <Resource
+                    type={resource.type}
+                    url={resource.url}
+                    videoId={resource.videoId}
+                    mimeType={resource.mimeType}
+                    height={getResourceHeight(isExpanded)}
+                    description={resource.description}
+                    thumbnail={resource.poster}
+                    onPress={this.handleResourcePress(resource.type)}
+                    testID={`${testID}-resource`}
+                    extralifeOverlay={offeringExtraLife}
+                    containerStyle={styles.resource}
+                  />
+                  <View style={styles.resourceTitleContainer}>
+                    <Html
+                      onLinkPress={onLinkPress}
+                      fontSize={theme.fontSize.regular}
+                      testID={`${testID}-resource-description`}
+                      style={styles.resourceTitle}
+                      isTextCentered
+                    >
+                      {resource.description}
+                    </Html>
+                  </View>
+                </React.Fragment>
+              ) : null}
+            </React.Fragment>
+          );
+        }}
       </DeckCardScalable>
     );
   };
