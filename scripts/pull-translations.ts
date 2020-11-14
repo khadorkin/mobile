@@ -1,5 +1,3 @@
-// @flow
-
 import fs from 'fs';
 import path from 'path';
 
@@ -22,8 +20,7 @@ const fetchTranslations = (
   contentPath: string,
   file: string,
   // We don't have any interface for translations
-  // eslint-disable-next-line flowtype/no-weak-types
-): Promise<Object> => {
+): Promise<any> => {
   const apiLocale = locale.replace(/-(.*)/, (found) => '_' + found.replace('-', '').toUpperCase());
   const branch = repository === 'coorpacademy' ? 'develop' : 'master';
 
@@ -49,8 +46,8 @@ const formatTranslation = (translation: string): string =>
   translation.replace('\n', '').replace(/"/g, '\\"');
 
 type NotificationWording = {
-  title: string,
-  description: string,
+  title: string;
+  description: string;
 };
 
 const formatNotificationWordings = (translations: Array<NotificationWording>) => {
@@ -191,6 +188,7 @@ const generate = async (locale: string) => {
     nextLevel: formatTranslation(playerTranslations['Next level']),
     noResults: formatTranslation(moocTranslations.content.noresultsfound),
     noResultsDescription: formatTranslation(moocTranslations.content.noresultsfoundDescription),
+    notifications: formatTranslation(moocTranslations.mobile.settings.notifications),
     ok: formatTranslation(moocFormTranslations.ok),
     ooops: formatTranslation(playerTranslations.Ooops),
     open: formatTranslation(componentsTranslations.Open),
@@ -267,7 +265,7 @@ const generate = async (locale: string) => {
     yourAnswers: formatTranslation(playerTranslations['Your answers_']),
   };
 
-  const outputFilePath = path.resolve(`${__dirname}/../src/translations/${locale}.ts`);
+  const outputFilePath = path.resolve(`${__dirname}/../src/translations/${locale}.json`);
   const properties = Object.keys(translations)
     .map((key) => {
       let value = 'undefined';
@@ -278,32 +276,19 @@ const generate = async (locale: string) => {
           value = `"${translations[key]}"`;
         }
       }
-      return `  ${key}: ${value}`;
+      return `  ${JSON.stringify(key)}: ${value}`;
     })
     .join(',\n');
 
-  fs.writeFileSync(
-    outputFilePath,
-    `${
-      "import type {Translations} from './_types';" +
-      '\n\n' +
-      'const translations: Translations = {' +
-      '\n' +
-      properties +
-      '};' +
-      '\n\n' +
-      'export default translations;' +
-      '\n'
-    }`,
-  );
+  fs.writeFileSync(outputFilePath, `${'{\n' + properties + '\n}\n'}`);
 };
 
 globby
-  .sync(path.resolve(`${__dirname}/../src/translations/*.ts`), {
+  .sync(path.resolve(`${__dirname}/../src/translations/*.json`), {
     cwd: path.resolve(`${__dirname}/../src`),
     nodir: true,
   })
   .map((filePath) => path.basename(filePath))
   .filter((file) => file !== 'index.ts' && file !== '_types.ts')
-  .map((file) => file.replace('.ts', ''))
+  .map((file) => file.replace('.json', ''))
   .forEach((locale) => generate(locale));

@@ -4,6 +4,7 @@ import {ANALYTICS_EVENT_TYPE, NOTIFICATION_SETTINGS_STATUS, SPACE} from '../cons
 import theme from '../modules/theme';
 import {NotificationSettingStatus, NotificationSettingType} from '../types';
 import withAnalytics, {WithAnalyticsProps} from '../containers/with-analytics';
+import translations from '../translations';
 import Switch from './switch';
 import Version from './version';
 import Text from './text';
@@ -89,7 +90,7 @@ const Settings = ({settings, onSettingToggle, analytics, testID}: Props) => {
       <React.Fragment>
         {index % settings.length !== 1 ? <Separator /> : null}
         <View style={styles.notificationItemContainer}>
-          <Text style={styles.text}>{item.label}</Text>
+          <Text style={styles.text}>{translations[item.label]}</Text>
           <Switch
             isActive={item.status === NOTIFICATION_SETTINGS_STATUS.ACTIVATED}
             onPress={handleOnSettingsItemToggle}
@@ -120,7 +121,7 @@ const Settings = ({settings, onSettingToggle, analytics, testID}: Props) => {
         ListHeaderComponent={
           <React.Fragment>
             <View style={styles.titleContainer}>
-              <Text style={styles.title}>Notifications</Text>
+              <Text style={styles.title}>{translations.notifications}</Text>
             </View>
             <View>
               {/* @ts-ignore - we can just ignore the index to have both separators */}

@@ -50,9 +50,7 @@ Array [
                     "fontSize": 17,
                   }
                 }
-              >
-                New courses
-              </Text>
+              />
               <Switch
                 isActive={false}
                 onPress={[Function]}
@@ -179,9 +177,7 @@ Array [
                   },
                 ]
               }
-            >
-              New courses
-            </Text>
+            />
             <View
               accessible={true}
               focusable={true}
@@ -301,9 +297,7 @@ Array [
                 },
               ]
             }
-          >
-            New courses
-          </Text>
+          />
           <View
             accessible={true}
             focusable={true}
@@ -406,9 +400,7 @@ Array [
                 },
               ]
             }
-          >
-            New courses
-          </Text>
+          />
           <View
             accessible={true}
             focusable={true}

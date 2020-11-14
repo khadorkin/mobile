@@ -105,7 +105,6 @@ export type Discipline = DisciplineStore & {
 };
 
 export type BundledChapter = {
-  // @ts-ignore dont understand "looks promising" from Flow
   chapters: {
     [key: string]: Chapter;
   };

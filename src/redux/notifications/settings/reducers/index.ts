@@ -1,8 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {Platform} from 'react-native';
 import {NotificationSettingStatus, NotificationSettingType} from '../../../../types';
-
-import translations from '../../../../translations';
 import {NOTIFICATION_SETTINGS_STATUS, NOTIFICATION_SETTINGS_TYPE} from '../../../../const';
 import {TOGGLE, Action} from '../actions';
 
@@ -21,15 +19,15 @@ const getDefaultStatusForSetting = () =>
 
 export const initialState: State = {
   authorizeAll: {
-    label: translations.authorizeNotifications,
+    label: 'authorizeNotifications',
     status: getDefaultStatusForSetting(),
   },
   'finish-course': {
-    label: translations.currentlyDoingReminder,
+    label: 'currentlyDoingReminder',
     status: getDefaultStatusForSetting(),
   },
   suggestion: {
-    label: translations.suggestion,
+    label: 'suggestion',
     status: getDefaultStatusForSetting(),
   },
 };

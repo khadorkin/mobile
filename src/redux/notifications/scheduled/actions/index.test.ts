@@ -36,17 +36,17 @@ const createStore = ({
     notifications: {
       settings: {
         authorizeAll: {
-          label: 'Authorize notifications',
+          label: 'authorizeNotifications',
           status: NOTIFICATION_SETTINGS_STATUS.ACTIVATED,
         },
         'finish-course': {
-          label: 'Finish course',
+          label: 'currentlyDoingReminder',
           status: isFinishCourseSettingActive
             ? NOTIFICATION_SETTINGS_STATUS.ACTIVATED
             : NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,
         },
         suggestion: {
-          label: 'Suggestion course',
+          label: 'suggestion',
           status: isSuggestionSettingActive
             ? NOTIFICATION_SETTINGS_STATUS.ACTIVATED
             : NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,

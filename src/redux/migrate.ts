@@ -1,15 +1,38 @@
-import {initialState as NotificationsSettingsInitialState} from './notifications/settings';
-import {initialState as ScheduledNotificationsInitialState} from './notifications/scheduled';
+import {
+  initialState as NotificationsSettingsInitialState,
+  State as NotificationSettingsState,
+} from './notifications/settings';
+import {
+  initialState as ScheduledNotificationsInitialState,
+  State as ScheduledNotificationsState,
+} from './notifications/scheduled';
 
 interface Migration<T> {
   [key: number]: (state: T) => T;
 }
 
+const migrateSettings = (initialState, currentState) => {
+  const newState = Object.assign({...initialState}, currentState);
+  const newCurrentState = Object.entries(newState).reduce((acc, [key, params]) => {
+    acc[key] = {
+      ...params,
+      label: initialState[key].label,
+    };
+    return acc;
+  }, {});
+  return newCurrentState;
+};
+
 const createMigration = <
-  T extends {notifications: {settings: any; scheduledNotifications: any}}
+  T extends {
+    notifications: {
+      settings: NotificationSettingsState;
+      scheduledNotifications: ScheduledNotificationsState;
+    };
+  }
 >(): Migration<T> => {
   return {
-    2: (state: T) => {
+    3: (state: T) => {
       return {
         ...state,
         notifications: {
@@ -18,7 +41,10 @@ const createMigration = <
             ScheduledNotificationsInitialState,
             state.notifications.scheduledNotifications,
           ),
-          settings: Object.assign(NotificationsSettingsInitialState, state.notifications.settings),
+          settings: migrateSettings(
+            NotificationsSettingsInitialState,
+            state.notifications.settings,
+          ),
         },
       };
     },

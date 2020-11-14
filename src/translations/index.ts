@@ -1,67 +1,43 @@
 /* eslint-disable import/max-dependencies */
 
 import LocalizedStrings from 'react-native-localization';
-
 import {Translations, SupportedLanguage} from './_types';
-import cs from './cs';
-import de from './de';
-// import en_US from './en-us';
-import en from './en';
-import es from './es';
-import fr from './fr';
-import hu from './hu';
-// eslint-disable-next-line no-shadow
-import it from './it';
-import ja from './ja';
-import ko from './ko';
-import nl from './nl';
-import pl from './pl';
-import pt from './pt';
-import ro from './ro';
-import ru from './ru';
-import tr from './tr';
-import uk from './uk';
-import vi from './vi';
-import zh_TW from './zh-tw';
-import zh from './zh';
 
-const localizedTranslations: {[key in SupportedLanguage]?: Translations} = {
+export const locales = {
   // keep this locale in first position to be the default language if none matches
-  en,
-  cs,
-  de,
+  en: require('./en.json') as Translations,
+  cs: require('./cs.json') as Translations,
+  de: require('./de.json') as Translations,
   // @todo uncomment this once mooc API supports en-US
   // 'en-US': en_US,
-  es,
-  fr,
-  hu,
-  it,
-  ja,
-  ko,
-  nl,
-  pl,
-  pt,
-  ro,
-  ru,
-  tr,
-  uk,
-  vi,
-  'zh-TW': zh_TW,
-  zh,
+  es: require('./es.json') as Translations,
+  fr: require('./fr.json') as Translations,
+  hu: require('./hu.json') as Translations,
+  it: require('./it.json') as Translations,
+  ja: require('./ja.json') as Translations,
+  ko: require('./ko.json') as Translations,
+  nl: require('./nl.json') as Translations,
+  pl: require('./pl.json') as Translations,
+  pt: require('./pt.json') as Translations,
+  ro: require('./ro.json') as Translations,
+  ru: require('./ru.json') as Translations,
+  tr: require('./tr.json') as Translations,
+  uk: require('./uk.json') as Translations,
+  vi: require('./vi.json') as Translations,
+  'zh-TW': require('./zh-tw.json') as Translations,
+  zh: require('./zh.json') as Translations,
 };
 
-export const SUPPORTED_LANGUAGES: Array<SupportedLanguage> = Object.keys(localizedTranslations);
-export const DEFAULT_LANGUAGE: SupportedLanguage = SUPPORTED_LANGUAGES[0];
+export const SUPPORTED_LANGUAGES = Object.keys(locales);
+export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES[0];
 
-type CustomLocalizedStrings = $Exact<
-  Translations & {
-    formatString: (...args: Array<string>) => string;
-    getLanguage: (arg0: void) => SupportedLanguage;
-    setLanguage: (arg0: SupportedLanguage | string) => void;
-    getInterfaceLanguage: (arg0: void) => string | SupportedLanguage;
-  }
->;
+type CustomLocalizedStrings = Translations & {
+  formatString: (...args: Array<string>) => string;
+  getLanguage: () => SupportedLanguage;
+  setLanguage: (language: SupportedLanguage | string) => void;
+  getInterfaceLanguage: () => string | SupportedLanguage;
+};
 
-const translations: CustomLocalizedStrings = new LocalizedStrings(localizedTranslations);
+const translations: CustomLocalizedStrings = new LocalizedStrings(locales);
 
 export default translations;

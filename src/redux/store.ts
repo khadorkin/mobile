@@ -106,7 +106,7 @@ const createMiddlewares = (options: Options, reduxDevTools?: ReduxDevTools) => {
 
 const reduxPersistedStoreMigration = createMigration<StoreState>();
 const persistConfig = {
-  version: 2,
+  version: 3,
   key: 'root',
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel1,

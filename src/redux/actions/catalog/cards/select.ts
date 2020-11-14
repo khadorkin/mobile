@@ -47,7 +47,7 @@ export const selectError = (error: Error): SelectErrorAction => ({
   error: true,
 });
 
-// @flow move this function elsewhere or create a real action
+// move this function elsewhere or create a real action
 const attemptToRetrieveContent = async (
   card: DisciplineCard | ChapterCard,
   state: StoreState,

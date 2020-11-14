@@ -2,7 +2,7 @@ import createMigration from './migrate';
 
 describe('CreateMigration', () => {
   it('migrates the persited store', () => {
-    const versionToMigrateTo = 2;
+    const versionToMigrateTo = 3;
     const migrations = createMigration();
     const oldState = {
       notifications: {
@@ -11,11 +11,11 @@ describe('CreateMigration', () => {
         },
         settings: {
           'finish-course': {
-            label: 'Currently doing reminder',
+            label: 'currently Doing Reminder',
             status: 'activated',
           },
           suggestion: {
-            label: 'Course recommendations',
+            label: 'Suggestion',
             status: 'activated',
           },
         },
@@ -29,15 +29,15 @@ describe('CreateMigration', () => {
         },
         settings: {
           authorizeAll: {
-            label: 'Authorize notifications',
+            label: 'authorizeNotifications',
             status: 'idle',
           },
           'finish-course': {
-            label: 'Currently doing reminder',
+            label: 'currentlyDoingReminder',
             status: 'activated',
           },
           suggestion: {
-            label: 'Course recommendations',
+            label: 'suggestion',
             status: 'activated',
           },
         },

@@ -1,5 +1,3 @@
-// @flow
-
 import path from 'path';
 
 import imagemagick from 'imagemagick';
@@ -31,7 +29,7 @@ const ANDROID_RES_PATH = './android/app/src/main/res';
 
 const generateAndroidLegacyDockIcon = (drawableName: AndroidDrawableType, isRounded? = false) => {
   const sizes: {
-    [key: AndroidDrawableType]: {[key: 'width' | 'height']: number},
+    [key: AndroidDrawableType]: {[key: 'width' | 'height']: number};
   } = {
     mdpi: {width: 48, height: 48},
     hdpi: {width: 72, height: 72},
@@ -113,7 +111,7 @@ const generateAndroidAdaptiveDockIcon = (
   isForeground?: boolean,
 ) => {
   const sizes: {
-    [key: AndroidDrawableType]: {[key: 'width' | 'height']: number},
+    [key: AndroidDrawableType]: {[key: 'width' | 'height']: number};
   } = {
     mdpi: {width: 108, height: 108},
     hdpi: {width: 162, height: 162},
@@ -147,7 +145,7 @@ const generateAndroidAdaptiveDockIcon = (
 
 const generateIosDockIcon = (fileName: IosDockIconFileType) => {
   const sizes: {
-    [key: IosDockIconFileType]: {[key: 'width' | 'height']: number},
+    [key: IosDockIconFileType]: {[key: 'width' | 'height']: number};
   } = {
     '20@2x': {width: 40, height: 40},
     '20@3x': {width: 60, height: 60},

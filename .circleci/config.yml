@@ -54,7 +54,7 @@ jobs:
             - src/modules/version.json
             - android/app/google-services.json
             - ios/GoogleService-Info.plist
-    
+
   # TODO: Add TS lint & check
   linting:
     working_directory: ~/app

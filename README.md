@@ -15,7 +15,6 @@
   <img style="border-radius: 4px" src=".github/app/app.jpg" />
 </div>
 
-
 ## Installation
 
 Please follow this [step by step guide](.github/INSTALLATION.md).

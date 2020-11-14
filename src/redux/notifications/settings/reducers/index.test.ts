@@ -22,15 +22,15 @@ function createState({
 }): State {
   return {
     authorizeAll: {
-      label: 'Authorize notifications',
+      label: 'authorizeNotifications',
       status: authorizeAllStatus,
     },
     'finish-course': {
-      label: 'Currently doing reminder',
+      label: 'currentlyDoingReminder',
       status: finishCourseStatus,
     },
     suggestion: {
-      label: 'Course recommendations',
+      label: 'suggestion',
       status: suggestionStatus,
     },
   };

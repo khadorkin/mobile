@@ -82,6 +82,7 @@ export type Translations = {
   outOfLives: string;
   permission: string;
   permissionCamera: string;
+  notifications: string;
   notificationSamples: NotificationWording[];
   permissionNotificationHeadline: string;
   permissionNotificationDescription: string;

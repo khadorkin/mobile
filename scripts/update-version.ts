@@ -1,5 +1,3 @@
-// @flow
-
 import fs from 'fs';
 import shell from 'shelljs';
 
@@ -23,9 +21,9 @@ const version: Version = {
   tag:
     shell.exec('git describe --tags --abbrev=0', {silent: true}).replace('\n', '') ||
     packageJson.version,
-  // $FlowFixMe this string is tested above
+  // @ts-ignore this string is tested above
   buildType,
-  // $FlowFixMe this string is tested above
+  // @ts-ignore this string is tested above
   buildFlavor,
 };
 const output = JSON.stringify(version, null, 2);

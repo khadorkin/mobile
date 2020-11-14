@@ -11,17 +11,10 @@
     "strict": true,
     "target": "esnext",
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "baseUrl": "./"
+    "skipLibCheck": true
     // "paths": {
     //   "@types/coorp/*": ["src/@types/coorpacademy/*"]
     // }
   },
-  "exclude": [
-    "node_modules",
-    "**/**.js",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.unit.js"
-  ]
+  "exclude": ["node_modules", "**/**.js", "babel.config.js", "metro.config.js", "jest.config.unit.js"]
 }
