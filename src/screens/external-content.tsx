@@ -96,6 +96,7 @@ const External: React.FC<Props> = ({
   const {contentRef, contentType} = route.params;
   const expectedContentUrl = `${brand?.host}/externalContent/${contentRef}`;
   const isEmptyUrl = externalContent.contentUrl === '';
+  const isContentFinished = externalContent.contentStatus === 'finished';
   const animationValue = React.useRef(
     new Animated.Value(externalContent.validateButtonStatus === 'hidden' ? 0 : 104),
   ).current;
@@ -111,23 +112,24 @@ const External: React.FC<Props> = ({
   }, [completeProgression, navigation, externalContent.progressionId]);
 
   function onDidFinishCourseButtonPress() {
-    updateExternalContentState({contentStatus: 'finished'});
+    updateExternalContentState({contentStatus: 'finished', contentUrl: ''});
   }
 
   function onNavStateChange(navState: WebViewNavigation) {
     if (navState.url.startsWith(expectedContentUrl) && navState.url.endsWith('/end')) {
-      updateExternalContentState({contentStatus: 'finished'});
+      updateExternalContentState({contentStatus: 'finished', contentUrl: ''});
     }
     if (navState.url.startsWith(expectedContentUrl)) {
       updateExternalContentState({webViewStatus: 'loaded'});
     }
   }
+
   React.useEffect(() => {
     updateExternalContentState({...initialState, contentType});
     return () => {
       updateExternalContentState(initialState);
     };
-  }, []);
+  }, [contentType, updateExternalContentState]);
 
   React.useEffect(() => {
     if (externalContent.webViewStatus === 'loaded') {
@@ -136,16 +138,16 @@ const External: React.FC<Props> = ({
   }, [getRemoteProgressionId, externalContent.webViewStatus, contentRef]);
 
   React.useEffect(() => {
-    if (externalContent.contentStatus === 'finished') {
+    if (isContentFinished) {
       finishCourse();
     }
-  }, [finishCourse, externalContent.contentStatus]);
+  }, [finishCourse, isContentFinished]);
 
   React.useEffect(() => {
-    if (isEmptyUrl) {
+    if (isEmptyUrl && !isContentFinished) {
       getContentInfo_(contentRef);
     }
-  }, [getContentInfo_, contentRef, isEmptyUrl]);
+  }, [getContentInfo_, contentRef, isEmptyUrl, isContentFinished]);
 
   React.useEffect(() => {
     const anim = Animated.timing(animationValue, {
@@ -178,8 +180,7 @@ const External: React.FC<Props> = ({
             containerStyle={styles.browser}
           />
         ) : null}
-        {externalContent.webViewStatus !== 'loaded' ||
-        externalContent.contentStatus === 'finished' ? (
+        {externalContent.webViewStatus !== 'loaded' || isContentFinished ? (
           <View style={styles.loaderContainer} testID="external-content-loader-container">
             <View style={styles.loader} testID="external-content-loader">
               <Loader />
@@ -189,7 +190,7 @@ const External: React.FC<Props> = ({
       </View>
       <Animated.View style={[styles.footer, {height: animationValue, opacity: animationValue}]}>
         <Button
-          isLoading={externalContent.contentStatus === 'finished'}
+          isLoading={isContentFinished}
           onPress={onDidFinishCourseButtonPress}
           isDisabled={externalContent.progressionId === ''}
           testID="external-content-button-finished-course"

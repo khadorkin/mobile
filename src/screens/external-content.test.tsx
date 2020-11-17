@@ -94,7 +94,7 @@ describe('ExternalContent', () => {
     const route = {
       params: {
         contentRef: 'extCont_123',
-        contentType: 'video',
+        contentType: 'podcast',
       },
     };
     const brand = createBrand();
@@ -284,6 +284,7 @@ describe('ExternalContent', () => {
     expect(updateExternalContentState).toBeCalledTimes(2);
     expect(updateExternalContentState).nthCalledWith(2, {
       contentStatus: 'finished',
+      contentUrl: '',
     });
     expect(getContentInfo).toBeCalledTimes(0);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
@@ -351,6 +352,7 @@ describe('ExternalContent', () => {
     expect(updateExternalContentState).toBeCalledTimes(3);
     expect(updateExternalContentState).nthCalledWith(2, {
       contentStatus: 'finished',
+      contentUrl: '',
     });
     expect(getContentInfo).toBeCalledTimes(0);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
