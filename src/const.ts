@@ -222,8 +222,6 @@ export const ANALYTICS_EVENT_TYPE = {
   PERMISSION: 'permission',
   NOTIFICATIONS_MAYBE_LATER: 'notificationsMaybeLater',
   NOTIFICATIONS_YES_NOTIFY_ME: 'notificationsYesNotifyMe',
-  NOTIFICATIONS_OPENED: 'notificationsOpened',
-  NOTIFICATIONS_TOGGLE: 'notificationsToggle',
   NOTIFICATIONS: 'notifications',
 } as const;
 

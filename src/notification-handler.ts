@@ -103,8 +103,9 @@ export default class NotificationHandler {
   ): void => {
     const parsedContent: undefined | Card = JSON.parse(content);
     if (!parsedContent || (parsedContent && !parsedContent.universalRef)) return;
-    analytics?.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS_OPENED, {
-      type,
+    analytics?.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+      notificationType: type,
+      notificationAction: 'open',
     });
     if (defer) {
       setTimeout(() => {

@@ -73,8 +73,8 @@ describe('ExternalContent', () => {
 
     component.unmount();
 
-    expect(updateExternalContentState).toBeCalledTimes(2);
-    expect(updateExternalContentState).nthCalledWith(2, {
+    expect(updateExternalContentState).toBeCalledTimes(1);
+    expect(updateExternalContentState).nthCalledWith(1, {
       contentStatus: 'idle',
       contentUrl: '',
       webViewStatus: 'idle',
@@ -82,7 +82,7 @@ describe('ExternalContent', () => {
       validateButtonStatus: 'visible',
       contentType: 'idle',
     });
-    expect(getContentInfo).toBeCalledTimes(0);
+    expect(getContentInfo).toBeCalledTimes(1);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
     expect(completeProgression).toBeCalledTimes(0);
   });
@@ -176,7 +176,7 @@ describe('ExternalContent', () => {
     expect(completeProgression).toBeCalledTimes(0);
   });
 
-  it('triggers the action to get the remote progression when contentUrl when matches the right content url', () => {
+  it('triggers the action to get the remote progression when contentUrl matches the right content url', () => {
     const {Component: ExternalContent} = require('./external-content');
 
     const navigation = createNavigation({});
@@ -231,7 +231,7 @@ describe('ExternalContent', () => {
       url: 'https://mobile-staging.coorpacademy.com/externalContent/extCont_123',
     });
 
-    expect(getContentInfo).toBeCalledTimes(0);
+    expect(getContentInfo).toBeCalledTimes(1);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
     expect(completeProgression).toBeCalledTimes(0);
   });
@@ -281,17 +281,13 @@ describe('ExternalContent', () => {
     button.props.onPress();
 
     expect(navigation.navigate).toBeCalledTimes(1);
-    expect(updateExternalContentState).toBeCalledTimes(2);
-    expect(updateExternalContentState).nthCalledWith(2, {
-      contentStatus: 'finished',
-      contentUrl: '',
-    });
+    expect(updateExternalContentState).toBeCalledTimes(1);
     expect(getContentInfo).toBeCalledTimes(0);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
     expect(completeProgression).toBeCalledTimes(1);
   });
 
-  it('finishes the course if contentUrl when matches the right content url and ends with /end', () => {
+  it('finishes the course if contentUrl matches the right content url and ends with /end', () => {
     const {Component: ExternalContent} = require('./external-content');
 
     const navigation = createNavigation({});
@@ -302,26 +298,26 @@ describe('ExternalContent', () => {
       },
     };
     const brand = createBrand();
+
     const updateExternalContentState = jest.fn();
     const getContentInfo = jest.fn();
     const completeProgression = jest.fn((progressionId: string, callback: () => void) => {
       return callback();
     });
     const getRemoteProgressionId = jest.fn();
-    const externalContent: ExternalContentState = {
-      contentStatus: 'finished',
-      contentUrl: 'https://mobile-staging.coorpacademy.com/externalContent/extCont_123/end',
-      webViewStatus: 'loaded',
-      progressionId: '53f1c2d19e932',
-      validateButtonStatus: 'hidden',
-      contentType: 'scorm',
-    };
 
     const component = renderer.create(
       <ExternalContent
         navigation={navigation}
         route={route}
-        externalContent={externalContent}
+        externalContent={{
+          validateButtonStatus: 'hidden',
+          contentType: 'scorm',
+          contentUrl: 'https://mobile-staging.coorpacademy.com/externalContent/',
+          contentStatus: 'started',
+          webViewStatus: 'loaded',
+          progressionId: '',
+        }}
         brand={brand}
         updateExternalContentState={updateExternalContentState}
         getContentInfo={getContentInfo}
@@ -339,7 +335,14 @@ describe('ExternalContent', () => {
       <ExternalContent
         navigation={navigation}
         route={route}
-        externalContent={{...externalContent, contentStatus: 'finished'}}
+        externalContent={{
+          validateButtonStatus: 'hidden',
+          contentType: 'scorm',
+          contentUrl: 'https://mobile-staging.coorpacademy.com/externalContent/extCont_123/end',
+          contentStatus: 'finished',
+          webViewStatus: 'loaded',
+          progressionId: '435ger52',
+        }}
         brand={brand}
         updateExternalContentState={updateExternalContentState}
         getContentInfo={getContentInfo}
@@ -349,12 +352,7 @@ describe('ExternalContent', () => {
     );
 
     expect(navigation.navigate).toBeCalledTimes(1);
-    expect(updateExternalContentState).toBeCalledTimes(3);
-    expect(updateExternalContentState).nthCalledWith(2, {
-      contentStatus: 'finished',
-      contentUrl: '',
-    });
-    expect(getContentInfo).toBeCalledTimes(0);
+    expect(getContentInfo).toBeCalledTimes(1);
     expect(getRemoteProgressionId).toBeCalledTimes(1);
     expect(completeProgression).toBeCalledTimes(1);
   });

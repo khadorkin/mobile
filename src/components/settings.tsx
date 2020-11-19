@@ -80,9 +80,10 @@ const styles = StyleSheet.create({
 const Settings = ({settings, onSettingToggle, analytics, testID}: Props) => {
   function renderItem({item, index}: {index: number; item: SettingsItem}) {
     async function handleOnSettingsItemToggle() {
-      analytics?.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS_TOGGLE, {
-        type: item.type,
-        value: item.status,
+      analytics?.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+        notificationType: item.type,
+        notificationAction: 'toggle',
+        notificationStatus: item.status,
       });
       await onSettingToggle(item.type);
     }

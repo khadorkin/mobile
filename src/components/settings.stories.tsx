@@ -70,9 +70,10 @@ if (__TEST__) {
         (el) => el.props.testID === 'settings-switch-finish-course',
       );
       switchComponent.props.onPress();
-      expect(analytics.logEvent).toHaveBeenCalledWith(ANALYTICS_EVENT_TYPE.NOTIFICATIONS_TOGGLE, {
-        type: 'finish-course',
-        value: NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,
+      expect(analytics.logEvent).toHaveBeenCalledWith(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+        notificationType: 'finish-course',
+        notificationAction: 'toggle',
+        notificationStatus: NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,
       });
       expect(onSettingToggle).nthCalledWith(1, 'finish-course');
     });
@@ -107,9 +108,10 @@ if (__TEST__) {
         (el) => el.props.testID === 'settings-switch-suggestion',
       );
       switchComponent.props.onPress();
-      expect(analytics.logEvent).toHaveBeenCalledWith(ANALYTICS_EVENT_TYPE.NOTIFICATIONS_TOGGLE, {
-        type: 'suggestion',
-        value: NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,
+      expect(analytics.logEvent).toHaveBeenCalledWith(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+        notificationType: 'suggestion',
+        notificationAction: 'toggle',
+        notificationStatus: NOTIFICATION_SETTINGS_STATUS.DEACTIVATED,
       });
       expect(onSettingToggle).nthCalledWith(1, 'suggestion');
     });

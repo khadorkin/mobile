@@ -3,6 +3,7 @@ import pRetry from 'p-retry';
 import {persist} from '../../layer/data/progressions';
 import {getBrand, getToken} from '../utils/state-extract';
 import {getAndRefreshCard} from '../actions/catalog/cards/refresh';
+import {ExternalContentType} from '../../layer/data/_types';
 
 export type ExternalTypeState = 'idle' | 'podcast' | 'article' | 'video' | 'scorm';
 export type State = {
@@ -44,7 +45,11 @@ const externalContentSlice = createSlice({
 });
 
 export const {update} = externalContentSlice.actions;
-export const getContentInfo = (contentRef: string) => async (dispatch, getState, options) => {
+export const getContentInfo = (contentRef: string, contentType: ExternalContentType) => async (
+  dispatch,
+  getState,
+  options,
+) => {
   const state = getState();
   const token = getToken(state) as string;
   const brand = getBrand(state) as {host: string};
@@ -52,6 +57,7 @@ export const getContentInfo = (contentRef: string) => async (dispatch, getState,
   const {services} = options;
 
   try {
+    await dispatch(update({...initialState, contentType}));
     const [contentInfo, hideCompleteButton] = await Promise.all([
       services.Users.getExternalContentLoginInfo(brand.host, token, contentRef),
       services.Cards.getExternalContentHideCompleteButton(brand.host, token, contentRef),

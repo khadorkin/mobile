@@ -94,9 +94,8 @@ export const unscheduleLocalNotifications = (type: NotificationType) => async (
     Notifications.cancelLocalNotification(notification.id);
   });
   services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
-    id: 'unschedule',
-    type,
-    value: 1,
+    notificationType: type,
+    notificationAction: 'unschedule',
   });
 
   return dispatch(action);
@@ -176,9 +175,8 @@ export const scheduleNotifications = (type: NotificationType) => async (
       }
     }
     services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
-      id: 'schedule',
-      type,
-      value: 1,
+      notificationType: type,
+      notificationAction: 'schedule',
     });
   } else {
     return;

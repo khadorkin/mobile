@@ -5,6 +5,7 @@ import {createSelector} from 'reselect';
 import {WebView, WebViewNavigation} from 'react-native-webview';
 
 import {StackScreenProps} from '@react-navigation/stack';
+import {useIsFocused} from '@react-navigation/native';
 import theme from '../modules/theme';
 
 import Screen from '../components/screen';
@@ -24,6 +25,7 @@ import translations from '../translations';
 import {getBrand} from '../redux/utils/state-extract';
 import type {State as BrandState} from '../redux/reducers/authentication/brand';
 import {StoreState} from '../redux/store';
+import {ExternalContentType} from '../layer/data/_types';
 
 export type ConnectedStateProps = {
   externalContent: ExternalContentState;
@@ -94,6 +96,7 @@ const External: React.FC<Props> = ({
   brand,
 }) => {
   const {contentRef, contentType} = route.params;
+  const isScreenFocused = useIsFocused();
   const expectedContentUrl = `${brand?.host}/externalContent/${contentRef}`;
   const isEmptyUrl = externalContent.contentUrl === '';
   const isContentFinished = externalContent.contentStatus === 'finished';
@@ -112,24 +115,31 @@ const External: React.FC<Props> = ({
   }, [completeProgression, navigation, externalContent.progressionId]);
 
   function onDidFinishCourseButtonPress() {
-    updateExternalContentState({contentStatus: 'finished', contentUrl: ''});
+    updateExternalContentState({contentStatus: 'finished'});
   }
 
   function onNavStateChange(navState: WebViewNavigation) {
-    if (navState.url.startsWith(expectedContentUrl) && navState.url.endsWith('/end')) {
-      updateExternalContentState({contentStatus: 'finished', contentUrl: ''});
-    }
     if (navState.url.startsWith(expectedContentUrl)) {
       updateExternalContentState({webViewStatus: 'loaded'});
+    }
+    if (navState.url.startsWith(expectedContentUrl) && navState.url.endsWith('/end')) {
+      updateExternalContentState({contentStatus: 'finished'});
     }
   }
 
   React.useEffect(() => {
-    updateExternalContentState({...initialState, contentType});
-    return () => {
-      updateExternalContentState(initialState);
-    };
-  }, [contentType, updateExternalContentState]);
+    if (isScreenFocused && !isContentFinished) {
+      getContentInfo_(contentRef, contentType as ExternalContentType);
+    }
+    return () => updateExternalContentState(initialState);
+  }, [
+    contentRef,
+    contentType,
+    isScreenFocused,
+    isContentFinished,
+    getContentInfo_,
+    updateExternalContentState,
+  ]);
 
   React.useEffect(() => {
     if (externalContent.webViewStatus === 'loaded') {
@@ -142,12 +152,6 @@ const External: React.FC<Props> = ({
       finishCourse();
     }
   }, [finishCourse, isContentFinished]);
-
-  React.useEffect(() => {
-    if (isEmptyUrl && !isContentFinished) {
-      getContentInfo_(contentRef);
-    }
-  }, [getContentInfo_, contentRef, isEmptyUrl, isContentFinished]);
 
   React.useEffect(() => {
     const anim = Animated.timing(animationValue, {
@@ -172,10 +176,6 @@ const External: React.FC<Props> = ({
             originWhitelist={['*']}
             allowsInlineMediaPlayback
             onNavigationStateChange={onNavStateChange}
-            cacheEnabled={false}
-            cacheMode="LOAD_NO_CACHE"
-            incognito
-            thirdPartyCookiesEnabled={false}
             style={styles.browser}
             containerStyle={styles.browser}
           />

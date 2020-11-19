@@ -60,8 +60,19 @@ describe('ExternalContent', () => {
           },
         };
         const getState = jest.fn(() => ({authentication}));
-        await getContentInfo('extCont_2Ers23')(dispatch, getState, options);
-        expect(dispatch).toHaveBeenCalledTimes(0);
+        await getContentInfo('extCont_2Ers23', 'scorm')(dispatch, getState, options);
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toBeCalledWith({
+          payload: {
+            contentType: 'scorm',
+            contentStatus: 'idle',
+            contentUrl: '',
+            webViewStatus: 'idle',
+            progressionId: '',
+            validateButtonStatus: 'visible',
+          },
+          type: ACTION_NAME,
+        });
       });
 
       it('gets a login token for given content and user', async () => {
@@ -86,17 +97,17 @@ describe('ExternalContent', () => {
             },
           },
         };
-        await getContentInfo('extCont_2Ers23')(dispatch, getState, options);
-        await getContentInfo('extCont_2Ers23')(dispatch, getState, options);
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).nthCalledWith(1, {
+        await getContentInfo('extCont_2Ers23', 'scorm')(dispatch, getState, options);
+        await getContentInfo('extCont_2Ers23', 'scorm')(dispatch, getState, options);
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).nthCalledWith(2, {
           payload: {
             contentUrl: 'https://scorm.net/content/extCont_2Ers23',
             validateButtonStatus: 'visible',
           },
           type: ACTION_NAME,
         });
-        expect(dispatch).nthCalledWith(2, {
+        expect(dispatch).nthCalledWith(4, {
           payload: {
             contentUrl: 'https://scorm.net/content/extCont_2Ers23',
             validateButtonStatus: 'hidden',

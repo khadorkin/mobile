@@ -108,9 +108,8 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledWith(1);
         expect(services.Analytics.logEvent).toHaveBeenCalledWith('notifications', {
-          id: 'unschedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'unschedule',
         });
       });
     });
@@ -133,9 +132,8 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledWith(1);
         expect(services.Analytics.logEvent).toHaveBeenCalledWith('notifications', {
-          id: 'unschedule',
-          type: 'suggestion',
-          value: 1,
+          notificationType: 'suggestion',
+          notificationAction: 'unschedule',
         });
       });
     });
@@ -244,14 +242,12 @@ describe('Scheduled notifications', () => {
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          id: 'unschedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'unschedule',
         });
         expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
-          id: 'schedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'schedule',
         });
       });
       it('schedules a notification three times for given content(user has started 2 course) and cancel existing ones', async () => {
@@ -288,14 +284,12 @@ describe('Scheduled notifications', () => {
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(1);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          id: 'unschedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'unschedule',
         });
         expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
-          id: 'schedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'schedule',
         });
       });
       it('schedules a notification three times for given content(user has started 3 course)', async () => {
@@ -335,14 +329,12 @@ describe('Scheduled notifications', () => {
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          id: 'unschedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'unschedule',
         });
         expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
-          id: 'schedule',
-          type: 'finish-course',
-          value: 1,
+          notificationType: 'finish-course',
+          notificationAction: 'schedule',
         });
       });
     });
@@ -526,14 +518,12 @@ describe('Scheduled notifications', () => {
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(7);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          id: 'unschedule',
-          type: 'suggestion',
-          value: 1,
+          notificationType: 'suggestion',
+          notificationAction: 'unschedule',
         });
         expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
-          id: 'schedule',
-          type: 'suggestion',
-          value: 1,
+          notificationType: 'suggestion',
+          notificationAction: 'schedule',
         });
       });
     });
