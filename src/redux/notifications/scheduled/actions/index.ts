@@ -63,7 +63,7 @@ const scheduleNotification = (
   };
   switch (type) {
     case NOTIFICATION_TYPE.FINISH_COURSE: {
-      const notificationDeliveryDate = calculateNotificationDeliveryDate(index, 2);
+      const notificationDeliveryDate = calculateNotificationDeliveryDate(index, 1);
       scheduleNotificationOnDevice(type, userName, content, notificationDeliveryDate, id);
       break;
     }
