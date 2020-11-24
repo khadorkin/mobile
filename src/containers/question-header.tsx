@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
+import {StackHeaderProps} from '@react-navigation/stack';
 import {HEADER_BACKGROUND_COLOR} from '../navigator/navigation-options';
 import {getHeaderHeight} from '../modules/status-bar';
 import HeaderBackIcon from '../components/header-back-icon';
@@ -35,11 +35,15 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = StackScreenProps<never>;
+type Props = StackHeaderProps;
 
 const QuestionHeader = (props: Props): React.ReactNode => {
   function handleGoBack() {
-    props.navigation.goBack();
+    if (props.previous?.route.name === 'Search') {
+      props.navigation.navigate('Search');
+      return true;
+    }
+    props.navigation.navigate('Home');
     return true;
   }
 

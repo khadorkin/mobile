@@ -48,7 +48,7 @@ class QuestionTemplate extends React.PureComponent<Props> {
       <View style={styles.section}>
         {items.map((item, id) => {
           return (
-            <View key={id} style={{flexDirection: 'row'}}>
+            <View key={`${prefix}-${id}`} style={{flexDirection: 'row'}}>
               {this.renderItem(prefix)({item: item, index: id})}
               {this.renderSeparator()}
             </View>

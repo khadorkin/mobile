@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
+import {StackHeaderProps} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {
   NovaCompositionCoorpacademyScorm as ScormIcon,
@@ -74,12 +74,16 @@ const EXTERNAL_CONTENT_ICONS = {
   podcast: PodcastIcon,
 };
 
-type Props = StackScreenProps<{ExternalContent: undefined}, 'ExternalContent'>;
+type Props = StackHeaderProps;
 
 const ExternalContentHeader = (props: Props): React.ReactNode => {
-  const state: ExternalContentState = useSelector((state: StoreState) => state.externalContent);
+  const state: ExternalContentState = useSelector((_state: StoreState) => _state.externalContent);
   function handleGoBack() {
-    props.navigation.goBack();
+    if (props.previous?.route.name === 'Search') {
+      props.navigation.navigate('Search');
+      return true;
+    }
+    props.navigation.navigate('Home');
     return true;
   }
 
