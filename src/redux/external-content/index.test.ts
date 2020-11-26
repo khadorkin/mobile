@@ -28,7 +28,8 @@ describe('ExternalContent', () => {
         contentUrl: 'https://scorm.net',
         webViewStatus: 'loading',
         progressionId: '',
-        validateButtonStatus: 'visible',
+        validateButtonVisibility: 'visible',
+        validateButtonStatus: 'inactive',
       };
       let action = {
         type: ACTION_NAME,
@@ -69,7 +70,8 @@ describe('ExternalContent', () => {
             contentUrl: '',
             webViewStatus: 'idle',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
           type: ACTION_NAME,
         });
@@ -103,14 +105,14 @@ describe('ExternalContent', () => {
         expect(dispatch).nthCalledWith(2, {
           payload: {
             contentUrl: 'https://scorm.net/content/extCont_2Ers23',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
           },
           type: ACTION_NAME,
         });
         expect(dispatch).nthCalledWith(4, {
           payload: {
             contentUrl: 'https://scorm.net/content/extCont_2Ers23',
-            validateButtonStatus: 'hidden',
+            validateButtonVisibility: 'hidden',
           },
           type: ACTION_NAME,
         });
@@ -130,7 +132,8 @@ describe('ExternalContent', () => {
             contentUrl: 'https://scorm.net',
             webViewStatus: 'loading',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
         }));
         const progressionId = '5435fE34decs024535';
@@ -165,7 +168,8 @@ describe('ExternalContent', () => {
             contentUrl: 'https://scorm.net',
             webViewStatus: 'loading',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
         }));
         const progressionId = '5435fE34decs024535';
@@ -205,7 +209,8 @@ describe('ExternalContent', () => {
             contentUrl: 'https://scorm.net',
             webViewStatus: 'loading',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
         }));
         const progressionId = '5435fE34decs024535';
@@ -247,7 +252,8 @@ describe('ExternalContent', () => {
             contentUrl: 'https://scorm.net',
             webViewStatus: 'loading',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
         }));
         const contentRef = 'extCont_234';
@@ -269,7 +275,7 @@ describe('ExternalContent', () => {
         );
       });
 
-      it('fetches the current progression id remotely', async () => {
+      it('fetches the current progression id remotely for a scorm content', async () => {
         const brand = createBrand();
         const authentication = createAuthenticationState({brand});
         const dispatch = jest.fn();
@@ -281,7 +287,8 @@ describe('ExternalContent', () => {
             contentUrl: 'https://scorm.net',
             webViewStatus: 'loading',
             progressionId: '',
-            validateButtonStatus: 'visible',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
           },
         }));
         const contentRef = 'extCont_234';
@@ -300,6 +307,44 @@ describe('ExternalContent', () => {
         expect(dispatch).nthCalledWith(1, {
           payload: {
             progressionId,
+            validateButtonStatus: 'inactive',
+          },
+          type: ACTION_NAME,
+        });
+      });
+      it('fetches the current progression id remotely for a video content', async () => {
+        const brand = createBrand();
+        const authentication = createAuthenticationState({brand});
+        const dispatch = jest.fn();
+        const getState = jest.fn(() => ({
+          authentication,
+          externalContent: {
+            contentType: 'video',
+            contentStatus: 'idle',
+            contentUrl: 'https://video.net',
+            webViewStatus: 'loading',
+            progressionId: '',
+            validateButtonVisibility: 'visible',
+            validateButtonStatus: 'inactive',
+          },
+        }));
+        const contentRef = 'extCont_234';
+        const progressionId = '5435fE34decs024535';
+
+        const options = {
+          services: {
+            Progressions: {
+              getRemoteCurrentProgressionId: jest.fn(() => Promise.resolve(progressionId)),
+            },
+          },
+        };
+
+        await getRemoteCurrentProgressionId(contentRef)(dispatch, getState, options);
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).nthCalledWith(1, {
+          payload: {
+            progressionId,
+            validateButtonStatus: 'active',
           },
           type: ACTION_NAME,
         });

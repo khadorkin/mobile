@@ -4,6 +4,7 @@ import {persist} from '../../layer/data/progressions';
 import {getBrand, getToken} from '../utils/state-extract';
 import {getAndRefreshCard} from '../actions/catalog/cards/refresh';
 import {ExternalContentType} from '../../layer/data/_types';
+import {StoreState} from '../store';
 
 export type ExternalTypeState = 'idle' | 'podcast' | 'article' | 'video' | 'scorm';
 export type State = {
@@ -11,7 +12,8 @@ export type State = {
   contentUrl: string;
   webViewStatus: 'idle' | 'loading' | 'loaded';
   progressionId: string;
-  validateButtonStatus: 'visible' | 'hidden';
+  validateButtonStatus: 'active' | 'inactive';
+  validateButtonVisibility: 'visible' | 'hidden';
   contentType: ExternalTypeState;
 };
 
@@ -20,7 +22,8 @@ export const initialState: State = {
   contentUrl: '',
   webViewStatus: 'idle',
   progressionId: '',
-  validateButtonStatus: 'visible',
+  validateButtonStatus: 'inactive',
+  validateButtonVisibility: 'visible',
   contentType: 'idle',
 };
 
@@ -50,7 +53,7 @@ export const getContentInfo = (contentRef: string, contentType: ExternalContentT
   getState,
   options,
 ) => {
-  const state = getState();
+  const state: StoreState = getState();
   const token = getToken(state) as string;
   const brand = getBrand(state) as {host: string};
 
@@ -65,7 +68,7 @@ export const getContentInfo = (contentRef: string, contentType: ExternalContentT
 
     return dispatch(
       update({
-        validateButtonStatus: hideCompleteButton ? 'hidden' : 'visible',
+        validateButtonVisibility: hideCompleteButton ? 'hidden' : 'visible',
         contentUrl: contentInfo.loginUrl,
       }),
     );
@@ -79,7 +82,7 @@ export const completeProgressionAndPersist = (
   callback: () => void,
   retries = 3,
 ) => async (dispatch, getState, options) => {
-  const state = getState();
+  const state: StoreState = getState();
   const brand = getBrand(state) as {host: string};
   const token = getToken(state) as string;
 
@@ -105,7 +108,7 @@ export const getRemoteCurrentProgressionId = (extContRef: string, retries = 15) 
   getState,
   options,
 ) => {
-  const state = getState();
+  const state: StoreState = getState();
   const brand = getBrand(state) as {host: string};
   const token = getToken(state) as string;
 
@@ -122,7 +125,12 @@ export const getRemoteCurrentProgressionId = (extContRef: string, retries = 15) 
         ),
       {retries},
     );
-    return dispatch(update({progressionId: currentProgressionId}));
+    return dispatch(
+      update({
+        progressionId: currentProgressionId,
+        validateButtonStatus: state.externalContent.contentType !== 'scorm' ? 'active' : 'inactive',
+      }),
+    );
   } catch (error) {
     //
   }

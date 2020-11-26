@@ -101,7 +101,7 @@ const External: React.FC<Props> = ({
   const isEmptyUrl = externalContent.contentUrl === '';
   const isContentFinished = externalContent.contentStatus === 'finished';
   const animationValue = React.useRef(
-    new Animated.Value(externalContent.validateButtonStatus === 'hidden' ? 0 : 104),
+    new Animated.Value(externalContent.validateButtonVisibility === 'hidden' ? 0 : 104),
   ).current;
 
   const finishCourse = React.useCallback(() => {
@@ -122,6 +122,13 @@ const External: React.FC<Props> = ({
     if (navState.url.startsWith(expectedContentUrl)) {
       updateExternalContentState({webViewStatus: 'loaded'});
     }
+    if (
+      contentType === 'scorm' &&
+      navState.url.startsWith(expectedContentUrl) &&
+      navState.url.includes('/completed')
+    ) {
+      updateExternalContentState({validateButtonStatus: 'active'});
+    }
     if (navState.url.startsWith(expectedContentUrl) && navState.url.endsWith('/end')) {
       updateExternalContentState({contentStatus: 'finished'});
     }
@@ -131,7 +138,9 @@ const External: React.FC<Props> = ({
     if (isScreenFocused && !isContentFinished) {
       getContentInfo_(contentRef, contentType as ExternalContentType);
     }
-    return () => updateExternalContentState(initialState);
+    return () => {
+      updateExternalContentState(initialState);
+    };
   }, [
     contentRef,
     contentType,
@@ -155,14 +164,14 @@ const External: React.FC<Props> = ({
 
   React.useEffect(() => {
     const anim = Animated.timing(animationValue, {
-      toValue: externalContent.validateButtonStatus === 'hidden' ? 0 : 104,
+      toValue: externalContent.validateButtonVisibility === 'hidden' ? 0 : 104,
       easing: Easing.linear,
       duration: 230,
       useNativeDriver: false,
     });
     anim.start();
     return () => anim.stop();
-  }, [animationValue, externalContent.validateButtonStatus]);
+  }, [animationValue, externalContent.validateButtonVisibility]);
 
   return (
     <Screen noSafeArea noScroll testID="external-content-screen">
@@ -192,7 +201,7 @@ const External: React.FC<Props> = ({
         <Button
           isLoading={isContentFinished}
           onPress={onDidFinishCourseButtonPress}
-          isDisabled={externalContent.progressionId === ''}
+          isDisabled={externalContent.validateButtonStatus === 'inactive'}
           testID="external-content-button-finished-course"
           analyticsID="external-content-button-finished-course"
           analyticsParams={{questionType: `externalContent-${contentType}`}}
