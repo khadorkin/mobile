@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, StatusBar, View, Animated, Easing} from 'react-native';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
-import {WebView, WebViewNavigation} from 'react-native-webview';
+import {WebView, WebViewMessageEvent, WebViewNavigation} from 'react-native-webview';
 
 import {StackScreenProps} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
@@ -118,16 +118,16 @@ const External: React.FC<Props> = ({
     updateExternalContentState({contentStatus: 'finished'});
   }
 
+  function onMessage({nativeEvent}: WebViewMessageEvent) {
+    const data = JSON.parse(nativeEvent.data);
+    if (data?.lesson_status === 'completed') {
+      updateExternalContentState({validateButtonStatus: 'active'});
+    }
+  }
+
   function onNavStateChange(navState: WebViewNavigation) {
     if (navState.url.startsWith(expectedContentUrl)) {
       updateExternalContentState({webViewStatus: 'loaded'});
-    }
-    if (
-      contentType === 'scorm' &&
-      navState.url.startsWith(expectedContentUrl) &&
-      navState.url.includes('/completed')
-    ) {
-      updateExternalContentState({validateButtonStatus: 'active'});
     }
     if (navState.url.startsWith(expectedContentUrl) && navState.url.endsWith('/end')) {
       updateExternalContentState({contentStatus: 'finished'});
@@ -173,6 +173,14 @@ const External: React.FC<Props> = ({
     return () => anim.stop();
   }, [animationValue, externalContent.validateButtonVisibility]);
 
+  const INJECTED_JAVASCRIPT = `
+    (function() {
+      window.addEventListener("message", (event) => {
+        window.ReactNativeWebView.postMessage(JSON.stringify(event.data));
+      });
+    })();
+  `;
+
   return (
     <Screen noSafeArea noScroll testID="external-content-screen">
       <StatusBar barStyle="dark-content" backgroundColor={HEADER_BACKGROUND_COLOR} />
@@ -184,9 +192,11 @@ const External: React.FC<Props> = ({
             source={{uri: externalContent.contentUrl}}
             originWhitelist={['*']}
             allowsInlineMediaPlayback
+            injectedJavaScript={INJECTED_JAVASCRIPT}
             onNavigationStateChange={onNavStateChange}
             style={styles.browser}
             containerStyle={styles.browser}
+            onMessage={onMessage}
           />
         ) : null}
         {externalContent.webViewStatus !== 'loaded' || isContentFinished ? (

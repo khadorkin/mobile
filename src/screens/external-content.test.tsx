@@ -366,7 +366,7 @@ describe('ExternalContent', () => {
     expect(completeProgression).toBeCalledTimes(1);
   });
 
-  it('activates finish course button if scorm content progression is finished or almost', () => {
+  it('does not activate the finish course button if the posted message has not the lesson_status', () => {
     const {Component: ExternalContent} = require('./external-content');
 
     const navigation = createNavigation({});
@@ -407,12 +407,66 @@ describe('ExternalContent', () => {
     );
 
     const webView = component.root.find((el) => el.props.testID === 'external-content-webview');
-    webView.props.onNavigationStateChange({
-      url: 'https://mobile-staging.coorpacademy.com/externalContent/extCont_123/completed',
+    webView.props.onMessage({
+      nativeEvent: {
+        data: null,
+      },
     });
 
     expect(getContentInfo).toBeCalledTimes(0);
-    expect(updateExternalContentState).toBeCalledTimes(2);
-    expect(updateExternalContentState).nthCalledWith(2, {validateButtonStatus: 'active'});
+    expect(updateExternalContentState).toBeCalledTimes(0);
+  });
+
+  it('activates finish course button if the posted message has the lesson_status property set to completed', () => {
+    const {Component: ExternalContent} = require('./external-content');
+
+    const navigation = createNavigation({});
+    const route = {
+      params: {
+        contentRef: 'extCont_123',
+        contentType: 'scorm',
+      },
+    };
+    const brand = createBrand();
+
+    const updateExternalContentState = jest.fn();
+    const getContentInfo = jest.fn();
+    const completeProgression = jest.fn((progressionId: string, callback: () => void) => {
+      return callback();
+    });
+    const getRemoteProgressionId = jest.fn();
+
+    const component = renderer.create(
+      <ExternalContent
+        navigation={navigation}
+        route={route}
+        externalContent={{
+          validateButtonVisibility: 'visible',
+          validateButtonStatus: 'inactive',
+          contentType: 'scorm',
+          contentUrl: 'https://mobile-staging.coorpacademy.com/externalContent/',
+          contentStatus: 'started',
+          webViewStatus: 'loaded',
+          progressionId: '12345',
+        }}
+        brand={brand}
+        updateExternalContentState={updateExternalContentState}
+        getContentInfo={getContentInfo}
+        completeProgression={completeProgression}
+        getRemoteProgressionId={getRemoteProgressionId}
+      />,
+    );
+
+    const webView = component.root.find((el) => el.props.testID === 'external-content-webview');
+    webView.props.onMessage({
+      nativeEvent: {
+        data:
+          '{"lesson_status":"completed","score_raw":"","score_max":100,"score_min":0,"session_time":"00:00:39.97","detailed_answers":{},"progressionId":"5fc797ec5c47e1001b77af1b"}',
+      },
+    });
+
+    expect(getContentInfo).toBeCalledTimes(0);
+    expect(updateExternalContentState).toBeCalledTimes(1);
+    expect(updateExternalContentState).nthCalledWith(1, {validateButtonStatus: 'active'});
   });
 });
