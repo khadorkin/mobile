@@ -39,6 +39,16 @@ export type ConnectedDispatchProps = {
   updateExternalContentState: typeof update;
 };
 
+type ProgressionMessage = {
+  lesson_status: 'completed';
+  score_raw: string;
+  score_max: string;
+  score_min: string;
+  session_time: string;
+  detailed_answers: unknown;
+  progressionId: string;
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,7 +129,7 @@ const External: React.FC<Props> = ({
   }
 
   function onMessage({nativeEvent}: WebViewMessageEvent) {
-    const data = JSON.parse(nativeEvent.data);
+    const data: null | ProgressionMessage = JSON.parse(nativeEvent.data);
     if (data?.lesson_status === 'completed') {
       updateExternalContentState({validateButtonStatus: 'active'});
     }

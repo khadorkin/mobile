@@ -99,7 +99,8 @@ const Question = ({
   isLoading,
   testID,
 }: Props) => {
-  if (!type || !header || !explanation || isLoading) {
+  const isExplanationMissing = choices?.length > 1 && !explanation;
+  if (!type || !header || isExplanationMissing || isLoading) {
     return (
       <View style={styles.containerPlaceholder}>
         <View>
