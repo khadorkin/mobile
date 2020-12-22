@@ -420,8 +420,15 @@ describe('Question', () => {
     const {Component: Question} = require('./question');
 
     const editAnswer = jest.fn();
+    const changeAnswerValidationStatus = jest.fn();
     const navigation = createNavigation({});
-    const component = renderer.create(<Question navigation={navigation} editAnswer={editAnswer} />);
+    const component = renderer.create(
+      <Question
+        navigation={navigation}
+        changeAnswerValidationStatus={changeAnswerValidationStatus}
+        editAnswer={editAnswer}
+      />,
+    );
 
     const question = component.root.find((el) => el.props.testID === 'question');
     question.props.onChoicePress(choices[0]);
@@ -434,8 +441,15 @@ describe('Question', () => {
     const {Component: Question} = require('./question');
 
     const editAnswer = jest.fn();
+    const changeAnswerValidationStatus = jest.fn();
     const navigation = createNavigation({});
-    const component = renderer.create(<Question navigation={navigation} editAnswer={editAnswer} />);
+    const component = renderer.create(
+      <Question
+        navigation={navigation}
+        changeAnswerValidationStatus={changeAnswerValidationStatus}
+        editAnswer={editAnswer}
+      />,
+    );
 
     const question = component.root.find((el) => el.props.testID === 'question');
     question.props.onSliderChange(42);
@@ -448,8 +462,15 @@ describe('Question', () => {
     const {Component: Question} = require('./question');
 
     const editAnswer = jest.fn();
+    const changeAnswerValidationStatus = jest.fn();
     const navigation = createNavigation({});
-    const component = renderer.create(<Question navigation={navigation} editAnswer={editAnswer} />);
+    const component = renderer.create(
+      <Question
+        navigation={navigation}
+        changeAnswerValidationStatus={changeAnswerValidationStatus}
+        editAnswer={editAnswer}
+      />,
+    );
 
     const question = component.root.find((el) => el.props.testID === 'question');
     question.props.onInputValueChange('foo');
@@ -462,11 +483,13 @@ describe('Question', () => {
     const {Component: Question} = require('./question');
 
     const editAnswer = jest.fn();
+    const changeAnswerValidationStatus = jest.fn();
     const navigation = createNavigation({});
     const component = renderer.create(
       <Question
         navigation={navigation}
         editAnswer={editAnswer}
+        changeAnswerValidationStatus={changeAnswerValidationStatus}
         choices={choices}
         userChoices={[choices[0].value]}
       />,
@@ -483,64 +506,21 @@ describe('Question', () => {
     const {Component: Question} = require('./question');
 
     const editAnswer = jest.fn();
+    const changeAnswerValidationStatus = jest.fn();
     const navigation = createNavigation({});
-    const component = renderer.create(<Question navigation={navigation} editAnswer={editAnswer} />);
+    const component = renderer.create(
+      <Question
+        navigation={navigation}
+        changeAnswerValidationStatus={changeAnswerValidationStatus}
+        editAnswer={editAnswer}
+      />,
+    );
 
     const question = component.root.find((el) => el.props.testID === 'question');
     question.props.onChoiceInputChange(choices[0], choices[0].value);
 
     expect(editAnswer).toHaveBeenCalledTimes(1);
     expect(editAnswer).toHaveBeenCalledWith([]);
-  });
-
-  it('should handle scroll reset when slide ID changes', () => {
-    const {Component: Question} = require('./question');
-
-    const scrollToPosition = jest.fn();
-    const validateAnswer = jest.fn();
-    const navigation = createNavigation({});
-    const component = renderer.create(
-      <Question navigation={navigation} validateAnswer={validateAnswer} slideId="slide_foo" />,
-    );
-
-    const screen = component.root.find((el) => el.props.testID === 'question-screen');
-    screen.props.onRef({
-      props: {
-        scrollToPosition,
-      },
-    });
-
-    component.update(
-      <Question navigation={navigation} validateAnswer={validateAnswer} slideId="slide_bar" />,
-    );
-
-    expect(scrollToPosition).toHaveBeenCalledTimes(1);
-    expect(scrollToPosition).toHaveBeenCalledWith(0, 0, true);
-  });
-
-  it('should not handle scroll reset when slide ID is the same or undefined', () => {
-    const {Component: Question} = require('./question');
-
-    const slideId = 'slide_foo';
-    const scrollToPosition = jest.fn();
-    const validateAnswer = jest.fn();
-    const navigation = createNavigation({});
-    const component = renderer.create(
-      <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
-    );
-
-    const screen = component.root.find((el) => el.props.testID === 'question-screen');
-    screen.props.onRef({
-      props: {
-        scrollToPosition,
-      },
-    });
-
-    component.update(
-      <Question navigation={navigation} validateAnswer={validateAnswer} slideId={undefined} />,
-    );
-
-    expect(scrollToPosition).toHaveBeenCalledTimes(0);
   });
 
   describe('ButtonPress & Navigation', () => {
@@ -555,6 +535,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const _question = createQCMGraphic({title: 'Foo bar'});
         const slide = createSlide({
@@ -595,7 +576,12 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
       const question = component.root.find((el) => el.props.testID === 'question');
@@ -608,6 +594,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const progression = createProgression({
           engine: ENGINE.MICROLEARNING,
@@ -640,7 +627,12 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
       const question = component.root.find((el) => el.props.testID === 'question');
@@ -658,6 +650,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const progression = createProgression({
           engine: ENGINE.MICROLEARNING,
@@ -691,7 +684,12 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
       const question = component.root.find((el) => el.props.testID === 'question');
@@ -706,6 +704,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const progression = createProgression({
           engine: ENGINE.MICROLEARNING,
@@ -741,7 +740,12 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
       const question = component.root.find((el) => el.props.testID === 'question');
@@ -756,6 +760,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const progression = createProgression({
           engine: ENGINE.MICROLEARNING,
@@ -793,7 +798,12 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
       const question = component.root.find((el) => el.props.testID === 'question');
@@ -814,6 +824,7 @@ describe('Question', () => {
       const {Component: Question} = require('./question');
 
       const slideId = 'sli_foo';
+      const changeAnswerValidationStatus = jest.fn();
       const validateAnswer = jest.fn(() => {
         const _question = createQCMGraphic({title: 'Foo bar'});
         const slide = createSlide({
@@ -854,11 +865,14 @@ describe('Question', () => {
       });
       const navigation = createNavigation({});
       const component = renderer.create(
-        <Question navigation={navigation} validateAnswer={validateAnswer} slideId={slideId} />,
+        <Question
+          navigation={navigation}
+          changeAnswerValidationStatus={changeAnswerValidationStatus}
+          validateAnswer={validateAnswer}
+          slideId={slideId}
+        />,
       );
 
-      const screen = component.root.find((el) => el.props.testID === 'question-screen');
-      screen.props.onRef(null);
       const question = component.root.find((el) => el.props.testID === 'question');
       await question.props.onButtonPress();
 

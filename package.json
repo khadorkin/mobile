@@ -79,10 +79,10 @@
   "dependencies": {
     "@coorpacademy/acl": "^1.0.1",
     "@coorpacademy/nova-icons": "^3.9.0",
-    "@coorpacademy/player-services": "5.1.14",
-    "@coorpacademy/player-store": "4.1.23",
+    "@coorpacademy/player-services": "^5.1.16",
+    "@coorpacademy/player-store": "4.1.28",
     "@coorpacademy/progression-aggregations": "^2.168.1",
-    "@coorpacademy/progression-engine": "11.1.9",
+    "@coorpacademy/progression-engine": "^11.1.11",
     "@coorpacademy/react-native-deck-swiper": "^1.5.35",
     "@coorpacademy/react-native-notifications": "^3.2.3",
     "@coorpacademy/react-native-slider": "^0.11.1",

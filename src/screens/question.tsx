@@ -14,6 +14,8 @@ import {
 } from '@coorpacademy/player-store';
 import type {Media, QuestionType, Choice} from '@coorpacademy/progression-engine';
 
+import {StackScreenProps} from '@react-navigation/stack';
+import {useIsFocused} from '@react-navigation/native';
 import Question from '../components/question';
 import type {Props as QuestionProps} from '../components/question';
 import Screen from '../components/screen';
@@ -23,7 +25,7 @@ import {
   getContentCorrectionInfo,
   getValidationStatus,
 } from '../redux/utils/state-extract';
-import {validateAnswer} from '../redux/actions/ui/answers';
+import {changeAnswerValidationStatus, validateAnswer} from '../redux/actions/ui/answers';
 import {HEADER_BACKGROUND_COLOR} from '../navigator/navigation-options';
 import {QUESTION_TYPE} from '../const';
 import type {Params as CorrectionParams} from './correction';
@@ -50,52 +52,87 @@ export interface ConnectedStateProps {
 interface ConnectedDispatchProps {
   editAnswer: typeof editAnswer;
   validateAnswer: typeof validateAnswer;
+  changeAnswerValidationStatus: typeof changeAnswerValidationStatus;
 }
 
-interface Props extends NavigationScreenProps, ConnectedStateProps, ConnectedDispatchProps {}
+type Params = {
+  Question: undefined;
+  Context: undefined;
+  Modals: {
+    screen: 'LevelEnd' | 'Correction';
+    params: LevelEndParams | CorrectionParams;
+  };
+};
 
-class QuestionScreen extends React.Component<Props> {
-  scrollView: KeyboardAwareScrollView | void;
+interface Props
+  extends StackScreenProps<Params, 'Question'>,
+    ConnectedStateProps,
+    ConnectedDispatchProps {}
 
-  componentDidUpdate(prevProps: Props) {
-    if (this.scrollView && this.props.slideId && prevProps.slideId !== this.props.slideId) {
-      this.scrollView.props.scrollToPosition(0, 0, true);
+const QuestionScreen: React.FC<Props> = ({
+  changeAnswerValidationStatus: changeAnswerValidationStatus_,
+  ...props
+}) => {
+  const scrollViewRef = React.useRef<KeyboardAwareScrollView>(null);
+  const isFocused = useIsFocused();
+
+  React.useEffect(() => {
+    changeAnswerValidationStatus_(false);
+  }, [changeAnswerValidationStatus_, props.slideId]);
+
+  React.useEffect(() => {
+    if (scrollViewRef.current && props.slideId) {
+      scrollViewRef.current.props.scrollToPosition(0, 0, true);
     }
-  }
+  }, [props.slideId]);
 
-  handleRef = (element: KeyboardAwareScrollView) => {
-    this.scrollView = element;
-  };
+  const {
+    choices = [],
+    type,
+    header,
+    explanation,
+    media,
+    min,
+    max,
+    unit,
+    step,
+    value,
+    template,
+    userChoices = [],
+    isValidationDisabled,
+    editAnswer: editAnswer_,
+    validateAnswer: validateAnswer_,
+    navigation: {navigate},
+    slideId,
+    isValidating,
+  } = props;
 
-  handleChoicePress = (item: Choice) => {
-    this.props.editAnswer(item);
-  };
+  const handleChoicePress = React.useCallback((item: Choice) => editAnswer_(item), [editAnswer_]);
 
-  handleSliderChange = (newValue: number) => {
-    this.props.editAnswer(String(newValue));
-  };
+  const handleSliderChange = React.useCallback(
+    (newValue: number) => editAnswer_(String(newValue)),
+    [editAnswer_],
+  );
 
-  handleInputValueChange = (value: string) => {
-    this.props.editAnswer(value);
-  };
+  const handleInputValueChange = React.useCallback((value: string) => editAnswer_(value), [
+    editAnswer_,
+  ]);
 
-  handleChoiceInputChange = (item: Choice, value: string) => {
-    const {choices = [], userChoices = []} = this.props;
-    const values = choices.map((choice, index) => {
-      const currentValue = userChoices[index] !== undefined ? userChoices[index] : '';
+  const handleChoiceInputChange = React.useCallback(
+    (item: Choice, value: string) => {
+      const values = choices.map((choice, index) => {
+        const currentValue = userChoices[index] !== undefined ? userChoices[index] : '';
 
-      return choice._id === item._id ? value : currentValue;
-    });
+        return choice._id === item._id ? value : currentValue;
+      });
 
-    this.props.editAnswer(values);
-  };
+      editAnswer_(values);
+    },
+    [choices, editAnswer_, userChoices],
+  );
 
-  handleButtonPress = async () => {
-    const {
-      navigation: {navigate},
-      slideId,
-    } = this.props;
-    const state = await this.props.validateAnswer();
+  const handleButtonPress = React.useCallback(async () => {
+    const state = await validateAnswer_();
 
     const {
       isCorrect,
@@ -119,55 +156,36 @@ class QuestionScreen extends React.Component<Props> {
       slideId,
     };
     return navigate('Modals', {screen: 'Correction', params: correctionParams});
-  };
+  }, [navigate, slideId, validateAnswer_]);
 
-  render() {
-    const {
-      choices = [],
-      type,
-      header,
-      explanation,
-      media,
-      min,
-      max,
-      unit,
-      step,
-      value,
-      template,
-      userChoices = [],
-      isValidationDisabled,
-      isValidating,
-    } = this.props;
-
-    return (
-      <Screen testID="question-screen" onRef={this.handleRef}>
-        <StatusBar barStyle="dark-content" backgroundColor={HEADER_BACKGROUND_COLOR} />
-        <Question
-          type={type}
-          choices={choices}
-          header={header}
-          explanation={explanation}
-          template={template}
-          media={media}
-          userChoices={userChoices}
-          onChoicePress={this.handleChoicePress}
-          onButtonPress={this.handleButtonPress}
-          onSliderChange={this.handleSliderChange}
-          onChoiceInputChange={this.handleChoiceInputChange}
-          onInputValueChange={this.handleInputValueChange}
-          min={min}
-          max={max}
-          unit={unit}
-          step={step}
-          value={value}
-          isValidationDisabled={isValidationDisabled}
-          testID="question"
-          isLoading={isValidating}
-        />
-      </Screen>
-    );
-  }
-}
+  return (
+    <Screen testID="question-screen" onRef={scrollViewRef}>
+      <StatusBar barStyle="dark-content" backgroundColor={HEADER_BACKGROUND_COLOR} />
+      <Question
+        type={type}
+        choices={choices}
+        header={header}
+        explanation={explanation}
+        template={template}
+        media={media}
+        userChoices={userChoices}
+        onChoicePress={handleChoicePress}
+        onButtonPress={handleButtonPress}
+        onSliderChange={handleSliderChange}
+        onChoiceInputChange={handleChoiceInputChange}
+        onInputValueChange={handleInputValueChange}
+        min={min}
+        max={max}
+        unit={unit}
+        step={step}
+        value={value}
+        isValidationDisabled={isValidationDisabled}
+        testID="question"
+        isLoading={isValidating || !isFocused}
+      />
+    </Screen>
+  );
+};
 
 const getSlideIdState = createSelector([getCurrentSlide], (slide) => slide && slide._id);
 
@@ -189,11 +207,12 @@ const getQuestionTemplateState = createSelector(
   (question) => question && question.content.template,
 );
 
+const getChoices_ = getChoices();
 const getQuestionChoicesState = (state: StoreState) =>
   createSelector(
     [getCurrentSlide],
     // @ts-ignore union type
-    (slide) => slide && getChoices(slide, state),
+    (slide) => slide && getChoices_(slide, state),
   )(state);
 
 const getQuestionUserChoicesState = (state: StoreState) =>
@@ -256,7 +275,8 @@ export const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
 const mapDispatchToProps: ConnectedDispatchProps = {
   editAnswer,
   validateAnswer,
+  changeAnswerValidationStatus,
 };
 
 export {QuestionScreen as Component};
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(QuestionScreen));

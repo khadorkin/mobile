@@ -14,6 +14,7 @@ import {
   getPreviousSlide,
 } from '@coorpacademy/player-store';
 
+import {StackScreenProps} from '@react-navigation/stack';
 import {SPECIFIC_CONTENT_REF} from '../const';
 import type {Resource} from '../types';
 import Correction, {POSITIVE_COLOR, NEGATIVE_COLOR} from '../components/correction';
@@ -71,7 +72,18 @@ interface ConnectedDispatchProps {
 }
 
 interface Props
-  extends NavigationScreenProps<Params>,
+  extends StackScreenProps<
+      {
+        Correction: undefined;
+        Context: undefined;
+        Question: undefined;
+        Modals: {
+          screen: 'LevelEnd' | 'Pdf' | 'Browser';
+          params: LevelEndScreenParams | PdfScreenParams | BrowserScreenParams;
+        };
+      },
+      'Correction'
+    >,
     ConnectedStateProps,
     ConnectedDispatchProps {}
 

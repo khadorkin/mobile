@@ -9,7 +9,7 @@ interface Props {
   noScroll?: boolean;
   children: React.ReactNode;
   testID?: string;
-  onRef?: (ref: KeyboardAwareScrollView) => void;
+  onRef?: {current: unknown} | ((ref: KeyboardAwareScrollView) => void);
   refreshControl?: React.ReactElement;
   noSafeArea?: boolean;
 }
@@ -38,6 +38,9 @@ class Screen extends React.PureComponent<Props> {
     this.scrollView = element;
 
     if (this.props.onRef && element) {
+      if (typeof this.props.onRef !== 'function') {
+        return (this.props.onRef.current = element);
+      }
       this.props.onRef(element);
     }
   };

@@ -32,10 +32,13 @@ export const validateAnswer: typeof _validateAnswer = () => async (dispatch, get
   // @ts-ignore getState definition conflict
   const state: StoreState = getState();
 
-  const result = await _validateAnswer({
-    godMode: isGodModeEnabled(state),
-    fastSlide: isFastSlideEnabled(state),
-  })(dispatch, getState, options);
+  const result = await _validateAnswer(
+    {
+      godMode: isGodModeEnabled(state),
+      fastSlide: isFastSlideEnabled(state),
+    },
+    {skipNextSlideFetch: true},
+  )(dispatch, getState, options);
 
   // @ts-ignore getState definition conflict
   const newState: StoreState = getState();
@@ -49,7 +52,6 @@ export const validateAnswer: typeof _validateAnswer = () => async (dispatch, get
     isCorrect: typeof isCorrect === 'boolean' && Number(isCorrect),
   });
   await dispatch(result);
-  await dispatch(changeAnswerValidationStatus(false));
 
   // @ts-ignore getState definition conflict
   return getState();

@@ -86,8 +86,10 @@ describe('Answers', () => {
 
       expect(_validateAnswer).toHaveBeenCalledTimes(1);
       expect(dispatch).nthCalledWith(1, {payload: true, type: '@@answer/VALIDATE_ANSWER'});
-      expect(dispatch).nthCalledWith(3, {payload: false, type: '@@answer/VALIDATE_ANSWER'});
-      expect(_validateAnswer).toHaveBeenCalledWith({godMode, fastSlide});
+      expect(_validateAnswer).toHaveBeenCalledWith(
+        {godMode, fastSlide},
+        {skipNextSlideFetch: true},
+      );
       expect(options.services.Analytics.logEvent).toHaveBeenCalledWith(
         ANALYTICS_EVENT_TYPE.VALIDATE_ANSWER,
         {
