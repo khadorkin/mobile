@@ -4,7 +4,7 @@ import {StoreAction} from '../../../_types';
 import {NotificationType} from '../../../../types';
 import {StoreState} from '../../../store';
 
-import {Services} from '../../../../services';
+import type {Services} from '../../../../services';
 
 import {
   ANALYTICS_EVENT_TYPE,
@@ -50,6 +50,7 @@ const scheduleNotification = (
   content: Card,
   type: NotificationType,
   index: number,
+  analyticsService: Pick<Services, 'Analytics'>,
 ) => (dispatch): StoreAction<Action | void> => {
   const id: number = Math.floor(Math.random() * Math.pow(2, 32));
   const action = {
@@ -73,6 +74,12 @@ const scheduleNotification = (
       break;
     }
   }
+
+  analyticsService.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+    notificationType: type,
+    notificationAction: 'schedule',
+  });
+
   return dispatch(action);
 };
 
@@ -92,10 +99,10 @@ export const unscheduleLocalNotifications = (type: NotificationType) => async (
 
   scheduledNotifications[type]?.forEach((notification) => {
     Notifications.cancelLocalNotification(notification.id);
-  });
-  services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
-    notificationType: type,
-    notificationAction: 'unschedule',
+    services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
+      notificationType: type,
+      notificationAction: 'unschedule',
+    });
   });
 
   return dispatch(action);
@@ -139,17 +146,35 @@ export const scheduleNotifications = (type: NotificationType) => async (
 
         // [2, 4, 6] days later
         if (firstContent && !secondContent && !thirdContent) {
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 0));
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 1));
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 2));
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 0, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 1, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 2, services.Analytics),
+          );
         } else if (firstContent && secondContent && !thirdContent) {
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 0));
-          await dispatch(scheduleNotification(user?.givenName, secondContent, type, 1));
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 2));
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 0, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, secondContent, type, 1, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 2, services.Analytics),
+          );
         } else if (firstContent && secondContent && thirdContent) {
-          await dispatch(scheduleNotification(user?.givenName, firstContent, type, 0));
-          await dispatch(scheduleNotification(user?.givenName, secondContent, type, 1));
-          await dispatch(scheduleNotification(user?.givenName, thirdContent, type, 2));
+          await dispatch(
+            scheduleNotification(user?.givenName, firstContent, type, 0, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, secondContent, type, 1, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, thirdContent, type, 2, services.Analytics),
+          );
         } else {
           return;
         }
@@ -161,23 +186,33 @@ export const scheduleNotifications = (type: NotificationType) => async (
         if (contents) {
           const user = getUser(state);
           // [7, 14, 21, 28, 42, 56, 84] days later
-          await dispatch(scheduleNotification(user?.givenName, contents[0], type, 0));
-          await dispatch(scheduleNotification(user?.givenName, contents[1], type, 1));
-          await dispatch(scheduleNotification(user?.givenName, contents[2], type, 2));
-          await dispatch(scheduleNotification(user?.givenName, contents[3], type, 3));
-          await dispatch(scheduleNotification(user?.givenName, contents[4], type, 5));
-          await dispatch(scheduleNotification(user?.givenName, contents[5], type, 7));
-          await dispatch(scheduleNotification(user?.givenName, contents[6], type, 11));
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[0], type, 0, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[1], type, 1, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[2], type, 2, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[3], type, 3, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[4], type, 5, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[5], type, 7, services.Analytics),
+          );
+          await dispatch(
+            scheduleNotification(user?.givenName, contents[6], type, 11, services.Analytics),
+          );
         } else {
           return;
         }
         break;
       }
     }
-    services.Analytics.logEvent(ANALYTICS_EVENT_TYPE.NOTIFICATIONS, {
-      notificationType: type,
-      notificationAction: 'schedule',
-    });
   } else {
     return;
   }

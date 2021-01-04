@@ -241,15 +241,13 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
-        expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          notificationType: 'finish-course',
-          notificationAction: 'unschedule',
-        });
-        expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
+        expect(services.Analytics.logEvent).toHaveBeenCalledTimes(3);
+        expect(services.Analytics.logEvent).toBeCalledWith('notifications', {
           notificationType: 'finish-course',
           notificationAction: 'schedule',
         });
       });
+
       it('schedules a notification three times for given content(user has started 2 course) and cancel existing ones', async () => {
         const {Notifications} = require('@coorpacademy/react-native-notifications');
         const {dispatch, getState} = createStore({
@@ -283,6 +281,7 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(1);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
+        expect(services.Analytics.logEvent).toHaveBeenCalledTimes(4);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
           notificationType: 'finish-course',
           notificationAction: 'unschedule',
@@ -328,10 +327,7 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(3);
-        expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          notificationType: 'finish-course',
-          notificationAction: 'unschedule',
-        });
+        expect(services.Analytics.logEvent).toHaveBeenCalledTimes(3);
         expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
           notificationType: 'finish-course',
           notificationAction: 'schedule',
@@ -517,11 +513,8 @@ describe('Scheduled notifications', () => {
         expect(dispatch).toHaveBeenCalledTimes(8);
         expect(Notifications.cancelLocalNotification).toHaveBeenCalledTimes(0);
         expect(Notifications.postLocalNotification).toHaveBeenCalledTimes(7);
+        expect(services.Analytics.logEvent).toHaveBeenCalledTimes(7);
         expect(services.Analytics.logEvent).nthCalledWith(1, 'notifications', {
-          notificationType: 'suggestion',
-          notificationAction: 'unschedule',
-        });
-        expect(services.Analytics.logEvent).nthCalledWith(2, 'notifications', {
           notificationType: 'suggestion',
           notificationAction: 'schedule',
         });
