@@ -4,6 +4,7 @@ import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/st
 import QuestionHeader from '../containers/question-header';
 import SettingsHeader from '../containers/settings-header';
 import DynamicLinks from '../containers/dynamic-links';
+import DeepLinks from '../containers/deep-links';
 import HomeScreen from '../screens/home';
 import AuthenticationScreen from '../screens/authentication';
 import AuthenticationDetailsScreen from '../screens/authentication-details';
@@ -23,7 +24,9 @@ const Stack = createStackNavigator();
 function AuthenticationWithDynamicLinks(mainProps) {
   return (
     <DynamicLinks {...mainProps}>
-      <AuthenticationScreen {...mainProps} />
+      <DeepLinks {...mainProps}>
+        <AuthenticationScreen {...mainProps} />
+      </DeepLinks>
     </DynamicLinks>
   );
 }

@@ -33,6 +33,7 @@ module.exports = {
     '!<rootDir>/src/*.js',
     '!<rootDir>/src/*.ts',
     '!<rootDir>/src/*.tsx',
+    '!<rootDir>/src/containers/deep-links.tsx',
     '!<rootDir>/src/utils/tests.js',
     '!<rootDir>/src/utils/tests.ts',
     '!<rootDir>/src/utils/tests.tsx',

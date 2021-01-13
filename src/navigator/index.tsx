@@ -29,6 +29,9 @@ function Navigator(props: {onStateChange: () => NavigationState}) {
     <SafeAreaProvider>
       <NavigationContainer
         ref={navigatorRef}
+        linking={{
+          prefixes: ['https://*.coorpacademy.com', 'https://coorpacademy.com'],
+        }}
         onReady={handleReady(true)}
         onStateChange={props.onStateChange}
       >
