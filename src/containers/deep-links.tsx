@@ -8,6 +8,8 @@ import {getToken} from '../redux/utils/state-extract';
 import {AUTHENTICATION_TYPE} from '../const';
 import {signIn, signOut} from '../redux/actions/authentication';
 import type {State as TokenState} from '../redux/reducers/authentication/token';
+import {fetchCard, getCardFromLocalStorage} from '../layer/data/cards';
+import {selectCard} from '../redux/actions/catalog/cards/select';
 
 interface ConnectedStateProps {
   token: TokenState;
@@ -16,25 +18,55 @@ interface ConnectedStateProps {
 interface ConnectedDispatchProps {
   signIn: typeof signIn;
   signOut: typeof signOut;
+  selectCard: typeof selectCard;
 }
 
 interface Props
-  extends StackScreenProps<{Home: undefined}, 'Home'>,
+  extends StackScreenProps<{Home: undefined; Slide: undefined}, 'Home'>,
     ConnectedStateProps,
     ConnectedDispatchProps {
   children: JSX.Element;
 }
 
-const VALIDE_PATHS = /dashboard/;
-const DeepLinks = ({token, navigation, signIn: _signIn, signOut: _signOut, children}: Props) => {
+let appHasBeenLaunched = false;
+
+const VALIDE_PATHS = /(dashboard|discipline|microlearning)/;
+const DeepLinks = ({
+  token,
+  navigation,
+  signIn: _signIn,
+  signOut: _signOut,
+  selectCard: _selectCard,
+  children,
+}: Props) => {
   const handleNavigation = React.useCallback(
-    (route: string) => {
+    (route: 'Slide' | 'Home') => {
       switch (route) {
+        case 'Slide':
+          return navigation.navigate('Slide');
         default:
           return navigation.navigate('Home');
       }
     },
     [navigation],
+  );
+
+  const getContentCard = React.useCallback(
+    async (ref: string) => {
+      const localCard = await getCardFromLocalStorage(ref);
+      if (localCard) {
+        _selectCard(localCard);
+      } else {
+        const remoteCard = await fetchCard({
+          ref,
+          type: ref.startsWith('cha_') ? 'chapter' : 'discipline',
+        });
+        if (remoteCard) {
+          _selectCard(remoteCard);
+        }
+      }
+    },
+    [_selectCard],
   );
 
   const handleDeepLinking = React.useCallback(
@@ -53,17 +85,33 @@ const DeepLinks = ({token, navigation, signIn: _signIn, signOut: _signOut, child
           }
           await _signIn(AUTHENTICATION_TYPE.MAGIC_LINK, query.jwt);
         }
-
-        return handleNavigation(route);
+        if (route.startsWith('//')) {
+          const contentRef = route.replace('//', '');
+          await getContentCard(contentRef);
+          handleNavigation('Home');
+          setTimeout(() => {
+            return handleNavigation('Slide');
+          }, 0);
+        }
+        return handleNavigation('Home');
       }
     },
-    [_signIn, _signOut, handleNavigation, token],
+    [_signIn, _signOut, getContentCard, handleNavigation, token],
   );
 
+  const handleInitialLink = React.useCallback(async () => {
+    const url = await Linking.getInitialURL();
+    if (url && !appHasBeenLaunched) {
+      appHasBeenLaunched = true;
+      handleDeepLinking({url});
+    }
+  }, [handleDeepLinking]);
+
   React.useEffect(() => {
+    handleInitialLink();
     Linking.addEventListener('url', handleDeepLinking);
     return () => Linking.removeEventListener('url', handleDeepLinking);
-  }, [handleDeepLinking]);
+  }, [handleDeepLinking, handleInitialLink]);
 
   return children;
 };
@@ -77,6 +125,7 @@ export const mapStateToProps = (state: StoreState): ConnectedStateProps => ({
 const mapDispatchToProps: ConnectedDispatchProps = {
   signIn,
   signOut,
+  selectCard,
 };
 
 export {DeepLinks as Component};
