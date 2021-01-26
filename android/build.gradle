@@ -3,24 +3,28 @@
 buildscript {
     ext {
         buildToolsVersion = "28.0.3"
-        minSdkVersion = 19
-        compileSdkVersion = 28
-        targetSdkVersion = 28
-        supportLibVersion = "28.0.0"
-        kotlinVersion = '1.3.11' // for detox
+        minSdkVersion = 21
+        compileSdkVersion = 29
+        targetSdkVersion = 29
     }
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://maven.fabric.io/public'
+            name 'Fabric'
+        }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath 'com.android.tools.build:gradle:3.5.2'
+        // For detox
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50"
         classpath 'com.google.gms:google-services:4.2.0'
+        classpath 'io.fabric.tools:gradle:1.28.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -31,9 +35,10 @@ allprojects {
         mavenLocal()
         jcenter()
         google()
+        maven { url 'https://www.jitpack.io' }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url "$rootDir/../node_modules/react-native/android"
+            url("$rootDir/../node_modules/react-native/android")
         }
         maven {
             url 'https://maven.google.com/'
@@ -41,7 +46,7 @@ allprojects {
         }
         maven {
             // Local Maven repo containing AARs with JSC library built for Android
-            url "$rootDir/../node_modules/jsc-android/dist"
+            url("$rootDir/../node_modules/jsc-android/dist")
         }
     }
 }

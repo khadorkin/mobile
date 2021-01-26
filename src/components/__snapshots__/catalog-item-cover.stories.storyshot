@@ -1,0 +1,406 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots CatalogItemCover Default (cover) 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Array [
+      Object {
+        "height": "100%",
+        "width": "100%",
+      },
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
+      ],
+    ]
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": undefined,
+          "width": undefined,
+        },
+        undefined,
+      ]
+    }
+    testID="catalog-item-cover"
+  />
+  <BVLinearGradient
+    colors={
+      Array [
+        0,
+        1711276032,
+        3003121664,
+        4278190080,
+      ]
+    }
+    endPoint={
+      Object {
+        "x": 0.5,
+        "y": 1,
+      }
+    }
+    locations={null}
+    startPoint={
+      Object {
+        "x": 0.5,
+        "y": 0,
+      }
+    }
+    style={
+      Array [
+        Array [
+          Object {
+            "flex": 1,
+          },
+          Object {
+            "justifyContent": "flex-end",
+            "padding": 24,
+          },
+        ],
+        undefined,
+      ]
+    }
+    testID="catalog-item-cover-gradient"
+  />
+</View>
+`;
+
+exports[`Storyshots CatalogItemCover Default 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Array [
+      Object {
+        "height": "100%",
+        "width": "100%",
+      },
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
+      ],
+    ]
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://static.coorpacademy.com/content/CoorpAcademy/content-bescherelle/cockpit-bescherelle/default/image_chapitre_hatier_accords-1524216190534.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": undefined,
+          "width": undefined,
+        },
+        undefined,
+      ]
+    }
+    testID="catalog-item-cover"
+  />
+  <BVLinearGradient
+    colors={
+      Array [
+        0,
+        1711276032,
+        3003121664,
+        4278190080,
+      ]
+    }
+    endPoint={
+      Object {
+        "x": 0.5,
+        "y": 1,
+      }
+    }
+    locations={null}
+    startPoint={
+      Object {
+        "x": 0.5,
+        "y": 0,
+      }
+    }
+    style={
+      Array [
+        Array [
+          Object {
+            "flex": 1,
+          },
+          Object {
+            "paddingTop": 24,
+          },
+        ],
+        undefined,
+      ]
+    }
+    testID="catalog-item-cover-gradient"
+  />
+</View>
+`;
+
+exports[`Storyshots CatalogItemCover Scorm (with image) 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Array [
+      Object {
+        "height": "100%",
+        "width": "100%",
+      },
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
+        Object {
+          "alignItems": "center",
+          "height": 118,
+          "justifyContent": "center",
+        },
+        Object {
+          "backgroundColor": "#FFB800",
+        },
+      ],
+    ]
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://api.coorpacademy.com/api-service/medias?url=https%3A%2F%2Fstatic.coorpacademy.com%2Fcontent%2FCoorpAcademy%2Fcontent-bescherelle%2Fcockpit-bescherelle%2Fdefault%2Fimage_chapitre_hatier_accords-1524216190534.jpg&m=crop&q=90&h=236",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": undefined,
+          "width": undefined,
+        },
+        undefined,
+      ]
+    }
+    testID="catalog-item-cover"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "height": 64,
+        "justifyContent": "center",
+        "width": 64,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 64,
+            "height": 64,
+            "opacity": 0.25,
+            "position": "absolute",
+            "width": 64,
+          },
+          Object {
+            "backgroundColor": "#FFB800",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 64,
+            "height": 64,
+            "opacity": 0.25,
+            "position": "absolute",
+            "width": 64,
+          },
+          Object {
+            "height": 56,
+            "opacity": 1,
+            "width": 56,
+          },
+          Object {
+            "backgroundColor": "#FFB800",
+          },
+        ]
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={32}
+      bbWidth={32}
+      color={4294967295}
+      focusable={false}
+      height={32}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 32,
+            "width": 32,
+          },
+        ]
+      }
+      testID="catalog-item-cover"
+      tintColor={4294967295}
+      vbHeight={40}
+      vbWidth={40}
+      width={32}
+    >
+      <RNSVGGroup>
+        <RNSVGGroup
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGPath
+            d="M0 27.5c0 .5.4.8.8.8h16.3L6.9 38.6c-.3.3-.3.9 0 1.2.3.3.9.3 1.2 0l10.2-10.2v9.7c0 .5.4.8.8.8.5 0 .8-.4.8-.8v-9.7l10.2 10.2c.3.3.9.3 1.2 0 .3-.3.3-.9 0-1.2L21.2 28.3h18c.5 0 .8-.4.8-.8V8.3H0v19.2zM39.2 0H.8C.4 0 0 .4 0 .8v5.8h40V.8c0-.4-.4-.8-.8-.8z"
+          />
+        </RNSVGGroup>
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots CatalogItemCover Scorm (without image) 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#FFFFFF",
+      },
+      Object {
+        "alignItems": "center",
+        "height": 118,
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#FFB800",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "height": 64,
+        "justifyContent": "center",
+        "width": 64,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 64,
+            "height": 64,
+            "opacity": 0.25,
+            "position": "absolute",
+            "width": 64,
+          },
+          null,
+        ]
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={32}
+      bbWidth={32}
+      color={4294967295}
+      focusable={false}
+      height={32}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 32,
+            "width": 32,
+          },
+        ]
+      }
+      testID="catalog-item-cover"
+      tintColor={4294967295}
+      vbHeight={40}
+      vbWidth={40}
+      width={32}
+    >
+      <RNSVGGroup>
+        <RNSVGGroup
+          fill={4294967295}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGPath
+            d="M0 27.5c0 .5.4.8.8.8h16.3L6.9 38.6c-.3.3-.3.9 0 1.2.3.3.9.3 1.2 0l10.2-10.2v9.7c0 .5.4.8.8.8.5 0 .8-.4.8-.8v-9.7l10.2 10.2c.3.3.9.3 1.2 0 .3-.3.3-.9 0-1.2L21.2 28.3h18c.5 0 .8-.4.8-.8V8.3H0v19.2zM39.2 0H.8C.4 0 0 .4 0 .8v5.8h40V.8c0-.4-.4-.8-.8-.8z"
+          />
+        </RNSVGGroup>
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;

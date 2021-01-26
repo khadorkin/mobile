@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>coorpacademyapp</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,19 +17,35 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.17</string>
+	<string>2.0.136</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>coorpacademyapp</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FirebaseDebugEnabled</key>
 	<string>$(FIREBASE_DEBUG_ENABLED)</string>
 	<key>LSApplicationCategoryType</key>
 	<string />
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>message</string>
+		<string>readdle-spark</string>
+		<string>airmail</string>
+		<string>ms-outlook</string>
+		<string>googlegmail</string>
+		<string>inbox-gmail</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true />
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Some description</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -54,18 +61,20 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Some description</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Not used in this app</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Some description</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Some description</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to scan QR codes</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Not used in this app</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Not used in this app</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Not used in this app</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Some description</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Some description</string>
 	<key>NSMotionUsageDescription</key>
@@ -76,8 +85,12 @@
 	<string>Some description</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Some description</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>BootSplash</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -98,14 +111,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false />
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>message</string>
-		<string>readdle-spark</string>
-		<string>airmail</string>
-		<string>ms-outlook</string>
-		<string>googlegmail</string>
-		<string>inbox-gmail</string>
-	</array>
 </dict>
 </plist>

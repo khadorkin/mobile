@@ -6,24 +6,27 @@
  */
 const createBlacklist = require('metro-config/src/defaults/blacklist');
 
-const {REACT_NATIVE_FLAVOR} = process.env;
+const version = require('./src/modules/version');
+
+const DEFAULT_EXTENSIONS = ['js', 'ts', 'tsx'];
 
 module.exports = {
   resolver: {
-    sourceExts: REACT_NATIVE_FLAVOR === 'E2E' ? ['e2e.js', 'js'] : ['js'],
+    sourceExts:
+      version.buildFlavor === 'e2e' ? ['e2e.ts', ...DEFAULT_EXTENSIONS] : DEFAULT_EXTENSIONS,
     blacklistRE: (() => {
-      if (REACT_NATIVE_FLAVOR === 'STORYBOOK') {
+      if (version.buildFlavor === 'storybook') {
         // this is to have fixtures embedded in storybook app
         return createBlacklist([]);
       }
-    })()
+    })(),
   },
   transformer: {
     getTransformOptions: () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: false
-      }
-    })
-  }
+        inlineRequires: false,
+      },
+    }),
+  },
 };

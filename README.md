@@ -2,6 +2,19 @@
   <a href="https://coorpacademy.com" rel="noopener" target="_blank"><img width="400" src=".github/logo.png" alt="Coorpacademy mobile app"></a></p>
 </p>
 
+<div align="center">
+  <a href="https://apps.apple.com/fr/app/coorpacademy/id1448348795">
+    <img style="border-radius: 4px" height="140" src=".github/app/app-store-badge.svg" />
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=com.coorpacademy.app">
+    <img style="border-radius: 4px" height="140" src=".github/app/google-play-badge.svg" />
+  </a>
+</div>
+
+<div align="center">
+  <img style="border-radius: 4px" src=".github/app/app.jpg" />
+</div>
+
 ## Installation
 
 Please follow this [step by step guide](.github/INSTALLATION.md).

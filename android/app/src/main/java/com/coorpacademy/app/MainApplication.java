@@ -1,71 +1,36 @@
 package com.coorpacademy.app;
 
-import android.support.multidex.MultiDexApplication;
-
-import android.app.Application;
+import android.content.Context;
+import com.facebook.react.PackageList;
+import androidx.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
-import com.mkuczera.RNReactNativeHapticFeedbackPackage;
-import com.facebook.react.modules.email.EmailPackage;
-import com.zmxv.RNSound.RNSoundPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import org.reactnative.camera.RNCameraPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.horcrux.svg.SvgPackage;
-import org.wonday.orientation.OrientationPackage;
-import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import org.wonday.pdf.RCTPdfView;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.soloader.SoLoader;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-import io.invertase.firebase.links.RNFirebaseLinksPackage;
+import com.brentvatne.react.ReactVideoPackage;
 
-
-import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNReactNativeHapticFeedbackPackage(),
-            new EmailPackage(),
-            new RNSoundPackage(),
-            new RNCWebViewPackage(),
-            new AsyncStoragePackage(),
-            new RNCameraPackage(),
-            new ReactVideoPackage(),
-            new SvgPackage(),
-            new OrientationPackage(),
-            new ReactNativeLocalizationPackage(),
-            new LinearGradientPackage(),
-            new RNFetchBlobPackage(),
-            new RCTPdfView(),
-            new RNGestureHandlerPackage(),
-            new RNDeviceInfo(),
-            new RNFirebasePackage(),
-            new RNFirebaseAnalyticsPackage(),
-            new RNFirebaseLinksPackage(),
-            new SplashScreenReactPackage()
-      );
-    }
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          packages.add(new ReactVideoPackage());
+          return packages;
+        }
 
     @Override
     protected String getJSMainModuleName() {
@@ -82,5 +47,36 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+  }
+  /**
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+   *
+   * @param context
+   * @param reactInstanceManager
+   */
+  private static void initializeFlipper(
+      Context context, ReactInstanceManager reactInstanceManager) {
+    if (BuildConfig.DEBUG) {
+      try {
+        /*
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
+        Class<?> aClass = Class.forName("com.coorpacademy.app.ReactNativeFlipper");
+        aClass
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }
